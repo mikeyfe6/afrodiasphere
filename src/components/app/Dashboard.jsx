@@ -138,7 +138,7 @@ const DashboardPage = () => {
 		},
 		error => {
 			if (error.response.status === 401) {
-				logout(() => navigate('/login'))
+				logout(() => navigate('/login/'))
 				console.log('unauthorized, logging out ...')
 			}
 		}

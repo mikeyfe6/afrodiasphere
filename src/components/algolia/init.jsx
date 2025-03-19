@@ -13,7 +13,9 @@ const Algolia = () => {
 			const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY)
 
 			try {
-				const response = await axios.get(`${apiURL}/api/pages`)
+				const response = await axios.get(
+					`${apiURL}/api/pages?populate[0]=avatar`
+				)
 				const records = response.data.data
 
 				const objectsWithID = records.map(record => ({

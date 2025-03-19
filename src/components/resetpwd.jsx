@@ -51,7 +51,7 @@ const ResetPwd = () => {
 
 			setLoading('Aan het laden')
 			setError(null)
-			navigate('/login')
+			navigate('/login/')
 		} catch {
 			setLoading(null)
 			setError("Verkeerde invoer, probeer 't opnieuw")

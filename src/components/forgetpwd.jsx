@@ -39,7 +39,7 @@ const ForgetPwd = () => {
 			})
 			setLoading('Aan het laden')
 			setError(null)
-			navigate('/wachtwoord-reset')
+			navigate('/wachtwoord-reset/')
 		} catch {
 			setLoading(null)
 			setError("Verkeerde invoer, probeer 't opnieuw")
