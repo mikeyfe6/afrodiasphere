@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import axios from 'axios'
 
@@ -15,6 +15,15 @@ const Slug = ({
 	slug,
 	setSlug
 }) => {
+	const [initialValue, setInitialValue] = useState(slug)
+	const [isSubmitting, setIsSubmitting] = useState(false)
+
+	useEffect(() => {
+		if (!initialValue) {
+			setInitialValue(slug)
+		}
+	})
+
 	const setSlugHandler = e => {
 		setSlug(e.target.value.toLowerCase())
 	}
@@ -22,9 +31,12 @@ const Slug = ({
 	const submitSlug = async e => {
 		e.preventDefault()
 
+		setIsSubmitting(true)
+
 		const params = {
 			slug: slug
 		}
+
 		try {
 			await axios.put(
 				`${apiURL}/api/pages/${docId}`,
@@ -43,14 +55,18 @@ const Slug = ({
 					`https://api.netlify.com/build_hooks/61fd35548a7a1a15735fd2b8`
 				)
 			}
+
+			setInitialValue(slug)
 		} catch {
 			setError('Er gaat iets mis met het updaten van je slug')
 			setTimeout(() => setError(null), 5000)
+		} finally {
+			setIsSubmitting(false)
 		}
 	}
 
 	return (
-		<form onSubmit={submitSlug} className={styles.profileField} hidden>
+		<form onSubmit={submitSlug} className={styles.profileField}>
 			<label htmlFor="slug">Slug</label>
 			<input
 				onChange={setSlugHandler}
@@ -58,7 +74,7 @@ const Slug = ({
 				type="text"
 				name="slug"
 				id="slug"
-				disabled={loadingData}
+				disabled={loadingData || isSubmitting}
 				// placeholder="*verplicht, bijv: 'jouw-profiel'"
 				placeholder="*bijv: 'jouw-profiel'"
 				maxLength="15"
@@ -69,8 +85,7 @@ const Slug = ({
 			<button
 				type="submit"
 				title="Sla nieuwe slug op"
-				className={styles.updateBtn}
-				disabled={loadingData || slug === ''}
+				disabled={slug === initialValue || isSubmitting}
 			>
 				<i className="fa-solid fa-floppy-disk fa-lg" />
 			</button>
