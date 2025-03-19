@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 
 // import * as styles from '../../styles/modules/dashboard/sidebar.module.scss'
 

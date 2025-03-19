@@ -1,14 +1,12 @@
-import React from 'react'
+import * as React from 'react'
 
 import Layout from '../components/layout'
-
+import Faqs from '../components/faqs'
 import Seo from '../components/seo'
 
-import Faqs from '../components/faqs'
+import mamaAfrica from '../images/mamafrica.png'
 
 import * as faqStyles from '../styles/modules/faq.module.scss'
-
-import mamaAfrica from '../images/mamafrica.png'
 
 const faqs = [
 	{

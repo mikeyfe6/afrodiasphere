@@ -71,7 +71,15 @@ const config: GatsbyConfig = {
 		},
 		`gatsby-plugin-sitemap`,
 		`gatsby-plugin-catch-links`,
-		`gatsby-plugin-sass`,
+		{
+			resolve: `gatsby-plugin-sass`,
+			options: {
+				implementation: require('sass'),
+				sassOptions: {
+					silenceDeprecations: ['legacy-js-api']
+				}
+			}
+		},
 		{
 			resolve: `gatsby-plugin-manifest`,
 			options: {
@@ -84,9 +92,9 @@ const config: GatsbyConfig = {
 				theme_color: `#cc9932`,
 				display: `standalone`,
 				icon: 'src/images/afrodiasphere-logo.png',
-				// icon_options: {
-				//   purpose: `any maskable`,
-				// },
+				icon_options: {
+					purpose: `any maskable`
+				},
 				crossOrigin: `use-credentials`
 			}
 		},

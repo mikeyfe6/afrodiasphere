@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react'
 
-import { navigate, useLocation } from '@reach/router'
+import { useLocation } from '@reach/router'
+import { navigate } from 'gatsby'
+
 import axios from 'axios'
 
 import Seo from '../seo'
 
 import { getUser, logout, isLoggedIn } from '../../services/auth'
-
-import noavatar from '../../images/noavatar.png'
 
 import Sidebar from './dashboard/sidebar'
 import Preview from './dashboard/preview'
@@ -36,6 +36,8 @@ import Patreon from './dashboard/socials/patreon'
 import Links from './dashboard/userinfo/links'
 import Themes from './dashboard/themes'
 import AdsLink from './dashboard/adslink'
+
+import noavatar from '../../images/noavatar.png'
 
 import * as styles from '../../styles/modules/dashboard.module.scss'
 
@@ -67,29 +69,29 @@ const DashboardPage = () => {
 	const apiURL = process.env.GATSBY_BACKEND_URL
 	const baseURL = location.origin
 
-	const AdsUser = getUser()
-	const token = AdsUser.jwt
+	const adsUser = getUser()
+	const token = adsUser.jwt
 
 	const [userId, setUserId] = useState(null)
-	const [gatsbyId, setGatsbyId] = useState(null)
+	const [pageId, setPageId] = useState(null)
+	const [docId, setDocId] = useState(null)
 
+	const [avatar, setAvatar] = useState(null)
 	const [avatarId, setAvatarId] = useState(null)
 	const [preview, setPreview] = useState(noavatar)
 
 	const [success, setSuccess] = useState(false)
 	const [error, setError] = useState(null)
-	const [loadingData, setLoadingData] = useState(false)
-
 	const [linkError, setLinkError] = useState(null)
+	const [loadingData, setLoadingData] = useState(false)
 
 	const [profile, setProfile] = useState('')
 	const [username, setUsername] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [slug, setSlug] = useState('')
-	const [deleteAds, setDeleteAds] = useState('')
 
-	const [occupate, setOccupate] = useState('')
+	const [occupation, setOccupation] = useState('')
 	const [biography, setBiography] = useState('')
 
 	const [telephone, setTelephone] = useState('')
@@ -142,50 +144,60 @@ const DashboardPage = () => {
 		}
 	)
 
-	const getUserId = useCallback(async () => {
+	const getUserData = useCallback(async () => {
 		setLoadingData(true)
 
 		try {
-			const res = await axios.get(`${apiURL}/api/instanties`, {
-				headers: {
-					Authorization: `Bearer ${token}`
+			const res = await axios.get(
+				`${apiURL}/api/users/me?populate[page][populate][0]=address&populate[page][populate][1]=avatar`,
+				{
+					headers: { Authorization: `Bearer ${token}` }
 				}
-			})
+			)
 
 			setUserId(res.data.id)
-			setProfile(res.data.profile)
-			setSlug(res.data.slug)
-			setOccupate(res.data.occupate || '')
-			setBiography(res.data.biography)
-			setProfile(res.data.profile)
-			setTelephone(res.data.telephone)
-			setMail(res.data.email)
-			setFbLink(res.data.facebooklink || '')
-			setIgLink(res.data.instagramlink || '')
-			setLiLink(res.data.linkedinlink || '')
-			setTkLink(res.data.tiktoklink || '')
-			setTwLink(res.data.twitterlink || '')
-			setWaLink(res.data.whatsapplink || '')
-			setPiLink(res.data.pinterestlink || '')
-			setSnLink(res.data.snapchatlink || '')
-			setYtLink(res.data.youtubelink || '')
-			setPaLink(res.data.patreonlink || '')
-			setColor(res.data.bgfree)
+			setPageId(res.data.page.id)
+			setDocId(res.data.page.documentId)
 
-			if (res.data.address) {
+			setProfile(res.data.page.profile)
+			setUsername(res.data.username)
+			setEmail(res.data.email)
+
+			setSlug(res.data.page.slug)
+
+			setOccupation(res.data.page.occupation || '')
+			setBiography(res.data.page.biography || '')
+			setTelephone(res.data.page.telephone || '')
+			setMail(res.data.page.email || '')
+
+			setFbLink(res.data.page.facebook || '')
+			setIgLink(res.data.page.instagram || '')
+			setLiLink(res.data.page.linkedin || '')
+			setTkLink(res.data.page.tiktok || '')
+			setTwLink(res.data.page.twitter || '')
+			setWaLink(res.data.page.whatsapp || '')
+			setPiLink(res.data.page.pinterest || '')
+			setSnLink(res.data.page.snapchat || '')
+			setYtLink(res.data.page.youtube || '')
+			setPaLink(res.data.page.patreon || '')
+
+			setColor(res.data.page.theme)
+
+			if (res.data.page.address) {
 				setAddress({
-					location: res.data.address.location || '',
-					latitude: res.data.address.latitude || 0,
-					longitude: res.data.address.longitude || 0
+					location: res.data.page.address.location || '',
+					latitude: res.data.page.address.latitude || 0,
+					longitude: res.data.page.address.longitude || 0
 				})
 			}
 
-			if (!res.data.avatar) {
+			if (!res.data.page.avatar) {
 				setPreview(noavatar)
-				setAvatarId(null)
+				setAvatar(null)
 			} else {
-				setAvatarId(res.data.avatar.id)
-				setPreview(res.data.avatar.url)
+				setAvatar(res.data.page.avatar.url)
+				setPreview(res.data.page.avatar.url)
+				setAvatarId(res.data.page.avatar.id)
 			}
 		} catch (error) {
 			console.error('Error fetching user ID:', error)
@@ -196,60 +208,11 @@ const DashboardPage = () => {
 	}, [apiURL, token])
 
 	useEffect(() => {
-		if (AdsUser.user.id) {
-			setGatsbyId(AdsUser.user.id)
-		} else {
-			logout(() => navigate('/login'))
-		}
-	}, [AdsUser.user.id])
-
-	useEffect(() => {
-		getUserId()
-	}, [getUserId])
-
-	useEffect(() => {
-		if (gatsbyId) {
-			try {
-				const getUserData = async () => {
-					const res = await axios.get(`${apiURL}/api/users/${gatsbyId}`, {
-						headers: {
-							Authorization: `Bearer ${token}`
-						}
-					})
-					setEmail(res.data.email)
-					setUsername(res.data.username)
-				}
-				getUserData()
-			} catch (error) {
-				console.error('Error fetching email:', error)
-			}
-		}
-	}, [gatsbyId, token])
-
-	const getLinks = useCallback(async () => {
-		try {
-			const res = await axios.get(`${apiURL}/api/connections`, {
-				headers: {
-					Authorization: `Bearer ${token}`
-				}
-			})
-			setLinks(res.data)
-			setLinkError(null)
-		} catch (error) {
-			console.error('Error fetching links:', error)
-			setLinkError('Er ging iets mis bij het ophalen van de links.')
-		}
-	}, [apiURL, token])
-
-	useEffect(() => {
-		getLinks()
-	}, [getLinks])
+		getUserData()
+	}, [getUserData])
 
 	const handleSmLinkChange = (name, value) => {
-		setSmLinks(prevLinks => ({
-			...prevLinks,
-			[name]: value
-		}))
+		setSmLinks(prevLinks => ({ ...prevLinks, [name]: value }))
 
 		setChangedSmLinks(prevChangedLinks => ({
 			...prevChangedLinks,
@@ -262,19 +225,13 @@ const DashboardPage = () => {
 
 		for (const [name, hasChanged] of Object.entries(changedSmLinks)) {
 			if (hasChanged) {
-				const params = {
-					[`${name}link`]: smLinks[name]
-				}
+				const params = { [name]: smLinks[name] }
 
 				try {
 					await axios.put(
-						`${apiURL}/api/instanties/${userId}`,
+						`${apiURL}/api/pages/${docId}`,
 						{ data: params },
-						{
-							headers: {
-								Authorization: `Bearer ${token}`
-							}
-						}
+						{ headers: { Authorization: `Bearer ${token}` } }
 					)
 					setError(null)
 				} catch {
@@ -329,7 +286,7 @@ const DashboardPage = () => {
 				<Preview
 					preview={preview}
 					profile={profile}
-					occupate={occupate}
+					occupation={occupation}
 					biography={biography}
 					telephone={telephone}
 					mail={mail}
@@ -356,82 +313,90 @@ const DashboardPage = () => {
 
 				<div className={styles.avatarWProfileInfo}>
 					<Avatar
-						userId={userId}
+						pageId={pageId}
+						docId={docId}
+						avatarId={avatarId}
 						apiURL={apiURL}
 						token={token}
-						setSuccess={setSuccess}
 						noavatar={noavatar}
 						preview={preview}
 						setPreview={setPreview}
+						avatar={avatar}
+						setAvatar={setAvatar}
+						setSuccess={setSuccess}
 						loadingData={loadingData}
-						avatarId={avatarId}
-						setAvatarId={setAvatarId}
 					/>
 
 					{/* PROFILE INFO ROFILE INFO PROFILE INFO PROFILE INFO <-----------------------------------------------------------> PROFILE INFO PROFILE INFO PROFILE INFO PROFILE INFO */}
 
 					<div className={styles.profileInfo}>
 						<Profile
-							userId={userId}
+							docId={docId}
 							apiURL={apiURL}
 							token={token}
-							setSuccess={setSuccess}
-							setValidationMessage={setError}
 							profile={profile}
 							setProfile={setProfile}
+							setSuccess={setSuccess}
+							setValidationMessage={setError}
 							loadingData={loadingData}
 						/>
 
 						<Username
-							gatsbyId={gatsbyId}
+							userId={userId}
 							apiURL={apiURL}
 							token={token}
-							setSuccess={setSuccess}
-							setValidationMessage={setError}
 							username={username}
 							setUsername={setUsername}
+							setSuccess={setSuccess}
+							setValidationMessage={setError}
 							loadingData={loadingData}
 						/>
 
 						<Email
-							gatsbyId={gatsbyId}
+							userId={userId}
 							apiURL={apiURL}
 							token={token}
-							setSuccess={setSuccess}
-							setValidationMessage={setError}
 							email={email}
 							setEmail={setEmail}
+							setSuccess={setSuccess}
+							setValidationMessage={setError}
 							loadingData={loadingData}
 						/>
 
 						<Slug
-							gatsbyId={gatsbyId}
+							docId={docId}
 							apiURL={apiURL}
 							token={token}
-							setError={setError}
 							slug={slug}
 							setSlug={setSlug}
+							setError={setError}
 							loadingData={loadingData}
 						/>
 
+						{/* TODO: setSucces toevoegen */}
 						<Password
-							gatsbyId={gatsbyId}
+							userId={userId}
 							apiURL={apiURL}
 							token={token}
-							setError={setError}
 							password={password}
 							setPassword={setPassword}
+							setError={setError}
 							loadingData={loadingData}
 						/>
 
+						{/* TODO: gehele delete functie nog aanpakken */}
 						<Terminate
-							gatsbyId={gatsbyId}
+							pageId={pageId}
+							setPageId={setPageId}
+							docId={docId}
+							userId={userId}
+							setUserId={setUserId}
 							apiURL={apiURL}
 							token={token}
-							setError={setError}
-							deleteAds={deleteAds}
-							setDeleteAds={setDeleteAds}
+							links={links}
+							username={username}
 							loadingData={loadingData}
+							setError={setError}
 						/>
 					</div>
 				</div>
@@ -441,22 +406,22 @@ const DashboardPage = () => {
 
 				<div className={styles.occupationWBio}>
 					<Occupation
-						userId={userId}
+						docId={docId}
 						apiURL={apiURL}
 						token={token}
+						occupation={occupation}
+						setOccupation={setOccupation}
 						setError={setError}
-						occupate={occupate}
-						setOccupate={setOccupate}
 					/>
 
 					<Biography
-						userId={userId}
+						docId={docId}
 						apiURL={apiURL}
 						token={token}
-						setSuccess={setSuccess}
-						setValidationMessage={setError}
 						biography={biography}
 						setBiography={setBiography}
+						setSuccess={setSuccess}
+						setValidationMessage={setError}
 						loadingData={loadingData}
 					/>
 				</div>
@@ -467,7 +432,7 @@ const DashboardPage = () => {
 
 				<div className={styles.contactInfo}>
 					<Telephone
-						userId={userId}
+						docId={docId}
 						apiURL={apiURL}
 						token={token}
 						telephone={telephone}
@@ -478,7 +443,7 @@ const DashboardPage = () => {
 					/>
 
 					<Mail
-						userId={userId}
+						docId={docId}
 						apiURL={apiURL}
 						token={token}
 						mail={mail}
@@ -490,7 +455,7 @@ const DashboardPage = () => {
 				</div>
 
 				<Address
-					userId={userId}
+					docId={docId}
 					apiURL={apiURL}
 					token={token}
 					preview={preview}
@@ -509,10 +474,6 @@ const DashboardPage = () => {
 
 				<div className={styles.socials}>
 					<Facebook
-						userId={userId}
-						apiURL={apiURL}
-						token={token}
-						setError={setError}
 						fbLink={fbLink}
 						setFbLink={setFbLink}
 						handleSmLinkChange={handleSmLinkChange}
@@ -520,10 +481,6 @@ const DashboardPage = () => {
 					/>
 
 					<Twitter
-						userId={userId}
-						apiURL={apiURL}
-						token={token}
-						setError={setError}
 						twLink={twLink}
 						setTwLink={setTwLink}
 						handleSmLinkChange={handleSmLinkChange}
@@ -531,10 +488,6 @@ const DashboardPage = () => {
 					/>
 
 					<Instagram
-						userId={userId}
-						apiURL={apiURL}
-						token={token}
-						setError={setError}
 						igLink={igLink}
 						setIgLink={setIgLink}
 						handleSmLinkChange={handleSmLinkChange}
@@ -542,10 +495,6 @@ const DashboardPage = () => {
 					/>
 
 					<Whatsapp
-						userId={userId}
-						apiURL={apiURL}
-						token={token}
-						setError={setError}
 						waLink={waLink}
 						setWaLink={setWaLink}
 						handleSmLinkChange={handleSmLinkChange}
@@ -553,10 +502,6 @@ const DashboardPage = () => {
 					/>
 
 					<TikTok
-						userId={userId}
-						apiURL={apiURL}
-						token={token}
-						setError={setError}
 						tkLink={tkLink}
 						setTkLink={setTkLink}
 						handleSmLinkChange={handleSmLinkChange}
@@ -564,10 +509,6 @@ const DashboardPage = () => {
 					/>
 
 					<Linkedin
-						userId={userId}
-						apiURL={apiURL}
-						token={token}
-						setError={setError}
 						liLink={liLink}
 						setLiLink={setLiLink}
 						handleSmLinkChange={handleSmLinkChange}
@@ -575,10 +516,6 @@ const DashboardPage = () => {
 					/>
 
 					<Pinterest
-						userId={userId}
-						apiURL={apiURL}
-						token={token}
-						setError={setError}
 						piLink={piLink}
 						setPiLink={setPiLink}
 						handleSmLinkChange={handleSmLinkChange}
@@ -586,10 +523,6 @@ const DashboardPage = () => {
 					/>
 
 					<Snapchat
-						userId={userId}
-						apiURL={apiURL}
-						token={token}
-						setError={setError}
 						snLink={snLink}
 						setSnLink={setSnLink}
 						handleSmLinkChange={handleSmLinkChange}
@@ -597,10 +530,6 @@ const DashboardPage = () => {
 					/>
 
 					<Youtube
-						userId={userId}
-						apiURL={apiURL}
-						token={token}
-						setError={setError}
 						ytLink={ytLink}
 						setYtLink={setYtLink}
 						handleSmLinkChange={handleSmLinkChange}
@@ -608,10 +537,6 @@ const DashboardPage = () => {
 					/>
 
 					<Patreon
-						userId={userId}
-						apiURL={apiURL}
-						token={token}
-						setError={setError}
 						paLink={paLink}
 						setPaLink={setPaLink}
 						handleSmLinkChange={handleSmLinkChange}
@@ -635,6 +560,8 @@ const DashboardPage = () => {
 
 				<Links
 					userId={userId}
+					pageId={pageId}
+					docId={docId}
 					apiURL={apiURL}
 					token={token}
 					setError={setError}
@@ -643,7 +570,6 @@ const DashboardPage = () => {
 					setTkLink={setTkLink}
 					linkError={linkError}
 					setLinkError={setLinkError}
-					getLinks={getLinks}
 				/>
 
 				<hr />
@@ -653,7 +579,7 @@ const DashboardPage = () => {
 				<h2>Thema's</h2>
 
 				<Themes
-					userId={userId}
+					docId={docId}
 					apiURL={apiURL}
 					token={token}
 					color={color}

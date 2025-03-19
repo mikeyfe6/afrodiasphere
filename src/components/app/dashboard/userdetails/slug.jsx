@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import * as React from 'react'
 
 import axios from 'axios'
 
@@ -7,10 +7,10 @@ import * as styles from '../../../../styles/modules/dashboard/profileInfo.module
 // TODO: bedenken wat ik met die slug ga doen voor end-users
 
 const Slug = ({
-	userId,
+	docId,
 	apiURL,
 	token,
-	// setLoading,
+	loadingData,
 	setError,
 	slug,
 	setSlug
@@ -27,7 +27,7 @@ const Slug = ({
 		}
 		try {
 			await axios.put(
-				`${apiURL}/api/instanties/${userId}`,
+				`${apiURL}/api/pages/${docId}`,
 				{ data: params },
 				{
 					headers: {
@@ -58,17 +58,21 @@ const Slug = ({
 				type="text"
 				name="slug"
 				id="slug"
-				readOnly
-				disabled
+				disabled={loadingData}
 				// placeholder="*verplicht, bijv: 'jouw-profiel'"
-				placeholder="*verplicht, de beheerder maakt deze voor u aan"
+				placeholder="*bijv: 'jouw-profiel'"
 				maxLength="15"
 				pattern="[^\s]+"
 				title="geen spaties, alleen '-'"
 			/>
 
-			<button type="submit" disabled>
-				Update
+			<button
+				type="submit"
+				title="Sla nieuwe slug op"
+				className={styles.updateBtn}
+				disabled={loadingData || slug === ''}
+			>
+				<i className="fa-solid fa-floppy-disk fa-lg" />
 			</button>
 		</form>
 	)

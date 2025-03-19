@@ -1,13 +1,13 @@
-import React from 'react'
+import * as React from 'react'
 
 import axios from 'axios'
 
 import * as styles from '../../../../styles/modules/dashboard/profileInfo.module.scss'
 
-// TODO: add a doublecheck for the right password & validation!!!
+// TODO: add a doublecheck for the right password & validation & message !!!
 
 const Password = ({
-	gatsbyId,
+	userId,
 	apiURL,
 	token,
 	setLoading,
@@ -22,14 +22,10 @@ const Password = ({
 	const submitPassword = async e => {
 		e.preventDefault()
 
-		const params = {
-			password: password
-		}
+		const params = { password: password }
 		try {
-			await axios.put(`${apiURL}/api/users/${gatsbyId}`, params, {
-				headers: {
-					Authorization: `Bearer ${token}`
-				}
+			await axios.put(`${apiURL}/api/users/${userId}`, params, {
+				headers: { Authorization: `Bearer ${token}` }
 			})
 			setError(null)
 			setPassword('')

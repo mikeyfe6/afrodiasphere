@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react'
 
-import { Link } from 'gatsby'
-import axios from 'axios'
 import { useLocation } from '@reach/router'
+import { Link } from 'gatsby'
+
+import axios from 'axios'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { A11y, Autoplay } from 'swiper/modules'
+
+import 'swiper/css'
+import 'swiper/css/effect-fade'
+import 'swiper/css/autoplay'
 
 import * as styles from '../styles/modules/slider.module.scss'
 
@@ -22,8 +27,9 @@ const Slider = () => {
 	useEffect(() => {
 		const getCarousel = async () => {
 			try {
-				const res = await axios.get(`${apiURL}/api/instanties?populate=*`)
-				setCarousel(res.data)
+				const res = await axios.get(`${apiURL}/api/pages?populate[0]=avatar`)
+
+				setCarousel(res.data.data)
 			} catch (error) {
 				console.error('Error fetching carousel data:', error)
 			}
@@ -40,24 +46,14 @@ const Slider = () => {
 				spaceBetween={15}
 				autoplay={{ delay: 5000 }}
 				breakpoints={{
-					320: {
-						slidesPerView: 1
-					},
-					420: {
-						slidesPerView: 2
-					},
-					576: {
-						slidesPerView: 3
-					},
-					768: {
-						slidesPerView: 4
-					},
-					992: {
-						slidesPerView: 5
-					}
+					320: { slidesPerView: 1 },
+					420: { slidesPerView: 2 },
+					576: { slidesPerView: 3 },
+					768: { slidesPerView: 4 },
+					992: { slidesPerView: 5 }
 				}}
 			>
-				{carousel.map(ads => (
+				{carousel?.map(ads => (
 					<SwiperSlide
 						key={ads.id}
 						// className={`theme-${color}-links`}
@@ -70,19 +66,15 @@ const Slider = () => {
 								alt={ads.profile}
 							/>
 							<div className={styles.profile}>{ads.profile}</div>
-							<div className={styles.occupate}>{ads.occupate || '..'}</div>
+							<div className={styles.occupate}>{ads.occupation || '..'}</div>
 							<div className={styles.biography}>
-								<p
-									dangerouslySetInnerHTML={{
-										__html: ads.biography
-									}}
-								/>
+								<p dangerouslySetInnerHTML={{ __html: ads.biography }} />
 							</div>
 							<div className={styles.url}>
 								<Link to={`/${ads.slug}`} title={`${baseURL}/${ads.slug}`}>
 									<span>・</span>
 									<span>/</span>
-									<span>{`${ads.slug}`}</span>
+									<span>{`${ads.slug ?? '..'}`}</span>
 								</Link>
 							</div>
 						</div>

@@ -5,7 +5,7 @@ import axios from 'axios'
 import * as styles from '../../../../styles/modules/dashboard/profileInfo.module.scss'
 
 const Email = ({
-	gatsbyId,
+	userId,
 	apiURL,
 	token,
 	setSuccess,
@@ -60,14 +60,10 @@ const Email = ({
 
 		setIsSubmitting(true)
 
-		const params = {
-			email: email
-		}
+		const params = { email: email }
 		try {
-			await axios.put(`${apiURL}/api/users/${gatsbyId}`, params, {
-				headers: {
-					Authorization: `Bearer ${token}`
-				}
+			await axios.put(`${apiURL}/api/users/${userId}`, params, {
+				headers: { Authorization: `Bearer ${token}` }
 			})
 
 			setSuccess('E-mailadres succesvol geüpdatet')

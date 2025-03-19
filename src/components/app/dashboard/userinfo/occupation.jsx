@@ -5,24 +5,25 @@ import axios from 'axios'
 import * as occupationStyles from '../../../../styles/modules/dashboard/occupation.module.scss'
 
 const Occupation = ({
-	userId,
+	docId,
 	apiURL,
 	token,
 	setLoading,
 	setError,
-	occupate,
-	setOccupate
+	occupation,
+	setOccupation
 }) => {
 	const [expandedSection, setExpandedSection] = useState(null)
 
-	const onOccupateChange = async e => {
-		setOccupate(e.target.value)
+	const onOccupationChange = async e => {
+		setOccupation(e.target.value)
 
 		const params = {
-			occupate: e.target.value
+			occupation: e.target.value
 		}
+
 		await axios.put(
-			`${apiURL}/api/instanties/${userId}`,
+			`${apiURL}/api/pages/${docId}`,
 			{ data: params },
 			{
 				headers: {
@@ -61,11 +62,11 @@ const Occupation = ({
 			geen: 'Overige Beroepen'
 		}
 
-		const currentCategory = occupationCategories[occupate]
+		const currentCategory = occupationCategories[occupation]
 		if (currentCategory) {
 			setExpandedSection(currentCategory)
 		}
-	}, [occupate])
+	}, [occupation])
 
 	const toggleSection = section => {
 		setExpandedSection(prevSection =>
@@ -135,22 +136,18 @@ const Occupation = ({
 							</button>
 							{expandedSection === category && (
 								<div className={occupationStyles.choice}>
-									{occupations.map(occupation => (
-										<div key={occupation}>
+									{occupations.map(option => (
+										<div key={option}>
 											<input
-												id={occupation.replace(/\s+/g, '')}
+												id={option.replace(/\s+/g, '')}
 												type="radio"
-												value={occupation}
-												name="occupate"
-												checked={occupate === occupation}
-												onChange={onOccupateChange}
+												value={option}
+												name="occupation"
+												checked={occupation === option}
+												onChange={onOccupationChange}
 											/>
-											<label
-												htmlFor={occupation.replace(/\s+/g, '')}
-												title={`Ik ben ${occupation}`}
-											>
-												{occupation.charAt(0).toUpperCase() +
-													occupation.slice(1)}
+											<label htmlFor={option.replace(/\s+/g, '')}>
+												{option.charAt(0).toUpperCase() + option.slice(1)}
 											</label>
 										</div>
 									))}

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
-import axios from 'axios'
 import { algoliasearch } from 'algoliasearch'
+import axios from 'axios'
 
 import { ALGOLIA_APP_ID, ALGOLIA_API_KEY, ALGOLIA_INDEX_NAME } from './keys'
 
@@ -13,11 +13,11 @@ const Algolia = () => {
 			const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY)
 
 			try {
-				const response = await axios.get(`${apiURL}/api/instanties?populate=*`)
-				const records = response.data
+				const response = await axios.get(`${apiURL}/api/pages`)
+				const records = response.data.data
 
 				const objectsWithID = records.map(record => ({
-					objectID: record.id,
+					objectID: record.documentId,
 					...record
 				}))
 

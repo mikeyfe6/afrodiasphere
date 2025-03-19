@@ -1,10 +1,10 @@
-import React from 'react'
+import * as React from 'react'
 
 import { Link } from 'gatsby'
 
-import * as styles from '../styles/modules/footer.module.scss'
-
 import menefexLogo from '../images/menefex-icon.png'
+
+import * as styles from '../styles/modules/footer.module.scss'
 
 const Footer = () => (
 	<footer className={styles.adsFooter}>

@@ -1,15 +1,10 @@
-import React from 'react'
+import * as React from 'react'
 
 import Layout from '../components/layout'
-import Seo from '../components/seo'
-
 import Intro from '../components/intro'
 import Slider from '../components/slider'
 import Maps from '../components/maps'
-
-import 'swiper/scss'
-import 'swiper/scss/effect-fade'
-import 'swiper/scss/autoplay'
+import Seo from '../components/seo'
 
 const IndexPage = () => {
 	return (

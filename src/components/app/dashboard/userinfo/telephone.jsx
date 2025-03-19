@@ -5,7 +5,7 @@ import axios from 'axios'
 import * as styles from '../../../../styles/modules/dashboard/profileInfo.module.scss'
 
 const Telephone = ({
-	userId,
+	docId,
 	apiURL,
 	token,
 	setSuccess,
@@ -65,7 +65,7 @@ const Telephone = ({
 		}
 		try {
 			await axios.put(
-				`${apiURL}/api/instanties/${userId}`,
+				`${apiURL}/api/pages/${docId}`,
 				{ data: params },
 				{
 					headers: {

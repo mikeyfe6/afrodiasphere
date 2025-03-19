@@ -1,15 +1,11 @@
-import React from 'react'
-
-import '../../../styles/preview.scss'
+import * as React from 'react'
 
 import * as styles from '../../../styles/modules/dashboard/themes.module.scss'
-
-// TODO: add a doublecheck for the right password
 
 const Preview = ({
 	preview,
 	profile,
-	occupate,
+	occupation,
 	biography,
 	telephone,
 	mail,
@@ -77,7 +73,7 @@ const Preview = ({
 				{profile}
 			</p>
 			<p id="iphone-occupate" className={getThemeClassName('Occupate')}>
-				{occupate}
+				{occupation}
 			</p>
 			<p id="iphone-biography" className={getThemeClassName('Biography')}>
 				{biography}
@@ -90,10 +86,10 @@ const Preview = ({
 					.map((link, index) => (
 						<li key={index} id={`link${link.id}`} hidden={!link.visible}>
 							<a
-								href={`https://${link.hyperlink}`}
+								href={`https://${link.url}`}
 								rel="noopener noreferrer"
 								target="_blank"
-								title={`https://${link.hyperlink}`}
+								title={`https://${link.url}`}
 							>
 								{link.title}
 							</a>

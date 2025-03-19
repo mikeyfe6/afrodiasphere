@@ -1,4 +1,4 @@
-@import '../../styles/configs/globals';
+@use '../customs' as *;
 
 .login {
 	display: flex;

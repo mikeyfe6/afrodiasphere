@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
 import { Link } from 'gatsby'
-import axios from 'axios'
 
 import GoogleMapReact from 'google-map-react'
+import axios from 'axios'
 
 import * as mapsStyles from '../styles/modules/maps.module.scss'
 
@@ -37,14 +37,16 @@ const Maps = () => {
 	useEffect(() => {
 		const getMapPins = async () => {
 			try {
-				const res = await axios.get(`${apiURL}/api/instanties?populate=*`)
-				const data = res.data.map(item => ({
+				const res = await axios.get(
+					`${apiURL}/api/pages?populate[0]=avatar&populate[1]=address`
+				)
+				const data = res.data.data.map(item => ({
 					...item.address,
 					imageUrl: item.avatar?.url,
 					profile: item.profile,
 					slug: item.slug,
 					biography: item.biography,
-					occupate: item.occupate,
+					occupation: item.occupation,
 					telephone: item.telephone,
 					mail: item.email
 				}))
@@ -100,7 +102,9 @@ const Maps = () => {
 							{selectedPin.profile && (
 								<h3>
 									{selectedPin.profile}{' '}
-									{selectedPin.occupate && <span>{selectedPin.occupate}</span>}
+									{selectedPin.occupation && (
+										<span>{selectedPin.occupation}</span>
+									)}
 								</h3>
 							)}
 

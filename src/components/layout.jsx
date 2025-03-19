@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
+
+import PropTypes from 'prop-types'
 
 import Header from './header'
 import Footer from './footer'
 import MobileMenu from './mobileMenu'
 
-import ResponsiveTag from '../components/helpers/responsetag'
-
 import Algolia from './algolia/init'
+
+import ResponsiveTag from '../components/helpers/responsetag'
 
 import '../styles/layout.scss'
 
@@ -57,7 +58,6 @@ const Layout = ({ children }) => {
 			<Algolia />
 
 			<div className="algolia-overlay" />
-			
 
 			{process.env.NODE_ENV === 'development' && <ResponsiveTag />}
 		</>

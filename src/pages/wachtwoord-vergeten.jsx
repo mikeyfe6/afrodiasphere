@@ -1,15 +1,12 @@
-import React from 'react'
-// import { Link } from "gatsby"
+import * as React from 'react'
 
 import Layout from '../components/layout'
-
+import ForgetPassword from '../components/forgetpwd'
 import Seo from '../components/seo'
-
-import * as styles from '../styles/modules/forgetPwd.module.scss'
 
 import mamaAfrica from '../images/mamafrica.png'
 
-import ForgetPassword from '../components/forgetpwd'
+import * as styles from '../styles/modules/forgetPwd.module.scss'
 
 const ForgetPwdPage = () => (
 	<Layout>

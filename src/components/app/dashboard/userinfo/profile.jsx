@@ -5,12 +5,12 @@ import axios from 'axios'
 import * as styles from '../../../../styles/modules/dashboard/profileInfo.module.scss'
 
 const Profile = ({
-	userId,
+	docId,
 	apiURL,
 	token,
-	setSuccess,
 	profile,
 	setProfile,
+	setSuccess,
 	loadingData,
 	setValidationMessage
 }) => {
@@ -66,7 +66,7 @@ const Profile = ({
 		}
 		try {
 			await axios.put(
-				`${apiURL}/api/instanties/${userId}`,
+				`${apiURL}/api/pages/${docId}`,
 				{ data: params },
 				{
 					headers: {

@@ -9,7 +9,7 @@ import Search from './algolia/search'
 import * as styles from '../styles/modules/mobileMenu.module.scss'
 
 const MobileMenu = ({ isMenuOpen, setMenuOpen }) => {
-	const AdsUser = getUser()
+	const adsUser = getUser()
 	const initialScrollY = useRef(window.scrollY)
 	const [searchVisible, setSearchVisible] = useState(false)
 	const [hasFocus, setFocus] = useState(false)
@@ -82,8 +82,8 @@ const MobileMenu = ({ isMenuOpen, setMenuOpen }) => {
 
 			<div className={styles.username} id="ads-username">
 				{isLoggedIn() && isBrowser() ? (
-					<Link to={`/${AdsUser.user.username}/`} title="Ga naar jouw ADS page">
-						{AdsUser.user.username}{' '}
+					<Link to={`/${adsUser.user.username}/`} title="Ga naar jouw ADS page">
+						{adsUser.user.username}{' '}
 					</Link>
 				) : (
 					<Link to="/login/" title="Inloggen">

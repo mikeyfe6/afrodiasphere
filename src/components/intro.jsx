@@ -1,10 +1,10 @@
-import React from 'react'
+import * as React from 'react'
 
 import { Link } from 'gatsby'
 
-import * as styles from '../styles/modules/intro.module.scss'
-
 import mamaAfrica from '../images/mamafrica.png'
+
+import * as styles from '../styles/modules/intro.module.scss'
 
 const Intro = () => (
 	<section className={styles.intro}>

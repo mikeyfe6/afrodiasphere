@@ -1,4 +1,5 @@
-import React from 'react'
+import * as React from 'react'
+
 import { useStaticQuery, graphql } from 'gatsby'
 
 function Seo({ description, title, children, pathname, image }) {

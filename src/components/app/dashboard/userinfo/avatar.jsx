@@ -5,7 +5,9 @@ import axios from 'axios'
 import * as styles from '../../../../styles/modules/dashboard/avatar.module.scss'
 
 const Avatar = ({
-	userId,
+	docId,
+	pageId,
+	avatarId,
 	apiURL,
 	token,
 	setSuccess,
@@ -13,18 +15,20 @@ const Avatar = ({
 	preview,
 	noavatar,
 	loadingData,
-	avatarId,
-	setAvatarId
+	avatar,
+	setAvatar
 }) => {
 	const [image, setImage] = useState(null)
+
+	console.log(avatarId)
 
 	const fileInputRef = useRef()
 
 	useEffect(() => {
-		if (avatarId) {
-			setAvatarId(avatarId)
+		if (avatar) {
+			setAvatar(avatar)
 		}
-	}, [avatarId, setAvatarId])
+	}, [avatar, setAvatar])
 
 	const deleteAvatar = async e => {
 		e.preventDefault()
@@ -40,7 +44,7 @@ const Avatar = ({
 			})
 
 			setTimeout(() => setSuccess(false), 5000)
-			setAvatarId(null)
+			setAvatar(null)
 		} catch (error) {
 			console.error("Avatar verwijderen lukt niet, probeer het nog 's", error)
 		}
@@ -53,8 +57,8 @@ const Avatar = ({
 			setSuccess(true)
 			const imgData = new FormData()
 			imgData.append('files', image)
-			imgData.append('ref', 'api::instantie.instantie')
-			imgData.append('refId', userId)
+			imgData.append('ref', 'api::page.page')
+			imgData.append('refId', pageId)
 			imgData.append('field', 'avatar')
 
 			const response = await axios.post(`${apiURL}/api/upload/`, imgData, {
@@ -64,7 +68,23 @@ const Avatar = ({
 			})
 
 			const uploadedAvatarId = response.data[0].id
-			setAvatarId(uploadedAvatarId)
+			const avatarUrl = response.data[0].url
+
+			await axios.put(
+				`${apiURL}/api/pages/${docId}`,
+				{
+					data: {
+						avatar: uploadedAvatarId
+					}
+				},
+				{
+					headers: {
+						Authorization: `Bearer ${token}`
+					}
+				}
+			)
+
+			setAvatar(avatarUrl)
 			setSuccess(false)
 		} catch (error) {
 			console.log('Niet gelukt!', error)
@@ -106,7 +126,7 @@ const Avatar = ({
 					type="reset"
 					onClick={deleteAvatar}
 					title="Verwijder jouw avatar"
-					disabled={avatarId === null || (image !== null && avatarId !== null)}
+					disabled={avatar === null || (image !== null && avatar !== null)}
 				>
 					Verwijder
 				</button>

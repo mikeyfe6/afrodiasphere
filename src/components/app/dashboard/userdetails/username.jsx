@@ -5,9 +5,9 @@ import axios from 'axios'
 import * as styles from '../../../../styles/modules/dashboard/profileInfo.module.scss'
 
 const Username = ({
-	gatsbyId,
 	apiURL,
 	token,
+	userId,
 	setSuccess,
 	username,
 	setUsername,
@@ -63,14 +63,10 @@ const Username = ({
 		setIsSubmitting(true)
 		setInitialValue(username)
 
-		const params = {
-			username: username
-		}
+		const params = { username: username }
 		try {
-			await axios.put(`${apiURL}/api/users/${gatsbyId}`, params, {
-				headers: {
-					Authorization: `Bearer ${token}`
-				}
+			await axios.put(`${apiURL}/api/users/${userId}`, params, {
+				headers: { Authorization: `Bearer ${token}` }
 			})
 
 			setSuccess('Gebruikersnaam succesvol geüpdatet')

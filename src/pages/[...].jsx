@@ -1,12 +1,12 @@
-import React from 'react'
-import { Router, useLocation } from '@reach/router'
+import * as React from 'react'
 
-import Seo from '../components/seo'
+import { Router, useLocation } from '@reach/router'
 
 import Layout from '../components/layout'
 import PrivateRoute from '../components/app/PrivateRoute'
 import Dashboard from '../components/app/Dashboard'
 import Login from '../components/app/Login'
+import Seo from '../components/seo'
 
 const App = () => (
 	<Layout>

@@ -5,7 +5,7 @@ import axios from 'axios'
 import * as styles from '../../../../styles/modules/dashboard/biography.module.scss'
 
 const Biography = ({
-	userId,
+	docId,
 	apiURL,
 	token,
 	setSuccess,
@@ -52,18 +52,12 @@ const Biography = ({
 
 		setIsSubmitting(true)
 
-		const params = {
-			biography: biography
-		}
+		const params = { biography: biography }
 		try {
 			await axios.put(
-				`${apiURL}/api/instanties/${userId}`,
+				`${apiURL}/api/pages/${docId}`,
 				{ data: params },
-				{
-					headers: {
-						Authorization: `Bearer ${token}`
-					}
-				}
+				{ headers: { Authorization: `Bearer ${token}` } }
 			)
 
 			setSuccess('Biografie succesvol geüpdatet')
@@ -90,7 +84,15 @@ const Biography = ({
 				style={{ borderColor: validationError ? '#CA231E' : '#cc9932' }}
 			/>
 			<div>
-				<span style={{ color: biography.length > 240 ? '#CA231E' : '#cc9932' }}>
+				<span
+					style={{
+						color: biography
+							? biography.length > 240
+								? '#CA231E'
+								: '#cc9932'
+							: '#cc9932'
+					}}
+				>
 					{' '}
 					{biography ? biography.length : 0}
 				</span>

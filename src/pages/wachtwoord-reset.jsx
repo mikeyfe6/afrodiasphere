@@ -1,15 +1,12 @@
-import React from 'react'
-// import { Link } from "gatsby"
+import * as React from 'react'
 
 import Layout from '../components/layout'
-
+import ResetPassword from '../components/resetpwd'
 import Seo from '../components/seo'
-
-import * as styles from '../styles/modules/resetPwd.module.scss'
 
 import mamaAfrica from '../images/mamafrica.png'
 
-import ResetPassword from '../components/resetpwd'
+import * as styles from '../styles/modules/resetPwd.module.scss'
 
 const ResetPwdPage = () => (
 	<Layout>

@@ -1,19 +1,19 @@
 import React, { useState } from 'react'
 
 import { Link, navigate } from 'gatsby'
+
 import PropTypes from 'prop-types'
 
 import { isLoggedIn, logout, isBrowser, getUser } from '../services/auth'
 
 import Search from './algolia/search'
 
-import * as styles from '../styles/modules/header.module.scss'
-
-// import AfroLogo from '../assets/Afrodiasphere-logo.svg'
 import afroLogo from '../images/afrodiasphere-logo.png'
 
+import * as styles from '../styles/modules/header.module.scss'
+
 const Header = () => {
-	const AdsUser = getUser()
+	const adsUser = getUser()
 	const [hasFocus, setFocus] = useState(false)
 
 	return (
@@ -30,11 +30,11 @@ const Header = () => {
 				{isLoggedIn() && isBrowser() && (
 					<div className={styles.loggedUser}>
 						<Link
-							to={`/${AdsUser.user.username}/`}
+							to={`/${adsUser.user.username}/`}
 							title="Ga naar jouw ADS page"
 							activeStyle={{ color: '#cc9932' }}
 						>
-							{AdsUser.user.username}{' '}
+							{adsUser.user.username}{' '}
 						</Link>
 					</div>
 				)}

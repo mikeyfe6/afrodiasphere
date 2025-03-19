@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react'
 
+import { navigate } from 'gatsby'
+
 import axios from 'axios'
-import { navigate } from '@reach/router'
 
 import * as styles from '../styles/modules/forgetPwd.module.scss'
 

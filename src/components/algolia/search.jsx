@@ -13,8 +13,6 @@ import { ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY, ALGOLIA_INDEX_NAME } from './keys'
 
 import Hit from './hit'
 
-import '../../styles/algolia.scss'
-
 const searchClient = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY)
 
 const useClickOutside = (

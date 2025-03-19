@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import * as React from 'react'
 
 import axios from 'axios'
 
@@ -7,7 +7,7 @@ import * as styles from '../../../styles/modules/dashboard/themes.module.scss'
 // TODO: add a doublecheck for the right password
 
 const Themes = ({
-	userId,
+	docId,
 	apiURL,
 	token,
 	setLoading,
@@ -19,11 +19,11 @@ const Themes = ({
 		setColor(value)
 
 		const params = {
-			bgfree: value
+			theme: value
 		}
 
 		await axios.put(
-			`${apiURL}/api/instanties/${userId}`,
+			`${apiURL}/api/pages/${docId}`,
 			{ data: params },
 			{
 				headers: {

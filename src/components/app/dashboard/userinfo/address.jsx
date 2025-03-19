@@ -19,7 +19,7 @@ const defaultProps = {
 }
 
 const Address = ({
-	userId,
+	docId,
 	apiURL,
 	token,
 	setSuccess,
@@ -125,7 +125,7 @@ const Address = ({
 
 		try {
 			await axios.put(
-				`${apiURL}/api/instanties/${userId}`,
+				`${apiURL}/api/pages/${docId}`,
 				{ data: params },
 				{
 					headers: {

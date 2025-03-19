@@ -1,16 +1,15 @@
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useLocation } from '@reach/router'
-
 import { Link } from 'gatsby'
+
 import axios from 'axios'
 import GoogleMapReact from 'google-map-react'
 
 import { isLoggedIn, isBrowser, getUser } from '../services/auth'
 
-import Seo from '../components/seo'
-
 import AdsLayout from '../components/adslayout'
+import Seo from '../components/seo'
 
 import noavatar from '../images/noavatar.png'
 import afroLogo from '../images/afrodiasphere-logo.png'
@@ -19,20 +18,17 @@ import * as mapsStyles from '../styles/modules/maps.module.scss'
 import '../styles/adspage.scss'
 
 const defaultProps = {
-	center: {
-		lat: 52.30994007862562,
-		lng: 4.974422834381031
-	},
+	center: { lat: 52.30994007862562, lng: 4.974422834381031 },
 	zoom: 15
 }
 
 const apiURL = process.env.GATSBY_BACKEND_URL
 
-const AdsTemplate = ({ pageContext: { persoon, slug, id } }) => {
+const AdsTemplate = ({ pageContext: { slug, documentId } }) => {
 	const [color, setColor] = useState('zwart')
 	const [avatar, setAvatar] = useState(noavatar)
-	const [username, setUsername] = useState('')
-	const [occupate, setOccupate] = useState('')
+	const [profile, setProfile] = useState('')
+	const [occupation, setOccupation] = useState('')
 	const [biography, setBiography] = useState('')
 	const [links, setLinks] = useState([])
 
@@ -55,52 +51,52 @@ const AdsTemplate = ({ pageContext: { persoon, slug, id } }) => {
 	const [ytLink, setYtLink] = useState('')
 	const [paLink, setPaLink] = useState('')
 
-	const AdsUser = getUser()
+	const adsUser = getUser()
 
 	const location = useLocation()
 	const baseURL = location.origin
 
-	useLayoutEffect(() => {
-		const getLinks = async () => {
-			const res = await axios.get(`${apiURL}/api/instanties/${id}/?populate=*`)
-			const reslinks = await axios.get(`${apiURL}/api/connections?populate=*`)
-			var allLinks = reslinks.data
-			var sortedLinks = allLinks.filter(
-				element => element.links.username === persoon.username
+	useEffect(() => {
+		const getPageData = async () => {
+			const res = await axios.get(
+				`${apiURL}/api/pages/${documentId}/?populate[0]=avatar&populate[1]=address&populate[2]=links`
 			)
 
-			setLinks(sortedLinks)
-			setColor(res.data.data.attributes.bgfree)
-			setUsername(res.data.data.attributes.profile)
-			setOccupate(res.data.data.attributes.occupate)
-			setBiography(res.data.data.attributes.biography)
-			setTelephone(res.data.data.attributes.telephone)
-			setMail(res.data.data.attributes.email)
-			setFbLink(res.data.data.attributes.facebooklink)
-			setTwLink(res.data.data.attributes.twitterlink)
-			setIgLink(res.data.data.attributes.instagramlink)
-			setWaLink(res.data.data.attributes.whatsapplink)
-			setTkLink(res.data.data.attributes.tiktoklink)
-			setLiLink(res.data.data.attributes.linkedinlink)
-			setPiLink(res.data.data.attributes.pinterestlink)
-			setSnLink(res.data.data.attributes.snapchatlink)
-			setYtLink(res.data.data.attributes.youtubelink)
-			setPaLink(res.data.data.attributes.patreonlink)
-			setAddress(res.data.data.attributes.address)
+			setColor(res.data.data.theme)
+			setTelephone(res.data.data.telephone)
+			setMail(res.data.data.email)
+			setProfile(res.data.data.profile)
+			setOccupation(res.data.data.occupation)
+			setLinks(res.data.data.links)
+			setBiography(res.data.data.biography)
+			setAddress(res.data.data.address)
 
-			if (!res.data.data.attributes.avatar.data) {
+			setFbLink(res.data.data.facebook)
+			setTwLink(res.data.data.twitter)
+			setIgLink(res.data.data.instagram)
+			setWaLink(res.data.data.whatsapp)
+			setTkLink(res.data.data.tiktok)
+			setLiLink(res.data.data.linkedin)
+			setPiLink(res.data.data.pinterest)
+			setSnLink(res.data.data.snapchat)
+			setYtLink(res.data.data.youtube)
+			setPaLink(res.data.data.patreon)
+
+			console.log(res.data.data)
+
+			if (!res.data.data.avatar) {
 				return setAvatar(noavatar)
 			} else {
-				setAvatar(res.data.data.attributes.avatar.data.attributes?.url)
+				setAvatar(res.data.data.avatar.url)
 			}
 		}
-		getLinks()
-	}, [id, slug, persoon.username])
+		getPageData()
+	}, [documentId])
 
 	const Marker = ({ lat, lng }) => {
 		return (
 			<div data-lat={lat} data-lng={lng} className={mapsStyles.marker}>
-				<img src={avatar} alt={username} />
+				<img src={avatar} alt={profile} />
 			</div>
 		)
 	}
@@ -110,11 +106,11 @@ const AdsTemplate = ({ pageContext: { persoon, slug, id } }) => {
 	}
 
 	const handleShare = async () => {
-		console.log(username, biography, slug)
+		console.log(profile, biography, slug)
 		if (navigator.share) {
 			try {
 				await navigator.share({
-					title: username,
+					title: profile,
 					text: biography,
 					url: baseURL + slug
 				})
@@ -159,7 +155,7 @@ const AdsTemplate = ({ pageContext: { persoon, slug, id } }) => {
 						</a>
 					)}
 
-					<img src={avatar} alt={username} />
+					<img src={avatar} alt={profile} />
 
 					{telephone && (
 						<a
@@ -173,9 +169,9 @@ const AdsTemplate = ({ pageContext: { persoon, slug, id } }) => {
 					)}
 				</div>
 
-				<h1 className={`theme-${color}-username`}>{username}</h1>
+				<h1 className={`theme-${color}-username`}>{profile}</h1>
 
-				<p className={`theme-${color}-occupate`}>{occupate}</p>
+				<p className={`theme-${color}-occupate`}>{occupation}</p>
 
 				<p className={`theme-${color}-biography`}>{biography}</p>
 
@@ -183,7 +179,7 @@ const AdsTemplate = ({ pageContext: { persoon, slug, id } }) => {
 					{links.slice(0, 20).map(link => (
 						<li key={link.id} hidden={!link.visible}>
 							<a
-								href={`https://${link.hyperlink}`}
+								href={`https://${link.url}`}
 								rel="noopener noreferrer"
 								target="_blank"
 							>
@@ -349,8 +345,8 @@ const AdsTemplate = ({ pageContext: { persoon, slug, id } }) => {
 						Dashboard
 					</Link>
 
-					<Link to={`/${AdsUser.user.username}/`} title="Ga naar jouw ADS page">
-						{AdsUser.user.username}
+					<Link to={`/${adsUser.user.username}/`} title="Ga naar jouw ADS page">
+						{adsUser.user.username}
 					</Link>
 				</div>
 			)}

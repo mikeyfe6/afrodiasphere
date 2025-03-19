@@ -1,14 +1,14 @@
 import React, { useRef, useState } from 'react'
 
-import { Link } from 'gatsby'
+import { navigate, Link } from 'gatsby'
+
 import axios from 'axios'
-import { navigate } from '@reach/router'
 
 import { setUser } from '../../services/auth'
 
-import * as styles from '../../styles/modules/login.module.scss'
-
 import mamaAfrica from '../../images/mamafrica.png'
+
+import * as styles from '../../styles/modules/login.module.scss'
 
 const apiURL = process.env.GATSBY_BACKEND_URL
 
@@ -93,27 +93,6 @@ const LoginPage = () => {
 			})
 
 			setUser(data)
-
-			const str = usernameRegRef.current.value
-			const correctSlug = str
-				.toLowerCase()
-				.normalize('NFD')
-				.replace(/([\u0300-\u036f]|[^0-9a-zA-Z])/g, '-')
-
-			const params = {
-				slug: correctSlug,
-				profile: usernameRegRef.current.value.toLowerCase().replace(/\s+/g, '')
-			}
-
-			await axios.post(
-				`${apiURL}/api/instanties`,
-				{ data: params },
-				{
-					headers: {
-						Authorization: `Bearer ${data.jwt}`
-					}
-				}
-			)
 
 			if (process.env.NODE_ENV === 'production') {
 				await axios.post(

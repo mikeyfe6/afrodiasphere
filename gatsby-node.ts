@@ -27,31 +27,26 @@ export const createPages: GatsbyNode['createPages'] = async ({ actions }) => {
 	const { createPage } = actions
 
 	try {
-		const { data: getPageInstanties } = await axios.get(
-			`${apiURL}/api/instanties?populate=*`
-		)
+		const {
+			data: { data: getPages }
+		} = await axios.get(`${apiURL}/api/pages?populate[0]=avatar`)
 
-		// Use Promise.all for parallelizing asynchronous operations
 		await Promise.all(
-			getPageInstanties.map(
-				async ({ slug, persoon, id, profile, biography, avatar }) => {
-					createPage({
-						path: `/${slug}`,
-						component: path.resolve('./src/templates/page.jsx'),
-						context: {
-							slug,
-							persoon,
-							id,
-							profile,
-							biography,
-							avatar
-						}
-					})
-				}
-			)
+			getPages.map(async ({ documentId, slug, profile, biography, avatar }) => {
+				createPage({
+					path: `/${slug}`,
+					component: path.resolve('./src/templates/page.jsx'),
+					context: {
+						documentId,
+						slug,
+						profile,
+						biography,
+						avatar
+					}
+				})
+			})
 		)
 	} catch (error) {
-		// Handle errors gracefully, log the error, and maybe even throw it
 		console.error('Error fetching data for creating pages:', error)
 		throw error
 	}

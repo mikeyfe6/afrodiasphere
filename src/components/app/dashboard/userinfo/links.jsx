@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useCallback, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 
 import axios from 'axios'
 
@@ -13,18 +13,50 @@ const Links = ({
 	setLinks,
 	linkError,
 	setLinkError,
-	getLinks
+	pageId,
+	docId
 }) => {
 	const linkTitle = useRef(null)
-	const hyperLink = useRef(null)
+	const linkUrl = useRef(null)
 
 	const [editLinkTitle, setEditLinkTitle] = useState('')
 	const [editLinkUrl, setEditLinkUrl] = useState('')
 
+	useEffect(() => {
+		const getLinks = async () => {
+			if (!docId) {
+				setLinkError('Page DocumentID is missing.')
+				return
+			}
+
+			try {
+				const res = await axios.get(
+					`${apiURL}/api/pages/${docId}?populate[0]=links`,
+					{ headers: { Authorization: `Bearer ${token}` } }
+				)
+
+				const data = res.data.data
+
+				if (data && data.links) {
+					setLinks(data.links)
+				} else {
+					setLinks([])
+				}
+
+				setLinkError(null)
+			} catch (error) {
+				console.error('Error fetching user links:', error)
+				setLinkError('Failed to fetch links.')
+			}
+		}
+
+		getLinks()
+	}, [apiURL, token, docId])
+
 	const createLink = async () => {
 		if (
-			(!linkTitle.current.value && !hyperLink.current.value) ||
-			/^\s*$/.test(linkTitle.current.value && hyperLink.current.value)
+			(!linkTitle.current.value && !linkUrl.current.value) ||
+			/^\s*$/.test(linkTitle.current.value && linkUrl.current.value)
 		) {
 			return [
 				setLinkError('Posten mislukt, voer de titel of link correct door..'),
@@ -34,139 +66,142 @@ const Links = ({
 
 		const params = {
 			title: linkTitle.current.value,
-			hyperlink: hyperLink.current.value
+			url: linkUrl.current.value,
+			page: pageId
 		}
-		const res = await axios.post(
-			`${apiURL}/api/connections`,
-			{ data: params },
-			{
-				headers: {
-					Authorization: `Bearer ${token}`
-				}
+
+		try {
+			const res = await axios.post(
+				`${apiURL}/api/links`,
+				{ data: params },
+				{ headers: { Authorization: `Bearer ${token}` } }
+			)
+
+			if (res.data && res.data.data) {
+				const newLink = res.data.data
+
+				const newLinks = Array.isArray(links) ? [...links, newLink] : [newLink]
+				setLinks(newLinks)
 			}
-		)
-
-		const newLinks = [...links, res.data.data.attributes]
-		setLinks(newLinks)
-
-		getLinks()
-		linkTitle.current.value = ''
-		hyperLink.current.value = ''
-	}
-
-	const toggleLink = async (link, checked) => {
-		const params = {
-			visible: checked
+			linkTitle.current.value = ''
+			linkUrl.current.value = ''
+		} catch (err) {
+			console.error('Error creating link:', err)
 		}
-		const res = await axios.put(
-			`${apiURL}/api/connections/${link.id}`,
-			{ data: params },
-			{
-				headers: {
-					Authorization: `Bearer ${token}`
-				}
-			}
-		)
-
-		const newLinks = links.map(el => {
-			if (el.id === link.id) {
-				return res.data.data.attributes
-			}
-			return el
-		})
-		setLinks(newLinks)
-		getLinks()
-	}
-
-	const deleteLink = async link => {
-		await axios.delete(`${apiURL}/api/connections/${link.id}`, {
-			headers: {
-				Authorization: `Bearer ${token}`
-			}
-		})
-		setLinks(links.filter(el => el.id !== link.id))
-	}
-
-	const handleEditLink = (event, linkId) => {
-		setEditLinkTitle({
-			...editLinkTitle,
-			[linkId]: event.target.value
-		})
-	}
-
-	const handleEditHyperLink = (event, linkId) => {
-		setEditLinkUrl({
-			...editLinkUrl,
-			[linkId]: event.target.value
-		})
 	}
 
 	const editTheLink = async link => {
 		const changedLinkTitle = link.value.trim()
 
 		if (!changedLinkTitle || /^\s*$/.test(changedLinkTitle)) {
-			return [
-				setLinkError('Updaten mislukt, voer de titel correct door..'),
-				setTimeout(() => setLinkError(null), 7500)
-			]
+			setLinkError('Updaten mislukt, voer de titel correct door..')
+			setTimeout(() => setLinkError(null), 7500)
+			return
 		}
 
-		const params = {
-			title: changedLinkTitle
-		}
-		const res = await axios.put(
-			`${apiURL}/api/connections/${link.id}`,
-			{ data: params },
-			{
-				headers: {
-					Authorization: `Bearer ${token}`
-				}
-			}
-		)
+		const params = { title: changedLinkTitle }
 
-		const newLinks = links.map(el => {
-			if (el.id === link.id) {
-				return res.data.data.attributes
+		try {
+			const res = await axios.put(
+				`${apiURL}/api/links/${link.docId}`,
+				{ data: params },
+				{ headers: { Authorization: `Bearer ${token}` } }
+			)
+
+			if (res.data?.data) {
+				const updatedLink = res.data.data
+
+				const newLinks = links.map(el =>
+					el.documentId === updatedLink.documentId
+						? { ...el, ...updatedLink }
+						: el
+				)
+
+				setLinks(newLinks)
 			}
-			return el
-		})
-		setLinks(newLinks)
-		setEditLinkTitle('')
-		getLinks()
+
+			setEditLinkTitle(prev => ({ ...prev, [link.documentId]: '' }))
+			setEditLinkTitle('')
+		} catch (err) {
+			console.error('Error updating link:', err)
+		}
+	}
+
+	const handleEditLink = (event, linkId) => {
+		setEditLinkTitle({ ...editLinkTitle, [linkId]: event.target.value })
 	}
 
 	const editTheHyperLink = async link => {
 		const changedLinkUrl = link.value.trim()
 
-		if (!changedLinkUrl || /^\s*$/.test(changedLinkUrl)) {
-			return [
-				setLinkError('Updaten mislukt, voer de link correct door..'),
-				setTimeout(() => setLinkError(null), 5000)
-			]
+		if (!changedLinkUrl) {
+			setLinkError('Update failed, enter a valid link.')
+			setTimeout(() => setLinkError(null), 5000)
+			return
 		}
 
-		const params = {
-			hyperlink: changedLinkUrl
-		}
-		const res = await axios.put(
-			`${apiURL}/api/connections/${link.id}`,
-			{ data: params },
-			{
-				headers: {
-					Authorization: `Bearer ${token}`
-				}
-			}
-		)
+		const params = { url: changedLinkUrl, page: pageId }
 
-		const newLinks = links.map(el => {
-			if (el.id === link.id) {
-				return res.data.data.attributes
+		try {
+			const res = await axios.put(
+				`${apiURL}/api/links/${link.docId}`,
+				{ data: params },
+				{ headers: { Authorization: `Bearer ${token}` } }
+			)
+
+			if (res.data?.data) {
+				const updatedLink = res.data.data
+
+				const newLinks = links.map(el =>
+					el.documentId === updatedLink.documentId
+						? { ...el, ...updatedLink }
+						: el
+				)
+
+				setLinks(newLinks)
 			}
-			return el
+
+			setEditLinkUrl(prev => ({ ...prev, [link.documentId]: '' }))
+			setEditLinkUrl('')
+		} catch (err) {
+			console.error('Error updating link:', err)
+		}
+	}
+
+	const handleEditHyperLink = (event, linkId) => {
+		setEditLinkUrl({ ...editLinkUrl, [linkId]: event.target.value })
+	}
+
+	const toggleLink = async (link, checked) => {
+		const params = { visible: checked }
+		try {
+			const res = await axios.put(
+				`${apiURL}/api/links/${link.documentId}`,
+				{ data: params },
+				{ headers: { Authorization: `Bearer ${token}` } }
+			)
+
+			if (res.data?.data) {
+				const updatedLink = res.data.data
+
+				const newLinks = links.map(el =>
+					el.documentId === updatedLink.documentId
+						? { ...el, ...updatedLink }
+						: el
+				)
+
+				setLinks(newLinks)
+			}
+		} catch (err) {
+			console.error('Error updating link visibility:', err)
+		}
+	}
+
+	const deleteLink = async link => {
+		await axios.delete(`${apiURL}/api/links/${link.documentId}`, {
+			headers: { Authorization: `Bearer ${token}` }
 		})
-		setLinks(newLinks)
-		setEditLinkUrl('')
-		getLinks()
+		setLinks(links.filter(el => el.documentId !== link.documentId))
 	}
 
 	return (
@@ -199,9 +234,9 @@ const Links = ({
 						<input
 							id="newhyperlink"
 							type="url"
-							name="hyperlink"
+							name="url"
 							placeholder="voorbeeld.nl"
-							ref={hyperLink}
+							ref={linkUrl}
 							style={{ textTransform: 'lowercase' }}
 							minLength="5"
 							title="Let op: 'http(s)://' NIET nodig !"
@@ -222,7 +257,7 @@ const Links = ({
 					<button
 						onClick={event => {
 							linkTitle.current.value = ''
-							hyperLink.current.value = ''
+							linkUrl.current.value = ''
 							event.preventDefault()
 						}}
 					>
@@ -230,10 +265,10 @@ const Links = ({
 					</button>
 				</div>
 
-				{linkError && <DoThis text={linkError} />}
+				{/* {linkError && <DoThis text={linkError} />} */}
 			</div>
 
-			{links.length > 0 ? (
+			{links && links.length > 0 ? (
 				<ul className={styles.linkList}>
 					{links.map((link, index) => (
 						<li key={index} className={styles.link}>
@@ -245,10 +280,10 @@ const Links = ({
 										</span>
 										<hr />
 										<input
-											id={`editlink${link.id}`}
+											id={`editTitle${link.documentId}`}
 											type="text"
-											value={editLinkTitle[link.id] || ''}
-											onChange={event => handleEditLink(event, link.id)}
+											value={editLinkTitle[link.documentId] || ''}
+											onChange={event => handleEditLink(event, link.documentId)}
 											placeholder="bewerk titel"
 											minLength="5"
 											required
@@ -257,19 +292,20 @@ const Links = ({
 									<button
 										title="Sla nieuwe titel op"
 										disabled={
-											!editLinkTitle[link.id] ||
-											editLinkTitle[link.id].trim() === ''
+											!editLinkTitle[link.documentId] ||
+											editLinkTitle[link.documentId].trim() === ''
 										}
 										onClick={event => {
 											editTheLink({
 												id: link.id,
-												value: editLinkTitle[link.id]
+												value: editLinkTitle[link.documentId],
+												docId: link.documentId
 											})
 											event.preventDefault()
 										}}
 									>
-										{!editLinkTitle[link.id] ||
-										editLinkTitle[link.id].trim() === '' ? (
+										{!editLinkTitle[link.documentId] ||
+										editLinkTitle[link.documentId].trim() === '' ? (
 											<i className="fa-solid fa-ellipsis" />
 										) : (
 											<i className="fa-solid fa-check" />
@@ -280,20 +316,22 @@ const Links = ({
 									<div>
 										<span>
 											<a
-												href={`https://${link.hyperlink}`}
-												title={`https://${link.hyperlink}`}
+												href={`https://${link.url}`}
+												title={`https://${link.url}`}
 												rel="noopener noreferrer"
 												target="_blank"
 											>
-												{link.hyperlink}
+												{link.url}
 											</a>
 										</span>
 										<hr />
 										<input
-											id={`hyperlink${link.id}`}
+											id={`editUrl${link.documentId}`}
 											type="url"
-											value={editLinkUrl[link.id] || ''}
-											onChange={event => handleEditHyperLink(event, link.id)}
+											value={editLinkUrl[link.documentId] || ''}
+											onChange={event =>
+												handleEditHyperLink(event, link.documentId)
+											}
 											placeholder="bewerk hyperlink"
 											minLength="5"
 											required
@@ -302,19 +340,20 @@ const Links = ({
 									<button
 										title="Sla nieuwe hyperlink op"
 										disabled={
-											!editLinkUrl[link.id] ||
-											editLinkUrl[link.id].trim() === ''
+											!editLinkUrl[link.documentId] ||
+											editLinkUrl[link.documentId].trim() === ''
 										}
 										onClick={event => {
 											editTheHyperLink({
 												id: link.id,
-												value: editLinkUrl[link.id]
+												value: editLinkUrl[link.documentId],
+												docId: link.documentId
 											})
 											event.preventDefault()
 										}}
 									>
-										{!editLinkUrl[link.id] ||
-										editLinkUrl[link.id].trim() === '' ? (
+										{!editLinkUrl[link.documentId] ||
+										editLinkUrl[link.documentId].trim() === '' ? (
 											<i className="fa-solid fa-ellipsis" />
 										) : (
 											<i className="fa-solid fa-check" />
