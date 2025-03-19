@@ -31,12 +31,19 @@ const Telephone = ({
 	}
 
 	const validateInput = value => {
+		if (!value.trim()) {
+			setValidationError(null)
+			setValidationMessage(null)
+			return true
+		}
+
 		if (value.length < 9) {
 			const errorMessage = 'Minstens 9 karakters'
 			setValidationError(errorMessage)
 			setValidationMessage(errorMessage)
 			return false
 		}
+
 		const regex = /^(\+31|0)(\s|-)?(6\s?\d{8}|[1-9]\d\s?\d{6,7})$/
 
 		if (!regex.test(value)) {

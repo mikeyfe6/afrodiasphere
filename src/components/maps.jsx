@@ -67,7 +67,20 @@ const Maps = () => {
 	}
 
 	function formatTelephone(telephone) {
-		return telephone.match(/.{1,3}/g).join(' ')
+		telephone = telephone.replace(/\s+/g, '')
+
+		if (telephone.startsWith('06')) {
+			return telephone.replace(/(\d{2})(\d{3})(\d{3})(\d{2})/, '$1 $2 $3 $4')
+		}
+
+		if (telephone.startsWith('+31' || '0031' || '31')) {
+			return telephone.replace(
+				/(\+31)(\d)(\d{3})(\d{3})(\d{2})/,
+				'$1 $2 $3 $4 $5'
+			)
+		}
+
+		return telephone
 	}
 
 	return (

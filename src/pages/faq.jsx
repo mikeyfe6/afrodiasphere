@@ -67,7 +67,7 @@ const faqs = [
 	{
 		question: 'Wat gebeurt er met mijn data?',
 		answer:
-			'Jouw data wordt gebruikt om de diensten van Afrodiasphere te optimaliseren en wordt niet gedeeld met derden zonder jouw toestemming. Meer informatie hierover vind je in het privacybeleid.'
+			'Jouw data wordt gebruikt om de diensten van Afrodiasphere te optimaliseren en wordt niet gedeeld met derden. Meer informatie hierover vind je in het privacybeleid.'
 	},
 	{
 		question: 'Ik ondervind een probleem met de app, wat moet ik doen?',
@@ -96,6 +96,7 @@ const FaqPage = () => (
 					antwoorden.
 				</p>
 				<Faqs faqs={faqs} />
+				{/* TODO: privacybeleid pagina aanmaken */}
 			</div>
 			<img src={mamaAfrica} alt="" />
 		</section>

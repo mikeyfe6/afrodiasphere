@@ -47,14 +47,6 @@ const config: GatsbyConfig = {
 		`gatsby-plugin-sharp`,
 		`gatsby-transformer-sharp`,
 		{
-			resolve: 'gatsby-plugin-react-svg',
-			options: {
-				rule: {
-					include: /assets/
-				}
-			}
-		},
-		{
 			resolve: 'gatsby-plugin-robots-txt',
 			options: {
 				policy: [

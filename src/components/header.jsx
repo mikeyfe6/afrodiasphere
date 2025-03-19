@@ -93,7 +93,7 @@ const Header = () => {
 								href="https://menefex.nl"
 								rel="noopener noreferrer"
 								target="_blank"
-								title="MenefexWMB"
+								title="Menefex WMB"
 							>
 								<strong>
 									<i style={{ fontStyle: 'italic' }}>MNFX</i>

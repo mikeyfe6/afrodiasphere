@@ -168,7 +168,7 @@ const DashboardPage = () => {
 			setOccupation(res.data.page.occupation || '')
 			setBiography(res.data.page.biography || '')
 			setTelephone(res.data.page.telephone || '')
-			setMail(res.data.page.email || '')
+			setMail(res.data.page.mail || '')
 
 			setFbLink(res.data.page.facebook || '')
 			setIgLink(res.data.page.instagram || '')
@@ -330,6 +330,9 @@ const DashboardPage = () => {
 					{/* PROFILE INFO ROFILE INFO PROFILE INFO PROFILE INFO <-----------------------------------------------------------> PROFILE INFO PROFILE INFO PROFILE INFO PROFILE INFO */}
 
 					<div className={styles.profileInfo}>
+
+
+						{/* TODO: collapsing ding maken voor extra settings.. bijvoorbeeld profielsettings tonen en usersettings hiden */}
 						<Profile
 							docId={docId}
 							apiURL={apiURL}
@@ -400,6 +403,8 @@ const DashboardPage = () => {
 						/>
 					</div>
 				</div>
+
+				{/* TODO: messages en succes dingems op de juiste hoogtes */}
 
 				{success && <SuccessMessage text={success} />}
 				{error && <ErrorMessage text={error} />}
