@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react'
 
-import { useLocation, navigate } from 'gatsby'
+import { useLocation } from '@reach/router'
+
+import { navigate } from 'gatsby'
 
 import axios from 'axios'
 
