@@ -82,8 +82,6 @@ const AdsTemplate = ({ pageContext: { slug, documentId } }) => {
 			setYtLink(res.data.data.youtube)
 			setPaLink(res.data.data.patreon)
 
-			console.log(res.data.data)
-
 			if (!res.data.data.avatar) {
 				return setAvatar(noavatar)
 			} else {
@@ -106,7 +104,6 @@ const AdsTemplate = ({ pageContext: { slug, documentId } }) => {
 	}
 
 	const handleShare = async () => {
-		console.log(profile, biography, slug)
 		if (navigator.share) {
 			try {
 				await navigator.share({

@@ -20,8 +20,6 @@ const Avatar = ({
 }) => {
 	const [image, setImage] = useState(null)
 
-	console.log(avatarId)
-
 	const fileInputRef = useRef()
 
 	useEffect(() => {
