@@ -160,7 +160,9 @@ const LoginPage = () => {
 
 							{error && <ErrorMessage text={error} />}
 							{loading && <LoadingMessage text={loading} />}
-							<button title="Registreer">Registeer</button>
+							<button type="submit" title="Registreer">
+								Registeer
+							</button>
 						</form>
 					</div>
 					<div className={`${styles.formContainer} ${styles.signInContainer}`}>
@@ -197,7 +199,9 @@ const LoginPage = () => {
 								Wachtwoord vergeten
 							</Link>
 
-							<button title="Inloggen">Inloggen</button>
+							<button type="submit" title="Inloggen">
+								Inloggen
+							</button>
 						</form>
 					</div>
 					<div className={styles.overlayContainer}>

@@ -57,7 +57,7 @@ const ForgetPwd = () => {
 				style={{ textTransform: 'lowercase' }}
 				pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
 			/>
-			<button>Verstuur</button>
+			<button type="submit">Verstuur</button>
 
 			{error && <ErrorMessage text={error} />}
 			{loading && <LoadingMessage text={loading} />}

@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 
-import { navigate } from 'gatsby'
+import { useLocation, navigate } from 'gatsby'
 
 import axios from 'axios'
 
@@ -8,39 +8,45 @@ import * as styles from '../styles/modules/resetPwd.module.scss'
 
 const apiURL = process.env.GATSBY_BACKEND_URL
 
-const ErrorMessage = ({ text }) => {
-	return (
-		<div className={styles.logerror}>
-			<span>{text}</span>
-		</div>
-	)
-}
+const ErrorMessage = ({ text }) => (
+	<div className={styles.logerror}>
+		<span>{text}</span>
+	</div>
+)
 
-const LoadingMessage = ({ text }) => {
-	return (
-		<div className={styles.loadingmsg}>
-			<span>{text}</span>
-		</div>
-	)
-}
+const LoadingMessage = ({ text }) => (
+	<div className={styles.loadingmsg}>
+		<span>{text}</span>
+	</div>
+)
 
 const ResetPwd = () => {
-	const confCodeRef = useRef()
+	const codeRef = useRef()
 	const passwordResetRef = useRef()
 	const confPasswordResetRef = useRef()
 
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(null)
+	const [resetCode, setResetCode] = useState(null)
+
+	const location = useLocation()
+
+	useEffect(() => {
+		const queryParams = new URLSearchParams(location.search)
+		const code = queryParams.get('code')
+		setResetCode(code)
+	}, [location])
 
 	const handleSubmitRegister = async e => {
 		e.preventDefault()
 
 		try {
 			await axios.post(`${apiURL}/api/auth/reset-password`, {
-				code: confCodeRef.current.value,
+				code: resetCode,
 				password: passwordResetRef.current.value,
 				passwordConfirmation: confPasswordResetRef.current.value
 			})
+
 			setLoading('Aan het laden')
 			setError(null)
 			navigate('/login')
@@ -54,10 +60,12 @@ const ResetPwd = () => {
 	return (
 		<form onSubmit={handleSubmitRegister} className={styles.resetPwdForm}>
 			<input
-				ref={confCodeRef}
+				ref={codeRef}
 				type="text"
 				name="code"
 				placeholder="Verificatiecode"
+				value={resetCode || ''}
+				readOnly
 			/>
 			<br />
 			<input
@@ -78,7 +86,7 @@ const ResetPwd = () => {
 				name="confirmpassword"
 				placeholder="Voer jouw nieuwe wachtwoord opnieuw in"
 			/>
-			<button>Verstuur</button>
+			<button type="submit">Verstuur</button>
 			{error && <ErrorMessage text={error} />}
 			{loading && <LoadingMessage text={loading} />}
 		</form>
