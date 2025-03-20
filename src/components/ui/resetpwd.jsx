@@ -6,7 +6,7 @@ import { navigate } from 'gatsby'
 
 import axios from 'axios'
 
-import * as styles from '../styles/modules/resetPwd.module.scss'
+import * as styles from '../../styles/modules/pages/resetpwd.module.scss'
 
 const apiURL = process.env.GATSBY_BACKEND_URL
 

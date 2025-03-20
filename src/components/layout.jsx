@@ -3,13 +3,13 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 import PropTypes from 'prop-types'
 
-import Header from './header'
-import Footer from './footer'
-import MobileMenu from './mobileMenu'
+import Header from './layout/header'
+import Footer from './layout/footer'
+import MobileMenu from './layout/mobileMenu'
 
 import Algolia from './algolia/init'
 
-import ResponsiveTag from '../components/helpers/responsetag'
+import ResponsiveTag from './helpers/respoTag'
 
 import '../styles/layout.scss'
 

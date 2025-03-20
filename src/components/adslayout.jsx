@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import PropTypes from 'prop-types'
 
-import ResponsiveTag from '../components/helpers/responsetag'
+import ResponsiveTag from '../components/helpers/respoTag'
 
 const AdsLayout = ({ children }) => {
 	return (

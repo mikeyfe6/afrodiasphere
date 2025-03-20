@@ -1,12 +1,12 @@
 import * as React from 'react'
 
 import Layout from '../components/layout'
-import ForgetPassword from '../components/forgetpwd'
+import ForgetPassword from '../components/ui/forgetpwd'
 import Seo from '../components/seo'
 
 import mamaAfrica from '../images/mamafrica.png'
 
-import * as styles from '../styles/modules/forgetPwd.module.scss'
+import * as styles from '../styles/modules/pages/forgetpwd.module.scss'
 
 const ForgetPwdPage = () => (
 	<Layout>

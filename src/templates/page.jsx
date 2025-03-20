@@ -14,7 +14,7 @@ import Seo from '../components/seo'
 import noavatar from '../images/noavatar.png'
 import afroLogo from '../images/afrodiasphere-logo.png'
 
-import * as mapsStyles from '../styles/modules/maps.module.scss'
+import * as mapsStyles from '../styles/modules/ui/maps.module.scss'
 import '../styles/adspage.scss'
 
 const defaultProps = {

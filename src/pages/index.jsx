@@ -1,9 +1,9 @@
 import * as React from 'react'
 
 import Layout from '../components/layout'
-import Intro from '../components/intro'
-import Slider from '../components/slider'
-import Maps from '../components/maps'
+import Intro from '../components/ui/intro'
+import Slider from '../components/ui/slider'
+import Maps from '../components/ui/maps'
 import Seo from '../components/seo'
 
 const IndexPage = () => {

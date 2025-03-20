@@ -8,7 +8,7 @@ import { setUser } from '../../services/auth'
 
 import mamaAfrica from '../../images/mamafrica.png'
 
-import * as styles from '../../styles/modules/login.module.scss'
+import * as styles from '../../styles/modules/pages/login.module.scss'
 
 const apiURL = process.env.GATSBY_BACKEND_URL
 

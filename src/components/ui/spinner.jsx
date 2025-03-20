@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import * as styles from '../styles/modules/spinner.module.scss' // Import your spinner styles
+import * as styles from '../../styles/modules/ui/spinner.module.scss'
 
 const Spinner = () => (
 	<div className={styles.spinnerContainer}>

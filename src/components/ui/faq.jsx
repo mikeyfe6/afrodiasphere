@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import * as faqStyles from '../styles/modules/faq.module.scss'
+import * as faqStyles from '../../styles/modules/pages/faq.module.scss'
 
 const FAQItem = ({ question, answer }) => {
 	const [isOpen, setIsOpen] = useState(false)

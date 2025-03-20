@@ -39,7 +39,7 @@ import AdsLink from './dashboard/adslink'
 
 import noavatar from '../../images/noavatar.png'
 
-import * as styles from '../../styles/modules/dashboard.module.scss'
+import * as styles from '../../styles/modules/pages/dashboard.module.scss'
 
 const SuccessMessage = ({ text }) => {
 	return (
@@ -330,8 +330,6 @@ const DashboardPage = () => {
 					{/* PROFILE INFO ROFILE INFO PROFILE INFO PROFILE INFO <-----------------------------------------------------------> PROFILE INFO PROFILE INFO PROFILE INFO PROFILE INFO */}
 
 					<div className={styles.profileInfo}>
-
-
 						{/* TODO: collapsing ding maken voor extra settings.. bijvoorbeeld profielsettings tonen en usersettings hiden */}
 						<Profile
 							docId={docId}

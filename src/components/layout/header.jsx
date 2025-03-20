@@ -4,13 +4,13 @@ import { Link, navigate } from 'gatsby'
 
 import PropTypes from 'prop-types'
 
-import { isLoggedIn, logout, isBrowser, getUser } from '../services/auth'
+import { isLoggedIn, logout, isBrowser, getUser } from '../../services/auth'
 
-import Search from './algolia/search'
+import Search from '../algolia/search'
 
-import afroLogo from '../images/afrodiasphere-logo.png'
+import afroLogo from '../../images/afrodiasphere-logo.png'
 
-import * as styles from '../styles/modules/header.module.scss'
+import * as styles from '../../styles/modules/layout/header.module.scss'
 
 const Header = () => {
 	const adsUser = getUser()

@@ -33,7 +33,7 @@ export const Head = () => {
 			pathname = '/login/'
 			break
 		default:
-			title = 'Afrodiasphere'
+			title = 'Niet gevonden!'
 			pathname = '/'
 	}
 

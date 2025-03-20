@@ -1,12 +1,12 @@
 import * as React from 'react'
 
 import Layout from '../components/layout'
-import Faqs from '../components/faqs'
+import Faq from '../components/ui/faq'
 import Seo from '../components/seo'
 
 import mamaAfrica from '../images/mamafrica.png'
 
-import * as faqStyles from '../styles/modules/faq.module.scss'
+import * as faqStyles from '../styles/modules/pages/faq.module.scss'
 
 const faqs = [
 	{
@@ -95,7 +95,7 @@ const FaqPage = () => (
 					Hieronder vind je alle veelgestelde vragen en desbetreffende
 					antwoorden.
 				</p>
-				<Faqs faqs={faqs} />
+				<Faq faqs={faqs} />
 				{/* TODO: privacybeleid pagina aanmaken */}
 			</div>
 			<img src={mamaAfrica} alt="" />

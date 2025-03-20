@@ -5,9 +5,9 @@ import { Link } from 'gatsby'
 import GoogleMapReact from 'google-map-react'
 import axios from 'axios'
 
-import * as mapsStyles from '../styles/modules/maps.module.scss'
+import * as mapsStyles from '../../styles/modules/ui/maps.module.scss'
 
-import noavatar from '../images/noavatar.png'
+import noavatar from '../../images/noavatar.png'
 
 const defaultProps = {
 	center: {

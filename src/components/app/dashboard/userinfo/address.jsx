@@ -8,7 +8,7 @@ import * as profileInfoStyles from '../../../../styles/modules/dashboard/profile
 
 import * as addressStyles from '../../../../styles/modules/dashboard/address.module.scss'
 
-import * as mapsStyles from '../../../../styles/modules/maps.module.scss'
+import * as mapsStyles from '../../../../styles/modules/ui/maps.module.scss'
 
 const defaultProps = {
 	center: {

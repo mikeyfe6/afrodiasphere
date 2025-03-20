@@ -12,9 +12,9 @@ import 'swiper/css'
 import 'swiper/css/effect-fade'
 import 'swiper/css/autoplay'
 
-import * as styles from '../styles/modules/slider.module.scss'
+import noavatar from '../../images/noavatar.png'
 
-import noavatar from '../images/noavatar.png'
+import * as styles from '../../styles/modules/ui/slider.module.scss'
 
 const Slider = () => {
 	const [carousel, setCarousel] = useState([])

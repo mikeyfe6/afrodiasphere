@@ -2,9 +2,9 @@ import * as React from 'react'
 
 import { Link } from 'gatsby'
 
-import mamaAfrica from '../images/mamafrica.png'
+import mamaAfrica from '../../images/mamafrica.png'
 
-import * as styles from '../styles/modules/intro.module.scss'
+import * as styles from '../../styles/modules/ui/intro.module.scss'
 
 const Intro = () => (
 	<section className={styles.intro}>
@@ -16,7 +16,7 @@ const Intro = () => (
 					Creeer jouw ADS-account & JOIN THE MOVEMENT <span>!</span>
 				</small>{' '}
 				Klik{' '}
-				<Link to="/login/">
+				<Link to="/login/">s
 					<button title="Ga naar inloggen / registreren" type="button">
 						hier
 					</button>

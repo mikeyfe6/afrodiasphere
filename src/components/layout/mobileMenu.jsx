@@ -2,11 +2,11 @@ import React, { useRef, useState, useEffect } from 'react'
 
 import { Link, navigate } from 'gatsby'
 
-import { isLoggedIn, logout, isBrowser, getUser } from '../services/auth'
+import { isLoggedIn, logout, isBrowser, getUser } from '../../services/auth'
 
-import Search from './algolia/search'
+import Search from '../algolia/search'
 
-import * as styles from '../styles/modules/mobileMenu.module.scss'
+import * as styles from '../../styles/modules/layout/mobilemenu.module.scss'
 
 const MobileMenu = ({ isMenuOpen, setMenuOpen }) => {
 	const adsUser = getUser()
