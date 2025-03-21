@@ -57,21 +57,3 @@
         @content;
     }
 }
-
-.responsive-tag {
-    position: fixed;
-    top: 1%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(#fff, 0.5);
-    color: black;
-    padding: 0.25em 0.5em;
-    z-index: 1000;
-    font-weight: bold;
-    text-align: center;
-
-    p {
-        font-size: 14px;
-        font-weight: bold;
-    }
-}
