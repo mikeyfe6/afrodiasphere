@@ -83,7 +83,7 @@ const config: GatsbyConfig = {
 				lang: `nl`,
 				theme_color: `#cc9932`,
 				display: `standalone`,
-				icon: 'src/images/afrodiasphere-logo.png',
+				icon: 'src/images/logo/ads-icon-inverted.png',
 				icon_options: {
 					purpose: `any maskable`
 				},

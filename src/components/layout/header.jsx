@@ -8,7 +8,7 @@ import { isLoggedIn, logout, isBrowser, getUser } from '../../services/auth'
 
 import Search from '../algolia/search'
 
-import afroLogo from '../../images/afrodiasphere-logo.png'
+import afroLogo from '../../images/logo/afrodiasphere-logo.png'
 
 import * as styles from '../../styles/modules/layout/header.module.scss'
 
