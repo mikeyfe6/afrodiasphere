@@ -264,13 +264,15 @@ const DashboardPage = () => {
 	}
 
 	const areAllSmLinksEmpty = () => {
+		const isInputFocused = document.activeElement?.tagName === 'INPUT';
+		
 		for (const link of Object.values(smLinks)) {
-			if (link.trim() !== '') {
-				return false
+			if (link.trim() !== '' || isInputFocused) {
+				return false;
 			}
 		}
-		return true
-	}
+		return true;
+	};
 
 	return (
 		<div className={`${styles.gridContainer}`}>

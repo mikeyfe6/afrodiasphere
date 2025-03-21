@@ -35,13 +35,11 @@ const config: GatsbyConfig = {
 			}
 		},
 		{
-			resolve: `gatsby-plugin-nprogress`,
+			resolve: 'gatsby-plugin-nprogress',
 			options: {
-				// Setting a color is optional.
-				color: `white`
-				// Disable the loading spinner.
-				// showSpinner: false,
-			}
+				color: `white`,
+				showSpinner: true,
+			},
 		},
 		`gatsby-plugin-image`,
 		`gatsby-plugin-sharp`,
