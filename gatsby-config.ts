@@ -12,7 +12,7 @@ const config: GatsbyConfig = {
 		title: `Afrodiasphere`,
 		author: 'Michael Fransman',
 		description: `Een efficiente oplossing voor het delen van contactinformatie`,
-		image: '/afrodiasphere-logo.png'
+		image: '/ads-logo.png'
 	},
 	plugins: [
 		{

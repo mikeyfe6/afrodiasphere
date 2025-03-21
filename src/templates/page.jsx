@@ -12,7 +12,7 @@ import AdsLayout from '../components/adslayout'
 import Seo from '../components/seo'
 
 import noavatar from '../images/noavatar.png'
-import afroLogo from '../images/logo/afrodiasphere-logo.png'
+import afroLogo from '../images/logo/ads-logo.png'
 
 import * as mapsStyles from '../styles/modules/ui/maps.module.scss'
 import '../styles/adspage.scss'
