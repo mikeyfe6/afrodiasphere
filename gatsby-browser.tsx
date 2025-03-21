@@ -1,3 +1,3 @@
-export function onServiceWorkerUpdateReady() {
-  window.location.reload()
-}
+import "./src/styles/resets.scss";
+
+export const onServiceWorkerUpdateReady = () => window.location.reload();

@@ -1,72 +1,77 @@
 @mixin mini {
-	@media only screen and (width <= 23em) {
-		@content;
-	}
+    @media only screen and (width <= 23em) {
+        @content;
+    }
 }
 
 @mixin compact {
-	@media only screen and (width <= 30em) {
-		@content;
-	}
+    @media only screen and (width <= 30em) {
+        @content;
+    }
 }
 
 @mixin mobile {
-	@media only screen and (width <= 40em) {
-		@content;
-	}
+    @media only screen and (width <= 40em) {
+        @content;
+    }
 }
 
 @mixin phablet {
-	@media only screen and (width <= 52em) {
-		@content;
-	}
+    @media only screen and (width <= 52em) {
+        @content;
+    }
 }
 
 @mixin tablet {
-	@media only screen and (width <= 64em) {
-		@content;
-	}
+    @media only screen and (width <= 64em) {
+        @content;
+    }
 }
 
 @mixin laptop {
-	@media only screen and (width <= 76em) {
-		@content;
-	}
+    @media only screen and (width <= 76em) {
+        @content;
+    }
 }
 
 @mixin desktop {
-	@media only screen and (width <= 90em) {
-		@content;
-	}
+    @media only screen and (width <= 90em) {
+        @content;
+    }
 }
 
 @mixin wide {
-	@media only screen and (width <= 120em) {
-		@content;
-	}
+    @media only screen and (width <= 120em) {
+        @content;
+    }
 }
 
 @mixin massive {
-	@media only screen and (width >= 120.063em) {
-		@content;
-	}
+    @media only screen and (width >= 120.063em) {
+        @content;
+    }
 }
 
 @mixin landscape {
-	@media only screen and (width >= 480px) and (width <= 640px) and (orientation: landscape) {
-		@content;
-	}
+    @media only screen and (width >= 480px) and (width <= 640px) and (orientation: landscape) {
+        @content;
+    }
 }
 
 .responsive-tag {
-	position: fixed;
-	top: 0;
-	left: 50%;
-	transform: translateX(-50%);
-	background-color: rgba(#fff, 0.5);
-	color: black;
-	padding: 0.5em;
-	z-index: 1000;
-	font-weight: bold;
-	text-align: center;
+    position: fixed;
+    top: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(#fff, 0.5);
+    color: black;
+    padding: 0.25em 0.5em;
+    z-index: 1000;
+    font-weight: bold;
+    text-align: center;
+
+    p {
+        font-size: 14px;
+        font-weight: bold;
+    }
 }

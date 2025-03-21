@@ -8,14 +8,14 @@ import * as styles from '../../styles/modules/layout/footer.module.scss'
 
 const Footer = () => (
 	<footer className={styles.adsFooter}>
-		© 2022 - {new Date().getFullYear()} Afrodiasphere・{' '}
+		© 2022 - {new Date().getFullYear()} Afrodiasphere・
 		<a href="mailto:feedback@menefex.nl" title="Stuur feedback naar Menefex">
 			Feedback
-		</a>{' '}
+		</a>
 		・
 		<Link to="/faq/" title="Veelgestelde vragen">
 			FAQ
-		</Link>{' '}
+		</Link>
 		・Powered by{' '}
 		<a href="https://menefex.nl" rel="noopener noreferrer" target="_blank">
 			{''}

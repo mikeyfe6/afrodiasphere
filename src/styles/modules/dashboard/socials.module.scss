@@ -1,63 +1,63 @@
-@use '../../customs' as *;
+@use "../../customs" as *;
 
 .social {
-	&-field {
-		justify-content: space-between;
-		align-items: center;
-		display: flex;
+    &-field {
+        justify-content: space-between;
+        align-items: center;
+        display: flex;
 
-		@include mobile {
-			flex-wrap: wrap;
-			gap: 1em;
-		}
+        @include mobile {
+            flex-wrap: wrap;
+            gap: 1em;
+        }
 
-		div {
-			display: flex;
+        div {
+            display: flex;
 
-			label {
-				color: $ashColor;
-				font-size: 0.75rem;
-				background-color: $whiteColor;
-				border-radius: 25px 5px 5px 25px;
-				padding: 0.5em 0.75em;
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				min-width: 145px;
-				cursor: pointer;
+            label {
+                color: $ash-color;
+                font-size: 0.75rem;
+                background-color: $white-color;
+                border-radius: 25px 5px 5px 25px;
+                padding: 0.5em 0.75em;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                min-width: 145px;
+                cursor: pointer;
 
-				@include boxShadow;
+                @include box-shadow;
 
-				> i {
-					font-size: 1.5em;
-				}
-			}
+                > i {
+                    font-size: 1.5em;
+                }
+            }
 
-			input {
-				padding: 0.5em 0.75em;
+            input {
+                padding: 0.5em 0.75em;
 
-				@include smoothTrans;
+                @include smooth-trans;
 
-				&:disabled {
-					filter: blur(2px);
-				}
+                &:disabled {
+                    filter: blur(2px);
+                }
 
-				&:focus {
-					color: $secondaryColor;
+                &:focus {
+                    color: $secondary-color;
 
-					&::placeholder {
-						color: transparent;
-					}
-				}
-			}
-		}
+                    &::placeholder {
+                        color: transparent;
+                    }
+                }
+            }
+        }
 
-		button {
-			@include dashButton;
+        button {
+            @include dash-button;
 
-			@include mobile {
-				width: 100%;
-			}
-		}
-	}
+            @include mobile {
+                width: 100%;
+            }
+        }
+    }
 }

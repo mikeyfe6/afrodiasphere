@@ -1,69 +1,45 @@
-@use './customs' as *;
-@use 'resets';
-@use 'preview';
-@use 'algolia';
-
-// FONTS
-@import 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap';
-@import 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap';
+@use "./customs" as *;
+@use "preview";
+@use "algolia";
+@use "typography";
 
 body {
-	font-size: 16px;
-	font-family: Poppins, sans-serif;
-	background: linear-gradient(135deg, $thirdColor, $blackColor);
-	color: $whiteColor;
-	position: relative;
-	padding-bottom: 58px;
-	min-height: 100vh;
+    font-size: 16px;
+    font-family: $poppins;
+    background: linear-gradient(135deg, $third-color, $black-color);
+    color: $white-color;
+    position: relative;
+    padding-bottom: 58px;
+    min-height: 100vh;
 
-	@media (width <= 319px) {
-		display: none;
-	}
-}
-
-h1 {
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-	font-size: 4rem;
-
-	@include mobile {
-		font-size: 2.5rem;
-	}
-}
-
-h3 {
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-	font-size: 1.75rem;
+    @media (width <= 319px) {
+        display: none;
+    }
 }
 
 main {
-	@include tablet {
-		position: relative;
-	}
+    @include tablet {
+        position: relative;
+    }
 }
 
 button {
-	cursor: pointer;
-	line-height: 1.6;
+    cursor: pointer;
+    line-height: 1.6;
 }
 
 input {
-	font-family: Poppins, sans-serif;
-	font-size: 16px;
-	width: 100%;
+    font-family: $poppins;
+    font-size: 16px;
+    width: 100%;
 }
 
 input,
 textarea,
 select {
-	&::placeholder {
-		color: rgba(255 255 255 / 50%);
+    &::placeholder {
+        color: rgba(255 255 255 / 50%);
 
-		@include smoothTrans;
-	}
-}
-
-u {
-	text-decoration: underline;
-	text-underline-offset: 2px;
-	text-decoration-thickness: 2px;
+        @include smooth-trans;
+    }
 }

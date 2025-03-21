@@ -13,8 +13,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		color: $primaryColor;
-
+		color: $primary-color;
 		position: relative;
 
 		@include container(1em);
@@ -43,12 +42,12 @@
 	}
 
 	.super-container {
-		font-family: Montserrat, sans-serif;
+		font-family: $montserrat;
 		display: flex;
 		justify-content: center;
 
 		.container {
-			background: $primaryColor;
+			background: $primary-color;
 			border-radius: 10px;
 			box-shadow:
 				0 14px 28px rgba(0 0 0 / 25%),
@@ -67,7 +66,7 @@
 				position: absolute;
 				top: 0;
 				height: 100%;
-				color: $blackColor;
+				color: $black-color;
 
 				form {
 					display: flex;
@@ -104,7 +103,7 @@
 							&:hover {
 								text-decoration: underline;
 								text-underline-offset: 2px;
-								text-decoration-color: $whiteColor;
+								text-decoration-color: $white-color;
 							}
 						}
 					}
@@ -115,15 +114,15 @@
 						padding: 10px 15px;
 						border-radius: 3px;
 
-						@include boxShadow;
+						@include box-shadow;
 
 						&::placeholder {
 							font-size: 0.75rem;
-							color: $thirdColor;
+							color: $third-color;
 						}
 
 						&:focus {
-							outline: 2px solid $secondaryColor;
+							outline: 2px solid $secondary-color;
 
 							&::placeholder {
 								color: transparent;
@@ -132,9 +131,9 @@
 					}
 
 					button {
-						border: 2px solid $blackColor;
-						background: $whiteColor;
-						color: $blackColor;
+						border: 2px solid $black-color;
+						background: $white-color;
+						color: $black-color;
 						font-weight: bold;
 						font-size: 0.75rem;
 						padding: 0.75em 3em;
@@ -151,9 +150,8 @@
 						font-size: 0.2rem;
 						background-color: #c60319;
 						font-weight: bold;
-						color: $whiteColor;
+						color: $white-color;
 						padding: 0.5em 3em;
-
 						text-align: center;
 						border-radius: 2px;
 					}
@@ -164,7 +162,7 @@
 						bottom: 37.5px;
 						background-color: #57a55f;
 						font-weight: bold;
-						color: $whiteColor;
+						color: $white-color;
 						padding: 0.5em 1em;
 						display: table;
 						margin: 0 auto;
@@ -178,7 +176,7 @@
 					width: 50%;
 					opacity: 0;
 					z-index: 1;
-					background: $primaryColor;
+					background: $primary-color;
 					transition: all 0.5s ease;
 				}
 
@@ -200,7 +198,6 @@
 
 			&.right-panel-active .sign-up-container {
 				transform: translateX(100%);
-
 				opacity: 1;
 				z-index: 5;
 			}
@@ -222,10 +219,10 @@
 			background: linear-gradient(
 					to left,
 					rgba(255 255 255 / 100%),
-					$whiteColor
+					$white-color
 				)
 				no-repeat 0 0 / cover;
-			color: $blackColor;
+			color: $black-color;
 			position: relative;
 			left: -100%;
 			height: 100%;
@@ -282,8 +279,8 @@
 
 				> button.mirror {
 					background: transparent;
-					border: 2px solid $primaryColor;
-					color: $blackColor;
+					border: 2px solid $primary-color;
+					color: $black-color;
 					font-weight: bold;
 					font-size: 0.75rem;
 					padding: 0.75em 3em;

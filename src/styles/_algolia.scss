@@ -1,243 +1,249 @@
-@use './customs' as *;
+@use "./customs" as *;
 
 .algolia {
-	.ais {
-		&-SearchBox {
-			width: 250px;
+    .ais {
+        &-SearchBox {
+            width: 250px;
 
-			&-form {
-				display: flex;
-				flex-direction: row;
-				justify-content: center;
-				align-items: center;
-			}
+            &-form {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+            }
 
-			&-input {
-				background: $whiteColor;
-				border: none;
-				padding: 10px 15px;
-				border-radius: 3px;
-				color: $blackColor;
-				caret-color: $primaryColor;
+            &-input {
+                background: $white-color;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 3px;
+                color: $black-color;
+                caret-color: $primary-color;
 
-				@include boxShadow;
+                @include box-shadow;
 
-				&::placeholder {
-					font-size: 0.875rem;
-					color: $thirdColor;
-				}
+                &::placeholder {
+                    font-size: 0.875rem;
+                    color: $third-color;
+                }
 
-				&:focus {
-					outline: 2px solid $secondaryColor;
-					z-index: 14;
+                &:focus {
+                    outline: 2px solid $secondary-color;
+                    z-index: 14;
 
-					&::placeholder {
-						color: transparent;
-					}
-				}
+                    &::placeholder {
+                        color: transparent;
+                    }
+                }
 
-				&::-webkit-search-cancel-button {
-					filter: invert(64%) sepia(90%) saturate(334%) hue-rotate(0deg)
-						brightness(82%) contrast(96%);
-					cursor: pointer;
-				}
-			}
+                &::-webkit-search-cancel-button {
+                    filter: invert(64%) sepia(90%) saturate(334%)
+                        hue-rotate(0deg) brightness(82%) contrast(96%);
+                    cursor: pointer;
+                }
+            }
 
-			&-submit,
-			&-reset {
-				display: none;
-			}
-		}
+            &-submit,
+            &-reset {
+                display: none;
+            }
+        }
 
-		&-Hits {
-			position: absolute;
-			top: 100%;
-			width: 100%;
-			right: 0;
-			z-index: 14;
-			border-radius: 0 0 10px 10px;
-			overflow: hidden;
-		}
+        &-Hits {
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            right: 0;
+            z-index: 14;
+            border-radius: 0 0 10px 10px;
+            overflow: hidden;
+        }
 
-		&-InstantSearch,
-		&-Hits-list {
-			display: flex;
-			flex-direction: column;
-		}
+        &-InstantSearch,
+        &-Hits-list {
+            display: flex;
+            flex-direction: column;
+        }
 
-		&-Hits-item {
-			background: linear-gradient(to left, rgba(14 14 14 / 87.5%), $blackColor)
-				no-repeat 0 0 / cover;
-			padding: 1.25em;
+        &-Hits-item {
+            background: linear-gradient(
+                    to left,
+                    rgba(14 14 14 / 87.5%),
+                    $black-color
+                )
+                no-repeat 0 0 / cover;
+            padding: 1.25em;
 
-			article {
-				display: flex;
-				gap: 1em;
+            article {
+                display: flex;
+                gap: 1em;
 
-				img {
-					width: 100px;
-					height: 100px;
-					object-fit: cover;
-					overflow: hidden;
-					border-radius: 5px;
-				}
+                img {
+                    width: 100px;
+                    height: 100px;
+                    object-fit: cover;
+                    overflow: hidden;
+                    border-radius: 5px;
+                }
 
-				.hit {
-					&-content {
-						flex: 1;
+                .hit {
+                    &-content {
+                        flex: 1;
 
-						mark {
-							color: $primaryColor;
-						}
-					}
+                        mark {
+                            color: $primary-color;
+                        }
+                    }
 
-					&-profile {
-						margin-bottom: 0.175em;
-					}
+                    &-profile {
+                        margin-bottom: 0.175em;
+                    }
 
-					&-occupate {
-						font-size: 0.875rem;
-						color: $secondaryColor;
-						margin-bottom: 0.175em;
-					}
+                    &-occupate {
+                        font-size: 0.875rem;
+                        color: $secondary-color;
+                        margin-bottom: 0.175em;
+                    }
 
-					&-biography {
-						font-size: 0.875rem;
-						color: $extraSubColor;
-						max-width: 85%;
+                    &-biography {
+                        font-size: 0.875rem;
+                        color: $grey-light-color;
+                        max-width: 85%;
 
-						@include clamp(2);
+                        @include clamp(2);
 
-						@include mobile {
-							max-width: 100%;
-						}
-					}
-				}
-			}
+                        @include mobile {
+                            max-width: 100%;
+                        }
+                    }
+                }
+            }
 
-			&:not(:last-child) {
-				border-bottom: 1px solid $ashColor;
-			}
-		}
-	}
+            &:not(:last-child) {
+                border-bottom: 1px solid $ash-color;
+            }
+        }
+    }
 
-	.no-results {
-		position: absolute;
-		top: 100%;
-		width: 100%;
-		right: 0;
-		z-index: 14;
-		border-radius: 0 0 10px 10px;
-		overflow: hidden;
-		background: linear-gradient(to left, rgba(14 14 14 / 87.5%), $blackColor)
-			no-repeat 0 0 / cover;
-		padding: 1.25em;
-		text-align: center;
+    .no-results {
+        position: absolute;
+        top: 100%;
+        width: 100%;
+        right: 0;
+        z-index: 14;
+        border-radius: 0 0 10px 10px;
+        overflow: hidden;
+        background: linear-gradient(
+                to left,
+                rgba(14 14 14 / 87.5%),
+                $black-color
+            )
+            no-repeat 0 0 / cover;
+        padding: 1.25em;
+        text-align: center;
 
-		p q {
-			color: $extraSubColor;
-		}
-	}
+        p q {
+            color: $grey-light-color;
+        }
+    }
 
-	&-overlay {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background: rgba($blackColor, 0.5);
-		z-index: 7;
-	}
+    &-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba($black-color, 0.5);
+        z-index: 7;
+    }
 }
 
 .mobile-search {
-	position: fixed;
-	top: 15px;
-	left: 0;
-	z-index: 12;
-	display: flex;
-	align-items: center;
-	width: 100%;
-	padding-left: 85px;
-	padding-right: 15px;
+    position: fixed;
+    top: 15px;
+    left: 0;
+    z-index: 12;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-left: 85px;
+    padding-right: 15px;
 
-	> i {
-		color: $primaryColor;
-		background: $whiteColor;
-		border-radius: 5px;
-		height: 44px;
-		min-width: 44px;
-		max-width: 44px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
+    > i {
+        color: $primary-color;
+        background: $white-color;
+        border-radius: 5px;
+        height: 44px;
+        min-width: 44px;
+        max-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-	&.open {
-		> i {
-			border-radius: 5px 0 0 5px;
-		}
+    &.open {
+        > i {
+            border-radius: 5px 0 0 5px;
+        }
 
-		.algolia {
-			width: 100%;
+        .algolia {
+            width: 100%;
 
-			.ais {
-				&-Hits {
-					position: fixed;
-					top: auto;
-					margin-top: 1.5em;
-					border-radius: 0;
+            .ais {
+                &-Hits {
+                    position: fixed;
+                    top: auto;
+                    margin-top: 1.5em;
+                    border-radius: 0;
+                    border-top: 2px solid $third-color;
+                    border-bottom: 2px solid $third-color;
+                }
 
-					border-top: 2px solid $thirdColor;
-					border-bottom: 2px solid $thirdColor;
-				}
+                &-SearchBox {
+                    width: 100%;
 
-				&-SearchBox {
-					width: 100%;
+                    &-input {
+                        border-radius: 0 5px 5px 0;
+                        box-shadow: none;
+                        height: 44px;
 
-					&-input {
-						border-radius: 0 5px 5px 0;
-						box-shadow: none;
-						height: 44px;
+                        &:focus {
+                            outline: none;
 
-						&:focus {
-							outline: none;
+                            &::placeholder {
+                                color: revert;
+                            }
+                        }
+                    }
+                }
+            }
 
-							&::placeholder {
-								color: revert;
-							}
-						}
-					}
-				}
-			}
+            .no-results {
+                position: fixed;
+                top: auto;
+                margin-top: 1.5em;
+                border-radius: 0;
+                border-top: 2px solid $third-color;
+                border-bottom: 2px solid $third-color;
 
-			.no-results {
-				position: fixed;
-				top: auto;
-				margin-top: 1.5em;
-				border-radius: 0;
+                p q {
+                    color: $grey-light-color;
+                }
+            }
+        }
+    }
 
-				border-top: 2px solid $thirdColor;
-				border-bottom: 2px solid $thirdColor;
+    & + #ads-username {
+        z-index: 13;
+    }
 
-				p q {
-					color: $extraSubColor;
-				}
-			}
-		}
-	}
+    &.open + #ads-username {
+        z-index: 11;
+    }
 
-	&.open + #ads-username {
-		z-index: 11;
-	}
-
-	& + #ads-username {
-		z-index: 13;
-	}
-
-	@include mobile {
-		&.open + #ads-username {
-			opacity: 0.1;
-		}
-	}
+    @include mobile {
+        &.open + #ads-username {
+            opacity: 0.1;
+        }
+    }
 }

@@ -16,7 +16,7 @@ const Intro = () => (
 					Creeer jouw ADS-account & JOIN THE MOVEMENT <span>!</span>
 				</small>{' '}
 				Klik{' '}
-				<Link to="/login/">s
+				<Link to="/login/">
 					<button title="Ga naar inloggen / registreren" type="button">
 						hier
 					</button>

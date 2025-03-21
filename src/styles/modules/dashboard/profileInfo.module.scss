@@ -1,92 +1,92 @@
-@use '../../customs' as *;
+@use "../../customs" as *;
 
 .profile {
-	&-field {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		gap: 1em;
+    &-field {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1em;
 
-		label {
-			color: $primaryColor;
-			font-size: 0.75rem;
-			min-width: 110px;
-			cursor: pointer;
+        label {
+            color: $primary-color;
+            font-size: 0.75rem;
+            min-width: 110px;
+            cursor: pointer;
 
-			&::after {
-				content: ':';
-				color: $whiteColor;
-				font-weight: 500;
-				margin-left: 0.025em;
-			}
-		}
+            &::after {
+                content: ":";
+                color: $white-color;
+                font-weight: 500;
+                margin-left: 0.025em;
+            }
+        }
 
-		input {
-			color: $whiteColor;
-			background: transparent;
-			outline: none;
-			border: none;
-			text-align: right;
+        input {
+            color: $white-color;
+            background: transparent;
+            outline: none;
+            border: none;
+            text-align: right;
 
-			@include smoothTrans;
+            @include smooth-trans;
 
-			&:disabled {
-				filter: blur(2px);
-			}
+            &:disabled {
+                filter: blur(2px);
+            }
 
-			&:focus {
-				color: $secondaryColor !important;
-			}
-		}
+            &:focus {
+                color: $secondary-color !important;
+            }
+        }
 
-		&.address {
-			gap: 1.5em;
+        &.address {
+            gap: 1.5em;
 
-			@include mobile {
-				flex-direction: column;
-				align-items: flex-start;
-			}
+            @include mobile {
+                flex-direction: column;
+                align-items: flex-start;
+            }
 
-			label {
-				min-width: 75px;
-			}
+            label {
+                min-width: 75px;
+            }
 
-			> div:first-child {
-				flex-grow: 1;
-				width: 100%;
-			}
+            > div {
+                display: flex;
+                margin-left: auto;
+                gap: 0.75em;
 
-			> div {
-				display: flex;
-				margin-left: auto;
-				gap: 0.75em;
+                &:first-child {
+                    flex-grow: 1;
+                    width: 100%;
+                }
 
-				> button {
-					&:nth-child(2) {
-						background-color: $secondaryColor;
-						color: $whiteColor;
-					}
+                > button {
+                    &:nth-child(2) {
+                        background-color: $secondary-color;
+                        color: $white-color;
+                    }
 
-					&:last-child {
-						background-color: $warningColor;
-						color: $whiteColor;
-					}
-				}
-			}
-		}
+                    &:last-child {
+                        background-color: $warning-color;
+                        color: $white-color;
+                    }
+                }
+            }
+        }
 
-		button {
-			@include dashButton($type: 2);
+        button {
+            @include dash-button($type: 2);
 
-			&.terminate-btn {
-				background-color: $warningColor;
-				color: $whiteColor;
-			}
+            &.terminate-btn {
+                background-color: $warning-color;
+                color: $white-color;
+            }
 
-			&.update-btn {
-				background-color: $secondaryColor;
-				color: $whiteColor;
-			}
-		}
-	}
+            &.update-btn {
+                background-color: $secondary-color;
+                color: $white-color;
+            }
+        }
+    }
 }

@@ -12,13 +12,12 @@
 
 	&-slide {
 		> div {
-			background: linear-gradient(135deg, rgba(0 0 0 / 50%), $blackColor);
-			border: 2px solid rgba($whiteColor, 0.825);
+			background: linear-gradient(135deg, rgba(0 0 0 / 50%), $black-color);
+			border: 2px solid rgba($white-color, 0.825);
 			border-radius: 12.5px;
 			padding: 1.25em;
 			text-align: center;
 			position: relative;
-
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -32,9 +31,8 @@
 				height: 112.5px;
 				border-radius: 50%;
 				object-fit: cover;
-				border: 3px solid $whiteColor;
+				border: 3px solid $white-color;
 				overflow: hidden;
-
 				margin: 1em 0 1.5em;
 
 				@include mobile {
@@ -48,20 +46,18 @@
 				overflow: hidden;
 				text-overflow: ellipsis;
 				max-width: 100%;
-
 				margin-bottom: 0.5em;
 			}
 
 			> .occupate {
 				font-size: 0.75rem;
-				color: rgba($whiteColor, 0.875);
-				background: rgba($secondaryColor, 0.375);
-				border: 1px solid rgba($secondaryColor, 0.875);
+				color: rgba($white-color, 0.875);
+				background: rgba($secondary-color, 0.375);
+				border: 1px solid rgba($secondary-color, 0.875);
 				border-radius: 7.5px;
 				padding: 2px 7.5px;
 				margin-bottom: 1.75em;
 				max-width: 125px;
-
 				white-space: nowrap;
 				overflow: hidden;
 				text-overflow: ellipsis;
@@ -73,13 +69,10 @@
 
 				> p {
 					font-size: 0.75rem;
-					color: color.adjust($whiteColor, $lightness: -25%);
+					color: color.adjust($white-color, $lightness: -25%);
 					padding: 0 0.25em;
 
-					display: -webkit-box;
-					-webkit-box-orient: vertical;
-					overflow: hidden;
-					-webkit-line-clamp: 6;
+					@include clamp(3);
 				}
 			}
 
@@ -87,39 +80,37 @@
 				font-size: 0.875rem;
 				text-transform: lowercase;
 				max-width: 100%;
-				border: 1px solid $transColor;
+				border: 1px solid $trans-color;
 
 				> a {
 					display: block;
-
-					background: rgba($ashColor, 0.5);
+					background: rgba($ash-color, 0.5);
 					padding: 0.5em 1em;
 					border-radius: 5px;
-					color: $whiteColor;
-
+					color: $white-color;
 					white-space: nowrap;
 					overflow: hidden;
 					text-overflow: ellipsis;
 
-					@include smoothTrans;
+					@include smooth-trans;
 
 					span {
 						&:nth-child(1) {
-							color: $secondaryColor;
+							color: $secondary-color;
 						}
 
 						&:nth-child(2) {
-							color: $whiteColor;
+							color: $white-color;
 						}
 
 						&:nth-child(3) {
-							color: $primaryColor;
+							color: $primary-color;
 							margin: 0 0 0 0.25em;
 						}
 					}
 
 					&:hover {
-						background: rgba($ashColor, 0.75);
+						background: rgba($ash-color, 0.75);
 					}
 				}
 			}

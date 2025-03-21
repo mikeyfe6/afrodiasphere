@@ -1,69 +1,69 @@
-@use '../../customs' as *;
+@use "../../customs" as *;
 
 .biography {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 0.75em;
-	max-width: 600px;
-	width: 100%;
-	position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75em;
+    max-width: 600px;
+    width: 100%;
+    position: relative;
 
-	@include laptop {
-		max-width: 100%;
-	}
+    @include laptop {
+        max-width: 100%;
+    }
 
-	label {
-		align-self: flex-start;
-		font-size: 0.75rem;
-		cursor: pointer;
+    label {
+        align-self: flex-start;
+        font-size: 0.75rem;
+        cursor: pointer;
 
-		&::after {
-			content: ':';
-			color: $whiteColor;
-			font-weight: 500;
-			margin-left: 0.025em;
-		}
-	}
+        &::after {
+            content: ":";
+            color: $white-color;
+            font-weight: 500;
+            margin-left: 0.025em;
+        }
+    }
 
-	button {
-		align-self: flex-end;
+    button {
+        align-self: flex-end;
 
-		@include dashButton;
-	}
+        @include dash-button;
+    }
 
-	textarea {
-		width: 100%;
-		height: 10em;
-		outline: none;
-		resize: none;
-		padding: 17.5px;
-		background: linear-gradient(135deg, #1a1a1a, $blackColor);
-		border: 1px $primaryColor solid;
-		border-radius: 5px;
-		scrollbar-color: $subColor $whiteColor;
-		word-wrap: break-word;
+    textarea {
+        width: 100%;
+        height: 10em;
+        outline: none;
+        resize: none;
+        padding: 17.5px;
+        background: linear-gradient(135deg, #1a1a1a, $black-color);
+        border: 1px $primary-color solid;
+        border-radius: 5px;
+        scrollbar-color: $grey-color $white-color;
+        word-wrap: break-word;
 
-		@include boxShadow;
-		@include smoothTrans;
+        @include box-shadow;
+        @include smooth-trans;
 
-		&:disabled {
-			filter: blur(2px);
-		}
+        &:disabled {
+            filter: blur(2px);
+        }
 
-		&:focus {
-			border-color: $secondaryColor;
-		}
-	}
+        &:focus {
+            border-color: $secondary-color;
+        }
+    }
 
-	> div {
-		position: absolute;
-		right: 10px;
-		top: 165px;
-		font-size: 0.75rem;
+    > div {
+        position: absolute;
+        right: 10px;
+        top: 165px;
+        font-size: 0.75rem;
 
-		> span:nth-child(2) {
-			color: $primaryColor;
-		}
-	}
+        > span:nth-child(2) {
+            color: $primary-color;
+        }
+    }
 }

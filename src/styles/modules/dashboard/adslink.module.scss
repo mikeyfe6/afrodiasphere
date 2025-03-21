@@ -1,70 +1,70 @@
-@use '../../customs' as *;
+@use "../../customs" as *;
 
 .ads {
-	&-link {
-		text-align: center;
-		font-size: 0.75rem;
+    &-link {
+        text-align: center;
+        font-size: 0.75rem;
 
-		@include boxShadow;
-	}
+        @include box-shadow;
+    }
 
-	&-prefix {
-		border: 3px solid $primaryColor;
-		float: left;
-		width: 50%;
-		color: $whiteColor;
-		background: $primaryColor;
-		padding: 10px;
-		border-radius: 10px 0 0 10px;
+    &-prefix {
+        border: 3px solid $primary-color;
+        float: left;
+        width: 50%;
+        color: $white-color;
+        background: $primary-color;
+        padding: 10px;
+        border-radius: 10px 0 0 10px;
 
-		@include phablet {
-			color: $ashColor;
-			background: $whiteColor;
-			border-color: $whiteColor;
-			padding: 7.5px;
-		}
-	}
+        @include phablet {
+            color: $ash-color;
+            background: $white-color;
+            border-color: $white-color;
+            padding: 7.5px;
+        }
+    }
 
-	&-slug {
-		border: 3px solid $primaryColor;
-		float: right;
-		width: 50%;
-		background-color: $blackColor;
-		padding: 10px;
-		border-radius: 0 10px 10px 0;
+    &-slug {
+        border: 3px solid $primary-color;
+        float: right;
+        width: 50%;
+        background-color: $black-color;
+        padding: 10px;
+        border-radius: 0 10px 10px 0;
 
-		@include phablet {
-			color: $blackColor;
-			border-color: $blackColor;
-			padding: 7.5px;
-		}
+        @include phablet {
+            color: $black-color;
+            border-color: $black-color;
+            padding: 7.5px;
+        }
 
-		> a {
-			display: block;
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			max-width: 100%;
-			color: $primaryColor;
-			text-transform: lowercase;
+        > a {
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            color: $primary-color;
+            text-transform: lowercase;
 
-			span {
-				&:nth-child(1) {
-					color: $secondaryColor;
-				}
+            span {
+                &:nth-child(1) {
+                    color: $secondary-color;
+                }
 
-				&:nth-child(2) {
-					color: $whiteColor;
-				}
+                &:nth-child(2) {
+                    color: $white-color;
+                }
 
-				&:nth-child(3) {
-					margin: 0 0 0 0.25em;
-				}
-			}
+                &:nth-child(3) {
+                    margin: 0 0 0 0.25em;
+                }
+            }
 
-			&:hover {
-				opacity: 0.75;
-			}
-		}
-	}
+            &:hover {
+                opacity: 0.75;
+            }
+        }
+    }
 }

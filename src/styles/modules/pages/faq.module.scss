@@ -17,11 +17,11 @@
 		gap: 0.5em;
 
 		h1 {
-			color: $primaryColor;
+			color: $primary-color;
 		}
 
 		> p {
-			color: $whiteColor;
+			color: $white-color;
 			font-size: 0.925rem;
 			margin: 0 0 1em;
 		}
@@ -52,14 +52,14 @@
 	}
 
 	&-item {
-		border-bottom: 1px solid rgba($primaryColor, 0.75);
+		border-bottom: 1px solid rgba($primary-color, 0.75);
 		padding: 1em 0;
 
 		&:nth-child(1) {
 			&::before {
 				content: 'Algemene Informatie';
 				display: block;
-				color: $primaryColor;
+				color: $primary-color;
 				font-size: 2rem;
 				font-weight: 600;
 				margin-bottom: 0.25em;
@@ -74,7 +74,7 @@
 			&::before {
 				content: 'Account en Registratie';
 				display: block;
-				color: $primaryColor;
+				color: $primary-color;
 				font-size: 2rem;
 				font-weight: 600;
 				margin: 1em 0 0.25em;
@@ -89,7 +89,7 @@
 			&::before {
 				content: 'Functionaliteiten';
 				display: block;
-				color: $primaryColor;
+				color: $primary-color;
 				font-size: 2rem;
 				font-weight: 600;
 				margin: 1em 0 0.25em;
@@ -104,7 +104,7 @@
 			&::before {
 				content: 'Privacy en Veiligheid';
 				display: block;
-				color: $primaryColor;
+				color: $primary-color;
 				font-size: 2rem;
 				font-weight: 600;
 				margin: 1em 0 0.25em;
@@ -119,7 +119,7 @@
 			&::before {
 				content: 'Problemen en Ondersteuning';
 				display: block;
-				color: $primaryColor;
+				color: $primary-color;
 				font-size: 2rem;
 				font-weight: 600;
 				margin: 1em 0 0.25em;
@@ -145,16 +145,16 @@
 		}
 
 		&:hover {
-			color: $secondaryColor;
+			color: $secondary-color;
 		}
 	}
 
 	&-answer {
 		margin-top: 0.5em;
-		color: color.adjust($whiteColor, $lightness: -17.5%);
+		color: color.adjust($white-color, $lightness: -17.5%);
 
 		> i {
-			color: $secondaryColor;
+			color: $secondary-color;
 		}
 
 		span {

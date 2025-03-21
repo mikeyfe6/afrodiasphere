@@ -4,16 +4,13 @@
 	display: grid;
 	gap: 1em;
 	min-height: calc(100vh - 290px);
-	grid-template-columns: 0.5fr 1.3fr 1.2fr;
-	grid-template-rows: 0fr 2.8fr;
-	grid-template-areas:
-		'Sidebar Dashboard Dashboard Slug'
-		'Sidebar Dashboard Dashboard Preview'
-		'Sidebar Dashboard Dashboard Preview';
+	grid-template: 
+		"Sidebar Dashboard Dashboard Slug" 0fr
+		"Sidebar Dashboard Dashboard Preview" 2.8fr
+		"Sidebar Dashboard Dashboard Preview" 2.8fr / 0.5fr 1.3fr 1.2fr;
+	background: linear-gradient(135deg, rgba(0 0 0 / 67.5%), $third-color);
 
-	background: linear-gradient(135deg, rgba(0 0 0 / 67.5%), $thirdColor);
-
-	@include card(1em, 1em);
+	@include dash-card(1em, 1em);
 
 	@include desktop {
 		grid-template-columns: repeat(2, 1fr);
@@ -43,26 +40,26 @@
 	}
 
 	@include mobile {
-		@include card(0.375em, 0.5em);
+		@include dash-card(0.375em, 0.5em);
 	}
 
 	> section {
 		> h2 {
-			color: $ashColor;
+			color: $ash-color;
 			text-decoration: underline;
-			text-decoration-color: $whiteColor;
+			text-decoration-color: $white-color;
 			text-underline-offset: 5px;
 			text-align: center;
 			margin-bottom: 1em;
 			font-size: 1.75rem;
-			background: $primaryColor;
+			background: $primary-color;
 			border-radius: 5px;
-			outline: 3px solid $ashColor;
+			outline: 3px solid $ash-color;
 			cursor: default;
 		}
 
 		> hr {
-			border: 1px solid $whiteColor;
+			border: 1px solid $white-color;
 			opacity: 0.1;
 			width: 75%;
 			margin: 2em auto 0.5em;
@@ -73,19 +70,19 @@
 // SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR  <--------------------------------------------------------------------------------> SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR
 .sidebar {
 	grid-area: Sidebar;
-	border: 3px solid $primaryColor;
-	background-color: $transColor;
+	border: 3px solid $primary-color;
+	background-color: $trans-color;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 
-	@include card(0, 1em);
+	@include dash-card(0, 1em);
 
 	@include desktop {
 		flex-direction: row;
 		align-items: center;
 
-		@include card(0, 1em 1.25em);
+		@include dash-card(0, 1em 1.25em);
 	}
 
 	@include tablet {
@@ -101,42 +98,42 @@
 	button {
 		align-self: flex-end;
 
-		@include dashButton($warningColor, $whiteColor);
+		@include dash-button($warning-color, $white-color);
 	}
 }
 
 // PREVIEW PREVIEW PREVIEW PREVIEW PREVIEW PREVIEW  <--------------------------------------------------------------------------------> PREVIEW PREVIEW PREVIEW PREVIEW PREVIEW PREVIEW
 .preview {
 	grid-area: Preview;
-	background-color: $transColor;
-	border: 3px solid $primaryColor;
+	background-color: $trans-color;
+	border: 3px solid $primary-color;
 	display: flex;
 	justify-content: center;
 
-	@include card(0, 1em);
+	@include dash-card(0, 1em);
 
 	@include mobile {
-		@include card(0, 0);
+		@include dash-card(0, 0);
 	}
 }
 
 // DASHBOARD DASHBOARD DASHBOARD DASHBOARD DASHBOARD DASHBOARD  <--------------------------------------------------------------------------------> DASHBOARD DASHBOARD DASHBOARD DASHBOARD DASHBOARD DASHBOARD
 .dashboard {
 	grid-area: Dashboard;
-	background-color: $transColor;
-	border: 3px solid $primaryColor;
+	background-color: $trans-color;
+	border: 3px solid $primary-color;
 
-	@include card(0, 2em);
+	@include dash-card(0, 2em);
 
 	@include mobile {
-		@include card(0, 1.25em);
+		@include dash-card(0, 1.25em);
 	}
 
 	.dash-btn {
 		margin: 2em 0 1em auto;
 		display: block;
 
-		@include dashButton;
+		@include dash-button;
 	}
 
 	.avatar-w-profile-info {
@@ -188,7 +185,7 @@
 		}
 
 		label {
-			color: $primaryColor;
+			color: $primary-color;
 			font-size: 0.75rem;
 		}
 	}
@@ -224,15 +221,15 @@
 
 	.logerror {
 		color: white;
-		background: linear-gradient(135deg, rgba(255, 0, 0, 0.75), $warningColor);
+		background: linear-gradient(135deg, rgba(255, 0, 0, 0.75), $warning-color);
 
 		@include logs;
 	}
 
 	.logsuccess {
-		color: $whiteColor;
+		color: $white-color;
 		// background-color: #57a55f;
-		background: linear-gradient(135deg, rgba(0, 128, 0, 0.75), $successColor);
+		background: linear-gradient(135deg, rgba(0, 128, 0, 0.75), $success-color);
 
 		@include logs;
 	}

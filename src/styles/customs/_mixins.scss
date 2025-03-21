@@ -1,257 +1,260 @@
-@use 'colors' as *;
-@use 'mediaqueries' as *;
+@use "colors" as *;
+@use "fonts" as *;
+@use "mediaqueries" as *;
 
-// overall mixins ---------------------------- // overall mixins
-@mixin smoothTrans($style: all) {
-	transition: $style 0.15s ease-in-out;
-}
-
-@mixin boxShadow {
-	box-shadow: 1px 3px 5px rgba(0 0 0 / 20%);
-}
-
-@mixin borderRadius($radius: 5px) {
-	border-radius: $radius;
-}
+// layout ---------------------------- // layout
 
 @mixin container($marginY: 0, $paddingX: 2em, $maxWidth: 1200px) {
-	width: 100%;
-	max-width: $maxWidth;
-	padding: 0 $paddingX;
-	margin: $marginY auto;
+    width: 100%;
+    max-width: $maxWidth;
+    padding: 0 $paddingX;
+    margin: $marginY auto;
+}
+
+@mixin full-width {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+// overall ---------------------------- // overall
+
+@mixin smooth-trans($style: all) {
+    transition: $style 0.15s ease-in-out;
+}
+
+@mixin box-shadow {
+    box-shadow: 1px 3px 5px rgba(0 0 0 / 20%);
+}
+
+@mixin border-radius($radius: 5px) {
+    border-radius: $radius;
 }
 
 @mixin clamp($lines: 2) {
-	display: inline;
-	display: -webkit-box;
-	-webkit-line-clamp: $lines;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
-}
-
-@mixin card($margin: 1em, $padding: 1em) {
-	border-radius: 10px;
-	box-shadow: 0 3px 10px rgba(0 0 0 / 33%);
-	padding: $padding;
-	margin: $margin;
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 @mixin logs {
-	outline: 1px solid $whiteColor;
-	display: inline-block;
-	width: 100%;
-	text-align: center;
-	margin: 1em auto 0;
-	padding: 0.2em 1em;
-	border-radius: 2.5px;
-	font-size: 0.825rem;
-}
-
-@mixin fullWidth {
-	width: 100vw;
-	position: relative;
-	left: 50%;
-	right: 50%;
-	margin-left: -50vw;
-	margin-right: -50vw;
+    outline: 1px solid $white-color;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin: 1em auto 0;
+    padding: 0.2em 1em;
+    border-radius: 2.5px;
+    font-size: 0.825rem;
 }
 
 @mixin button($yAxis: 0.5em, $type: 1) {
-	padding: $yAxis 1.25em;
-	font-size: 1rem;
-	font-weight: 500;
-	border-radius: 5px;
-	transition: all 0.2s ease-out;
-	width: fit-content;
-	height: fit-content;
+    padding: $yAxis 1.25em;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: all 0.2s ease-out;
+    width: fit-content;
+    height: fit-content;
 
-	@if $type == 1 {
-		background: $primaryColor;
-		color: $ashColor;
-	} @else if $type == 2 {
-		background-color: $warningColor;
-		color: $whiteColor;
-	}
+    @if $type == 1 {
+        background: $primary-color;
+        color: $ash-color;
+    } @else if $type == 2 {
+        background-color: $warning-color;
+        color: $white-color;
+    }
 
-	&:not(:disabled):hover {
-		transform: scale(0.97);
-	}
+    &:not(:disabled):hover {
+        transform: scale(0.97);
+    }
 }
 
-@mixin dashButton(
-	$bgColor: $whiteColor,
-	$txtColor: $ashColor,
-	$yAxis: 0.375em,
-	$type: 1
+// dashboard ---------------------------- // dashboard
+
+@mixin dash-card($margin: 1em, $padding: 1em) {
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0 0 0 / 33%);
+    padding: $padding;
+    margin: $margin;
+}
+
+@mixin dash-button(
+    $bgColor: $white-color,
+    $txtColor: $ash-color,
+    $yAxis: 0.375em,
+    $type: 1
 ) {
-	background-color: $bgColor;
-	color: $txtColor;
-	padding: $yAxis 1em;
-	text-align: center;
-	border-radius: 3px;
-	white-space: nowrap;
+    background-color: $bgColor;
+    color: $txtColor;
+    padding: $yAxis 1em;
+    text-align: center;
+    border-radius: 3px;
+    white-space: nowrap;
 
-	@if $type == 1 {
-		min-width: 120px;
+    @if $type == 1 {
+        min-width: 120px;
 
-		@include mobile {
-			min-width: 100px;
-			font-size: 0.875rem;
-		}
-	} @else if $type == 2 {
-		min-height: 44px;
-	}
+        @include mobile {
+            min-width: 100px;
+            font-size: 0.875rem;
+        }
+    } @else if $type == 2 {
+        min-height: 44px;
+    }
 
-	&:not(:disabled):hover {
-		transform: scale(0.97);
-	}
+    &:disabled {
+        opacity: 0.5;
+        cursor: default;
+    }
 
-	&:disabled {
-		opacity: 0.5;
-		cursor: default;
-	}
+    &:not(:disabled):hover {
+        transform: scale(0.97);
+    }
 }
 
-// dashboard mixins ---------------------------- // dashboard mixins
+@mixin choose-display {
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    width: 125px;
+    height: 200px;
+    border: solid 5px rgb(30 30 30);
+    cursor: pointer;
 
-@mixin chooseDisplay {
-	border-radius: 15px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 1em;
-	width: 125px;
-	height: 200px;
-	border: solid 5px rgb(30, 30, 30);
-	cursor: pointer;
+    @include smooth-trans;
+    @include box-shadow;
 
-	@include smoothTrans;
-	@include boxShadow;
+    @include desktop {
+        width: 112.5px;
+        height: 175px;
+    }
 
-	@include desktop {
-		width: 112.5px;
-		height: 175px;
-	}
+    @include mobile {
+        width: 100px;
+        height: 150px;
+    }
 
-	@include mobile {
-		width: 100px;
-		height: 150px;
-	}
-
-	&:hover {
-		border: solid 5px $secondaryColor;
-	}
+    &:hover {
+        border: solid 5px $secondary-color;
+    }
 }
 
-@mixin chooseStrokes {
-	width: 62.5%;
-	height: 12.5px;
-	border-radius: 2px;
+@mixin choose-strokes {
+    width: 62.5%;
+    height: 12.5px;
+    border-radius: 2px;
 }
 
-// page mixins ---------------------------- // page mixins
+// page ---------------------------- // page
 
-@mixin pageTheme {
-	height: 100%;
-	min-height: 100vh;
-	position: relative;
-	text-align: center;
-	padding: 5em 0 15em;
+@mixin page-theme {
+    height: 100%;
+    min-height: 100vh;
+    position: relative;
+    text-align: center;
+    padding: 5em 0 15em;
 }
 
-@mixin pageUsername {
-	display: block;
-	font-family: Poppins, sans-serif;
-	margin-bottom: 0.575em;
-	font-size: 2.75rem;
-	padding: 0 1em;
+@mixin page-username {
+    display: block;
+    font-family: $poppins;
+    margin-bottom: 0.575em;
+    font-size: 2.75rem;
+    padding: 0 1em;
 
-	@include mobile {
-		margin-bottom: 0.5em;
-		font-size: 2rem;
-	}
+    @include mobile {
+        margin-bottom: 0.5em;
+        font-size: 2rem;
+    }
 }
 
-@mixin pageOccupation {
-	margin: 0 auto 3em;
-	padding: 5px 10px;
-	width: fit-content;
-	border-radius: 7.5px;
-	font-size: 0.8rem;
-	opacity: 0.75;
+@mixin page-occupation {
+    margin: 0 auto 3em;
+    padding: 5px 10px;
+    width: fit-content;
+    border-radius: 7.5px;
+    font-size: 0.8rem;
+    opacity: 0.75;
 }
 
-@mixin pageBiography {
-	display: inline-block;
-	margin-bottom: 3em;
-	padding: 0 1em;
-	max-width: 650px;
-	width: 100%;
+@mixin page-biography {
+    display: inline-block;
+    margin-bottom: 3em;
+    padding: 0 1em;
+    max-width: 650px;
+    width: 100%;
 }
 
-@mixin pageLinks {
-	padding: 0 2em;
+@mixin page-links {
+    padding: 0 2em;
 
-	@include mobile {
-		padding: 0 1em;
-	}
+    @include mobile {
+        padding: 0 1em;
+    }
 
-	& > li > a {
-		display: inline-block;
-		padding: 0.475em 1em;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		width: 100%;
-		max-width: 750px;
-		border-radius: 3px;
-		margin-bottom: 1em;
+    & > li > a {
+        display: inline-block;
+        padding: 0.475em 1em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+        max-width: 750px;
+        border-radius: 3px;
+        margin-bottom: 1em;
 
-		&:hover {
-			opacity: 0.875;
-		}
-	}
+        &:hover {
+            opacity: 0.875;
+        }
+    }
 }
 
-@mixin pageLocation {
-	margin-top: 2em;
-	margin-bottom: -1.5em;
+@mixin page-location {
+    margin-top: 2em;
+    margin-bottom: -1.5em;
 
-	> i {
-		margin-right: 0.5em;
-	}
+    > i {
+        margin-right: 0.5em;
+    }
 
-	> a {
-		font-size: 0.9rem;
-		text-underline-offset: 3px;
+    > a {
+        font-size: 0.9rem;
+        text-underline-offset: 3px;
 
-		&:hover {
-			text-decoration: underline;
-		}
-	}
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
 
-@mixin pageSocials {
-	position: absolute;
-	left: 50%;
-	bottom: 9em;
-	transform: translateX(-50%);
-	display: flex;
-	justify-content: center;
-	gap: 1.5em;
+@mixin page-socials {
+    position: absolute;
+    left: 50%;
+    bottom: 9em;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 1.5em;
 
-	> a {
-		&:hover {
-			opacity: 0.75;
-		}
+    > a {
+        &:hover {
+            opacity: 0.75;
+        }
 
-		> i {
-			font-size: 1.75em;
+        > i {
+            font-size: 1.75em;
 
-			@include mobile {
-				font-size: 1.5em;
-			}
-		}
-	}
+            @include mobile {
+                font-size: 1.5em;
+            }
+        }
+    }
 }

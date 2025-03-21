@@ -3,9 +3,9 @@
 @use '../../customs' as *;
 
 .navbar {
-	background-color: $blackColor;
+	background-color: $black-color;
 	min-height: 70px;
-	color: $whiteColor;
+	color: $white-color;
 
 	&-wrapper {
 		display: flex;
@@ -30,17 +30,17 @@
 			margin-right: auto;
 
 			> a {
-				background: $primaryColor;
-				color: color.adjust($blackColor, $lightness: 5%);
+				background: $primary-color;
+				color: color.adjust($black-color, $lightness: 5%);
 				padding: 0.25em 1em;
 				font-weight: 600;
 				border-radius: 5px;
 
 				&:hover {
 					opacity: 0.75;
-					color: $blackColor;
+					color: $black-color;
 
-					@include smoothTrans;
+					@include smooth-trans;
 				}
 			}
 		}
@@ -59,10 +59,10 @@
 					button {
 						cursor: pointer;
 
-						@include smoothTrans;
+						@include smooth-trans;
 
 						&:hover {
-							color: $thirdColor;
+							color: $third-color;
 						}
 					}
 				}

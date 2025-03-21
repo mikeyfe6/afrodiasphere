@@ -1,564 +1,563 @@
-@use 'sass:color';
+@use "sass:color";
 
-@use './customs' as *;
+@use "./customs" as *;
 
 // ---------------------------------------------------------------------------------------- // USERNAME
 
 .ads {
-	&-user {
-		position: absolute;
-		top: 15px;
-		right: 25%;
+    &-user {
+        position: absolute;
+        top: 15px;
+        right: 25%;
+        transform: translateX(75%);
 
-		transform: translateX(75%);
+        @include phablet {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 1em;
+            right: initial;
+            transform: none;
+        }
 
-		@include phablet {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			width: 100%;
-			padding: 0 1em;
-			right: initial;
-			transform: none;
-		}
+        > button {
+            margin-right: 1.5em;
 
-		> button {
-			margin-right: 1.5em;
+            @include smooth-trans;
 
-			@include smoothTrans;
+            @include phablet {
+                order: 2;
+                margin-left: auto;
+            }
 
-			@include phablet {
-				order: 2;
-				margin-left: auto;
-			}
+            &:hover {
+                opacity: 0.75;
+            }
+        }
 
-			&:hover {
-				opacity: 0.75;
-			}
-		}
+        > a {
+            &:nth-of-type(1) {
+                margin-right: 2em;
 
-		> a {
-			&:nth-of-type(1) {
-				margin-right: 2em;
+                @include smooth-trans;
 
-				@include smoothTrans;
+                @include phablet {
+                    order: 1;
+                }
 
-				@include phablet {
-					order: 1;
-				}
+                &:hover {
+                    opacity: 0.75;
+                }
+            }
 
-				&:hover {
-					opacity: 0.75;
-				}
-			}
+            &:nth-of-type(2) {
+                background: $primary-color;
+                color: color.adjust($black-color, $lightness: 5%);
+                padding: 0.25em 1em;
+                font-weight: 600;
+                border-radius: 5px;
 
-			&:nth-of-type(2) {
-				background: $primaryColor;
-				color: color.adjust($blackColor, $lightness: 5%);
-				padding: 0.25em 1em;
-				font-weight: 600;
-				border-radius: 5px;
+                @include smooth-trans;
 
-				@include smoothTrans;
+                @include phablet {
+                    order: 3;
+                }
 
-				@include phablet {
-					order: 3;
-				}
-
-				&:hover {
-					opacity: 0.75;
-					color: $blackColor;
-				}
-			}
-		}
-	}
+                &:hover {
+                    opacity: 0.75;
+                    color: $black-color;
+                }
+            }
+        }
+    }
 }
 
 .theme {
-	&-avatar-contact {
-		margin: 0 auto 2em;
-		max-width: 300px;
-		position: relative;
-
-		@include mobile {
-			max-width: 237.5px;
-		}
-
-		.theme {
-			&-email,
-			&-telephone {
-				position: absolute;
-				top: 50%;
-				transform: translateY(-50%);
-
-				> i {
-					&:hover {
-						opacity: 0.75;
-					}
-				}
-			}
-
-			&-email {
-				left: 0;
-			}
-
-			&-telephone {
-				right: 0;
-			}
-		}
-
-		> img {
-			width: 175px;
-			height: 175px;
-			border-radius: 50%;
-			border: 3px solid $whiteColor;
-			object-fit: cover;
-			overflow: hidden;
-
-			@include mobile {
-				width: 125px;
-				height: 125px;
-			}
-		}
-	}
-
-	// ---------------------------------------------------------------------------------------- // YELLOW YELLOW YELLOW
-	&-geel {
-		background: linear-gradient(to bottom, yellow, black);
-
-		@include pageTheme;
-
-		&-username {
-			color: white;
-
-			@include pageUsername;
-		}
-
-		&-occupate {
-			color: black;
-			background-color: white;
-
-			@include pageOccupation;
-		}
-
-		&-biography {
-			color: #dddddd;
-
-			@include pageBiography;
-		}
-
-		&-links {
-			@include pageLinks;
-
-			> li > a {
-				background: white;
-				color: black;
-				border: 1px solid yellow;
-				box-shadow: 1px 3px 5px rgba(55, 55, 55, 0.767);
-			}
-		}
-
-		&-location {
-			color: yellow;
-
-			@include pageLocation;
-
-			> a {
-				&:hover {
-					text-decoration-color: white !important;
-				}
-			}
-		}
-
-		&-maps {
-			outline: 3px solid rgba(yellow, 75%);
-		}
-
-		&-icons {
-			@include pageSocials;
+    &-avatar-contact {
+        margin: 0 auto 2em;
+        max-width: 300px;
+        position: relative;
+
+        @include mobile {
+            max-width: 237.5px;
+        }
+
+        .theme {
+            &-email,
+            &-telephone {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+
+                > i {
+                    &:hover {
+                        opacity: 0.75;
+                    }
+                }
+            }
+
+            &-email {
+                left: 0;
+            }
+
+            &-telephone {
+                right: 0;
+            }
+        }
+
+        > img {
+            width: 175px;
+            height: 175px;
+            border-radius: 50%;
+            border: 3px solid $white-color;
+            object-fit: cover;
+            overflow: hidden;
+
+            @include mobile {
+                width: 125px;
+                height: 125px;
+            }
+        }
+    }
+
+    // ---------------------------------------------------------------------------------------- // YELLOW YELLOW YELLOW
+    &-geel {
+        background: linear-gradient(to bottom, yellow, black);
+
+        @include page-theme;
+
+        &-username {
+            color: white;
+
+            @include page-username;
+        }
+
+        &-occupate {
+            color: black;
+            background-color: white;
+
+            @include page-occupation;
+        }
+
+        &-biography {
+            color: #dddddd;
+
+            @include page-biography;
+        }
+
+        &-links {
+            @include page-links;
+
+            > li > a {
+                background: white;
+                color: black;
+                border: 1px solid yellow;
+                box-shadow: 1px 3px 5px rgba(55, 55, 55, 0.767);
+            }
+        }
+
+        &-location {
+            color: yellow;
+
+            @include page-location;
+
+            > a {
+                &:hover {
+                    text-decoration-color: white !important;
+                }
+            }
+        }
+
+        &-maps {
+            outline: 3px solid rgba(yellow, 75%);
+        }
+
+        &-icons {
+            @include page-socials;
 
-			> a {
-				color: yellow;
-			}
-		}
-	}
+            > a {
+                color: yellow;
+            }
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------- // GRAY GRAY GRAY
-	&-grijs {
-		background: linear-gradient(to bottom, grey, white);
+    // ---------------------------------------------------------------------------------------- // GRAY GRAY GRAY
+    &-grijs {
+        background: linear-gradient(to bottom, grey, white);
 
-		@include pageTheme;
+        @include page-theme;
 
-		&-username {
-			color: #595959;
+        &-username {
+            color: #595959;
 
-			@include pageUsername;
-		}
+            @include page-username;
+        }
 
-		&-occupate {
-			color: #595959;
-			background-color: white;
+        &-occupate {
+            color: #595959;
+            background-color: white;
 
-			@include pageOccupation;
-		}
+            @include page-occupation;
+        }
 
-		&-biography {
-			color: white;
+        &-biography {
+            color: white;
 
-			@include pageBiography;
-		}
+            @include page-biography;
+        }
 
-		&-links {
-			@include pageLinks;
+        &-links {
+            @include page-links;
 
-			> li > a {
-				background: rgba(255, 255, 255, 0.797);
-				color: #878787;
-				border: 1px solid #878787;
-				box-shadow: 1px 3px 5px rgba(167, 167, 167, 0.767);
-			}
-		}
+            > li > a {
+                background: rgba(255, 255, 255, 0.797);
+                color: #878787;
+                border: 1px solid #878787;
+                box-shadow: 1px 3px 5px rgba(167, 167, 167, 0.767);
+            }
+        }
 
-		&-location {
-			color: #878787;
+        &-location {
+            color: #878787;
 
-			@include pageLocation;
+            @include page-location;
 
-			> a {
-				&:hover {
-					text-decoration-color: white !important;
-				}
-			}
-		}
+            > a {
+                &:hover {
+                    text-decoration-color: white !important;
+                }
+            }
+        }
 
-		&-maps {
-			outline: 3px solid rgba(#878787, 75%);
-		}
+        &-maps {
+            outline: 3px solid rgba(#878787, 75%);
+        }
 
-		&-icons {
-			@include pageSocials;
+        &-icons {
+            @include page-socials;
 
-			> a {
-				color: grey;
-			}
-		}
-	}
+            > a {
+                color: grey;
+            }
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------- // PINK PINK PINK
-	&-roze {
-		background: linear-gradient(to bottom, pink, grey);
+    // ---------------------------------------------------------------------------------------- // PINK PINK PINK
+    &-roze {
+        background: linear-gradient(to bottom, pink, grey);
 
-		@include pageTheme;
+        @include page-theme;
 
-		&-username {
-			color: white;
+        &-username {
+            color: white;
 
-			@include pageUsername;
-		}
+            @include page-username;
+        }
 
-		&-occupate {
-			color: grey;
-			background-color: white;
+        &-occupate {
+            color: grey;
+            background-color: white;
 
-			@include pageOccupation;
-		}
+            @include page-occupation;
+        }
 
-		&-biography {
-			color: white;
+        &-biography {
+            color: white;
 
-			@include pageBiography;
-		}
+            @include page-biography;
+        }
 
-		&-links {
-			@include pageLinks;
+        &-links {
+            @include page-links;
 
-			> li > a {
-				background: #a8a8a8;
-				color: white;
-				border: 1px solid white;
-				box-shadow: 1px 3px 5px rgba(167, 167, 167, 0.767);
-			}
-		}
+            > li > a {
+                background: #a8a8a8;
+                color: white;
+                border: 1px solid white;
+                box-shadow: 1px 3px 5px rgba(167, 167, 167, 0.767);
+            }
+        }
 
-		&-location {
-			color: #a8a8a8;
+        &-location {
+            color: #a8a8a8;
 
-			@include pageLocation;
+            @include page-location;
 
-			> a {
-				&:hover {
-					text-decoration-color: white !important;
-				}
-			}
-		}
+            > a {
+                &:hover {
+                    text-decoration-color: white !important;
+                }
+            }
+        }
 
-		&-maps {
-			outline: 3px solid rgba(white, 75%);
-		}
+        &-maps {
+            outline: 3px solid rgba(white, 75%);
+        }
 
-		&-icons {
-			@include pageSocials;
+        &-icons {
+            @include page-socials;
 
-			> a {
-				color: pink;
-			}
-		}
-	}
+            > a {
+                color: pink;
+            }
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------- // BLACK BLACK BLACK
-	&-zwart {
-		background: linear-gradient(to bottom, black, grey);
+    // ---------------------------------------------------------------------------------------- // BLACK BLACK BLACK
+    &-zwart {
+        background: linear-gradient(to bottom, black, grey);
 
-		@include pageTheme;
+        @include page-theme;
 
-		&-username {
-			color: white;
+        &-username {
+            color: white;
 
-			@include pageUsername;
-		}
+            @include page-username;
+        }
 
-		&-occupate {
-			color: black;
-			background-color: white;
+        &-occupate {
+            color: black;
+            background-color: white;
 
-			@include pageOccupation;
-		}
+            @include page-occupation;
+        }
 
-		&-biography {
-			color: white;
+        &-biography {
+            color: white;
 
-			@include pageBiography;
-		}
+            @include page-biography;
+        }
 
-		&-links {
-			@include pageLinks;
+        &-links {
+            @include page-links;
 
-			> li > a {
-				background: #878787;
-				color: white;
-				border: 2px solid white;
-				box-shadow: 1px 3px 5px rgba(49, 49, 49, 0.767);
-			}
-		}
+            > li > a {
+                background: #878787;
+                color: white;
+                border: 2px solid white;
+                box-shadow: 1px 3px 5px rgba(49, 49, 49, 0.767);
+            }
+        }
 
-		&-location {
-			color: white;
+        &-location {
+            color: white;
 
-			@include pageLocation;
+            @include page-location;
 
-			> a {
-				&:hover {
-					text-decoration-color: #878787 !important;
-				}
-			}
-		}
+            > a {
+                &:hover {
+                    text-decoration-color: #878787 !important;
+                }
+            }
+        }
 
-		&-maps {
-			outline: 3px solid rgba(white, 75%);
-		}
+        &-maps {
+            outline: 3px solid rgba(white, 75%);
+        }
 
-		&-icons {
-			@include pageSocials;
+        &-icons {
+            @include page-socials;
 
-			> a {
-				color: white;
-			}
-		}
-	}
+            > a {
+                color: white;
+            }
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------- // BRUIN BRUIN BRUIN
-	&-bruin {
-		background: linear-gradient(to bottom, brown, white);
+    // ---------------------------------------------------------------------------------------- // BRUIN BRUIN BRUIN
+    &-bruin {
+        background: linear-gradient(to bottom, brown, white);
 
-		@include pageTheme;
+        @include page-theme;
 
-		&-username {
-			color: white;
+        &-username {
+            color: white;
 
-			@include pageUsername;
-		}
+            @include page-username;
+        }
 
-		&-occupate {
-			color: white;
-			background-color: brown;
+        &-occupate {
+            color: white;
+            background-color: brown;
 
-			@include pageOccupation;
-		}
+            @include page-occupation;
+        }
 
-		&-biography {
-			color: #e0e0e0;
+        &-biography {
+            color: #e0e0e0;
 
-			@include pageBiography;
-		}
+            @include page-biography;
+        }
 
-		&-links {
-			@include pageLinks;
+        &-links {
+            @include page-links;
 
-			> li > a {
-				background: white;
-				color: brown;
-				border: 1px solid brown;
-				box-shadow: 1px 3px 5px rgba(167, 167, 167, 0.767);
-			}
-		}
+            > li > a {
+                background: white;
+                color: brown;
+                border: 1px solid brown;
+                box-shadow: 1px 3px 5px rgba(167, 167, 167, 0.767);
+            }
+        }
 
-		&-location {
-			color: brown;
+        &-location {
+            color: brown;
 
-			@include pageLocation;
+            @include page-location;
 
-			> a {
-				&:hover {
-					text-decoration-color: white !important;
-				}
-			}
-		}
+            > a {
+                &:hover {
+                    text-decoration-color: white !important;
+                }
+            }
+        }
 
-		&-maps {
-			outline: 3px solid rgba(brown, 75%);
-		}
+        &-maps {
+            outline: 3px solid rgba(brown, 75%);
+        }
 
-		&-icons {
-			@include pageSocials;
+        &-icons {
+            @include page-socials;
 
-			> a {
-				color: brown;
-			}
-		}
-	}
+            > a {
+                color: brown;
+            }
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------- // GROEN GROEN GROEN
-	&-groen {
-		background: linear-gradient(to bottom, green, white);
+    // ---------------------------------------------------------------------------------------- // GROEN GROEN GROEN
+    &-groen {
+        background: linear-gradient(to bottom, green, white);
 
-		@include pageTheme;
+        @include page-theme;
 
-		&-username {
-			color: white;
+        &-username {
+            color: white;
 
-			@include pageUsername;
-		}
+            @include page-username;
+        }
 
-		&-occupate {
-			color: green;
-			background-color: white;
+        &-occupate {
+            color: green;
+            background-color: white;
 
-			@include pageOccupation;
-		}
+            @include page-occupation;
+        }
 
-		&-biography {
-			color: #ededed;
+        &-biography {
+            color: #ededed;
 
-			@include pageBiography;
-		}
+            @include page-biography;
+        }
 
-		&-links {
-			@include pageLinks;
+        &-links {
+            @include page-links;
 
-			> li > a {
-				background: white;
-				color: green;
-				border: 1px solid green;
-				box-shadow: 1px 3px 5px rgba(167, 167, 167, 0.767);
-			}
-		}
+            > li > a {
+                background: white;
+                color: green;
+                border: 1px solid green;
+                box-shadow: 1px 3px 5px rgba(167, 167, 167, 0.767);
+            }
+        }
 
-		&-location {
-			color: green;
+        &-location {
+            color: green;
 
-			@include pageLocation;
+            @include page-location;
 
-			> a {
-				&:hover {
-					text-decoration-color: white !important;
-				}
-			}
-		}
+            > a {
+                &:hover {
+                    text-decoration-color: white !important;
+                }
+            }
+        }
 
-		&-maps {
-			outline: 3px solid rgba(green, 75%);
-		}
+        &-maps {
+            outline: 3px solid rgba(green, 75%);
+        }
 
-		&-icons {
-			@include pageSocials;
+        &-icons {
+            @include page-socials;
 
-			> a {
-				color: green;
-			}
-		}
-	}
+            > a {
+                color: green;
+            }
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------- // ADS THEME ADS THEME
-	&-afrotheme {
-		background: linear-gradient(to bottom, #e6541b, black);
+    // ---------------------------------------------------------------------------------------- // ADS THEME ADS THEME
+    &-afrotheme {
+        background: linear-gradient(to bottom, #e6541b, black);
 
-		@include pageTheme;
+        @include page-theme;
 
-		&-username {
-			color: white;
+        &-username {
+            color: white;
 
-			@include pageUsername;
-		}
+            @include page-username;
+        }
 
-		&-occupate {
-			color: black;
-			background-color: white;
+        &-occupate {
+            color: black;
+            background-color: white;
 
-			@include pageOccupation;
-		}
+            @include page-occupation;
+        }
 
-		&-biography {
-			color: #e0e0e0;
+        &-biography {
+            color: #e0e0e0;
 
-			@include pageBiography;
-		}
+            @include page-biography;
+        }
 
-		&-links {
-			@include pageLinks;
+        &-links {
+            @include page-links;
 
-			> li > a {
-				background: white;
-				color: black;
-				border: 1px solid #e6541b;
-			}
-		}
+            > li > a {
+                background: white;
+                color: black;
+                border: 1px solid #e6541b;
+            }
+        }
 
-		&-location {
-			color: #e6541b;
+        &-location {
+            color: #e6541b;
 
-			@include pageLocation;
+            @include page-location;
 
-			> a {
-				&:hover {
-					text-decoration-color: white !important;
-				}
-			}
-		}
+            > a {
+                &:hover {
+                    text-decoration-color: white !important;
+                }
+            }
+        }
 
-		&-maps {
-			outline: 3px solid rgba(#e6541b, 75%);
-		}
+        &-maps {
+            outline: 3px solid rgba(#e6541b, 75%);
+        }
 
-		&-icons {
-			@include pageSocials;
+        &-icons {
+            @include page-socials;
 
-			> a {
-				color: #e6541b;
-			}
-		}
-	}
+            > a {
+                color: #e6541b;
+            }
+        }
+    }
 
-	&-footer {
-		> img {
-			max-width: 100px;
-			position: absolute;
-			left: 50%;
-			bottom: 1em;
-			transform: translateX(-50%);
+    &-footer {
+        > img {
+            max-width: 100px;
+            position: absolute;
+            left: 50%;
+            bottom: 1em;
+            transform: translateX(-50%);
 
-			@include mobile {
-				max-width: 87.5px;
-			}
-		}
-	}
+            @include mobile {
+                max-width: 87.5px;
+            }
+        }
+    }
 }

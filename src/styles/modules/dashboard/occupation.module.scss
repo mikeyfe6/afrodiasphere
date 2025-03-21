@@ -1,88 +1,92 @@
-@use '../../customs' as *;
+@use "../../customs" as *;
 
 .occupation {
-	min-width: 300px;
+    min-width: 300px;
 
-	fieldset {
-		> legend {
-			color: $primaryColor;
-			font-size: 0.75rem;
-			margin-bottom: 1em;
-			cursor: pointer;
+    fieldset {
+        > legend {
+            color: $primary-color;
+            font-size: 0.75rem;
+            margin-bottom: 1em;
+            cursor: pointer;
 
-			&::after {
-				content: ':';
-				color: $whiteColor;
-				font-weight: 500;
-				margin-left: 0.025em;
-			}
-		}
+            &::after {
+                content: ":";
+                color: $white-color;
+                font-weight: 500;
+                margin-left: 0.025em;
+            }
+        }
 
-		> div {
-			display: flex;
-			flex-direction: column;
-			gap: 0.5em;
+        > div {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
 
-			> .collapsible {
-				border-radius: 2.5px;
-				font-size: 0.875rem;
+            > .collapsible {
+                border-radius: 2.5px;
+                font-size: 0.875rem;
 
-				> button.category {
-					&.active {
-						color: $whiteColor;
+                > button.category {
+                    &.active {
+                        color: $white-color;
 
-						&::after {
-							transform: rotate(-180deg);
-							border-top: 0.375em solid $secondaryColor;
-						}
-					}
+                        &::after {
+                            transform: rotate(-180deg);
+                            border-top: 0.375em solid $secondary-color;
+                        }
+                    }
 
-					&::after {
-						content: '';
-						display: inline-block;
-						width: 0;
-						height: 0;
-						border-left: 0.375em solid transparent;
-						border-right: 0.375em solid transparent;
-						border-top: 0.375em solid $primaryColor;
-						margin-left: 0.75em;
-						transition: transform 0.3s;
-						vertical-align: 3px;
-					}
-				}
+                    &::after {
+                        content: "";
+                        display: inline-block;
+                        width: 0;
+                        height: 0;
+                        border-left: 0.375em solid transparent;
+                        border-right: 0.375em solid transparent;
+                        border-top: 0.375em solid $primary-color;
+                        margin-left: 0.75em;
+                        transition: transform 0.3s;
+                        vertical-align: 3px;
+                    }
+                }
 
-				> .choice {
-					display: flex;
-					margin: 1.5em 0 1.25em;
-					gap: 1.75em 0.625em;
-					flex-wrap: wrap;
+                > .choice {
+                    display: flex;
+                    margin: 1.5em 0 1.25em;
+                    gap: 1.75em 0.625em;
+                    flex-wrap: wrap;
 
-					input {
-						display: none;
+                    label {
+                        background: linear-gradient(
+                            135deg,
+                            #1a1a1a,
+                            $black-color
+                        );
+                        text-align: center;
+                        min-width: 100px;
+                        padding: 0.75em 1em;
+                        border: 1px $primary-color solid;
+                        border-radius: 2.5px;
+                        cursor: pointer;
 
-						&:checked + label {
-							background: rgba($primaryColor, 0.625);
-							color: rgba($whiteColor, 0.95);
-						}
-					}
+                        @include box-shadow;
 
-					label {
-						background: linear-gradient(135deg, #1a1a1a, $blackColor);
-						text-align: center;
-						min-width: 100px;
-						padding: 0.75em 1em;
-						border: 1px $primaryColor solid;
-						border-radius: 2.5px;
-						cursor: pointer;
+                        &:hover {
+                            border-color: $secondary-color;
+                        }
+                    }
 
-						@include boxShadow;
+                    input {
+                        display: none;
 
-						&:hover {
-							border-color: $secondaryColor;
-						}
-					}
-				}
-			}
-		}
-	}
+                        &:checked + label {
+                            background: rgba($primary-color, 0.625);
+                            color: rgba($white-color, 0.95);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

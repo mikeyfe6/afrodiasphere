@@ -1,1 +1,9 @@
-declare module '*.module.scss'
+declare module "*.module.scss";
+declare module "configstore";
+declare module "cookie";
+declare module "estree";
+declare module "google.maps";
+declare module "http-proxy";
+declare module "json-schema";
+declare module "reach__router";
+declare module "yoga-layout";

@@ -1,0 +1,187 @@
+@use "./customs" as *;
+
+@font-face {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 100 900;
+    src: url("../fonts/Montserrat-VariableFont_wght.woff2") format("woff2");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Montserrat;
+    font-style: italic;
+    font-weight: 100 900;
+    src: url("../fonts/Montserrat-Italic-VariableFont_wght.woff2")
+        format("woff2");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins-Thin.woff2") format("woff2");
+    font-weight: 100; /* Thin */
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins-ExtraLightItalic.woff2") format("woff2");
+    font-weight: 100; /* Thin */
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins-ExtraLight.woff2") format("woff2");
+    font-weight: 200; /* ExtraLight */
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins-ExtraLightItalic.woff2") format("woff2");
+    font-weight: 200; /* ExtraLight */
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins-Light.woff2") format("woff2");
+    font-weight: 300; /* Light */
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins-LightItalic.woff2") format("woff2");
+    font-weight: 300; /* Light */
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins-Regular.woff2") format("woff2");
+    font-weight: 400; /* Regular */
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins-Italic.woff2") format("woff2");
+    font-weight: 400; /* Regular */
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins-Medium.woff2") format("woff2");
+    font-weight: 500; /* Medium */
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins-MediumItalic.woff2") format("woff2");
+    font-weight: 500; /* Medium */
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins-SemiBold.woff2") format("woff2");
+    font-weight: 600; /* SemiBold */
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins-SemiBoldItalic.woff2") format("woff2");
+    font-weight: 600; /* SemiBold */
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins-Bold.woff2") format("woff2");
+    font-weight: 700; /* Bold */
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins-BoldItalic.woff2") format("woff2");
+    font-weight: 700; /* Bold */
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins-ExtraBold.woff2") format("woff2");
+    font-weight: 800; /* ExtraBold */
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins-ExtraBoldItalic.woff2") format("woff2");
+    font-weight: 800; /* ExtraBold */
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins-Black.woff2") format("woff2");
+    font-weight: 900; /* Black */
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("../fonts/Poppins-BlackItalic.woff2") format("woff2");
+    font-weight: 900; /* Black */
+    font-style: italic;
+    font-display: swap;
+}
+
+h1 {
+    font-family: $gill-sans;
+    font-size: 4rem;
+
+    @include mobile {
+        font-size: 2.5rem;
+    }
+}
+
+h3 {
+    font-family: $gill-sans;
+    font-size: 1.75rem;
+}
+
+u {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 2px;
+}
+
+b,
+strong {
+    font-weight: bold;
+}

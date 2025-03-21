@@ -27,19 +27,19 @@
 	a:nth-of-type(2) {
 		color: #8c8c8c;
 
-		@include smoothTrans;
+		@include smooth-trans;
 
 		&:hover {
-			color: $secondaryColor;
+			color: $secondary-color;
 		}
 	}
 
 	a:nth-of-type(3) {
 		filter: grayscale(100%);
 		padding-left: 2.5px;
-		color: $whiteColor;
+		color: $white-color;
 
-		@include smoothTrans;
+		@include smooth-trans;
 
 		img {
 			vertical-align: middle;

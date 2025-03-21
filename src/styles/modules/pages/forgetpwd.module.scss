@@ -16,11 +16,11 @@
 		gap: 0.5em;
 
 		h1 {
-			color: $primaryColor;
+			color: $primary-color;
 		}
 
 		> p {
-			color: $whiteColor;
+			color: $white-color;
 			font-size: 0.925rem;
 			margin: 0 0 1em;
 		}
@@ -56,7 +56,7 @@
 			margin: 10px 0;
 			max-width: 350px;
 			border-radius: 3px;
-			color: $blackColor;
+			color: $black-color;
 
 			@include mobile {
 				max-width: 100%;
@@ -64,7 +64,7 @@
 
 			&::placeholder {
 				font-size: 0.95rem;
-				color: $thirdColor;
+				color: $third-color;
 			}
 
 			&:focus {

@@ -12,8 +12,8 @@
 	margin-top: 1.5em;
 	position: relative;
 
-	@include boxShadow;
-	@include smoothTrans;
+	@include box-shadow;
+	@include smooth-trans;
 
 	&-container {
 		padding: 0 2em;
@@ -28,7 +28,7 @@
 	}
 
 	&.ads-dashboard {
-		outline: 3px solid rgba($primaryColor, 75%);
+		outline: 3px solid rgba($primary-color, 75%);
 		border-radius: 5px;
 	}
 
@@ -61,22 +61,22 @@
 			border-radius: 50%;
 			overflow: hidden;
 			object-fit: cover;
-			background: linear-gradient(135deg, rgba(0 0 0 / 75%), $blackColor);
-			outline: solid $whiteColor 3px;
+			background: linear-gradient(135deg, rgba(0 0 0 / 75%), $black-color);
+			outline: solid $white-color 3px;
 		}
 	}
 
 	&.ads-home {
 		opacity: 0.75;
 		height: 250px;
-		border: 2px solid rgba($primaryColor, 82.5%);
+		border: 2px solid rgba($primary-color, 82.5%);
 		border-radius: 5px;
 
 		@include mobile {
 			border-right: none;
 			border-left: none;
 
-			@include borderRadius(0);
+			@include border-radius(0);
 		}
 
 		&::before,
@@ -93,14 +93,14 @@
 			left: 0;
 			background: linear-gradient(
 				to right,
-				$thirdColor,
+				$third-color,
 				rgba(255, 255, 255, 0)
 			);
 		}
 
 		&::after {
 			right: 0;
-			background: linear-gradient(to left, $thirdColor, rgba(255, 255, 255, 0));
+			background: linear-gradient(to left, $third-color, rgba(255, 255, 255, 0));
 		}
 
 		&:hover {
@@ -122,19 +122,19 @@
 
 		&-wrapper {
 			padding: 1.5em 2em;
-			background: linear-gradient(135deg, rgba(0 0 0 / 50%), $blackColor);
+			background: linear-gradient(135deg, rgba(0 0 0 / 50%), $black-color);
 			display: flex;
 			justify-content: space-between;
 			gap: 0 2em;
 
-			@include borderRadius;
-			@include boxShadow;
+			@include border-radius;
+			@include box-shadow;
 
 			@include mobile {
 				flex-direction: column-reverse;
 				padding: 2.5em 2em;
 
-				@include borderRadius(0);
+				@include border-radius(0);
 			}
 
 			> div:first-child {
@@ -143,17 +143,17 @@
 				gap: 1em;
 
 				> h3 {
-					color: $primaryColor;
+					color: $primary-color;
 
 					span {
-						color: $secondaryColor;
+						color: $secondary-color;
 						font-size: initial;
 					}
 				}
 
 				> span {
 					i {
-						color: $secondaryColor;
+						color: $secondary-color;
 						font-size: 1.5em;
 						margin-right: 0.5em;
 					}
@@ -164,13 +164,13 @@
 						&:hover {
 							text-decoration: underline;
 							text-underline-offset: 3px;
-							text-decoration-color: $secondaryColor;
+							text-decoration-color: $secondary-color;
 						}
 					}
 				}
 
 				> p {
-					color: color.adjust($whiteColor, $lightness: -25%);
+					color: color.adjust($white-color, $lightness: -25%);
 					max-width: 70ch;
 					margin: 0.5em 0;
 				}
@@ -190,7 +190,7 @@
 						gap: 0.625em;
 
 						> i {
-							color: $secondaryColor;
+							color: $secondary-color;
 						}
 
 						> a {
@@ -199,7 +199,7 @@
 							&:hover {
 								text-decoration: underline;
 								text-underline-offset: 3px;
-								text-decoration-color: $secondaryColor;
+								text-decoration-color: $secondary-color;
 							}
 						}
 					}
@@ -252,7 +252,7 @@
 						gap: 1em;
 
 						> i {
-							color: $secondaryColor;
+							color: $secondary-color;
 						}
 					}
 

@@ -8,7 +8,7 @@
 		bottom: -100%;
 		left: 0;
 		width: 100%;
-		background-color: color.adjust($blackColor, $lightness: 2.5%);
+		background-color: color.adjust($black-color, $lightness: 2.5%);
 		transition: bottom 0.5s ease;
 		z-index: 10;
 
@@ -25,16 +25,17 @@
 
 				> a,
 				> button {
-					@include smoothTrans;
 					padding: 0.375em;
 
+					@include smooth-trans;
+
 					&:hover {
-						color: $thirdColor;
+						color: $third-color;
 					}
 				}
 
 				&:not(:last-child) {
-					border-right: 1px solid rgba($thirdColor, 0.25);
+					border-right: 1px solid rgba($third-color, 0.25);
 				}
 			}
 		}
@@ -47,7 +48,7 @@
 			z-index: 11;
 
 			&-overlay {
-				background: rgba($thirdColor, 0.5);
+				background: rgba($third-color, 0.5);
 				position: fixed;
 				top: 0;
 				left: 0;
@@ -59,14 +60,14 @@
 			.hamburger {
 				border: none;
 				font-size: 1.5rem;
-				cursor: pointer;
 				padding: 0.625em 0.875em;
 				position: fixed;
 				top: 0;
 				left: 0;
 				z-index: 13;
-				background: color.adjust($blackColor, $lightness: 2.5%);
+				background: color.adjust($black-color, $lightness: 2.5%);
 				border-radius: 0 0 7.5px;
+				cursor: pointer;
 			}
 
 			.username {
@@ -75,17 +76,17 @@
 				top: 20px;
 
 				> a {
-					background: $primaryColor;
-					color: color.adjust($blackColor, $lightness: 5%);
+					background: $primary-color;
+					color: color.adjust($black-color, $lightness: 5%);
 					padding: 0.25em 1em;
 					font-weight: 600;
 					border-radius: 5px;
 
 					&:hover {
 						opacity: 0.75;
-						color: $blackColor;
+						color: $black-color;
 
-						@include smoothTrans;
+						@include smooth-trans;
 					}
 				}
 			}
@@ -94,8 +95,8 @@
 		&-overlay {
 			background: linear-gradient(
 				to bottom,
-				rgba($blackColor, 0.625),
-				rgba($blackColor, 0)
+				rgba($black-color, 0.625),
+				rgba($black-color, 0)
 			);
 			position: fixed;
 			top: 0;

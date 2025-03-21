@@ -1,377 +1,374 @@
-@use '../../customs' as *;
+@use "../../customs" as *;
 
 .choose {
-	&-theme {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 1.25em;
-	}
+    &-theme {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.25em;
+    }
 
-	&-color {
-		input {
-			display: none;
-		}
+    &-color {
+        input {
+            display: none;
+        }
 
-		.current-theme {
-			border: 5px $primaryColor solid !important;
-		}
-	}
+        .current-theme {
+            border: 5px $primary-color solid !important;
+        }
+    }
 }
 
 // ---------------------------------------------------------------------------------------- // YELLOW YELLOW YELLOW
 
 .yellow {
-	&-style {
-		background: linear-gradient(to bottom, yellow, black);
+    &-style {
+        background: linear-gradient(to bottom, yellow, black);
 
-		&-username {
-			color: white;
-		}
+        &-username {
+            color: white;
+        }
 
-		&-occupate {
-			color: black;
-			background-color: white;
-		}
+        &-occupate {
+            color: black;
+            background-color: white;
+        }
 
-		&-biography {
-			color: white;
-		}
+        &-biography {
+            color: white;
+        }
 
-		&-links {
-			a {
-				background: white;
-				color: black;
-				border: 1px solid yellow;
-				box-shadow: 1px 3px 5px rgba(55 55 55 / 75%);
-			}
-		}
+        &-links {
+            a {
+                background: white;
+                color: black;
+                border: 1px solid yellow;
+                box-shadow: 1px 3px 5px rgba(55 55 55 / 75%);
+            }
+        }
 
-		&-icons {
-			&:nth-child(n) {
-				a {
-					color: yellow;
-				}
-			}
-		}
-	}
+        &-icons {
+            &:nth-child(n) {
+                a {
+                    color: yellow;
+                }
+            }
+        }
+    }
 
-	&-theme {
-		background: linear-gradient(to bottom, yellow, black);
+    &-theme {
+        background: linear-gradient(to bottom, yellow, black);
 
-		@include chooseDisplay;
+        @include choose-display;
 
-		.yellowlinks {
-			background: white;
-			border: 1px solid yellow;
+        .yellowlinks {
+            background: white;
+            border: 1px solid yellow;
 
-			@include chooseStrokes;
-		}
-	}
+            @include choose-strokes;
+        }
+    }
 }
 
 // ---------------------------------------------------------------------------------------- // GRAY GRAY GRAY
 .gray {
-	&-style {
-		background: linear-gradient(to bottom, grey, white);
+    &-style {
+        background: linear-gradient(to bottom, grey, white);
 
-		&-username {
-			color: #595959;
-		}
+        &-username {
+            color: #595959;
+        }
 
-		&-occupate {
-			color: #595959;
-			background-color: white;
-		}
+        &-occupate {
+            color: #595959;
+            background-color: white;
+        }
 
-		&-biography {
-			color: white;
-		}
+        &-biography {
+            color: white;
+        }
 
-		&-links {
-			a {
-				box-shadow: 1px 3px 5px rgba(167, 167, 167, 0.767);
-				background: rgba(255, 255, 255, 0.797);
-				color: #878787;
-				border: 1px solid #878787;
-			}
-		}
+        &-links {
+            a {
+                box-shadow: 1px 3px 5px rgba(167, 167, 167, 0.767);
+                background: rgba(255, 255, 255, 0.797);
+                color: #878787;
+                border: 1px solid #878787;
+            }
+        }
 
-		&-icons {
-			&:nth-child(n) {
-				a {
-					color: grey;
-				}
-			}
-		}
-	}
+        &-icons {
+            &:nth-child(n) {
+                a {
+                    color: grey;
+                }
+            }
+        }
+    }
 
-	&-theme {
-		background: linear-gradient(to bottom, grey, white);
+    &-theme {
+        background: linear-gradient(to bottom, grey, white);
 
-		@include chooseDisplay;
+        @include choose-display;
 
-		.graylinks {
-			background: rgba(255, 255, 255, 0.797);
-			border: 1px solid #878787;
+        .graylinks {
+            background: rgba(255, 255, 255, 0.797);
+            border: 1px solid #878787;
 
-			@include chooseStrokes;
-		}
-	}
+            @include choose-strokes;
+        }
+    }
 }
 
 // ---------------------------------------------------------------------------------------- // PINK PINK PINK
 .pink {
-	&-style {
-		background: linear-gradient(to bottom, pink, grey);
+    &-style {
+        background: linear-gradient(to bottom, pink, grey);
 
-		&-username {
-			color: white;
-		}
+        &-username {
+            color: white;
+        }
 
-		&-occupate {
-			color: grey;
-			background-color: white;
-		}
+        &-occupate {
+            color: grey;
+            background-color: white;
+        }
 
-		&-biography {
-			color: white;
-		}
+        &-biography {
+            color: white;
+        }
 
-		&-links {
-			a {
-				box-shadow: 1px 3px 5px rgba(167, 167, 167, 0.767);
-				color: white;
-				background: #a8a8a8;
-				border: 1px solid white;
-			}
-		}
+        &-links {
+            a {
+                box-shadow: 1px 3px 5px rgba(167, 167, 167, 0.767);
+                color: white;
+                background: #a8a8a8;
+                border: 1px solid white;
+            }
+        }
 
-		&-icons {
-			&:nth-child(n) {
-				a {
-					color: pink;
-				}
-			}
-		}
-	}
+        &-icons {
+            &:nth-child(n) {
+                a {
+                    color: pink;
+                }
+            }
+        }
+    }
 
-	&-theme {
-		background: linear-gradient(to bottom, pink, grey);
+    &-theme {
+        background: linear-gradient(to bottom, pink, grey);
 
-		@include chooseDisplay;
+        @include choose-display;
 
-		.pinklinks {
-			background: #a8a8a8;
-			border: 1px solid white;
+        .pinklinks {
+            background: #a8a8a8;
+            border: 1px solid white;
 
-			@include chooseStrokes;
-		}
-	}
+            @include choose-strokes;
+        }
+    }
 }
 
 // ---------------------------------------------------------------------------------------- // BLACK BLACK BLACK
 
 .black {
-	&-style {
-		background: linear-gradient(to bottom, black, grey);
+    &-style {
+        background: linear-gradient(to bottom, black, grey);
 
-		&-username {
-			color: white;
-		}
+        &-username {
+            color: white;
+        }
 
-		&-occupate {
-			color: black;
-			background-color: white;
-		}
+        &-occupate {
+            color: black;
+            background-color: white;
+        }
 
-		&-biography {
-			color: white;
-		}
+        &-biography {
+            color: white;
+        }
 
-		&-links {
-			a {
-				background: #878787;
-				color: white;
-				border: 1px solid white;
+        &-links {
+            a {
+                background: #878787;
+                color: white;
+                border: 1px solid white;
+                box-shadow: 1px 3px 5px rgba(49, 49, 49, 0.767);
+            }
+        }
 
-				box-shadow: 1px 3px 5px rgba(49, 49, 49, 0.767);
-			}
-		}
+        &-icons {
+            &:nth-child(n) {
+                a {
+                    color: white;
+                }
+            }
+        }
+    }
 
-		&-icons {
-			&:nth-child(n) {
-				a {
-					color: white;
-				}
-			}
-		}
-	}
+    &-theme {
+        background: linear-gradient(to bottom, black, grey);
 
-	&-theme {
-		background: linear-gradient(to bottom, black, grey);
+        @include choose-display;
 
-		@include chooseDisplay;
+        .blacklinks {
+            background: #878787;
+            border: 1px solid white;
 
-		.blacklinks {
-			background: #878787;
-			border: 1px solid white;
-
-			@include chooseStrokes;
-		}
-	}
+            @include choose-strokes;
+        }
+    }
 }
 
 // ---------------------------------------------------------------------------------------- // BROWN BROWN BROWN
 .brown {
-	&-style {
-		background: linear-gradient(to bottom, brown, white);
+    &-style {
+        background: linear-gradient(to bottom, brown, white);
 
-		&-username {
-			color: white;
-		}
+        &-username {
+            color: white;
+        }
 
-		&-occupate {
-			color: white;
-			background-color: brown;
-		}
+        &-occupate {
+            color: white;
+            background-color: brown;
+        }
 
-		&-biography {
-			color: #e0e0e0;
-		}
+        &-biography {
+            color: #e0e0e0;
+        }
 
-		&-links {
-			a {
-				background: white;
-				color: brown;
-				border: 1px solid brown;
+        &-links {
+            a {
+                background: white;
+                color: brown;
+                border: 1px solid brown;
+                box-shadow: 1px 3px 5px rgba(167, 167, 167, 0.767);
+            }
+        }
 
-				box-shadow: 1px 3px 5px rgba(167, 167, 167, 0.767);
-			}
-		}
+        &-icons {
+            &:nth-child(n) {
+                a {
+                    color: brown;
+                }
+            }
+        }
+    }
 
-		&-icons {
-			&:nth-child(n) {
-				a {
-					color: brown;
-				}
-			}
-		}
-	}
+    &-theme {
+        background: linear-gradient(to bottom, brown, white);
 
-	&-theme {
-		background: linear-gradient(to bottom, brown, white);
+        @include choose-display;
 
-		@include chooseDisplay;
+        .brownlinks {
+            background: white;
+            border: 1px solid brown;
 
-		.brownlinks {
-			background: white;
-			border: 1px solid brown;
-
-			@include chooseStrokes;
-		}
-	}
+            @include choose-strokes;
+        }
+    }
 }
 
 // ---------------------------------------------------------------------------------------- // GREEN GREEN GREEN
 
 .green {
-	&-style {
-		background: linear-gradient(to bottom, green, white);
+    &-style {
+        background: linear-gradient(to bottom, green, white);
 
-		&-username {
-			color: white;
-		}
+        &-username {
+            color: white;
+        }
 
-		&-occupate {
-			color: green;
-			background-color: white;
-		}
+        &-occupate {
+            color: green;
+            background-color: white;
+        }
 
-		&-biography {
-			color: #ededed;
-		}
+        &-biography {
+            color: #ededed;
+        }
 
-		&-links {
-			a {
-				background: white;
-				color: green;
-				border: 1px solid green;
+        &-links {
+            a {
+                background: white;
+                color: green;
+                border: 1px solid green;
+                box-shadow: 1px 3px 5px rgba(167, 167, 167, 0.767);
+            }
+        }
 
-				box-shadow: 1px 3px 5px rgba(167, 167, 167, 0.767);
-			}
-		}
+        &-icons {
+            &:nth-child(n) {
+                a {
+                    color: green;
+                }
+            }
+        }
+    }
 
-		&-icons {
-			&:nth-child(n) {
-				a {
-					color: green;
-				}
-			}
-		}
-	}
+    &-theme {
+        background: linear-gradient(to bottom, green, white);
 
-	&-theme {
-		background: linear-gradient(to bottom, green, white);
+        @include choose-display;
 
-		@include chooseDisplay;
+        .greenlinks {
+            background: white;
+            border: 1px solid green;
 
-		.greenlinks {
-			background: white;
-			border: 1px solid green;
-
-			@include chooseStrokes;
-		}
-	}
+            @include choose-strokes;
+        }
+    }
 }
 
 // ---------------------------------------------------------------------------------------- // AFRO THEME AFRO THEME AFRO THEME
 
 .afro {
-	&-style {
-		background: linear-gradient(to bottom, #e6541b, black);
+    &-style {
+        background: linear-gradient(to bottom, #e6541b, black);
 
-		&-username {
-			color: white;
-		}
+        &-username {
+            color: white;
+        }
 
-		&-occupate {
-			color: black;
-			background-color: white;
-		}
+        &-occupate {
+            color: black;
+            background-color: white;
+        }
 
-		&-biography {
-			color: white;
-		}
+        &-biography {
+            color: white;
+        }
 
-		&-links {
-			a {
-				background: white;
-				color: black;
-				border: 1px solid #e6541b;
-			}
-		}
+        &-links {
+            a {
+                background: white;
+                color: black;
+                border: 1px solid #e6541b;
+            }
+        }
 
-		&-icons {
-			&:nth-child(n) {
-				a {
-					color: #e6541b;
-				}
-			}
-		}
-	}
+        &-icons {
+            &:nth-child(n) {
+                a {
+                    color: #e6541b;
+                }
+            }
+        }
+    }
 
-	&-theme {
-		background: linear-gradient(to bottom, #e6541b, black);
+    &-theme {
+        background: linear-gradient(to bottom, #e6541b, black);
 
-		@include chooseDisplay;
+        @include choose-display;
 
-		.afrolinks {
-			background: white;
-			border: 1px solid #e6541b;
+        .afrolinks {
+            background: white;
+            border: 1px solid #e6541b;
 
-			@include chooseStrokes;
-		}
-	}
+            @include choose-strokes;
+        }
+    }
 }
 
 // TODO: default theme maken....
