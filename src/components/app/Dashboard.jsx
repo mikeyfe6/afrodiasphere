@@ -170,7 +170,7 @@ const DashboardPage = () => {
             setOccupation(res.data.page.occupation || "");
             setBiography(res.data.page.biography || "");
             setTelephone(res.data.page.telephone || "");
-            setMail(res.data.page.mail || "");
+            setMail(res.data.page.email || "");
 
             setFbLink(res.data.page.facebook || "");
             setIgLink(res.data.page.instagram || "");
