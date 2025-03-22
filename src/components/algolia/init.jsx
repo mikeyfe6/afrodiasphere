@@ -9,6 +9,8 @@ const apiURL = process.env.GATSBY_BACKEND_URL;
 
 const Algolia = () => {
     useEffect(() => {
+        if (process.env.NODE_ENV !== "production") return;
+
         const indexData = async () => {
             const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY);
 
