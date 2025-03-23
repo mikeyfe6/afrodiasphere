@@ -98,8 +98,8 @@ const DashboardPage = () => {
     const [mail, setMail] = useState("");
     const [address, setAddress] = useState({
         location: "",
-        latitude: "",
-        longitude: "",
+        latitude: null,
+        longitude: null,
     });
 
     const [fbLink, setFbLink] = useState("");
@@ -188,8 +188,8 @@ const DashboardPage = () => {
             if (res.data.page.address) {
                 setAddress({
                     location: res.data.page.address.location || "",
-                    latitude: res.data.page.address.latitude || 0,
-                    longitude: res.data.page.address.longitude || 0,
+                    latitude: res.data.page.address.latitude || null,
+                    longitude: res.data.page.address.longitude || null,
                 });
             }
 

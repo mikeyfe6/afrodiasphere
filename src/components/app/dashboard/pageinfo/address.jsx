@@ -91,12 +91,17 @@ const Address = ({
 
     const handleSearch = (e) => {
         e.preventDefault();
+
+        if (!validateInput(inputValue)) {
+            return;
+        }
+
         fetchGeocode();
     };
 
     const validateInput = (value) => {
-        if (value.length > 100) {
-            const errorMessage = "Maximaal 100 karakters";
+        if (value.length < 2 || value.length > 100) {
+            const errorMessage = "Invoer moet tussen 2 en 100 tekens zijn";
             setValidationError(errorMessage);
             setValidationMessage(errorMessage);
             return false;
@@ -109,10 +114,6 @@ const Address = ({
 
     const submitAddress = async (e) => {
         e.preventDefault();
-
-        if (!validateInput(address.location)) {
-            return;
-        }
 
         setIsSubmitting(true);
 
@@ -139,6 +140,7 @@ const Address = ({
             setTimeout(() => setSuccess(null), 5000);
             setInputValue("");
             setIsLocationSearched(false);
+            setDeleteLocation(false);
         } catch (error) {
             console.error("Error updating address:", error);
         } finally {
@@ -146,10 +148,9 @@ const Address = ({
         }
     };
 
-    const deleteAdress = () => {
-        setAddress({ location: "", latitude: 0, longitude: 0 });
+    const deleteAddress = () => {
+        setAddress({ location: "", latitude: null, longitude: null });
         setInputValue("");
-        setIsLocationSearched(true);
         setDeleteLocation(true);
     };
 
@@ -186,16 +187,13 @@ const Address = ({
                         type="button"
                         onClick={submitAddress}
                         title="Sla locatie op"
-                        disabled={
-                            (!isLocationSearched || !inputValue) &&
-                            !deleteLocation
-                        }
+                        disabled={!(isLocationSearched || deleteLocation)}
                     >
                         <i className="fa-solid fa-floppy-disk fa-lg" />
                     </button>
                     <button
                         type="reset"
-                        onClick={() => deleteAdress()}
+                        onClick={() => deleteAddress()}
                         title="Wis locatie"
                         disabled={
                             (!inputValue && isLocationSearched) ||
