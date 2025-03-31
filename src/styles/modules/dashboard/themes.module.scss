@@ -4,7 +4,7 @@
     &-theme {
         display: flex;
         flex-wrap: wrap;
-        gap: 1.25em;
+        gap: rem-calc(20);
     }
 
     &-color {
@@ -13,7 +13,7 @@
         }
 
         .current-theme {
-            border: 5px $primary-color solid !important;
+            border: 5px $primary-color solid;
         }
     }
 }

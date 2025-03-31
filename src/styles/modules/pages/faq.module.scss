@@ -1,164 +1,132 @@
-@use 'sass:color';
+@use "sass:color";
 
-@use '../../customs' as *;
+@use "../../customs" as *;
 
 .faq {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	gap: 5em;
-	position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: rem-calc(80);
+    position: relative;
 
-	@include container(3em, 2em);
+    @include container(rem-calc(48), rem-calc(24));
 
-	> div {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5em;
+    > div {
+        h1 {
+            color: $primary-color;
+        }
 
-		h1 {
-			color: $primary-color;
-		}
+        > p {
+            color: $white-color;
+            margin: rem-calc(0 0 16);
+        }
+    }
 
-		> p {
-			color: $white-color;
-			font-size: 0.925rem;
-			margin: 0 0 1em;
-		}
-	}
+    > img {
+        position: absolute;
+        right: 0;
+        max-width: rem-calc(250);
+        z-index: -1;
+        top: 0;
+        height: auto;
+        opacity: 0.375;
+    }
 
-	> img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		max-width: 250px;
-		align-self: flex-start;
-		opacity: 0.375;
+    &-container {
+        width: 100%;
+        max-width: rem-calc(800);
+        margin: 0 auto;
+    }
 
-		@include phablet {
-			position: absolute;
-			right: 0;
-			max-width: 250px;
-			z-index: -1;
-			top: 0;
-			height: auto;
-		}
-	}
+    &-item {
+        border-bottom: 1px solid rgba($primary-color, 0.75);
+        padding: rem-calc(16 0);
 
-	&-container {
-		width: 100%;
-		max-width: 800px;
-		margin: 0 auto;
-	}
+        &:nth-child(1) {
+            &::before {
+                content: "Algemene Informatie";
+                display: block;
+                color: $primary-color;
+                font-weight: 600;
+                margin-bottom: rem-calc(8);
 
-	&-item {
-		border-bottom: 1px solid rgba($primary-color, 0.75);
-		padding: 1em 0;
+                @include fluid-type(24, 32);
+            }
+        }
 
-		&:nth-child(1) {
-			&::before {
-				content: 'Algemene Informatie';
-				display: block;
-				color: $primary-color;
-				font-size: 2rem;
-				font-weight: 600;
-				margin-bottom: 0.25em;
+        &:nth-child(4) {
+            &::before {
+                content: "Account en Registratie";
+                display: block;
+                color: $primary-color;
+                font-weight: 600;
+                margin: rem-calc(16 0 4);
 
-				@include mobile {
-					font-size: 1.5rem;
-				}
-			}
-		}
+                @include fluid-type(24, 32);
+            }
+        }
 
-		&:nth-child(4) {
-			&::before {
-				content: 'Account en Registratie';
-				display: block;
-				color: $primary-color;
-				font-size: 2rem;
-				font-weight: 600;
-				margin: 1em 0 0.25em;
+        &:nth-child(7) {
+            &::before {
+                content: "Functionaliteiten";
+                display: block;
+                color: $primary-color;
+                font-weight: 600;
+                margin: rem-calc(16 0 4);
 
-				@include mobile {
-					font-size: 1.5rem;
-				}
-			}
-		}
+                @include fluid-type(24, 32);
+            }
+        }
 
-		&:nth-child(7) {
-			&::before {
-				content: 'Functionaliteiten';
-				display: block;
-				color: $primary-color;
-				font-size: 2rem;
-				font-weight: 600;
-				margin: 1em 0 0.25em;
+        &:nth-child(10) {
+            &::before {
+                content: "Privacy en Veiligheid";
+                display: block;
+                color: $primary-color;
+                font-weight: 600;
+                margin: rem-calc(16 0 4);
 
-				@include mobile {
-					font-size: 1.5rem;
-				}
-			}
-		}
+                @include fluid-type(24, 32);
+            }
+        }
 
-		&:nth-child(10) {
-			&::before {
-				content: 'Privacy en Veiligheid';
-				display: block;
-				color: $primary-color;
-				font-size: 2rem;
-				font-weight: 600;
-				margin: 1em 0 0.25em;
+        &:nth-child(13) {
+            &::before {
+                content: "Problemen en Ondersteuning";
+                display: block;
+                color: $primary-color;
+                font-weight: 600;
+                margin: rem-calc(16 0 4);
 
-				@include mobile {
-					font-size: 1.5rem;
-				}
-			}
-		}
+                @include fluid-type(24, 32);
+            }
+        }
+    }
 
-		&:nth-child(13) {
-			&::before {
-				content: 'Problemen en Ondersteuning';
-				display: block;
-				color: $primary-color;
-				font-size: 2rem;
-				font-weight: 600;
-				margin: 1em 0 0.25em;
+    &-question {
+        cursor: pointer;
+        font-weight: 600;
+        margin: 0;
+        padding: rem-calc(16 0);
+        transition: color 0.3s;
 
-				@include mobile {
-					font-size: 1.5rem;
-				}
-			}
-		}
-	}
+        @include fluid-type(18, 20);
 
-	&-question {
-		cursor: pointer;
-		font-weight: 600;
-		margin: 0;
-		padding: 0.5em 0;
-		transition: color 0.3s;
-		font-size: 1.25rem;
+        &:hover {
+            color: $secondary-color;
+        }
+    }
 
-		@include mobile {
-			font-size: 1.125rem;
-			font-weight: 500;
-		}
+    &-answer {
+        margin-bottom: rem-calc(16);
+        color: color.adjust($white-color, $lightness: -17.5%);
 
-		&:hover {
-			color: $secondary-color;
-		}
-	}
+        > i {
+            color: $secondary-color;
+        }
 
-	&-answer {
-		margin-top: 0.5em;
-		color: color.adjust($white-color, $lightness: -17.5%);
-
-		> i {
-			color: $secondary-color;
-		}
-
-		span {
-			padding-left: 1em;
-		}
-	}
+        span {
+            padding-left: rem-calc(16);
+        }
+    }
 }

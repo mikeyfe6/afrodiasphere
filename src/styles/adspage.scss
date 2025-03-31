@@ -6,29 +6,30 @@
 
 .ads {
     &-user {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: rem-calc(0 16);
         position: absolute;
-        top: 15px;
-        right: 25%;
-        transform: translateX(75%);
+        top: 0;
+        right: 50%;
+        transform: translateX(50%);
+
+        @include container(rem-calc(16), rem-calc(16));
 
         @include phablet {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            padding: 0 1em;
-            right: initial;
-            transform: none;
+            justify-content: flex-end;
         }
 
         > button {
-            margin-right: 1.5em;
+            margin-right: rem-calc(24);
+            margin-left: auto;
 
             @include smooth-trans;
 
             @include phablet {
-                order: 2;
-                margin-left: auto;
+                margin-left: unset;
             }
 
             &:hover {
@@ -38,13 +39,9 @@
 
         > a {
             &:nth-of-type(1) {
-                margin-right: 2em;
+                margin-right: rem-calc(32);
 
                 @include smooth-trans;
-
-                @include phablet {
-                    order: 1;
-                }
 
                 &:hover {
                     opacity: 0.75;
@@ -54,15 +51,11 @@
             &:nth-of-type(2) {
                 background: $primary-color;
                 color: color.adjust($black-color, $lightness: 5%);
-                padding: 0.25em 1em;
+                padding: rem-calc(4 16);
                 font-weight: 600;
-                border-radius: 5px;
 
+                @include border-radius;
                 @include smooth-trans;
-
-                @include phablet {
-                    order: 3;
-                }
 
                 &:hover {
                     opacity: 0.75;
@@ -75,12 +68,12 @@
 
 .theme {
     &-avatar-contact {
-        margin: 0 auto 2em;
-        max-width: 300px;
+        margin: 0 auto rem-calc(32);
+        max-width: rem-calc(237.5);
         position: relative;
 
         @include mobile {
-            max-width: 237.5px;
+            max-width: rem-calc(300);
         }
 
         .theme {
@@ -107,16 +100,16 @@
         }
 
         > img {
-            width: 175px;
-            height: 175px;
-            border-radius: 50%;
+            width: rem-calc(125);
+            height: rem-calc(125);
             border: 3px solid $white-color;
             object-fit: cover;
-            overflow: hidden;
+
+            @include border-radius(50%);
 
             @include mobile {
-                width: 125px;
-                height: 125px;
+                width: rem-calc(175);
+                height: rem-calc(175);
             }
         }
     }
@@ -549,14 +542,14 @@
 
     &-footer {
         > img {
-            max-width: 100px;
+            max-width: rem-calc(87.5);
             position: absolute;
             left: 50%;
-            bottom: 1em;
+            bottom: rem-calc(16);
             transform: translateX(-50%);
 
             @include mobile {
-                max-width: 87.5px;
+                max-width: rem-calc(100);
             }
         }
     }

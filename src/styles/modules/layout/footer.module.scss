@@ -1,55 +1,37 @@
-@use '../../customs' as *;
+@use "../../customs" as *;
 
-.ads-footer {
-	text-align: center;
-	color: #8c8c8c;
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	padding: 0.25em 1em 1.25em;
+.footer {
+    text-align: center;
+    color: #8c8c8c;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: rem-calc(16 0);
 
-	@include mobile {
-		font-size: 0.675rem;
-		padding: 1.5em;
-	}
+    @include fluid-type(8.5, 16);
 
-	@include compact {
-		font-size: 0.6rem;
-		padding: 1.5em 1.5em 1.75em;
-	}
+    a {
+        @include smooth-trans;
 
-	@include mini {
-		font-size: 0.5rem;
-		padding: 1.5em 1.5em 2em;
-	}
+        &:hover {
+            color: $secondary-color;
+        }
 
-	a:nth-of-type(1),
-	a:nth-of-type(2) {
-		color: #8c8c8c;
+        &:nth-of-type(3) {
+            filter: grayscale(100%);
+            margin-left: rem-calc(2.5);
+            color: $white-color;
 
-		@include smooth-trans;
+            img {
+                vertical-align: -7.5px;
+                margin-left: rem-calc(3);
+                width: rem-calc(25);
+            }
 
-		&:hover {
-			color: $secondary-color;
-		}
-	}
-
-	a:nth-of-type(3) {
-		filter: grayscale(100%);
-		padding-left: 2.5px;
-		color: $white-color;
-
-		@include smooth-trans;
-
-		img {
-			vertical-align: middle;
-			margin-left: 2.5px;
-			width: 25px;
-		}
-
-		&:hover {
-			filter: grayscale(0%);
-			color: #fc0;
-		}
-	}
+            &:hover {
+                filter: grayscale(0%);
+                color: #fc0;
+            }
+        }
+    }
 }

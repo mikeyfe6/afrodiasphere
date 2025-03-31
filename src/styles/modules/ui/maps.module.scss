@@ -1,290 +1,299 @@
-@use 'sass:color';
+@use "sass:color";
 
-@use '../../customs' as *;
+@use "../../customs" as *;
 
 .maps {
-	filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="g"><feColorMatrix type="matrix" values="0.3 0.3 0.3 0 0 0.3 0.3 0.3 0 0 0.3 0.3 0.3 0 0 0 0 0 1 0"/></filter></svg>#g');
-	filter: grayscale(50%);
-	filter: progid:DXImageTransform.Microsoft.BasicImage(grayScale=1);
-	overflow: hidden;
-	height: 200px;
-	width: 100%;
-	margin-top: 1.5em;
-	position: relative;
+    filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="g"><feColorMatrix type="matrix" values="0.3 0.3 0.3 0 0 0.3 0.3 0.3 0 0 0.3 0.3 0.3 0 0 0 0 0 1 0"/></filter></svg>#g');
+    filter: grayscale(50%);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(grayScale=1);
+    overflow: hidden;
+    height: rem-calc(200);
+    width: 100%;
+    margin-top: rem-calc(24);
+    position: relative;
 
-	@include box-shadow;
-	@include smooth-trans;
+    @include box-shadow;
+    @include smooth-trans;
 
-	&-container {
-		padding: 0 2em;
+    &-container {
+        padding: 0;
 
-		@include mobile {
-			padding: 0;
-		}
-	}
+        @include mobile {
+            padding: rem-calc(0 32);
+        }
+    }
 
-	&-container & {
-		@include container(1em, 0, 1150px);
-	}
+    &-container & {
+        @include container(rem-calc(16), 0, rem-calc(1150));
+    }
 
-	&.ads-dashboard {
-		outline: 3px solid rgba($primary-color, 75%);
-		border-radius: 5px;
-	}
+    &.ads-dashboard {
+        outline: 3px solid rgba($primary-color, 75%);
 
-	&.ads-page {
-		margin: 3em auto 1em;
-		width: 70%;
-		border-radius: 5px;
+        @include border-radius;
+    }
 
-		@include massive {
-			width: 60%;
-		}
+    &.ads-page {
+        margin: rem-calc(24) auto rem-calc(16);
+        max-width: rem-calc(1250);
 
-		@include desktop {
-			width: 90%;
-		}
-	}
+        @include border-radius;
+    }
 
-	.marker {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		cursor: pointer;
+    .marker {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
 
-		img {
-			min-width: 50px;
-			min-height: 50px;
-			max-width: 50px;
-			max-height: 50px;
-			border-radius: 50%;
-			overflow: hidden;
-			object-fit: cover;
-			background: linear-gradient(135deg, rgba(0 0 0 / 75%), $black-color);
-			outline: solid $white-color 3px;
-		}
-	}
+        img {
+            width: rem-calc(50);
+            height: rem-calc(50);
+            object-fit: cover;
+            background: linear-gradient(
+                135deg,
+                rgba(0 0 0 / 75%),
+                $black-color
+            );
+            outline: solid $white-color 3px;
 
-	&.ads-home {
-		opacity: 0.75;
-		height: 250px;
-		border: 2px solid rgba($primary-color, 82.5%);
-		border-radius: 5px;
+            @include border-radius(50%);
+        }
+    }
 
-		@include mobile {
-			border-right: none;
-			border-left: none;
+    &.ads-home {
+        opacity: 0.75;
+        height: rem-calc(250);
+        border-right: none;
+        border-left: none;
 
-			@include border-radius(0);
-		}
+        @include mobile {
+            border: 2px solid rgba($primary-color, 82.5%);
 
-		&::before,
-		&::after {
-			content: '';
-			position: absolute;
-			top: 0;
-			width: 25%;
-			height: 100%;
-			z-index: 1;
-		}
+            @include border-radius;
+        }
 
-		&::before {
-			left: 0;
-			background: linear-gradient(
-				to right,
-				$third-color,
-				rgba(255, 255, 255, 0)
-			);
-		}
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 25%;
+            height: 100%;
+            z-index: 1;
+        }
 
-		&::after {
-			right: 0;
-			background: linear-gradient(to left, $third-color, rgba(255, 255, 255, 0));
-		}
+        &::before {
+            left: 0;
+            background: linear-gradient(
+                to right,
+                $third-color,
+                rgba(255 255 255 / 0%)
+            );
+        }
 
-		&:hover {
-			opacity: 1;
+        &::after {
+            right: 0;
+            background: linear-gradient(
+                to left,
+                $third-color,
+                rgba(255 255 255 / 0%)
+            );
+        }
 
-			&::before,
-			&::after {
-				width: 0%;
-			}
-		}
-	}
+        &:hover {
+            opacity: 1;
 
-	&-info {
-		@include container(2em, 0, 1150px);
+            &::before,
+            &::after {
+                width: 0%;
+            }
+        }
+    }
 
-		@include mobile {
-			@include container(1em, 0, 1150px);
-		}
+    &-info {
+        @include container(rem-calc(16), 0, rem-calc(1150));
 
-		&-wrapper {
-			padding: 1.5em 2em;
-			background: linear-gradient(135deg, rgba(0 0 0 / 50%), $black-color);
-			display: flex;
-			justify-content: space-between;
-			gap: 0 2em;
+        @include mobile {
+            @include container(rem-calc(24), 0, rem-calc(1150));
+        }
 
-			@include border-radius;
-			@include box-shadow;
+        &-wrapper {
+            padding: rem-calc(24 24 32);
+            background: linear-gradient(
+                135deg,
+                rgba(0 0 0 / 50%),
+                $black-color
+            );
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column-reverse;
 
-			@include mobile {
-				flex-direction: column-reverse;
-				padding: 2.5em 2em;
+            @include box-shadow;
 
-				@include border-radius(0);
-			}
+            @include mobile {
+                padding: rem-calc(24 32 32);
+                flex-direction: row;
 
-			> div:first-child {
-				display: flex;
-				flex-direction: column;
-				gap: 1em;
+                @include border-radius;
+            }
 
-				> h3 {
-					color: $primary-color;
+            > div {
+                &:first-child {
+                    display: flex;
+                    flex-direction: column;
+                    gap: rem-calc(16);
 
-					span {
-						color: $secondary-color;
-						font-size: initial;
-					}
-				}
+                    > h3 {
+                        color: $primary-color;
 
-				> span {
-					i {
-						color: $secondary-color;
-						font-size: 1.5em;
-						margin-right: 0.5em;
-					}
+                        span {
+                            color: $secondary-color;
+                            font-size: initial;
+                        }
+                    }
 
-					> a {
-						font-size: 0.9rem;
+                    > span {
+                        i {
+                            color: $secondary-color;
+                            font-size: rem-calc(24);
+                            margin-right: rem-calc(8);
+                        }
 
-						&:hover {
-							text-decoration: underline;
-							text-underline-offset: 3px;
-							text-decoration-color: $secondary-color;
-						}
-					}
-				}
+                        > a {
+                            font-size: rem-calc(14);
 
-				> p {
-					color: color.adjust($white-color, $lightness: -25%);
-					max-width: 70ch;
-					margin: 0.5em 0;
-				}
+                            &:hover {
+                                text-decoration: underline;
+                                text-underline-offset: 3px;
+                                text-decoration-color: $secondary-color;
+                            }
+                        }
+                    }
 
-				> .info-contact {
-					display: flex;
-					gap: 1.5em;
+                    > p {
+                        color: color.adjust($white-color, $lightness: -25%);
+                        max-width: 70ch;
+                        margin: rem-calc(8 0);
+                    }
 
-					@include mobile {
-						display: none;
-					}
+                    > .info-contact {
+                        display: none;
+                        gap: rem-calc(24);
 
-					> div {
-						display: flex;
-						justify-content: center;
-						align-items: center;
-						gap: 0.625em;
+                        @include mobile {
+                            display: flex;
+                        }
 
-						> i {
-							color: $secondary-color;
-						}
+                        > div {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            gap: rem-calc(10);
 
-						> a {
-							font-size: 0.95rem;
+                            > i {
+                                color: $secondary-color;
+                            }
 
-							&:hover {
-								text-decoration: underline;
-								text-underline-offset: 3px;
-								text-decoration-color: $secondary-color;
-							}
-						}
-					}
-				}
+                            > a {
+                                font-size: rem-calc(15);
 
-				> .info-buttons {
-					display: flex;
-					gap: 1em;
-					margin-top: 1.75em;
+                                &:hover {
+                                    text-decoration: underline;
+                                    text-underline-offset: 3px;
+                                    text-decoration-color: $secondary-color;
+                                }
+                            }
+                        }
+                    }
 
-					@include mobile {
-						margin-left: auto;
-					}
+                    > .info-buttons {
+                        display: flex;
+                        gap: rem-calc(16);
+                        margin-top: rem-calc(28);
+                        margin-left: auto;
 
-					> a {
-						@include button;
+                        @include mobile {
+                            margin-left: unset;
+                        }
 
-						@include mobile {
-							display: block;
-						}
-					}
+                        > a {
+                            @include button;
+                        }
 
-					> button {
-						@include button($type: 2);
-					}
-				}
-			}
+                        > button {
+                            @include button($type: 2);
+                        }
+                    }
+                }
 
-			> div:last-child {
-				display: flex;
-				justify-content: center;
-				gap: 2.5em;
+                /* stylelint-disable-next-line no-descending-specificity */
+                &:last-child {
+                    display: flex;
+                    gap: rem-calc(32);
+                    justify-content: flex-start;
+                    align-items: flex-start;
 
-				@include tablet {
-					align-items: flex-start;
-				}
+                    @include mobile {
+                        justify-content: center;
+                    }
 
-				@include mobile {
-					justify-content: flex-start;
-					align-items: center;
-					margin-bottom: 2em;
-				}
+                    @include tablet {
+                        align-items: flex-start;
+                    }
 
-				.info-contact-mobile {
-					display: none;
+                    /* stylelint-disable-next-line no-descending-specificity */
+                    &:has(img) {
+                        align-items: center;
+                        margin-bottom: rem-calc(24);
+                    }
 
-					> div {
-						display: flex;
-						align-items: center;
-						gap: 1em;
+                    .info-contact-mobile {
+                        display: flex;
+                        gap: rem-calc(16);
+                        margin-bottom: rem-calc(24);
 
-						> i {
-							color: $secondary-color;
-						}
-					}
+                        @include mobile {
+                            display: none;
+                        }
 
-					@include mobile {
-						display: flex;
-						flex-direction: column;
-						gap: 1em;
-					}
-				}
+                        > div {
+                            display: flex;
+                            align-items: center;
+                            gap: rem-calc(16);
 
-				img {
-					max-height: 175px;
-					max-width: 175px;
-					height: 100%;
-					object-fit: cover;
-					overflow: hidden;
-					border-radius: 5px;
-					margin-top: 0.5em;
+                            > i {
+                                color: $secondary-color;
+                            }
+                        }
+                    }
 
-					@include phablet {
-						max-width: 150px;
-						max-height: 150px;
-					}
+                    img {
+                        width: rem-calc(100);
+                        height: rem-calc(100);
+                        object-fit: cover;
 
-					@include mobile {
-						display: block;
-						width: 125px;
-						height: 125px;
-						margin-top: 0;
-					}
-				}
-			}
-		}
-	}
+                        @include border-radius;
+
+                        @include mobile {
+                            display: block;
+                            width: rem-calc(125);
+                            height: rem-calc(125);
+                        }
+
+                        @include phablet {
+                            height: rem-calc(150);
+                            width: rem-calc(150);
+                        }
+
+                        + .info-contact-mobile {
+                            margin-bottom: 0;
+                            flex-direction: column;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

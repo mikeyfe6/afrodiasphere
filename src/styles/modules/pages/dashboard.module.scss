@@ -1,241 +1,226 @@
-@use '../../customs' as *;
+@use "../../customs" as *;
 
 .grid-container {
-	display: grid;
-	gap: 1em;
-	min-height: calc(100vh - 290px);
-	grid-template: 
-		"Sidebar Dashboard Dashboard Slug" 0fr
-		"Sidebar Dashboard Dashboard Preview" 2.8fr
-		"Sidebar Dashboard Dashboard Preview" 2.8fr / 0.5fr 1.3fr 1.2fr;
-	background: linear-gradient(135deg, rgba(0 0 0 / 67.5%), $third-color);
+    display: grid;
+    max-width: rem-calc(1920);
+    gap: rem-calc(16);
+    min-height: calc(100vh - 290px);
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "Sidebar"
+        "Dashboard"
+        "Dashboard"
+        "Preview"
+        "Slug";
 
-	@include dash-card(1em, 1em);
+    @include dash-card(0 auto, rem-calc(16), false);
 
-	@include desktop {
-		grid-template-columns: repeat(2, 1fr);
-		grid-template-areas:
-			'Sidebar Sidebar Slug'
-			'Dashboard Dashboard Preview'
-			'Dashboard Dashboard Preview';
-	}
+    @include phablet {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+            "Sidebar Slug"
+            "Dashboard Dashboard"
+            "Dashboard Dashboard"
+            "Preview Preview";
+    }
 
-	@include tablet {
-		grid-template-columns: repeat(2, 1fr);
-		grid-template-areas:
-			'Sidebar Slug '
-			'Dashboard Dashboard'
-			'Dashboard Dashboard'
-			'Preview Preview';
-	}
+    @include tablet {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+            "Sidebar Sidebar Slug"
+            "Dashboard Dashboard Preview"
+            "Dashboard Dashboard Preview";
+    }
 
-	@include phablet {
-		grid-template-columns: 1fr;
-		grid-template-areas:
-			'Sidebar'
-			'Dashboard'
-			'Dashboard'
-			'Preview'
-			'Slug';
-	}
+    @include desktop {
+        grid-template:
+            "Sidebar Dashboard Dashboard Slug" 0fr
+            "Sidebar Dashboard Dashboard Preview" 2.8fr
+            "Sidebar Dashboard Dashboard Preview" 2.8fr / 0.5fr 1.3fr 1.2fr;
+    }
 
-	@include mobile {
-		@include dash-card(0.375em, 0.5em);
-	}
+    > section {
+        > h2 {
+            color: $ash-color;
+            text-decoration: underline;
+            text-decoration-color: $white-color;
+            text-underline-offset: 5px;
+            text-align: center;
+            margin-bottom: rem-calc(16);
+            font-size: rem-calc(28);
+            background: $primary-color;
+            outline: 3px solid $ash-color;
+            cursor: default;
 
-	> section {
-		> h2 {
-			color: $ash-color;
-			text-decoration: underline;
-			text-decoration-color: $white-color;
-			text-underline-offset: 5px;
-			text-align: center;
-			margin-bottom: 1em;
-			font-size: 1.75rem;
-			background: $primary-color;
-			border-radius: 5px;
-			outline: 3px solid $ash-color;
-			cursor: default;
-		}
+            @include border-radius;
+        }
 
-		> hr {
-			border: 1px solid $white-color;
-			opacity: 0.1;
-			width: 75%;
-			margin: 2em auto 0.5em;
-		}
-	}
+        > hr {
+            border: 1px solid $white-color;
+            opacity: 0.1;
+            width: 75%;
+            margin: rem-calc(32 0 8);
+        }
+    }
 }
 
 // SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR  <--------------------------------------------------------------------------------> SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR
 .sidebar {
-	grid-area: Sidebar;
-	border: 3px solid $primary-color;
-	background-color: $trans-color;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+    grid-area: Sidebar;
+    border: 3px solid $primary-color;
+    background-color: $trans-color;
+    display: flex;
+    align-items: center;
 
-	@include dash-card(0, 1em);
+    @include dash-card(0, rem-calc(8 16));
 
-	@include desktop {
-		flex-direction: row;
-		align-items: center;
+    @include desktop {
+        align-items: flex-start;
 
-		@include dash-card(0, 1em 1.25em);
-	}
-
-	@include tablet {
-		flex-direction: row;
-		align-items: center;
-	}
-
-	@include mobile {
-		flex-direction: row;
-		align-items: center;
-	}
-
-	button {
-		align-self: flex-end;
-
-		@include dash-button($warning-color, $white-color);
-	}
+        @include dash-card(0, rem-calc(16 20));
+    }
 }
 
 // PREVIEW PREVIEW PREVIEW PREVIEW PREVIEW PREVIEW  <--------------------------------------------------------------------------------> PREVIEW PREVIEW PREVIEW PREVIEW PREVIEW PREVIEW
 .preview {
-	grid-area: Preview;
-	background-color: $trans-color;
-	border: 3px solid $primary-color;
-	display: flex;
-	justify-content: center;
+    grid-area: Preview;
+    background-color: $trans-color;
+    border: 3px solid $primary-color;
+    display: flex;
+    justify-content: center;
 
-	@include dash-card(0, 1em);
-
-	@include mobile {
-		@include dash-card(0, 0);
-	}
+    @include dash-card(0, rem-calc(16));
 }
 
 // DASHBOARD DASHBOARD DASHBOARD DASHBOARD DASHBOARD DASHBOARD  <--------------------------------------------------------------------------------> DASHBOARD DASHBOARD DASHBOARD DASHBOARD DASHBOARD DASHBOARD
 .dashboard {
-	grid-area: Dashboard;
-	background-color: $trans-color;
-	border: 3px solid $primary-color;
+    grid-area: Dashboard;
+    background-color: $trans-color;
+    border: 3px solid $primary-color;
 
-	@include dash-card(0, 2em);
+    @include dash-card(0, rem-calc(20));
 
-	@include mobile {
-		@include dash-card(0, 1.25em);
-	}
+    @include mobile {
+        @include dash-card(0, rem-calc(32));
+    }
 
-	.dash-btn {
-		margin: 2em 0 1em auto;
-		display: block;
+    .dash-btn {
+        margin: rem-calc(32 0 16) auto;
+        display: block;
 
-		@include dash-button;
-	}
+        @include dash-button;
+    }
 
-	.avatar-w-profile-info {
-		display: flex;
-		justify-content: space-evenly;
-		gap: 2em;
+    .avatar-w-profile-info {
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        gap: rem-calc(32);
 
-		@include laptop {
-			flex-direction: column;
-		}
+        @include phablet {
+            flex-direction: row;
+        }
 
-		@include tablet {
-			flex-direction: row;
-		}
+        @include tablet {
+            flex-direction: column;
+        }
 
-		@include phablet {
-			flex-direction: column;
-		}
+        @include laptop {
+            flex-direction: row;
+        }
 
-		.profile-info {
-			flex: 55%;
-			display: flex;
-			flex-direction: column;
-			gap: 0.75em;
-		}
-	}
+        .profile-info {
+            flex: 55%;
+            display: flex;
+            flex-direction: column;
+            gap: rem-calc(12);
+        }
+    }
 
-	.occupation-w-bio {
-		display: flex;
-		justify-content: space-between;
-		margin: 2.5em 0;
-		gap: 2.5em;
+    .occupation-w-bio {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        margin: rem-calc(32 0);
+        gap: rem-calc(32);
 
-		@include laptop {
-			flex-direction: column;
-		}
+        @include mobile {
+            margin: rem-calc(40 0);
+            gap: rem-calc(40);
+        }
 
-		@include tablet {
-			flex-direction: row;
-		}
+        @include phablet {
+            flex-direction: row;
+        }
 
-		@include phablet {
-			flex-direction: column;
-		}
+        @include tablet {
+            flex-direction: column;
+        }
 
-		@include mobile {
-			margin: 2em 0;
-			gap: 2em;
-		}
+        @include laptop {
+            flex-direction: row;
+        }
 
-		label {
-			color: $primary-color;
-			font-size: 0.75rem;
-		}
-	}
+        label {
+            color: $primary-color;
+            font-size: rem-calc(12);
+        }
+    }
 
-	.contact-info {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		grid-gap: 1.5em;
-		margin-bottom: 2em;
+    .contact-info {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: rem-calc(24);
+        margin-bottom: rem-calc(32);
 
-		@include laptop {
-			grid-template-columns: 1fr;
-		}
+        @include phablet {
+            grid-template-columns: repeat(2, 1fr);
+        }
 
-		@include tablet {
-			grid-template-columns: repeat(2, 1fr);
-		}
+        @include tablet {
+            grid-template-columns: 1fr;
+        }
 
-		@include phablet {
-			grid-template-columns: 1fr;
-		}
-	}
+        @include laptop {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
 
-	.socials {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-		grid-gap: 1em;
+    .socials {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: rem-calc(16);
 
-		@include mobile {
-			grid-template-columns: 1fr;
-		}
-	}
+        @include mobile {
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+    }
 
-	.logerror {
-		color: white;
-		background: linear-gradient(135deg, rgba(255, 0, 0, 0.75), $warning-color);
+    .logerror {
+        color: white;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 0, 0, 0.75),
+            $warning-color
+        );
 
-		@include logs;
-	}
+        @include logs;
+    }
 
-	.logsuccess {
-		color: $white-color;
-		// background-color: #57a55f;
-		background: linear-gradient(135deg, rgba(0, 128, 0, 0.75), $success-color);
+    .logsuccess {
+        color: $white-color;
+        // background-color: #57a55f;
+        background: linear-gradient(
+            135deg,
+            rgba(0, 128, 0, 0.75),
+            $success-color
+        );
 
-		@include logs;
-	}
+        @include logs;
+    }
 }
 
 // LINK LINK LINK LINK LINK LINK LINK LINK LINK <--------------------------------------------------------------------------------> LINK LINK LINK LINK LINK LINK LINK LINK
 .slug {
-	grid-area: Slug;
+    grid-area: Slug;
 }

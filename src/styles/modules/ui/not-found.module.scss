@@ -1,0 +1,12 @@
+@use "../../customs" as *;
+
+.not-found {
+    @include container(rem-calc(48), rem-calc(24));
+
+    a {
+        display: block;
+        margin-top: rem-calc(24);
+
+        @include button;
+    }
+}

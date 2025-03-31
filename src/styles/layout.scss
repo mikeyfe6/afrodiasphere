@@ -3,24 +3,24 @@
 @use "algolia";
 @use "typography";
 
+html {
+    &:has(.mobile-search.open, #spinner) {
+        overflow: hidden;
+    }
+}
+
 body {
-    font-size: 16px;
     font-family: $poppins;
     background: linear-gradient(135deg, $third-color, $black-color);
     color: $white-color;
     position: relative;
-    padding-bottom: 58px;
+    padding-bottom: rem-calc(56);
     min-height: 100vh;
-
-    @media (width <= 319px) {
-        display: none;
-    }
+    min-width: rem-calc(320);
 }
 
 main {
-    @include tablet {
-        position: relative;
-    }
+    position: relative;
 }
 
 button {
@@ -30,7 +30,6 @@ button {
 
 input {
     font-family: $poppins;
-    font-size: 16px;
     width: 100%;
 }
 
@@ -49,13 +48,13 @@ select {
     top: 1%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(#fff, 0.5);
+    background-color: rgba(#fff, 0.25);
     color: black;
-    padding: 0.25em 0.5em;
+    padding: rem-calc(4 8);
     z-index: 1000;
     text-align: center;
 
     p {
-        font-size: 14px;
+        font-size: rem-calc(14);
     }
 }

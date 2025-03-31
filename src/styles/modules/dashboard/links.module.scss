@@ -5,13 +5,14 @@
 .new {
     &-link {
         display: flex;
-        align-items: center;
-        margin-bottom: 1.25em;
-        gap: 2em 1em;
+        margin-bottom: rem-calc(20);
+        gap: rem-calc(32 16);
+        flex-direction: column;
+        align-items: flex-start;
 
         @include mobile {
-            flex-direction: column;
-            align-items: flex-start;
+            flex-direction: row;
+            align-items: center;
         }
 
         &-fields {
@@ -20,7 +21,7 @@
             hr {
                 background-color: #cc9932;
                 height: 1px;
-                margin: 0.5em 0;
+                margin: rem-calc(8 0);
                 opacity: 0.5;
             }
         }
@@ -28,20 +29,22 @@
         &-btns {
             display: flex;
             align-items: center;
-            gap: 1em;
+            justify-content: space-between;
+            gap: rem-calc(16);
+            width: 100%;
 
             @include mobile {
-                justify-content: space-between;
-                margin: 0;
-                width: 100%;
+                width: fit-content;
             }
 
-            > :nth-child(1) {
-                @include dash-button($secondary-color, $white-color);
-            }
+            > button {
+                &:nth-child(1) {
+                    @include dash-button($secondary-color, $white-color);
+                }
 
-            > :nth-child(2) {
-                @include dash-button($warning-color, $white-color);
+                &:nth-child(2) {
+                    @include dash-button($warning-color, $white-color);
+                }
             }
         }
     }
@@ -49,7 +52,7 @@
     &-title,
     &-hyperlink {
         display: flex;
-        gap: 0.5em;
+        gap: rem-calc(8);
         align-items: center;
         flex: 1;
 
@@ -67,7 +70,7 @@
             font-weight: 300;
 
             &::placeholder {
-                font-size: 0.75rem;
+                font-size: rem-calc(14);
                 opacity: 0.75;
             }
 
@@ -85,38 +88,33 @@
 .link {
     display: flex;
     justify-content: space-between;
-    border-radius: 10px;
-    gap: 2em;
-    padding: 0.5em 1.25em;
+    gap: rem-calc(16);
+    padding: rem-calc(8 20);
     color: $ash-color;
     background: linear-gradient(145deg, white, white, white, #deceae) no-repeat
         0 0 / cover;
     outline: 2px solid $primary-color;
 
+    @include border-radius(10);
     @include box-shadow;
 
     @include mobile {
-        padding: 0.75em 1em;
-        gap: 1em;
-    }
-
-    @include compact {
-        padding: 0.75em 0.675em 0.75em 1em;
+        gap: rem-calc(32);
     }
 
     &-fields {
         display: flex;
-        flex-wrap: wrap;
-        gap: 1.5em;
+        flex-flow: column nowrap;
+        gap: rem-calc(16);
         flex: 95%;
 
-        @include laptop {
-            flex-direction: column;
-            gap: 1.25em;
+        @include mobile {
+            gap: rem-calc(20);
         }
 
-        @include mobile {
-            gap: 1em;
+        @include laptop {
+            gap: rem-calc(24);
+            flex-direction: row;
         }
 
         > * {
@@ -127,7 +125,7 @@
     &-list {
         display: flex;
         flex-direction: column;
-        gap: 1em;
+        gap: rem-calc(16);
     }
 
     &-title,
@@ -135,7 +133,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 1.25em;
+        gap: rem-calc(20);
 
         > div {
             flex: 1;
@@ -144,7 +142,7 @@
                 width: 100%;
                 background: rgba($third-color, 0.5);
                 height: 1px;
-                margin: 0.375em 0 0.175em;
+                margin: rem-calc(8 0 5);
             }
 
             > span {
@@ -153,18 +151,16 @@
 
                 > a,
                 > p {
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
                     display: block;
-                    font-size: 0.875rem;
                     font-weight: 500;
+
+                    @include ellipsis;
                 }
             }
 
             > input {
                 &::placeholder {
-                    font-size: 0.75rem;
+                    font-size: rem-calc(14);
                     color: $third-color;
                 }
 
@@ -181,9 +177,10 @@
         button {
             background-color: $primary-color;
             color: $white-color;
-            padding: 0.375em 0.75em;
+            padding: rem-calc(6 12);
             text-align: center;
-            border-radius: 3px;
+
+            @include border-radius(3);
 
             &:disabled {
                 opacity: 0.5;
@@ -217,13 +214,13 @@
         align-items: center;
         justify-content: space-evenly;
         flex-direction: column;
-        gap: 1em;
+        gap: rem-calc(16);
         flex: 5%;
         border-left: 1px solid rgba($third-color, 0.5);
-        padding-left: 1em;
+        padding-left: rem-calc(8);
 
         @include compact {
-            padding-left: 0.5em;
+            padding-left: rem-calc(16);
         }
 
         .trash-btn {
@@ -232,9 +229,9 @@
 
             i {
                 border: 2px solid transparent;
-                padding: 0.825em 0.475em;
-                border-radius: 50%;
+                padding: rem-calc(16 8);
 
+                @include border-radius(50%);
                 @include smooth-trans;
 
                 &:hover {
@@ -249,9 +246,9 @@
 
             i {
                 border: 2px solid transparent;
-                padding: 0.55em 0.5em;
-                border-radius: 50%;
+                padding: rem-calc(8);
 
+                @include border-radius(50%);
                 @include smooth-trans;
 
                 &:hover {
@@ -269,11 +266,12 @@
     background-color: #c60319;
     font-weight: bold;
     color: white;
-    padding: 0.3rem 0.5rem;
-    margin: 1em auto 0;
+    padding: rem-calc(6 8);
+    margin: rem-calc(16) auto 0;
     text-align: center;
-    border-radius: 2px;
     width: 100%;
+
+    @include border-radius(2);
 }
 
 .link-error-style {
@@ -285,19 +283,21 @@
     text-align: center;
     font-weight: bold;
     color: white;
-    padding: 0.3rem 0.5rem;
+    padding: rem-calc(6 8);
     margin: 0 auto;
-    border-radius: 2px;
+
+    @include border-radius(2);
 }
 
 .no-links {
     color: $ash-color;
     background-color: $white-color;
     opacity: 0.5;
-    border-radius: 5px;
-    padding: 0.25em 2em;
+    padding: rem-calc(4 32);
     margin: 0 auto;
     display: block;
+
+    @include border-radius;
 
     @include box-shadow;
     @include smooth-trans;

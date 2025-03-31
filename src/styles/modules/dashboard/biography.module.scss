@@ -4,46 +4,39 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.75em;
-    max-width: 600px;
+    gap: rem-calc(12);
     width: 100%;
     position: relative;
 
     @include laptop {
-        max-width: 100%;
+        max-width: rem-calc(600);
     }
 
     label {
         align-self: flex-start;
-        font-size: 0.75rem;
+        font-size: rem-calc(12);
         cursor: pointer;
 
         &::after {
             content: ":";
             color: $white-color;
             font-weight: 500;
-            margin-left: 0.025em;
+            margin-left: rem-calc(0.25);
         }
-    }
-
-    button {
-        align-self: flex-end;
-
-        @include dash-button;
     }
 
     textarea {
         width: 100%;
-        height: 10em;
+        height: rem-calc(160);
         outline: none;
         resize: none;
-        padding: 17.5px;
+        padding: rem-calc(17.5);
         background: linear-gradient(135deg, #1a1a1a, $black-color);
         border: 1px $primary-color solid;
-        border-radius: 5px;
         scrollbar-color: $grey-color $white-color;
         word-wrap: break-word;
 
+        @include border-radius;
         @include box-shadow;
         @include smooth-trans;
 
@@ -56,11 +49,17 @@
         }
     }
 
+    button {
+        align-self: flex-end;
+
+        @include dash-button;
+    }
+
     > div {
         position: absolute;
-        right: 10px;
-        top: 165px;
-        font-size: 0.75rem;
+        right: rem-calc(10);
+        top: rem-calc(165);
+        font-size: rem-calc(12);
 
         > span:nth-child(2) {
             color: $primary-color;

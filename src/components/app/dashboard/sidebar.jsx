@@ -1,26 +1,11 @@
-import * as React from 'react'
-
-// import * as styles from '../../styles/modules/dashboard/sidebar.module.scss'
+import * as React from "react";
 
 const Sidebar = ({ profile, loadingData }) => {
-	return (
-		<>
-			<h5 style={{ filter: loadingData ? 'blur(2px)' : 'none' }}>
-				Hallo, {profile}
-			</h5>
+    return (
+        <h5 style={{ filter: loadingData ? "blur(2px)" : "none" }}>
+            Hallo, {profile}
+        </h5>
+    );
+};
 
-			{/* <button
-						href="#"
-						title="Uitloggen"
-						onClick={e => {
-							e.preventDefault()
-							logout(() => navigate('/login'))
-						}}
-					>
-						Log uit
-					</button> */}
-		</>
-	)
-}
-
-export default Sidebar
+export default Sidebar;

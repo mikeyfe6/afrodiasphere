@@ -1,26 +1,66 @@
-@use '../../customs' as *;
+@use "../../customs" as *;
 
 .spinner {
-	border: 4px solid rgba(0 0 0 / 10%);
-	border-left: 4px solid $white-color;
-	border-radius: 50%;
-	width: 40px;
-	height: 40px;
-	animation: spin 1s linear infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
 
-	&-container {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-}
+    &-circle {
+        width: rem-calc(64);
+        height: rem-calc(64);
+        border-radius: 50%;
+        display: inline-block;
+        position: relative;
+        border: 3px solid;
+        border-color: $white-color $white-color transparent transparent;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
 
-@keyframes spin {
-	0% {
-		transform: rotate(0deg);
-	}
+        &::after,
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            border: 3px solid;
+            border-color: transparent transparent $primary-color $primary-color;
+            width: rem-calc(56);
+            height: rem-calc(56);
+            border-radius: 50%;
+            box-sizing: border-box;
+            animation: rotation-back 0.5s linear infinite;
+            transform-origin: center center;
+        }
 
-	100% {
-		transform: rotate(360deg);
-	}
+        &::before {
+            width: rem-calc(48);
+            height: rem-calc(48);
+            border-color: $white-color $white-color transparent transparent;
+            animation: rotation 1.5s linear infinite;
+        }
+    }
+
+    @keyframes rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes rotation-back {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(-360deg);
+        }
+    }
 }

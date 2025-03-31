@@ -9,6 +9,7 @@ import GoogleMapReact from "google-map-react";
 import { isLoggedIn, isBrowser, getUser } from "../services/auth";
 
 import AdsLayout from "../components/adslayout";
+import Spinner from "../components/ui/spinner";
 import Seo from "../components/seo";
 
 import noavatar from "../images/noavatar.png";
@@ -31,6 +32,7 @@ const AdsTemplate = ({ pageContext: { slug, documentId } }) => {
     const [occupation, setOccupation] = useState("");
     const [biography, setBiography] = useState("");
     const [links, setLinks] = useState([]);
+    const [spinner, setSpinner] = useState(true);
 
     const [telephone, setTelephone] = useState("");
     const [mail, setMail] = useState("");
@@ -58,34 +60,40 @@ const AdsTemplate = ({ pageContext: { slug, documentId } }) => {
 
     useEffect(() => {
         const getPageData = async () => {
-            const res = await axios.get(
-                `${apiURL}/api/pages/${documentId}/?populate[0]=avatar&populate[1]=address&populate[2]=links`
-            );
+            try {
+                const res = await axios.get(
+                    `${apiURL}/api/pages/${documentId}/?populate[0]=avatar&populate[1]=address&populate[2]=links`
+                );
 
-            setColor(res.data.data.theme);
-            setTelephone(res.data.data.telephone);
-            setMail(res.data.data.email);
-            setProfile(res.data.data.profile);
-            setOccupation(res.data.data.occupation);
-            setLinks(res.data.data.links);
-            setBiography(res.data.data.biography);
-            setAddress(res.data.data.address);
+                setColor(res.data.data.theme);
+                setTelephone(res.data.data.telephone);
+                setMail(res.data.data.email);
+                setProfile(res.data.data.profile);
+                setOccupation(res.data.data.occupation);
+                setLinks(res.data.data.links);
+                setBiography(res.data.data.biography);
+                setAddress(res.data.data.address);
 
-            setFbLink(res.data.data.facebook);
-            setTwLink(res.data.data.twitter);
-            setIgLink(res.data.data.instagram);
-            setWaLink(res.data.data.whatsapp);
-            setTkLink(res.data.data.tiktok);
-            setLiLink(res.data.data.linkedin);
-            setPiLink(res.data.data.pinterest);
-            setSnLink(res.data.data.snapchat);
-            setYtLink(res.data.data.youtube);
-            setPaLink(res.data.data.patreon);
+                setFbLink(res.data.data.facebook);
+                setTwLink(res.data.data.twitter);
+                setIgLink(res.data.data.instagram);
+                setWaLink(res.data.data.whatsapp);
+                setTkLink(res.data.data.tiktok);
+                setLiLink(res.data.data.linkedin);
+                setPiLink(res.data.data.pinterest);
+                setSnLink(res.data.data.snapchat);
+                setYtLink(res.data.data.youtube);
+                setPaLink(res.data.data.patreon);
 
-            if (!res.data.data.avatar) {
-                return setAvatar(noavatar);
-            } else {
-                setAvatar(res.data.data.avatar.url);
+                if (!res.data.data.avatar) {
+                    setAvatar(noavatar);
+                } else {
+                    setAvatar(res.data.data.avatar.url);
+                }
+            } catch (error) {
+                console.error("Error fetching page data:", error);
+            } finally {
+                setSpinner(false);
             }
         };
         getPageData();
@@ -100,6 +108,7 @@ const AdsTemplate = ({ pageContext: { slug, documentId } }) => {
     };
 
     const isShareSupported = () => {
+        console.log("isShareSupported", navigator.share);
         return navigator.share !== undefined;
     };
 
@@ -120,249 +129,245 @@ const AdsTemplate = ({ pageContext: { slug, documentId } }) => {
     };
 
     return (
-        <AdsLayout>
-            {/* <Img
-        fluid={data.strapiInstantie.background.childImageSharp.fluid}
-        style={{
-          width: "100vw",
-          height: "100vh",
-          zIndex: 1,
-          position: "absolute",
-          marginLeft: "auto",
-          marginRight: "auto",
-          left: 0,
-          right: 0,
-          top: 0,
-          bottom: 0,
-          textAlign: "center",
-          // opacity: 0.1,
-        }}
-      /> */}
+        <>
+            {spinner ? (
+                <Spinner />
+            ) : (
+                <AdsLayout>
+                    <div className={`theme-${color}`}>
+                        <div className={`theme-avatar-contact`}>
+                            {mail && (
+                                <a
+                                    href={`mailto:${mail}`}
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                    className={`theme-email`}
+                                >
+                                    <i className="fa-solid fa-envelope fa-xl" />
+                                </a>
+                            )}
 
-            <div className={`theme-${color}`}>
-                <div className={`theme-avatar-contact`}>
-                    {mail && (
-                        <a
-                            href={`mailto:${mail}`}
-                            rel="noopener noreferrer"
-                            target="_blank"
-                            className={`theme-email`}
-                        >
-                            <i className="fa-solid fa-envelope fa-xl" />
-                        </a>
-                    )}
+                            <img src={avatar} alt={profile} />
 
-                    <img src={avatar} alt={profile} />
+                            {telephone && (
+                                <a
+                                    href={`tel:${telephone}`}
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                    className={`theme-telephone`}
+                                >
+                                    <i className="fa-solid fa-phone fa-xl" />
+                                </a>
+                            )}
+                        </div>
 
-                    {telephone && (
-                        <a
-                            href={`tel:${telephone}`}
-                            rel="noopener noreferrer"
-                            target="_blank"
-                            className={`theme-telephone`}
-                        >
-                            <i className="fa-solid fa-phone fa-xl" />
-                        </a>
-                    )}
-                </div>
+                        <h1 className={`theme-${color}-username`}>{profile}</h1>
 
-                <h1 className={`theme-${color}-username`}>{profile}</h1>
-
-                <p className={`theme-${color}-occupate`}>{occupation}</p>
-
-                <p className={`theme-${color}-biography`}>{biography}</p>
-
-                <ul className={`theme-${color}-links`}>
-                    {links.slice(0, 20).map((link) => (
-                        <li key={link.id} hidden={!link.visible}>
-                            <a
-                                href={`https://${link.url}`}
-                                rel="noopener noreferrer"
-                                target="_blank"
-                            >
-                                {link.title}
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-
-                {address?.latitude &&
-                    address?.longitude &&
-                    address?.location && (
-                        <p className={`theme-${color}-location`}>
-                            <i className="fa-solid fa-map-location-dot fa-xl" />
-                            <a
-                                href={`https://www.google.com/maps?q=${address.latitude},${address.longitude}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                {address.location}
-                            </a>
+                        <p className={`theme-${color}-occupate`}>
+                            {occupation}
                         </p>
-                    )}
 
-                {address?.latitude &&
-                    address?.longitude &&
-                    address?.location && (
-                        <div
-                            className={`theme-${color}-maps ${mapsStyles.maps} ${mapsStyles.adsPage}`}
-                        >
-                            <GoogleMapReact
-                                bootstrapURLKeys={{
-                                    key: process.env.GATSBY_GOOGLE_MAPS_KEY,
-                                    language: "nl",
-                                    region: "NL",
-                                }}
-                                defaultCenter={defaultProps.center}
-                                defaultZoom={defaultProps.zoom}
-                                center={
-                                    address.latitude !== null &&
-                                    address.longitude !== null
-                                        ? {
-                                              lat: address.latitude,
-                                              lng: address.longitude,
-                                          }
-                                        : defaultProps.center
-                                }
+                        <p className={`theme-${color}-biography`}>
+                            {biography}
+                        </p>
+
+                        <ul className={`theme-${color}-links`}>
+                            {links.slice(0, 20).map((link) => (
+                                <li key={link.id} hidden={!link.visible}>
+                                    <a
+                                        href={`https://${link.url}`}
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        {link.title}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+
+                        {address?.latitude &&
+                            address?.longitude &&
+                            address?.location && (
+                                <p className={`theme-${color}-location`}>
+                                    <i className="fa-solid fa-map-location-dot fa-xl" />
+                                    <a
+                                        href={`https://www.google.com/maps?q=${address.latitude},${address.longitude}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        {address.location}
+                                    </a>
+                                </p>
+                            )}
+
+                        {address?.latitude &&
+                            address?.longitude &&
+                            address?.location && (
+                                <div
+                                    className={`theme-${color}-maps ${mapsStyles.maps} ${mapsStyles.adsPage}`}
+                                >
+                                    <GoogleMapReact
+                                        bootstrapURLKeys={{
+                                            key: process.env
+                                                .GATSBY_GOOGLE_MAPS_KEY,
+                                            language: "nl",
+                                            region: "NL",
+                                        }}
+                                        defaultCenter={defaultProps.center}
+                                        defaultZoom={defaultProps.zoom}
+                                        center={
+                                            address.latitude !== null &&
+                                            address.longitude !== null
+                                                ? {
+                                                      lat: address.latitude,
+                                                      lng: address.longitude,
+                                                  }
+                                                : defaultProps.center
+                                        }
+                                    >
+                                        {address.latitude !== null &&
+                                            address.longitude !== null && (
+                                                <Marker
+                                                    lat={address.latitude}
+                                                    lng={address.longitude}
+                                                />
+                                            )}
+                                    </GoogleMapReact>
+                                </div>
+                            )}
+
+                        <div className={`theme-${color}-icons`}>
+                            {fbLink && fbLink.length > 1 && (
+                                <a
+                                    href={`https://www.facebook.com/${fbLink}`}
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    <i className="fa-brands fa-facebook-f" />
+                                </a>
+                            )}
+
+                            {twLink && twLink.length > 1 && (
+                                <a
+                                    href={`https://x.com/${twLink}`}
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    <i className="fa-brands fa-x-twitter" />
+                                </a>
+                            )}
+
+                            {igLink && igLink.length > 1 && (
+                                <a
+                                    href={`https://www.instagram.com/${igLink}`}
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    <i className="fa-brands fa-instagram" />
+                                </a>
+                            )}
+
+                            {waLink && waLink.length > 1 && (
+                                <a
+                                    href={`https://wa.me/${waLink}`}
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    <i className="fa-brands fa-whatsapp" />
+                                </a>
+                            )}
+
+                            {tkLink && tkLink.length > 1 && (
+                                <a
+                                    href={`https://www.tiktok.com/@${tkLink}`}
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    <i className="fa-brands fa-tiktok" />
+                                </a>
+                            )}
+
+                            {liLink && liLink.length > 1 && (
+                                <a
+                                    href={`https://linkedin.com/${liLink}`}
+                                    title={`https://linkedin.com/${liLink}`}
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    <i className="fa-brands fa-linkedin" />
+                                </a>
+                            )}
+
+                            {piLink && piLink.length > 1 && (
+                                <a
+                                    href={`https://pinterest.com/${piLink}`}
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    <i className="fa-brands fa-pinterest" />
+                                </a>
+                            )}
+
+                            {snLink && snLink.length > 1 && (
+                                <a
+                                    href={`https://www.snapchat.com/${snLink}`}
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    <i className="fa-brands fa-snapchat" />
+                                </a>
+                            )}
+
+                            {ytLink && ytLink.length > 1 && (
+                                <a
+                                    href={`https://www.youtube.com/${ytLink}`}
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    <i className="fa-brands fa-youtube" />
+                                </a>
+                            )}
+
+                            {paLink && paLink.length > 1 && (
+                                <a
+                                    href={`https://www.patreon.com/${paLink}`}
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    <i className="fa-brands fa-patreon" />
+                                </a>
+                            )}
+                        </div>
+                        <Link to="/" className={`theme-footer`}>
+                            <img src={afroLogo} alt="" />
+                        </Link>
+                    </div>
+                    {isLoggedIn() && isBrowser() && (
+                        <div className="ads-user">
+                            {isShareSupported() ?? (
+                                <button onClick={handleShare}>
+                                    <i className="fa-solid fa-share-nodes fa-xl" />
+                                </button>
+                            )}
+
+                            <Link
+                                to={`/dashboard/`}
+                                title="Ga naar jouw dashboard"
                             >
-                                {address.latitude !== null &&
-                                    address.longitude !== null && (
-                                        <Marker
-                                            lat={address.latitude}
-                                            lng={address.longitude}
-                                        />
-                                    )}
-                            </GoogleMapReact>
+                                Dashboard
+                            </Link>
+
+                            <Link
+                                to={`/${adsUser.user.username}/`}
+                                title="Ga naar jouw ADS page"
+                            >
+                                {adsUser.user.username}
+                            </Link>
                         </div>
                     )}
-
-                <div className={`theme-${color}-icons`}>
-                    {fbLink && fbLink.length > 1 && (
-                        <a
-                            href={`https://www.facebook.com/${fbLink}`}
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            <i className="fa-brands fa-facebook-f" />
-                        </a>
-                    )}
-
-                    {twLink && twLink.length > 1 && (
-                        <a
-                            href={`https://x.com/${twLink}`}
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            <i className="fa-brands fa-x-twitter" />
-                        </a>
-                    )}
-
-                    {igLink && igLink.length > 1 && (
-                        <a
-                            href={`https://www.instagram.com/${igLink}`}
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            <i className="fa-brands fa-instagram" />
-                        </a>
-                    )}
-
-                    {waLink && waLink.length > 1 && (
-                        <a
-                            href={`https://wa.me/${waLink}`}
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            <i className="fa-brands fa-whatsapp" />
-                        </a>
-                    )}
-
-                    {tkLink && tkLink.length > 1 && (
-                        <a
-                            href={`https://www.tiktok.com/@${tkLink}`}
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            <i className="fa-brands fa-tiktok" />
-                        </a>
-                    )}
-
-                    {liLink && liLink.length > 1 && (
-                        <a
-                            href={`https://linkedin.com/${liLink}`}
-                            title={`https://linkedin.com/${liLink}`}
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            <i className="fa-brands fa-linkedin" />
-                        </a>
-                    )}
-
-                    {piLink && piLink.length > 1 && (
-                        <a
-                            href={`https://pinterest.com/${piLink}`}
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            <i className="fa-brands fa-pinterest" />
-                        </a>
-                    )}
-
-                    {snLink && snLink.length > 1 && (
-                        <a
-                            href={`https://www.snapchat.com/${snLink}`}
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            <i className="fa-brands fa-snapchat" />
-                        </a>
-                    )}
-
-                    {ytLink && ytLink.length > 1 && (
-                        <a
-                            href={`https://www.youtube.com/${ytLink}`}
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            <i className="fa-brands fa-youtube" />
-                        </a>
-                    )}
-
-                    {paLink && paLink.length > 1 && (
-                        <a
-                            href={`https://www.patreon.com/${paLink}`}
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            <i className="fa-brands fa-patreon" />
-                        </a>
-                    )}
-                </div>
-                <Link to="/" className={`theme-footer`}>
-                    <img src={afroLogo} alt="" />
-                </Link>
-            </div>
-            {isLoggedIn() && isBrowser() && (
-                <div className="ads-user">
-                    {isShareSupported() ?? (
-                        <button onClick={handleShare}>
-                            <i className="fa-solid fa-share-nodes fa-xl" />
-                        </button>
-                    )}
-
-                    <Link to={`/dashboard/`} title="Ga naar jouw dashboard">
-                        Dashboard
-                    </Link>
-
-                    <Link
-                        to={`/${adsUser.user.username}/`}
-                        title="Ga naar jouw ADS page"
-                    >
-                        {adsUser.user.username}
-                    </Link>
-                </div>
+                </AdsLayout>
             )}
-        </AdsLayout>
+        </>
     );
 };
 
@@ -378,3 +383,23 @@ export const Head = ({ pageContext: { profile, biography, slug, avatar } }) => {
         />
     );
 };
+
+{
+    /* <Img
+fluid={data.strapiInstantie.background.childImageSharp.fluid}
+style={{
+  width: "100vw",
+  height: "100vh",
+  zIndex: 1,
+  position: "absolute",
+  marginLeft: "auto",
+  marginRight: "auto",
+  left: 0,
+  right: 0,
+  top: 0,
+  bottom: 0,
+  textAlign: "center",
+  // opacity: 0.1,
+}}
+/> */
+}

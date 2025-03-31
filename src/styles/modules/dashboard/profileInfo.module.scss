@@ -5,19 +5,19 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 1em;
+        gap: rem-calc(16);
 
         label {
             color: $primary-color;
-            font-size: 0.75rem;
-            min-width: 110px;
+            font-size: rem-calc(12);
+            min-width: rem-calc(110);
             cursor: pointer;
 
             &::after {
                 content: ":";
                 color: $white-color;
                 font-weight: 500;
-                margin-left: 0.025em;
+                margin-left: rem-calc(0.25);
             }
         }
 
@@ -39,42 +39,6 @@
             }
         }
 
-        &.address {
-            gap: 1.5em;
-
-            @include mobile {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            label {
-                min-width: 75px;
-            }
-
-            > div {
-                display: flex;
-                margin-left: auto;
-                gap: 0.75em;
-
-                &:first-child {
-                    flex-grow: 1;
-                    width: 100%;
-                }
-
-                > button {
-                    &:nth-child(2) {
-                        background-color: $secondary-color;
-                        color: $white-color;
-                    }
-
-                    &:last-child {
-                        background-color: $warning-color;
-                        color: $white-color;
-                    }
-                }
-            }
-        }
-
         button {
             @include dash-button($type: 2);
 
@@ -86,6 +50,43 @@
             &.update-btn {
                 background-color: $secondary-color;
                 color: $white-color;
+            }
+        }
+
+        &.address {
+            gap: rem-calc(24);
+            flex-direction: column;
+
+            @include mobile {
+                align-items: center;
+                flex-direction: row;
+            }
+
+            label {
+                min-width: rem-calc(75);
+            }
+
+            > div {
+                display: flex;
+                margin-left: auto;
+                gap: rem-calc(12);
+
+                &:first-child {
+                    flex-grow: 1;
+                    width: 100%;
+                }
+
+                > button {
+                    &[type="button"] {
+                        background-color: $secondary-color;
+                        color: $white-color;
+                    }
+
+                    &[type="reset"] {
+                        background-color: $warning-color;
+                        color: $white-color;
+                    }
+                }
             }
         }
     }

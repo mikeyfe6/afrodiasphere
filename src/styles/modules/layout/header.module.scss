@@ -1,72 +1,69 @@
-@use 'sass:color';
+@use "sass:color";
 
-@use '../../customs' as *;
+@use "../../customs" as *;
 
 .navbar {
-	background-color: $black-color;
-	min-height: 70px;
-	color: $white-color;
+    background-color: $black-color;
+    min-height: rem-calc(70);
+    color: $white-color;
 
-	&-wrapper {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		height: 100%;
-		position: relative;
-		gap: 1.5em;
+    &-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        position: relative;
+        gap: rem-calc(24);
 
-		@include container(0, 1em);
+        @include container(0, rem-calc(16));
 
-		@include mobile {
-			@include container(0, 1em);
-		}
+        > a > img {
+            width: rem-calc(75);
+            vertical-align: middle;
+        }
 
-		> a > img {
-			width: 75px;
-			vertical-align: middle;
-		}
+        .logged-user {
+            margin-right: auto;
 
-		.logged-user {
-			margin-right: auto;
+            > a {
+                background: $primary-color;
+                color: color.adjust($black-color, $lightness: 5%);
+                padding: rem-calc(4 16);
+                font-weight: 600;
 
-			> a {
-				background: $primary-color;
-				color: color.adjust($black-color, $lightness: 5%);
-				padding: 0.25em 1em;
-				font-weight: 600;
-				border-radius: 5px;
+                @include border-radius(5);
 
-				&:hover {
-					opacity: 0.75;
-					color: $black-color;
+                &:hover {
+                    opacity: 0.75;
+                    color: $black-color;
 
-					@include smooth-trans;
-				}
-			}
-		}
+                    @include smooth-trans;
+                }
+            }
+        }
 
-		> nav {
-			display: flex;
-			gap: 2em;
+        > nav {
+            display: flex;
+            gap: rem-calc(32);
 
-			> ul {
-				display: flex;
-				align-items: center;
-				gap: 1.375em;
+            > ul {
+                display: flex;
+                align-items: center;
+                gap: rem-calc(24);
 
-				> li {
-					> a,
-					button {
-						cursor: pointer;
+                > li {
+                    > a,
+                    button {
+                        cursor: pointer;
 
-						@include smooth-trans;
+                        @include smooth-trans;
 
-						&:hover {
-							color: $third-color;
-						}
-					}
-				}
-			}
-		}
-	}
+                        &:hover {
+                            color: $third-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

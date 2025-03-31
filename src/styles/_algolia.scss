@@ -3,7 +3,7 @@
 .algolia {
     .ais {
         &-SearchBox {
-            width: 250px;
+            width: rem-calc(237.5);
 
             &-form {
                 display: flex;
@@ -15,15 +15,15 @@
             &-input {
                 background: $white-color;
                 border: none;
-                padding: 8px 15px;
-                border-radius: 3px;
+                padding: rem-calc(8 15);
                 color: $black-color;
                 caret-color: $primary-color;
 
                 @include box-shadow;
+                @include border-radius(3);
 
                 &::placeholder {
-                    font-size: 0.875rem;
+                    font-size: rem-calc(14);
                     color: $third-color;
                 }
 
@@ -55,8 +55,8 @@
             width: 100%;
             right: 0;
             z-index: 14;
-            border-radius: 0 0 10px 10px;
-            overflow: hidden;
+
+            @include border-radius(0 0 10 10);
         }
 
         &-InstantSearch,
@@ -72,49 +72,44 @@
                     $black-color
                 )
                 no-repeat 0 0 / cover;
-            padding: 1.25em;
+            padding: rem-calc(20);
 
             article {
                 display: flex;
-                gap: 1em;
+                gap: rem-calc(16);
 
                 img {
-                    width: 100px;
-                    height: 100px;
+                    width: rem-calc(100);
+                    height: rem-calc(100);
                     object-fit: cover;
-                    overflow: hidden;
-                    border-radius: 5px;
+
+                    @include border-radius;
                 }
 
                 .hit {
                     &-content {
                         flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        gap: rem-calc(2);
 
                         mark {
                             color: $primary-color;
                         }
                     }
 
-                    &-profile {
-                        margin-bottom: 0.175em;
-                    }
-
                     &-occupate {
-                        font-size: 0.875rem;
+                        font-size: rem-calc(14);
                         color: $secondary-color;
-                        margin-bottom: 0.175em;
                     }
 
                     &-biography {
-                        font-size: 0.875rem;
+                        font-size: rem-calc(14);
                         color: $grey-light-color;
-                        max-width: 85%;
+                        max-width: 70ch;
 
-                        @include clamp(2);
-
-                        @include mobile {
-                            max-width: 100%;
-                        }
+                        @include clamp(1);
                     }
                 }
             }
@@ -131,16 +126,16 @@
         width: 100%;
         right: 0;
         z-index: 14;
-        border-radius: 0 0 10px 10px;
-        overflow: hidden;
         background: linear-gradient(
                 to left,
                 rgba(14 14 14 / 87.5%),
                 $black-color
             )
             no-repeat 0 0 / cover;
-        padding: 1.25em;
+        padding: rem-calc(20);
         text-align: center;
+
+        @include border-radius(0 0 10 10);
 
         p q {
             color: $grey-light-color;
@@ -160,30 +155,30 @@
 
 .mobile-search {
     position: fixed;
-    top: 15px;
+    top: rem-calc(15);
     left: 0;
     z-index: 12;
     display: flex;
     align-items: center;
     width: 100%;
-    padding-left: 85px;
-    padding-right: 15px;
+    padding-left: rem-calc(75);
+    padding-right: rem-calc(20);
 
     > i {
         color: $primary-color;
         background: $white-color;
-        border-radius: 5px;
-        height: 44px;
-        min-width: 44px;
-        max-width: 44px;
+        height: rem-calc(44);
+        width: rem-calc(44);
         display: flex;
         align-items: center;
         justify-content: center;
+
+        @include border-radius;
     }
 
     &.open {
         > i {
-            border-radius: 5px 0 0 5px;
+            @include border-radius(5 0 0 5);
         }
 
         .algolia {
@@ -193,8 +188,8 @@
                 &-Hits {
                     position: fixed;
                     top: auto;
-                    margin-top: 1.5em;
                     border-radius: 0;
+                    margin-top: rem-calc(24);
                     border-top: 2px solid $third-color;
                     border-bottom: 2px solid $third-color;
                 }
@@ -203,9 +198,10 @@
                     width: 100%;
 
                     &-input {
-                        border-radius: 0 5px 5px 0;
                         box-shadow: none;
-                        height: 44px;
+                        height: rem-calc(44);
+
+                        @include border-radius(0 5 5 0);
 
                         &:focus {
                             outline: none;
@@ -221,7 +217,7 @@
             .no-results {
                 position: fixed;
                 top: auto;
-                margin-top: 1.5em;
+                margin-top: rem-calc(24);
                 border-radius: 0;
                 border-top: 2px solid $third-color;
                 border-bottom: 2px solid $third-color;

@@ -3,162 +3,164 @@
 #iphone {
     &-frame {
         position: sticky;
-        overflow: hidden;
-        height: 675px;
-        width: 325px;
-        border-radius: 50px;
         border: solid rgba(0 0 0 / 50%) 10px;
-        top: 150px;
-        margin: 1em;
+        top: rem-calc(150);
+        margin: rem-calc(16);
+        width: rem-calc(250);
+        height: rem-calc(500);
 
         @include box-shadow;
+        @include border-radius(37.5);
 
         @include mobile {
-            border-radius: 37.5px;
-            width: 240px;
-            height: 500px;
+            height: rem-calc(675);
+            width: rem-calc(325);
+
+            @include border-radius(45, false);
         }
     }
 
     &-mail,
     &-telephone {
         position: absolute;
-        top: 17%;
         z-index: 1;
+        top: rem-calc(77.5);
 
         @include mobile {
-            top: 13.5%;
-
-            > i {
-                font-size: 1.125em;
-            }
+            top: rem-calc(95);
         }
     }
 
     &-mail {
-        left: 16%;
+        left: rem-calc(32.5);
+
+        @include mobile {
+            left: rem-calc(50);
+        }
     }
 
     &-telephone {
-        right: 16%;
+        right: rem-calc(32.5);
+
+        @include mobile {
+            right: rem-calc(50);
+        }
     }
 
     &-avatar {
         position: absolute;
-        top: 9%;
-        left: 29.5%;
-        width: 125px;
-        height: 125px;
-        border-radius: 50%;
-        display: inline-block;
         object-fit: cover;
-        overflow: hidden;
         border: solid $white-color 3px;
         z-index: 1;
+        top: rem-calc(47.5);
+        left: 50%;
+        transform: translate(-50%);
+        width: rem-calc(80);
+        height: rem-calc(80);
+
+        @include border-radius(50%);
 
         @include mobile {
-            top: 7.5%;
-            left: 32%;
-            width: 80px;
-            height: 80px;
+            width: rem-calc(112.5);
+            height: rem-calc(112.5);
         }
     }
 
     &-username {
         position: absolute;
-        top: 32%;
-        left: 12.5%;
         font-weight: bold;
         margin: 0 auto;
         text-align: center;
-        width: 225px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
         z-index: 1;
+        top: rem-calc(152.5);
+        left: 50%;
+        transform: translate(-50%);
+        width: rem-calc(167.5);
+        font-size: rem-calc(14);
+
+        @include ellipsis;
 
         @include mobile {
-            top: 27.5%;
-            left: 11%;
-            width: 167.5px;
-            font-size: 0.9rem;
+            top: rem-calc(195);
+            width: rem-calc(225);
         }
     }
 
     &-occupate {
         position: absolute;
-        top: 37.5%;
+        top: rem-calc(180);
         left: 50%;
         transform: translateX(-50%);
         margin: 0 auto;
         text-align: center;
         width: fit-content;
-        border-radius: 7.5px;
-        font-size: 0.6rem;
-        padding: 3.75px 7.5px;
+        font-size: rem-calc(9);
+        padding: rem-calc(3 7.5);
         white-space: nowrap;
         z-index: 1;
+        opacity: 0.75;
+
+        @include border-radius(4);
 
         @include mobile {
-            top: 34%;
+            top: rem-calc(225);
         }
     }
 
     &-biography {
         position: absolute;
-        top: 43%;
-        left: 8.5%;
         text-align: center;
         overflow-wrap: break-word;
-        width: 250px;
         margin: 0 auto;
-        font-size: 0.65rem;
+        font-size: rem-calc(11);
         z-index: 1;
+        top: rem-calc(225);
+        left: 50%;
+        transform: translateX(-50%);
+        width: rem-calc(225);
+        max-width: 25ch;
 
-        @include clamp(3);
+        @include clamp(2);
 
         @include mobile {
-            top: 42%;
-            left: 12%;
-            width: 225px;
-            max-width: 25ch;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 3;
+            top: rem-calc(275);
+            width: rem-calc(250);
         }
     }
 
     &-links {
         position: absolute;
-        top: 55%;
-        left: 9%;
-        width: 250px;
+        top: rem-calc(280);
+        left: 50%;
+        transform: translateX(-50%);
         z-index: 1;
+        width: 82.5%;
 
         @include mobile {
-            top: 53.5%;
-            width: 82.5%;
+            top: rem-calc(350);
+            width: rem-calc(250);
         }
 
         > li {
-            margin: 0.25em 0;
+            margin: rem-calc(4 0);
 
             > a {
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
                 text-align: center;
                 display: inline-block;
-                border-radius: 3px;
                 width: 100%;
-                padding: 0.25em 1em;
-                font-size: 0.875rem;
+                padding: rem-calc(2 24);
+
+                @include border-radius(3, false);
+                @include ellipsis;
+                @include fluid-type(11, 14);
 
                 &:hover {
                     opacity: 0.75;
                 }
 
                 @include mobile {
-                    padding: 0.125em 1.5em;
-                    font-size: 0.725rem;
+                    padding: rem-calc(4 16);
                 }
             }
         }
@@ -167,18 +169,18 @@
     &-icons {
         position: absolute;
         display: flex;
-        gap: 0.75em;
-        top: 90%;
+        gap: rem-calc(12);
+        top: rem-calc(435);
         left: 50%;
         transform: translate(-50%);
         z-index: 1;
 
-        &:nth-child(n) {
-            font-size: 1.25em;
+        @include mobile {
+            top: rem-calc(600);
+        }
 
-            @include mobile {
-                font-size: 1em;
-            }
+        &:nth-child(n) {
+            @include fluid-type(16, 20);
 
             a:hover {
                 opacity: 0.75;

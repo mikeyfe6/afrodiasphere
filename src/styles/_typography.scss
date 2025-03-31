@@ -163,16 +163,16 @@
 
 h1 {
     font-family: $gill-sans;
-    font-size: 4rem;
+    line-height: normal;
+    margin-bottom: rem-calc(20);
+    color: $primary-color;
 
-    @include mobile {
-        font-size: 2.5rem;
-    }
+    @include fluid-type(40, 64);
 }
 
 h3 {
     font-family: $gill-sans;
-    font-size: 1.75rem;
+    font-size: rem-calc(28);
 }
 
 u {

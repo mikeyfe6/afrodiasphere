@@ -6,35 +6,30 @@
         align-items: center;
         display: flex;
 
-        @include mobile {
-            flex-wrap: wrap;
-            gap: 1em;
-        }
-
         div {
             display: flex;
 
             label {
                 color: $ash-color;
-                font-size: 0.75rem;
+                font-size: rem-calc(12);
                 background-color: $white-color;
-                border-radius: 25px 5px 5px 25px;
-                padding: 0.5em 0.75em;
+                padding: rem-calc(8 12);
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                min-width: 145px;
+                min-width: rem-calc(145);
                 cursor: pointer;
 
+                @include border-radius(25 3 3 25);
                 @include box-shadow;
 
                 > i {
-                    font-size: 1.5em;
+                    font-size: rem-calc(24);
                 }
             }
 
             input {
-                padding: 0.5em 0.75em;
+                padding: rem-calc(8 12);
 
                 @include smooth-trans;
 
@@ -49,14 +44,6 @@
                         color: transparent;
                     }
                 }
-            }
-        }
-
-        button {
-            @include dash-button;
-
-            @include mobile {
-                width: 100%;
             }
         }
     }

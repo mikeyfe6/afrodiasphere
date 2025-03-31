@@ -1,79 +1,49 @@
-@use '../../customs' as *;
+@use "../../customs" as *;
 
 .intro {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	position: relative;
+    position: relative;
 
-	@include container(1em, 2em);
+    @include container(rem-calc(48), rem-calc(24));
 
-	@include mobile {
-		flex-direction: column;
-		align-items: start;
-		position: static;
+    h1 {
+        color: $primary-color;
+    }
 
-		@include container(2em, 2em);
-	}
+    h2 {
+        margin-top: rem-calc(4);
+        font-style: italic;
+        font-weight: 500;
+        color: $black-color;
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.125);
 
-	h1 {
-		color: $primary-color;
-	}
+        @include fluid-type(18, 20);
+    }
 
-	h2 {
-		margin-top: 0.25em;
-		font-style: italic;
-		font-weight: 500;
-		color: $black-color;
-		font-size: 1.25rem;
-		text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.125);
+    p {
+        small {
+            margin: rem-calc(10 0);
+            display: block;
+            color: #ababab;
+        }
 
-		@include phablet {
-			font-size: 1.25rem;
-		}
+        span {
+            color: $primary-color;
+        }
+    }
 
-		@include mobile {
-			font-size: 1.125rem;
-		}
-	}
+    button {
+        margin: rem-calc(0 4);
 
-	p {
-		small {
-			margin: 0.625em 0;
-			display: block;
-			color: #ababab;
-			font-size: 1.05rem;
+        @include button(0.125em);
+    }
 
-			@include phablet {
-				font-size: 0.9rem;
-			}
-
-			@include mobile {
-				font-size: 0.8rem;
-			}
-		}
-
-		span {
-			color: $primary-color;
-		}
-	}
-
-	button {
-		margin: 0 0.25em;
-
-		@include button(0.125em);
-	}
-
-	> img {
-		object-fit: contain;
-		width: 250px;
-		opacity: 0.375;
-
-		@include mobile {
-			position: absolute;
-			right: 0;
-			top: 0;
-			z-index: -1;
-		}
-	}
+    > img {
+        position: absolute;
+        right: 0;
+        max-width: rem-calc(250);
+        z-index: -1;
+        top: 0;
+        height: auto;
+        opacity: 0.25;
+    }
 }

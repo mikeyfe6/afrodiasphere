@@ -35,8 +35,6 @@ import Links from "./dashboard/pageinfo/links";
 import Themes from "./dashboard/themes";
 import AdsLink from "./dashboard/adslink";
 
-import Seo from "../seo";
-
 import noavatar from "../../images/noavatar.png";
 
 import * as styles from "../../styles/modules/pages/dashboard.module.scss";
@@ -626,7 +624,3 @@ const DashboardPage = () => {
 };
 
 export default DashboardPage;
-
-export const Head = () => {
-    return <Seo title="Dashboard" />;
-};

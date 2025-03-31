@@ -1,113 +1,115 @@
-@use 'sass:color';
+@use "sass:color";
 
-@use '../../customs' as *;
+@use "../../customs" as *;
 
 .mobile {
-	&-menu {
-		position: fixed;
-		bottom: -100%;
-		left: 0;
-		width: 100%;
-		background-color: color.adjust($black-color, $lightness: 2.5%);
-		transition: bottom 0.5s ease;
-		z-index: 10;
+    &-menu {
+        position: fixed;
+        bottom: -100%;
+        left: 0;
+        width: 100%;
+        background-color: color.adjust($black-color, $lightness: 2.5%);
+        transition: bottom 0.5s ease;
+        z-index: 10;
 
-		> ul {
-			display: flex;
-			min-height: 87.5px;
+        > ul {
+            display: flex;
+            min-height: rem-calc(87.5);
 
-			> li {
-				flex: 1;
-				display: flex;
-				justify-content: center;
-				align-self: center;
-				height: 100%;
+            > li {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-self: center;
+                height: 100%;
 
-				> a,
-				> button {
-					padding: 0.375em;
+                > a,
+                > button {
+                    padding: rem-calc(10);
 
-					@include smooth-trans;
+                    @include smooth-trans;
 
-					&:hover {
-						color: $third-color;
-					}
-				}
+                    &:hover {
+                        color: $third-color;
+                    }
+                }
 
-				&:not(:last-child) {
-					border-right: 1px solid rgba($third-color, 0.25);
-				}
-			}
-		}
+                &:not(:last-child) {
+                    border-right: 1px solid rgba($third-color, 0.25);
+                }
+            }
+        }
 
-		&-container {
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			width: 100%;
-			z-index: 11;
+        &-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 11;
 
-			&-overlay {
-				background: rgba($third-color, 0.5);
-				position: fixed;
-				top: 0;
-				left: 0;
-				height: 85px;
-				z-index: 0;
-				width: 100%;
-			}
+            &-overlay {
+                background: rgba($third-color, 0.5);
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: rem-calc(85);
+                z-index: 0;
+                width: 100%;
+            }
 
-			.hamburger {
-				border: none;
-				font-size: 1.5rem;
-				padding: 0.625em 0.875em;
-				position: fixed;
-				top: 0;
-				left: 0;
-				z-index: 13;
-				background: color.adjust($black-color, $lightness: 2.5%);
-				border-radius: 0 0 7.5px;
-				cursor: pointer;
-			}
+            .hamburger {
+                border: none;
+                font-size: rem-calc(24);
+                padding: rem-calc(11 16);
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 13;
+                background: color.adjust($black-color, $lightness: 2.5%);
+                cursor: pointer;
 
-			.username {
-				position: fixed;
-				right: 20px;
-				top: 20px;
+                @include border-radius(0 0 7.5);
+            }
 
-				> a {
-					background: $primary-color;
-					color: color.adjust($black-color, $lightness: 5%);
-					padding: 0.25em 1em;
-					font-weight: 600;
-					border-radius: 5px;
+            .username {
+                position: fixed;
+                right: rem-calc(20);
+                top: rem-calc(20);
 
-					&:hover {
-						opacity: 0.75;
-						color: $black-color;
+                > a {
+                    background: $primary-color;
+                    color: color.adjust($black-color, $lightness: 5%);
+                    padding: rem-calc(4 16);
+                    font-weight: 600;
 
-						@include smooth-trans;
-					}
-				}
-			}
-		}
+                    @include border-radius;
 
-		&-overlay {
-			background: linear-gradient(
-				to bottom,
-				rgba($black-color, 0.625),
-				rgba($black-color, 0)
-			);
-			position: fixed;
-			top: 0;
-			left: 0;
-			height: 100px;
-			z-index: 0;
-			width: 100%;
-		}
+                    &:hover {
+                        opacity: 0.75;
+                        color: $black-color;
 
-		&.open {
-			bottom: 0;
-		}
-	}
+                        @include smooth-trans;
+                    }
+                }
+            }
+        }
+
+        &-overlay {
+            background: linear-gradient(
+                to bottom,
+                rgba($black-color, 0.625),
+                rgba($black-color, 0)
+            );
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: rem-calc(100);
+            z-index: 0;
+            width: 100%;
+        }
+
+        &.open {
+            bottom: 0;
+        }
+    }
 }

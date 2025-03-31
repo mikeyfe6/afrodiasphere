@@ -6,26 +6,27 @@
     fieldset {
         > legend {
             color: $primary-color;
-            font-size: 0.75rem;
-            margin-bottom: 1em;
+            font-size: rem-calc(12);
+            margin-bottom: rem-calc(16);
             cursor: pointer;
 
             &::after {
                 content: ":";
                 color: $white-color;
                 font-weight: 500;
-                margin-left: 0.025em;
+                margin-left: rem-calc(0.25);
             }
         }
 
         > div {
             display: flex;
             flex-direction: column;
-            gap: 0.5em;
+            gap: rem-calc(8);
 
             > .collapsible {
-                border-radius: 2.5px;
-                font-size: 0.875rem;
+                font-size: rem-calc(14);
+
+                @include border-radius(2.5);
 
                 > button.category {
                     &.active {
@@ -45,7 +46,7 @@
                         border-left: 0.375em solid transparent;
                         border-right: 0.375em solid transparent;
                         border-top: 0.375em solid $primary-color;
-                        margin-left: 0.75em;
+                        margin-left: rem-calc(12);
                         transition: transform 0.3s;
                         vertical-align: 3px;
                     }
@@ -53,8 +54,8 @@
 
                 > .choice {
                     display: flex;
-                    margin: 1.5em 0 1.25em;
-                    gap: 1.75em 0.625em;
+                    margin: rem-calc(24 0 20);
+                    gap: rem-calc(28 10);
                     flex-wrap: wrap;
 
                     label {
@@ -64,13 +65,13 @@
                             $black-color
                         );
                         text-align: center;
-                        min-width: 100px;
-                        padding: 0.75em 1em;
+                        min-width: rem-calc(100);
+                        padding: rem-calc(8 16);
                         border: 1px $primary-color solid;
-                        border-radius: 2.5px;
                         cursor: pointer;
 
                         @include box-shadow;
+                        @include border-radius(2.5);
 
                         &:hover {
                             border-color: $secondary-color;

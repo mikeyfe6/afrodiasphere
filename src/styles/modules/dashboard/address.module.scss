@@ -2,18 +2,18 @@
 
 .address {
     input {
-        padding: 1em;
+        padding: rem-calc(16);
         background: linear-gradient(135deg, #1a1a1a, $black-color);
-        font-size: 0.9rem;
-        min-height: 50px;
-        margin: 1.5em 0 0.5em;
+        font-size: rem-calc(14);
+        min-height: rem-calc(50);
+        margin: rem-calc(24 0 8);
 
         @include border-radius;
     }
 
     p {
-        margin: 0.5em 0;
-        font-size: 0.9rem;
+        margin: rem-calc(8 0);
+        font-size: rem-calc(14);
         color: $error-color;
     }
 }

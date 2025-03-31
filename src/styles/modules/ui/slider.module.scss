@@ -1,119 +1,120 @@
-@use 'sass:color';
+@use "sass:color";
 
-@use '../../customs' as *;
+@use "../../customs" as *;
 
 .carousel {
-	margin: 2.5em 0;
-	padding: 0 2em;
+    margin: rem-calc(40 0);
+    padding: rem-calc(0 32);
 
-	&-container {
-		max-width: 1150px;
-	}
+    &-container {
+        max-width: rem-calc(1150);
+    }
 
-	&-slide {
-		> div {
-			background: linear-gradient(135deg, rgba(0 0 0 / 50%), $black-color);
-			border: 2px solid rgba($white-color, 0.825);
-			border-radius: 12.5px;
-			padding: 1.25em;
-			text-align: center;
-			position: relative;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
+    &-slide {
+        > div {
+            background: linear-gradient(
+                135deg,
+                rgba(0 0 0 / 50%),
+                $black-color
+            );
+            border: 2px solid rgba($white-color, 0.825);
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: rem-calc(16);
 
-			@include mobile {
-				padding: 1em;
-			}
+            @include border-radius(12.5);
 
-			> .avatar {
-				width: 112.5px;
-				height: 112.5px;
-				border-radius: 50%;
-				object-fit: cover;
-				border: 3px solid $white-color;
-				overflow: hidden;
-				margin: 1em 0 1.5em;
+            @include mobile {
+                padding: rem-calc(20);
+            }
 
-				@include mobile {
-					width: 100px;
-					height: 100px;
-				}
-			}
+            > .avatar {
+                object-fit: cover;
+                border: 3px solid $white-color;
+                margin: rem-calc(16 0 24);
+                width: rem-calc(100);
+                height: rem-calc(100);
 
-			> .profile {
-				white-space: nowrap;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				max-width: 100%;
-				margin-bottom: 0.5em;
-			}
+                @include border-radius(50%);
 
-			> .occupate {
-				font-size: 0.75rem;
-				color: rgba($white-color, 0.875);
-				background: rgba($secondary-color, 0.375);
-				border: 1px solid rgba($secondary-color, 0.875);
-				border-radius: 7.5px;
-				padding: 2px 7.5px;
-				margin-bottom: 1.75em;
-				max-width: 125px;
-				white-space: nowrap;
-				overflow: hidden;
-				text-overflow: ellipsis;
-			}
+                @include mobile {
+                    width: rem-calc(112.5);
+                    height: rem-calc(112.5);
+                }
+            }
 
-			> .biography {
-				min-height: 150px;
-				margin-bottom: 1.75em;
+            > .profile {
+                max-width: 100%;
+                margin-bottom: rem-calc(8);
 
-				> p {
-					font-size: 0.75rem;
-					color: color.adjust($white-color, $lightness: -25%);
-					padding: 0 0.25em;
+                @include ellipsis;
+            }
 
-					@include clamp(3);
-				}
-			}
+            > .occupate {
+                font-size: rem-calc(12);
+                color: rgba($white-color, 0.875);
+                background: rgba($secondary-color, 0.375);
+                border: 1px solid rgba($secondary-color, 0.875);
+                padding: rem-calc(2 7.5);
+                margin-bottom: rem-calc(28);
+                max-width: rem-calc(125);
 
-			> .url {
-				font-size: 0.875rem;
-				text-transform: lowercase;
-				max-width: 100%;
-				border: 1px solid $trans-color;
+                @include border-radius(7.5, false);
+                @include ellipsis;
+            }
 
-				> a {
-					display: block;
-					background: rgba($ash-color, 0.5);
-					padding: 0.5em 1em;
-					border-radius: 5px;
-					color: $white-color;
-					white-space: nowrap;
-					overflow: hidden;
-					text-overflow: ellipsis;
+            > .biography {
+                min-height: rem-calc(150);
+                margin-bottom: rem-calc(28);
 
-					@include smooth-trans;
+                > p {
+                    font-size: rem-calc(12);
+                    color: color.adjust($white-color, $lightness: -25%);
+                    padding: rem-calc(0 4);
 
-					span {
-						&:nth-child(1) {
-							color: $secondary-color;
-						}
+                    @include clamp(4);
+                }
+            }
 
-						&:nth-child(2) {
-							color: $white-color;
-						}
+            > .url {
+                font-size: rem-calc(14);
+                text-transform: lowercase;
+                max-width: 100%;
+                border: 1px solid $trans-color;
 
-						&:nth-child(3) {
-							color: $primary-color;
-							margin: 0 0 0 0.25em;
-						}
-					}
+                > a {
+                    display: block;
+                    background: rgba($ash-color, 0.5);
+                    padding: rem-calc(8 16);
+                    color: $white-color;
 
-					&:hover {
-						background: rgba($ash-color, 0.75);
-					}
-				}
-			}
-		}
-	}
+                    @include border-radius;
+                    @include ellipsis;
+                    @include smooth-trans;
+
+                    span {
+                        &:nth-child(1) {
+                            color: $secondary-color;
+                        }
+
+                        &:nth-child(2) {
+                            color: $white-color;
+                        }
+
+                        &:nth-child(3) {
+                            color: $primary-color;
+                            margin-left: rem-calc(4);
+                        }
+                    }
+
+                    &:hover {
+                        background: rgba($ash-color, 0.75);
+                    }
+                }
+            }
+        }
+    }
 }

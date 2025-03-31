@@ -1,95 +1,81 @@
-@use '../../customs' as *;
+@use "../../customs" as *;
 
 .reset-pwd {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	gap: 5em;
-	margin-top: 5em;
-	position: relative;
+    position: relative;
 
-	@include container(2em, 2em);
+    @include container(rem-calc(48), rem-calc(24));
 
-	> div {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5em;
+    > div {
+        display: flex;
+        flex-direction: column;
+        gap: rem-calc(8);
+        max-width: rem-calc(550);
 
-		h1 {
-			color: $primary-color;
-		}
+        > p {
+            color: $white-color;
+            margin: rem-calc(0 0 16);
+            max-width: 48ch;
+        }
+    }
 
-		> p {
-			color: $white-color;
-			font-size: 0.925rem;
-			margin: 0 0 1em;
-		}
-	}
+    > img {
+        position: absolute;
+        right: 0;
+        max-width: rem-calc(250);
+        z-index: -1;
+        top: 0;
+        height: auto;
+        opacity: 0.375;
+    }
 
-	> img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		max-width: 250px;
-		align-self: flex-start;
-		opacity: 0.375;
+    &-form {
+        input {
+            background: #eee;
+            border: none;
+            padding: rem-calc(10 15);
+            margin: rem-calc(10 0);
+            color: $black-color;
 
-		@include phablet {
-			position: absolute;
-			right: 0;
-			max-width: 250px;
-			z-index: -1;
-			top: 0;
-			height: auto;
-		}
-	}
+            @include border-radius(3);
 
-	&-form {
-		input {
-			background: #eee;
-			border: none;
-			padding: 10px 15px;
-			margin: 10px 0;
-			border-radius: 3px;
-			color: $black-color;
+            &::placeholder {
+                font-size: rem-calc(15);
+                color: $third-color;
+            }
 
-			&::placeholder {
-				font-size: 0.95rem;
-				color: $third-color;
-			}
+            &:focus {
+                &::placeholder {
+                    color: transparent;
+                }
+            }
+        }
 
-			&:focus {
-				&::placeholder {
-					color: transparent;
-				}
-			}
-		}
+        button {
+            display: block;
+            margin: rem-calc(12 0 12) auto;
 
-		button {
-			display: block;
-			margin: 0.75em 0 0.75em auto;
+            @include button;
+        }
 
-			@include button;
-		}
+        .logerror {
+            background-color: #ff0102;
+            font-weight: bold;
+            color: white;
+            padding: rem-calc(4 12);
+            margin-top: rem-calc(16);
+            text-align: center;
 
-		.logerror {
-			background-color: #ff0102;
-			font-weight: bold;
-			color: white;
-			padding: 0.1rem 0.7rem;
-			border-radius: 3px;
-			margin-top: 1em;
-			text-align: center;
-			// font-size: 0.6em;
-		}
+            @include border-radius(3);
+        }
 
-		.loadingmsg {
-			background-color: green;
-			font-weight: bold;
-			color: white;
-			padding: 0.3rem 0.7rem;
-			border-radius: 10px;
-			margin-bottom: 1rem;
-		}
-	}
+        .loadingmsg {
+            background-color: green;
+            font-weight: bold;
+            color: white;
+            padding: rem-calc(4 12);
+            margin-bottom: rem-calc(16);
+
+            @include border-radius(10);
+        }
+    }
 }
