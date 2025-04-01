@@ -23,13 +23,7 @@
     }
 
     > img {
-        position: absolute;
-        right: 0;
-        max-width: rem-calc(250);
-        z-index: -1;
-        top: 0;
-        height: auto;
-        opacity: 0.375;
+        @extend %page-bg;
     }
 
     &-container {
@@ -108,8 +102,8 @@
         font-weight: 600;
         margin: 0;
         padding: rem-calc(16 0);
-        transition: color 0.3s;
 
+        @include smooth-trans;
         @include fluid-type(18, 20);
 
         &:hover {

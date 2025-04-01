@@ -1,0 +1,45 @@
+@use "functions" as *;
+@use "mediaqueries" as *;
+@use "colors" as *;
+@use "utils" as *;
+
+// pages
+
+%page-bg {
+    position: absolute;
+    right: 0;
+    max-width: rem-calc(250);
+    z-index: -1;
+    top: 0;
+    height: auto;
+    opacity: 0.25;
+}
+
+// login
+
+%login-button {
+    font-weight: bold;
+    font-size: rem-calc(12);
+    padding: rem-calc(10);
+    max-width: rem-calc(200);
+    width: 100%;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: auto;
+    color: $black-color;
+
+    @include mobile {
+        max-width: rem-calc(250);
+    }
+
+    &:hover {
+        transform: scale(1.025);
+    }
+}
+
+%login-text {
+    font-weight: 500;
+    line-height: 1.7;
+
+    @include fluid-type(14, 15);
+}

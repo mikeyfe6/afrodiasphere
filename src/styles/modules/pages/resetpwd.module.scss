@@ -19,13 +19,7 @@
     }
 
     > img {
-        position: absolute;
-        right: 0;
-        max-width: rem-calc(250);
-        z-index: -1;
-        top: 0;
-        height: auto;
-        opacity: 0.375;
+        @extend %page-bg;
     }
 
     &-form {

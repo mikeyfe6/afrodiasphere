@@ -28,14 +28,11 @@ button {
     line-height: 1.6;
 }
 
-input {
-    font-family: $poppins;
-    width: 100%;
-}
-
 input,
 textarea,
 select {
+    width: 100%;
+
     &::placeholder {
         color: rgba(255 255 255 / 50%);
 

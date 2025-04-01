@@ -118,11 +118,13 @@ const LoginPage = () => {
 
     return (
         <section className={styles.login}>
-            <h1>Log in / Registeer</h1>
-            <img src={mamaAfrica} alt="" />
+            <div>
+                <h1>Log in / Registeer</h1>
+                <img src={mamaAfrica} alt="" />
+            </div>
 
-            <div className={styles.superContainer}>
-                <div className={styles.container} id="ads-form">
+            <div className={styles.loginContainer}>
+                <div className={styles.loginWrapper} id="ads-form">
                     <div
                         className={`${styles.formContainer} ${styles.signUpContainer}`}
                     >
@@ -174,7 +176,7 @@ const LoginPage = () => {
                         className={`${styles.formContainer} ${styles.signInContainer}`}
                     >
                         <form onSubmit={handleSubmitLogin} noValidate>
-                            <h3>Inloggen</h3>
+                            <h3>Log In</h3>
                             <span>.. met jouw ADS-profiel</span>
                             <input
                                 ref={usernameRef}
@@ -216,15 +218,15 @@ const LoginPage = () => {
                             <div
                                 className={`${styles.overlayPanel} ${styles.overlayLeft}`}
                             >
-                                <h2 className={styles.overlayTitle}>Welkom</h2>
+                                <h3 className={styles.overlayTitle}>Welkom</h3>
                                 <p className={styles.overlayText}>
-                                    <b>Hi!</b> Join the movement! <br />
-                                    <br /> Registreer hier jouw eigen
-                                    "ADS-profiel" en voeg jouw bedrijf binnen
-                                    no-time toe aan het
-                                    Afrodiasphere-netwerkendomein. <br />
-                                    <br />
-                                    Al een profiel?{" "}
+                                    <b>Join the movement!</b>
+                                    <span>
+                                        Creëer hier jouw eigen "ADS-profiel" en
+                                        voeg jouw bedrijf binnen no-time toe aan
+                                        het Afrodiasphere-netwerkendomein.
+                                    </span>
+                                    <span> Al een profiel?</span>
                                     <strong>Klik hieronder..</strong>
                                 </p>
 
@@ -243,15 +245,19 @@ const LoginPage = () => {
                                     Welkom Terug
                                 </h2>
                                 <p className={styles.overlayText}>
-                                    Maak optimaal gebruik van de webapp! <br />
-                                    <br />
-                                    Deze kan je downloaden en plaatsen op het
-                                    beginscherm van jouw favoriete toestel. Zo
-                                    blijf je altijd up-to-date met de nieuwste
-                                    ontwikkelingen.
-                                    <br />
-                                    <br />
-                                    Nog <u>geen</u> profiel?{" "}
+                                    <span>
+                                        Maak optimaal gebruik van de webapp!
+                                    </span>
+                                    <span>
+                                        {" "}
+                                        Deze kan je downloaden en plaatsen op
+                                        het beginscherm van jouw favoriete
+                                        toestel. Zo blijf je altijd up-to-date
+                                        met de nieuwste ontwikkelingen.
+                                    </span>
+                                    <span>
+                                        Nog <u>geen</u> profiel?{" "}
+                                    </span>
                                     <strong>Klik hieronder..</strong>
                                 </p>
 

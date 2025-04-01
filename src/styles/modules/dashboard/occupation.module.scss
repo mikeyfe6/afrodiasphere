@@ -47,8 +47,9 @@
                         border-right: 0.375em solid transparent;
                         border-top: 0.375em solid $primary-color;
                         margin-left: rem-calc(12);
-                        transition: transform 0.3s;
                         vertical-align: 3px;
+
+                        @include smooth-trans;
                     }
                 }
 

@@ -48,8 +48,8 @@
         cursor: pointer;
 
         img {
-            width: rem-calc(50);
-            height: rem-calc(50);
+            width: rem-calc(40);
+            height: rem-calc(40);
             object-fit: cover;
             background: linear-gradient(
                 135deg,
@@ -129,10 +129,11 @@
             display: flex;
             justify-content: space-between;
             flex-direction: column-reverse;
+            gap: rem-calc(16);
 
             @include box-shadow;
 
-            @include mobile {
+            @include phablet {
                 padding: rem-calc(24 32 32);
                 flex-direction: row;
 
@@ -174,7 +175,7 @@
 
                     > p {
                         color: color.adjust($white-color, $lightness: -25%);
-                        max-width: 70ch;
+                        max-width: 52ch;
                         margin: rem-calc(8 0);
                     }
 
@@ -182,7 +183,7 @@
                         display: none;
                         gap: rem-calc(24);
 
-                        @include mobile {
+                        @include phablet {
                             display: flex;
                         }
 
@@ -214,7 +215,7 @@
                         margin-top: rem-calc(28);
                         margin-left: auto;
 
-                        @include mobile {
+                        @include phablet {
                             margin-left: unset;
                         }
 
@@ -235,7 +236,7 @@
                     justify-content: flex-start;
                     align-items: flex-start;
 
-                    @include mobile {
+                    @include phablet {
                         justify-content: center;
                     }
 
@@ -247,14 +248,18 @@
                     &:has(img) {
                         align-items: center;
                         margin-bottom: rem-calc(24);
+
+                        @include phablet {
+                            margin-bottom: 0;
+                        }
                     }
 
                     .info-contact-mobile {
                         display: flex;
                         gap: rem-calc(16);
-                        margin-bottom: rem-calc(24);
+                        margin-bottom: rem-calc(18);
 
-                        @include mobile {
+                        @include phablet {
                             display: none;
                         }
 
@@ -277,7 +282,6 @@
                         @include border-radius;
 
                         @include mobile {
-                            display: block;
                             width: rem-calc(125);
                             height: rem-calc(125);
                         }

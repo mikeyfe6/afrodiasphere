@@ -2,7 +2,6 @@
 
 .grid-container {
     display: grid;
-    max-width: rem-calc(1920);
     gap: rem-calc(16);
     min-height: calc(100vh - 290px);
     grid-template-columns: 1fr;
@@ -13,7 +12,7 @@
         "Preview"
         "Slug";
 
-    @include dash-card(0 auto, rem-calc(16), false);
+    @include container(rem-calc(16), rem-calc(16), rem-calc(1920));
 
     @include phablet {
         grid-template-columns: repeat(2, 1fr);
@@ -67,8 +66,6 @@
 // SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR  <--------------------------------------------------------------------------------> SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR SIDEBAR
 .sidebar {
     grid-area: Sidebar;
-    border: 3px solid $primary-color;
-    background-color: $trans-color;
     display: flex;
     align-items: center;
 
@@ -84,8 +81,6 @@
 // PREVIEW PREVIEW PREVIEW PREVIEW PREVIEW PREVIEW  <--------------------------------------------------------------------------------> PREVIEW PREVIEW PREVIEW PREVIEW PREVIEW PREVIEW
 .preview {
     grid-area: Preview;
-    background-color: $trans-color;
-    border: 3px solid $primary-color;
     display: flex;
     justify-content: center;
 
@@ -95,8 +90,6 @@
 // DASHBOARD DASHBOARD DASHBOARD DASHBOARD DASHBOARD DASHBOARD  <--------------------------------------------------------------------------------> DASHBOARD DASHBOARD DASHBOARD DASHBOARD DASHBOARD DASHBOARD
 .dashboard {
     grid-area: Dashboard;
-    background-color: $trans-color;
-    border: 3px solid $primary-color;
 
     @include dash-card(0, rem-calc(20));
 

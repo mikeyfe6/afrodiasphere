@@ -332,7 +332,6 @@ const DashboardPage = () => {
                     {/* PROFILE INFO ROFILE INFO PROFILE INFO PROFILE INFO <-----------------------------------------------------------> PROFILE INFO PROFILE INFO PROFILE INFO PROFILE INFO */}
 
                     <div className={styles.profileInfo}>
-                        {/* TODO: collapsing ding maken voor extra settings.. bijvoorbeeld profielsettings tonen en usersettings hiden */}
                         <Profile
                             docId={docId}
                             apiURL={apiURL}
@@ -389,7 +388,7 @@ const DashboardPage = () => {
                                     loadingData={loadingData}
                                 />
 
-                                {/* TODO: gehele delete functie nog aanpakken */}
+                                {/* TODO: gehele delete functie nog aanpakken, althans CONTROLEREN! */}
                                 <Terminate
                                     pageId={pageId}
                                     setPageId={setPageId}

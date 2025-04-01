@@ -4,7 +4,7 @@
 
 .carousel {
     margin: rem-calc(40 0);
-    padding: rem-calc(0 32);
+    padding: rem-calc(0 24);
 
     &-container {
         max-width: rem-calc(1150);
@@ -35,12 +35,17 @@
                 object-fit: cover;
                 border: 3px solid $white-color;
                 margin: rem-calc(16 0 24);
-                width: rem-calc(100);
-                height: rem-calc(100);
+                width: rem-calc(87.5);
+                height: rem-calc(87.5);
 
                 @include border-radius(50%);
 
                 @include mobile {
+                    width: rem-calc(100);
+                    height: rem-calc(100);
+                }
+
+                @include tablet {
                     width: rem-calc(112.5);
                     height: rem-calc(112.5);
                 }
