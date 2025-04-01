@@ -61,14 +61,15 @@ const LoginPage = () => {
                 password: passwordRef.current.value,
             });
 
-            setUser(data);
-            setLoading("Aan het laden");
             setLoginError(null);
+            setLoading("Aan het laden");
+            setUser(data);
             navigate("/dashboard/");
         } catch (error) {
             console.error("Login error:", error);
+
             setLoading(null);
-            setLoginError("Verkeerde invoer, probeer 't opnieuw");
+            setLoginError("Inlogfout, probeer 't opnieuw");
             setTimeout(() => setLoginError(null), 5000);
         }
     };
@@ -92,6 +93,9 @@ const LoginPage = () => {
                 }
             );
 
+            setRegisterError(null);
+            setLoading("Aan het laden");
+
             setUser(data);
 
             if (process.env.NODE_ENV === "production") {
@@ -101,13 +105,12 @@ const LoginPage = () => {
             }
 
             console.log("Welkom bij Afrodiasphere!");
-            setLoading("Aan het laden");
-            setRegisterError(null);
+
             navigate("/dashboard/");
         } catch (error) {
             console.error("Login error:", error);
             setLoading(null);
-            setRegisterError("Verkeerde invoer, probeer 't opnieuw");
+            setRegisterError("Registratie mislukt, probeer 't opnieuw");
             setTimeout(() => setRegisterError(null), 5000);
         }
     };
@@ -196,8 +199,10 @@ const LoginPage = () => {
                                 autoCapitalize="none"
                                 required
                             />
+
                             {loginError && <ErrorMessage text={loginError} />}
                             {loading && <LoadingMessage text={loading} />}
+
                             <Link
                                 to="/wachtwoord-vergeten/"
                                 className={styles.forgetLink}
@@ -216,21 +221,24 @@ const LoginPage = () => {
                             <div
                                 className={`${styles.overlayPanel} ${styles.overlayLeft}`}
                             >
-                                <h3 className={styles.overlayTitle}>Welkom</h3>
+                                <h3 className={styles.overlayTitle}>
+                                    Join the movement!
+                                </h3>
                                 <p className={styles.overlayText}>
-                                    <b>Join the movement!</b>
+                                    {/* <b>Join the movement!</b> */}
                                     <span>
                                         Creëer hier jouw eigen "ADS-profiel" en
                                         voeg jouw bedrijf binnen no-time toe aan
                                         het Afrodiasphere-netwerkendomein.
                                     </span>
-                                    <span> Al een profiel?</span>
+                                    <span>
+                                        <u>Al</u> een profiel?
+                                    </span>
                                     <strong>Klik hieronder..</strong>
                                 </p>
 
                                 <button
                                     onClick={signInHandler}
-                                    className={styles.mirror}
                                     title="Open tablad voor inloggen"
                                 >
                                     Naar 'Inloggen'
@@ -239,9 +247,7 @@ const LoginPage = () => {
                             <div
                                 className={`${styles.overlayPanel} ${styles.overlayRight}`}
                             >
-                                <h2 className={styles.overlayTitle}>
-                                    Welkom Terug
-                                </h2>
+                                <h2 className={styles.overlayTitle}>Welkom</h2>
                                 <p className={styles.overlayText}>
                                     <span>
                                         Maak optimaal gebruik van de webapp!
@@ -260,7 +266,6 @@ const LoginPage = () => {
                                 </p>
 
                                 <button
-                                    className={styles.mirror}
                                     onClick={signUpHandler}
                                     title="Open tablad voor registreren"
                                 >

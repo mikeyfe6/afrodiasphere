@@ -25,7 +25,6 @@
     width: 100%;
     letter-spacing: 1px;
     text-transform: uppercase;
-    margin-top: auto;
     color: $black-color;
 
     @include mobile {
@@ -41,5 +40,5 @@
     font-weight: 500;
     line-height: 1.7;
 
-    @include fluid-type(14, 15);
+    @include fluid-type(13.5, 15);
 }

@@ -6,7 +6,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    // gap: rem-calc(32);
 
     @include mobile {
         gap: rem-calc(48);
@@ -60,7 +59,7 @@
                     text-align: center;
                     transition: all 0.25s ease;
                     position: relative;
-                    padding: rem-calc(24 16);
+                    padding: rem-calc(32 16 16);
 
                     @include mobile {
                         padding: rem-calc(48 32 36);
@@ -105,7 +104,8 @@
                         text-decoration: none;
 
                         &.forget-link {
-                            margin-top: rem-calc(12);
+                            margin-top: auto;
+                            margin-bottom: rem-calc(12);
                             text-decoration: underline;
                             text-underline-offset: 3px;
                             text-decoration-color: $white-color;
@@ -113,11 +113,11 @@
                             @extend %login-text;
 
                             @include mobile {
-                                margin-top: rem-calc(8);
+                                margin-top: auto;
                             }
 
                             &:hover {
-                                text-decoration-color: $white-color;
+                                text-decoration-color: $secondary-color;
                             }
                         }
                     }
@@ -135,13 +135,13 @@
 
                     .error,
                     .loading {
-                        padding: rem-calc(4 12);
+                        padding: rem-calc(4 8);
                         font-weight: bold;
                         text-align: center;
                         color: white;
 
-                        @include border-radius(3, false);
-                        @include fluid-type(10, 14);
+                        @include border-radius(5, false);
+                        @include fluid-type(9, 14);
                     }
 
                     .error {
@@ -150,8 +150,6 @@
 
                     .loading {
                         background-color: $success-color;
-
-                        @include border-radius(10);
                     }
                 }
 
@@ -168,7 +166,7 @@
                     background: $primary-color;
 
                     h3 {
-                        @include fluid-type(18, 20);
+                        @include fluid-type(18, 22);
                     }
 
                     span {
@@ -181,6 +179,10 @@
                         @include mobile {
                             gap: rem-calc(18);
                         }
+                    }
+
+                    button {
+                        margin-top: auto;
                     }
                 }
 
@@ -255,7 +257,7 @@
             &-title {
                 font-weight: bold;
 
-                @include fluid-type(20, 32);
+                @include fluid-type(20, 24);
             }
 
             &-text {
@@ -289,7 +291,7 @@
                 text-align: center;
                 transform: translateX(0);
                 transition: transform 0.25s ease-in-out;
-                padding: rem-calc(24 16);
+                padding: rem-calc(32 16 16);
                 gap: rem-calc(16);
 
                 @include mobile {
@@ -297,9 +299,10 @@
                     gap: rem-calc(32);
                 }
 
-                > button.mirror {
+                > button {
                     background: transparent;
                     border: 2px solid $primary-color;
+                    margin-top: auto;
 
                     @extend %login-button;
                 }
