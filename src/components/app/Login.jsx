@@ -14,7 +14,7 @@ const apiURL = process.env.GATSBY_BACKEND_URL;
 
 const ErrorMessage = ({ text }) => {
     return (
-        <div className={styles.logerror}>
+        <div className={styles.error}>
             <span>{text}</span>
         </div>
     );
@@ -22,14 +22,15 @@ const ErrorMessage = ({ text }) => {
 
 const LoadingMessage = ({ text }) => {
     return (
-        <div className={styles.loadingmsg}>
+        <div className={styles.loading}>
             <span>{text}</span>
         </div>
     );
 };
 
 const LoginPage = () => {
-    const [error, setError] = useState(null);
+    const [loginError, setLoginError] = useState(null);
+    const [registerError, setRegisterError] = useState(null);
     const [loading, setLoading] = useState(null);
 
     const usernameRef = useRef(null);
@@ -62,23 +63,17 @@ const LoginPage = () => {
 
             setUser(data);
             setLoading("Aan het laden");
-            setError(null);
+            setLoginError(null);
             navigate("/dashboard/");
         } catch (error) {
             console.error("Login error:", error);
-
             setLoading(null);
-            setError("Verkeerde invoer, probeer 't opnieuw");
-
-            const errorMessage = error.response?.data?.message;
-
-            if (errorMessage) {
-                setError(errorMessage);
-            }
-
-            setTimeout(() => setError(null), 5000);
+            setLoginError("Verkeerde invoer, probeer 't opnieuw");
+            setTimeout(() => setLoginError(null), 5000);
         }
     };
+
+    console.log("Login Error:", loginError);
 
     const handleSubmitRegister = async (e) => {
         e.preventDefault();
@@ -107,12 +102,13 @@ const LoginPage = () => {
 
             console.log("Welkom bij Afrodiasphere!");
             setLoading("Aan het laden");
-            setError(null);
+            setRegisterError(null);
             navigate("/dashboard/");
-        } catch {
+        } catch (error) {
+            console.error("Login error:", error);
             setLoading(null);
-            setError("Verkeerde invoer, probeer 't opnieuw");
-            setTimeout(() => setError(null), 5000);
+            setRegisterError("Verkeerde invoer, probeer 't opnieuw");
+            setTimeout(() => setRegisterError(null), 5000);
         }
     };
 
@@ -165,7 +161,9 @@ const LoginPage = () => {
                                 autoCapitalize="none"
                             />
 
-                            {error && <ErrorMessage text={error} />}
+                            {registerError && (
+                                <ErrorMessage text={registerError} />
+                            )}
                             {loading && <LoadingMessage text={loading} />}
                             <button type="submit" title="Registreer">
                                 Registeer
@@ -198,7 +196,7 @@ const LoginPage = () => {
                                 autoCapitalize="none"
                                 required
                             />
-                            {error && <ErrorMessage text={error} />}
+                            {loginError && <ErrorMessage text={loginError} />}
                             {loading && <LoadingMessage text={loading} />}
                             <Link
                                 to="/wachtwoord-vergeten/"

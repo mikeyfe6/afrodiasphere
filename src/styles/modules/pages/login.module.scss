@@ -63,26 +63,26 @@
                     padding: rem-calc(24 16);
 
                     @include mobile {
-                        padding: rem-calc(48 32);
+                        padding: rem-calc(48 32 36);
                     }
 
-                    h3 {
+                    > h3 {
                         font-weight: bold;
                     }
 
-                    span {
+                    > span {
                         @extend %login-text;
                     }
 
                     input {
                         background: #eee;
                         border: none;
-                        padding: rem-calc(9 14);
+                        padding: rem-calc(8 14);
 
                         @include border-radius(3);
                         @include box-shadow;
 
-                        @include mobile {
+                        @include phablet {
                             padding: rem-calc(10 15);
                         }
 
@@ -133,23 +133,23 @@
                         }
                     }
 
-                    .logerror {
-                        background-color: #ff0102;
-                        font-weight: bold;
-                        color: white;
+                    .error,
+                    .loading {
                         padding: rem-calc(4 12);
-                        margin-top: rem-calc(16);
+                        font-weight: bold;
                         text-align: center;
+                        color: white;
 
-                        @include border-radius(3);
+                        @include border-radius(3, false);
+                        @include fluid-type(10, 14);
                     }
 
-                    .loadingmsg {
-                        background-color: green;
-                        font-weight: bold;
-                        color: white;
-                        padding: rem-calc(4 12);
-                        margin-bottom: rem-calc(16);
+                    .error {
+                        background-color: $error-color;
+                    }
+
+                    .loading {
+                        background-color: $success-color;
 
                         @include border-radius(10);
                     }
@@ -179,7 +179,7 @@
                         gap: rem-calc(16);
 
                         @include mobile {
-                            gap: rem-calc(20);
+                            gap: rem-calc(18);
                         }
                     }
                 }
@@ -204,7 +204,7 @@
                         gap: rem-calc(16);
 
                         @include mobile {
-                            gap: rem-calc(20);
+                            gap: rem-calc(18);
                         }
                     }
                 }
@@ -293,7 +293,7 @@
                 gap: rem-calc(16);
 
                 @include mobile {
-                    padding: rem-calc(48 32);
+                    padding: rem-calc(48 32 36);
                     gap: rem-calc(32);
                 }
 
