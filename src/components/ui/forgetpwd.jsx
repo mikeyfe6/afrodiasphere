@@ -10,7 +10,7 @@ const apiURL = process.env.GATSBY_BACKEND_URL;
 
 const ErrorMessage = ({ text }) => {
     return (
-        <div className={styles.logerror}>
+        <div className={styles.error}>
             <span>{text}</span>
         </div>
     );
@@ -18,7 +18,7 @@ const ErrorMessage = ({ text }) => {
 
 const LoadingMessage = ({ text }) => {
     return (
-        <div className={styles.loadingmsg}>
+        <div className={styles.loading}>
             <span>{text}</span>
         </div>
     );
@@ -40,6 +40,7 @@ const ForgetPwd = () => {
             setLoading("Aan het laden");
             setError(null);
             navigate("/wachtwoord-reset/");
+            // TODO: pagina maken voor wachtwoord reset
         } catch {
             setLoading(null);
             setError("Verkeerde invoer, probeer 't opnieuw");
@@ -49,15 +50,17 @@ const ForgetPwd = () => {
 
     return (
         <form onSubmit={handleSubmitRegister} className={styles.forgetPwdForm}>
-            <input
-                ref={emailResetRef}
-                type="email"
-                name="emailRes"
-                placeholder="info@voorbeeld.nl"
-                style={{ textTransform: "lowercase" }}
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-            />
-            <button type="submit">Verstuur</button>
+            <fieldset>
+                <input
+                    ref={emailResetRef}
+                    type="email"
+                    name="emailRes"
+                    placeholder="info@voorbeeld.nl"
+                    style={{ textTransform: "lowercase" }}
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                />
+                <button type="submit">Verstuur</button>
+            </fieldset>
 
             {error && <ErrorMessage text={error} />}
             {loading && <LoadingMessage text={loading} />}

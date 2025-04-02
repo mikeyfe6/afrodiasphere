@@ -11,13 +11,13 @@ import * as styles from "../../styles/modules/pages/resetpwd.module.scss";
 const apiURL = process.env.GATSBY_BACKEND_URL;
 
 const ErrorMessage = ({ text }) => (
-    <div className={styles.logerror}>
+    <div className={styles.error}>
         <span>{text}</span>
     </div>
 );
 
 const LoadingMessage = ({ text }) => (
-    <div className={styles.loadingmsg}>
+    <div className={styles.loading}>
         <span>{text}</span>
     </div>
 );
@@ -61,34 +61,37 @@ const ResetPwd = () => {
 
     return (
         <form onSubmit={handleSubmitRegister} className={styles.resetPwdForm}>
-            <input
-                ref={codeRef}
-                type="text"
-                name="code"
-                placeholder="Verificatiecode"
-                value={resetCode || ""}
-                readOnly
-            />
-            <br />
-            <input
-                ref={passwordResetRef}
-                size="35"
-                type="password"
-                name="password"
-                placeholder="Voer een nieuw wachtwoord in"
-                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                autoComplete="new-password"
-                title="Moet op z'n minst 1 nummer, 1 hoofdletter, 1 klein letter en 8 karakters lang zijn."
-            />
-            <br />
-            <input
-                ref={confPasswordResetRef}
-                size="35"
-                type="password"
-                name="confirmpassword"
-                placeholder="Voer jouw nieuwe wachtwoord opnieuw in"
-            />
-            <button type="submit">Verstuur</button>
+            <fieldset>
+                <input
+                    ref={codeRef}
+                    type="text"
+                    name="code"
+                    placeholder="Verificatiecode"
+                    value={resetCode || ""}
+                    readOnly
+                />
+                <br />
+                <input
+                    ref={passwordResetRef}
+                    size="35"
+                    type="password"
+                    name="password"
+                    placeholder="Voer een nieuw wachtwoord in"
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    autoComplete="new-password"
+                    title="Moet op z'n minst 1 nummer, 1 hoofdletter, 1 klein letter en 8 karakters lang zijn."
+                />
+                <br />
+                <input
+                    ref={confPasswordResetRef}
+                    size="35"
+                    type="password"
+                    name="confirmpassword"
+                    placeholder="Voer jouw nieuwe wachtwoord opnieuw in"
+                />
+                <button type="submit">Verstuur</button>
+            </fieldset>
+
             {error && <ErrorMessage text={error} />}
             {loading && <LoadingMessage text={loading} />}
         </form>

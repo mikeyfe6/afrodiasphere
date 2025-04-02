@@ -2,8 +2,13 @@ import * as React from "react";
 
 import * as spinnerStyles from "../../styles/modules/ui/spinner.module.scss";
 
-const Spinner = () => (
-    <div className={spinnerStyles.spinner} id="spinner">
+const Spinner = ({ type }) => (
+    <div
+        className={spinnerStyles.spinner}
+        id="spinner"
+        role="status"
+        data-type={type}
+    >
         <span className={spinnerStyles.spinnerCircle} />
     </div>
 );

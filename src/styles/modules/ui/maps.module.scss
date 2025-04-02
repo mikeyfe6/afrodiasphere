@@ -148,6 +148,11 @@
 
                     > h3 {
                         color: $primary-color;
+                        display: flex;
+                        align-items: center;
+                        flex-wrap: wrap;
+                        gap: rem-calc(4 8);
+                        margin-bottom: rem-calc(8);
 
                         span {
                             color: $secondary-color;

@@ -23,60 +23,36 @@
     }
 
     &-form {
-        display: flex;
-        align-items: center;
-        gap: rem-calc(16);
+        > fieldset {
+            display: flex;
+            align-items: center;
+            gap: rem-calc(16);
 
-        input {
-            background: #eee;
-            border: none;
-            padding: rem-calc(10 15);
-            margin: rem-calc(10 0);
-            color: $black-color;
-
-            @include border-radius(3);
-
-            &::placeholder {
-                font-size: rem-calc(15);
-                color: $third-color;
+            > input {
+                @extend %page-input;
             }
 
-            &:focus {
-                &::placeholder {
-                    color: transparent;
+            > button {
+                margin-left: auto;
+
+                @include button;
+
+                @include mobile {
+                    margin-left: unset;
                 }
             }
         }
 
-        button {
-            margin-left: auto;
+        .error {
+            background-color: $error-color;
 
-            @include button;
-
-            @include mobile {
-                margin-left: unset;
-            }
+            @extend %page-log;
         }
 
-        .logerror {
-            background-color: #ff0102;
-            font-weight: bold;
-            color: white;
-            padding: rem-calc(4 12);
-            margin-top: rem-calc(16);
-            text-align: center;
+        .loading {
+            background-color: $success-color;
 
-            @include border-radius(3);
-        }
-
-        .loadingmsg {
-            background-color: green;
-            font-weight: bold;
-            color: white;
-            padding: rem-calc(4 12);
-            margin-bottom: rem-calc(16);
-
-            @include border-radius(10);
+            @extend %page-log;
         }
     }
 }

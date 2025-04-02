@@ -118,7 +118,7 @@ const LoginPage = () => {
     return (
         <section className={styles.login}>
             <div>
-                <h1>Log in / Registeer</h1>
+                <h1>Log in / Registreer</h1>
                 <img src={mamaAfrica} alt="" />
             </div>
 
@@ -169,7 +169,7 @@ const LoginPage = () => {
                             )}
                             {loading && <LoadingMessage text={loading} />}
                             <button type="submit" title="Registreer">
-                                Registeer
+                                Registreer
                             </button>
                         </form>
                     </div>

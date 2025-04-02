@@ -12,12 +12,15 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/autoplay";
 
+import Spinner from "./spinner";
+
 import noavatar from "../../images/noavatar.png";
 
 import * as styles from "../../styles/modules/ui/slider.module.scss";
 
 const Slider = () => {
     const [carousel, setCarousel] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const location = useLocation();
 
@@ -32,6 +35,7 @@ const Slider = () => {
                 );
 
                 setCarousel(res.data.data);
+                setLoading(false);
             } catch (error) {
                 console.error("Error fetching carousel data:", error);
             }
@@ -56,42 +60,46 @@ const Slider = () => {
                 }}
             >
                 {carousel?.map((ads) => (
-                    <SwiperSlide
-                        key={ads.id}
-                        // className={`theme-${color}-links`}
-                        className={styles.carouselSlide}
-                    >
+                    <SwiperSlide key={ads.id} className={styles.carouselSlide}>
                         <div>
-                            <img
-                                src={
-                                    !ads.avatar?.url
-                                        ? noavatar
-                                        : ads.avatar?.url
-                                }
-                                className={styles.avatar}
-                                alt={ads.profile}
-                            />
-                            <div className={styles.profile}>{ads.profile}</div>
-                            <div className={styles.occupate}>
-                                {ads.occupation || ".."}
-                            </div>
-                            <div className={styles.biography}>
-                                <p
-                                    dangerouslySetInnerHTML={{
-                                        __html: ads.biography,
-                                    }}
-                                />
-                            </div>
-                            <div className={styles.url}>
-                                <Link
-                                    to={`/${ads.slug}/`}
-                                    title={`${baseURL}/${ads.slug}/`}
-                                >
-                                    <span>・</span>
-                                    <span>/</span>
-                                    <span>{`${ads.slug ?? ".."}`}</span>
-                                </Link>
-                            </div>
+                            {loading ? (
+                                <Spinner type={"slide"} />
+                            ) : (
+                                <>
+                                    <img
+                                        src={
+                                            !ads.avatar?.url
+                                                ? noavatar
+                                                : ads.avatar?.url
+                                        }
+                                        className={styles.avatar}
+                                        alt={ads.profile}
+                                    />
+                                    <div className={styles.profile}>
+                                        {ads.profile}
+                                    </div>
+                                    <div className={styles.occupate}>
+                                        {ads.occupation || ".."}
+                                    </div>
+                                    <div className={styles.biography}>
+                                        <p
+                                            dangerouslySetInnerHTML={{
+                                                __html: ads.biography,
+                                            }}
+                                        />
+                                    </div>
+                                    <div className={styles.url}>
+                                        <Link
+                                            to={`/${ads.slug}/`}
+                                            title={`${baseURL}/${ads.slug}/`}
+                                        >
+                                            <span>・</span>
+                                            <span>/</span>
+                                            <span>{`${ads.slug ?? ".."}`}</span>
+                                        </Link>
+                                    </div>
+                                </>
+                            )}
                         </div>
                     </SwiperSlide>
                 ))}

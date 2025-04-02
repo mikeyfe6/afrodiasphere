@@ -138,10 +138,10 @@
                         padding: rem-calc(4 8);
                         font-weight: bold;
                         text-align: center;
-                        color: white;
+                        color: $white-color;
 
                         @include border-radius(5, false);
-                        @include fluid-type(9, 14);
+                        @include fluid-type(9, 13);
                     }
 
                     .error {
@@ -206,7 +206,7 @@
                         gap: rem-calc(16);
 
                         @include mobile {
-                            gap: rem-calc(18);
+                            gap: rem-calc(20);
                         }
                     }
                 }

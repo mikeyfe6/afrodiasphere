@@ -1,5 +1,6 @@
 @use "functions" as *;
 @use "mediaqueries" as *;
+@use "mixins" as *;
 @use "colors" as *;
 @use "utils" as *;
 
@@ -13,6 +14,17 @@
     top: 0;
     height: auto;
     opacity: 0.25;
+}
+
+%page-log {
+    color: $white-color;
+    padding: rem-calc(4 12);
+    margin-top: rem-calc(16);
+    font-weight: bold;
+    text-align: center;
+
+    @include border-radius(3);
+    @include fluid-type(12, 14);
 }
 
 // login
@@ -41,4 +53,27 @@
     line-height: 1.7;
 
     @include fluid-type(13.5, 15);
+}
+
+// forms
+
+%page-input {
+    background: #eee;
+    border: none;
+    padding: rem-calc(10 15);
+    margin: rem-calc(10 0);
+    color: $black-color;
+
+    @include border-radius(3);
+
+    &::placeholder {
+        font-size: rem-calc(15);
+        color: $third-color;
+    }
+
+    &:focus {
+        &::placeholder {
+            color: transparent;
+        }
+    }
 }
