@@ -34,12 +34,13 @@
                 0 10px 10px rgba(0 0 0 / 22%);
             position: relative;
             width: rem-calc(768);
-            min-height: rem-calc(512);
+            min-height: rem-calc(496);
             border-top: 2px solid $white-color;
             border-bottom: 2px solid $white-color;
 
             @include mobile {
                 border: 2px solid $white-color;
+                min-height: rem-calc(512);
 
                 @include border-radius(10);
             }
@@ -59,7 +60,7 @@
                     text-align: center;
                     transition: all 0.25s ease;
                     position: relative;
-                    padding: rem-calc(32 16 16);
+                    padding: rem-calc(24 16 16);
 
                     @include mobile {
                         padding: rem-calc(48 32 36);
@@ -291,7 +292,7 @@
                 text-align: center;
                 transform: translateX(0);
                 transition: transform 0.25s ease-in-out;
-                padding: rem-calc(32 16 16);
+                padding: rem-calc(24 16 16);
                 gap: rem-calc(16);
 
                 @include mobile {

@@ -130,8 +130,8 @@ const LoginPage = () => {
                         <form onSubmit={handleSubmitRegister} noValidate>
                             <h3>Maak een ADS-profiel aan</h3>
                             <span>
-                                voer hieronder jouw e-mailadres in, kies een
-                                gebruikersnaam en een wachtwoord
+                                voer jouw e-mailadres in en kies een
+                                gebruikersnaam & wachtwoord
                             </span>
                             <input
                                 ref={usernameRegRef}
