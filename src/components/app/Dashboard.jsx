@@ -287,11 +287,20 @@ const DashboardPage = () => {
         const isInputFocused = document.activeElement?.tagName === "INPUT";
 
         for (const link of Object.values(smLinks)) {
-            if (link.trim() !== "" || isInputFocused) {
-                return false;
+            if (link.trim().length === 1) {
+                return true;
             }
         }
-        return true;
+
+        const allLinksEmpty = Object.values(smLinks).every(
+            (link) => link.trim() === ""
+        );
+
+        if (allLinksEmpty && !isInputFocused) {
+            return true;
+        }
+
+        return false;
     };
 
     return (
@@ -518,6 +527,7 @@ const DashboardPage = () => {
                         fbLink={fbLink}
                         setFbLink={setFbLink}
                         handleSmLinkChange={handleSmLinkChange}
+                        setSocialError={setSocialError}
                         loadingData={loadingData}
                     />
 
