@@ -217,13 +217,14 @@
 }
 
 @mixin page-links {
-    margin: auto 0 rem-calc(48);
+    margin: rem-calc(16 0 24);
     display: flex;
     flex-direction: column;
     gap: rem-calc(8);
     width: 100%;
 
     @include mobile {
+        margin: rem-calc(32 0 48);
         padding: rem-calc(0 32);
     }
 
