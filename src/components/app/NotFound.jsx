@@ -12,7 +12,7 @@ const NotFound = () => {
 
                 <div>
                     <Link to="/">Home</Link>
-                    <Link to="/">Creëer een account!</Link>
+                    <Link to="/login/">Creëer een account!</Link>
                 </div>
             </div>
         </>

@@ -11,6 +11,8 @@
     }
 
     &-slide {
+        height: auto;
+
         > div {
             background: linear-gradient(
                 135deg,
@@ -24,6 +26,7 @@
             flex-direction: column;
             align-items: center;
             padding: rem-calc(16);
+            height: 100%;
 
             @include border-radius(12.5);
 
@@ -67,7 +70,7 @@
                 margin-bottom: rem-calc(28);
                 max-width: rem-calc(125);
 
-                @include border-radius(7.5, false);
+                @include border-radius(7, false);
                 @include ellipsis;
             }
 
@@ -80,7 +83,7 @@
                     color: color.adjust($white-color, $lightness: -25%);
                     padding: rem-calc(0 4);
 
-                    @include clamp(4);
+                    @include clamp(5);
                 }
             }
 
@@ -89,6 +92,7 @@
                 text-transform: lowercase;
                 max-width: 100%;
                 border: 1px solid $trans-color;
+                margin-top: auto;
 
                 > a {
                     display: block;

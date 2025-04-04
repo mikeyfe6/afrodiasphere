@@ -425,12 +425,12 @@ const Links = ({ pageId, docId, apiURL, token, links, setLinks }) => {
                                     <input
                                         title="Maak link (ont)zichtbaar"
                                         type="checkbox"
+                                        hidden
                                         id={`checkbox${link.id}`}
                                         checked={link.visible}
                                         onChange={(e) =>
                                             toggleLink(link, e.target.checked)
                                         }
-                                        hidden
                                     />
 
                                     <span

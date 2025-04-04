@@ -78,12 +78,19 @@ const Slider = () => {
                                     <div className={styles.profile}>
                                         {ads.profile}
                                     </div>
-                                    {ads.occupation &&
-                                        ads.occupation !== "geen" && (
-                                            <div className={styles.occupate}>
-                                                {ads.occupation || ".."}
-                                            </div>
-                                        )}
+
+                                    <div
+                                        className={styles.occupate}
+                                        style={{
+                                            visibility:
+                                                !ads.occupation ||
+                                                ads.occupation === "geen"
+                                                    ? "hidden"
+                                                    : "visible",
+                                        }}
+                                    >
+                                        {ads.occupation}
+                                    </div>
 
                                     <div className={styles.biography}>
                                         <p
