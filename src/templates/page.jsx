@@ -130,6 +130,7 @@ const AdsTemplate = ({ pageContext: { slug, documentId } }) => {
 
     const hasLinks = () => {
         const hasLink = links.some((link) => link.visible);
+
         return hasLink;
     };
 

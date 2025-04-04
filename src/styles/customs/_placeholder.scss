@@ -41,6 +41,19 @@
     @include fluid-type(12, 14);
 }
 
+%dashboard-link-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid transparent;
+    width: rem-calc(40);
+    height: rem-calc(40);
+    cursor: pointer;
+
+    @include smooth-trans;
+    @include border-radius(50%);
+}
+
 // login
 
 %login-button {

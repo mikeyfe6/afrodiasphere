@@ -226,7 +226,7 @@ const Links = ({ pageId, docId, apiURL, token, links, setLinks }) => {
                 <div className={styles.newLinkFields}>
                     <div className={styles.newTitle}>
                         <label htmlFor="newtitle">
-                            <h4 style={{ color: "white" }}>
+                            <h4 style={{ color: "#fcfcfc" }}>
                                 Titel<span>:</span>
                             </h4>
                         </label>
@@ -243,7 +243,7 @@ const Links = ({ pageId, docId, apiURL, token, links, setLinks }) => {
                     <hr />
                     <div className={styles.newHyperlink}>
                         <label htmlFor="newhyperlink">
-                            <h4 style={{ color: "white" }}>
+                            <h4 style={{ color: "#fcfcfc" }}>
                                 Hyperlink<span>:</span>
                             </h4>
                         </label>

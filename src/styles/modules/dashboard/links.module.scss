@@ -91,8 +91,8 @@
     gap: rem-calc(16);
     padding: rem-calc(12 16);
     color: $ash-color;
-    background: linear-gradient(145deg, white, white, white, #deceae) no-repeat
-        0 0 / cover;
+    background: linear-gradient(145deg, #fcfcfc, #fcfcfc, #fcfcfc, #deceae)
+        no-repeat 0 0 / cover;
     outline: 2px solid $primary-color;
 
     @include border-radius(10);
@@ -238,39 +238,21 @@
 
         .trash-btn {
             color: $warning-color;
-            cursor: pointer;
 
-            i {
-                border: 2px solid transparent;
-                padding: rem-calc(16 8);
+            @extend %dashboard-link-icons;
 
-                @include border-radius(50%);
-                @include smooth-trans;
-
-                &:hover {
-                    border-color: $warning-color;
-                }
+            &:hover {
+                border-color: $warning-color;
             }
         }
 
         .show-btn {
             color: $ash-color;
-            cursor: pointer;
 
-            i {
-                border: 2px solid transparent;
-                padding: rem-calc(8);
+            @extend %dashboard-link-icons;
 
-                @include border-radius(50%);
-                @include smooth-trans;
-
-                &:hover {
-                    border-color: $ash-color;
-                }
-            }
-
-            span {
-                display: flex;
+            &:hover {
+                border-color: $ash-color;
             }
         }
     }

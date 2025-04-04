@@ -8,7 +8,7 @@ const NotFoundPage = () => (
         <div style={{ margin: "2.5em" }}>
             {" "}
             <h1>404: Not Found</h1>
-            <p style={{ color: "white" }}>
+            <p style={{ color: "#fcfcfc" }}>
                 You just hit a route that doesn&#39;t exist... the sadness.
             </p>
         </div>
