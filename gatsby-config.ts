@@ -5,15 +5,19 @@ require("dotenv").config({
     path: ".env",
 });
 
+const siteMetadata = {
+    siteUrl: `https://afrodiasphere.com`,
+    title: `Afrodiasphere`,
+    author: "Michael Fransman",
+    description: `Een efficiente oplossing voor het delen van contactinformatie`,
+    image: "/ads-logo.png",
+    bgColor: "#a9a9a9",
+    themeColor: "#cc9932",
+};
+
 const config: GatsbyConfig = {
     graphqlTypegen: true,
-    siteMetadata: {
-        siteUrl: `https://afrodiasphere.com`,
-        title: `Afrodiasphere`,
-        author: "Michael Fransman",
-        description: `Een efficiente oplossing voor het delen van contactinformatie`,
-        image: "/ads-logo.png",
-    },
+    siteMetadata,
     plugins: [
         {
             resolve: "gatsby-plugin-google-tagmanager",
@@ -44,23 +48,20 @@ const config: GatsbyConfig = {
         `gatsby-plugin-image`,
         `gatsby-plugin-sharp`,
         `gatsby-transformer-sharp`,
+        `gatsby-plugin-robots-txt`,
         {
-            resolve: "gatsby-plugin-robots-txt",
+            resolve: `gatsby-plugin-sitemap`,
             options: {
-                policy: [
-                    {
-                        userAgent: "*",
-                        disallow: ["/[...]/"],
-                    },
-                    {
-                        userAgent: "*",
-                        allow: "/",
-                    },
-                ],
+                exclude: ["/[...]/"],
             },
         },
-        `gatsby-plugin-sitemap`,
         `gatsby-plugin-catch-links`,
+        {
+            resolve: "gatsby-plugin-canonical-urls",
+            options: {
+                siteUrl: siteMetadata.siteUrl,
+            },
+        },
         {
             resolve: `gatsby-plugin-sass`,
             options: {
@@ -73,13 +74,13 @@ const config: GatsbyConfig = {
         {
             resolve: `gatsby-plugin-manifest`,
             options: {
-                name: `Afrodiasphere`,
-                short_name: `Afrodiasphere`,
+                name: siteMetadata.title,
+                short_name: siteMetadata.title,
                 description: `Een veilige en duurzame oplossing voor het delen van contactinformatie`,
                 start_url: `/`,
-                background_color: `#a9a9a9`,
+                background_color: siteMetadata.bgColor,
                 lang: `nl`,
-                theme_color: `#cc9932`,
+                theme_color: siteMetadata.themeColor,
                 display: `standalone`,
                 icon: "src/images/logo/ads-icon-inverted.png",
                 icon_options: {

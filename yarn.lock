@@ -6348,6 +6348,13 @@ gatsby-parcel-config@1.14.0:
     "@parcel/transformer-js" "2.8.3"
     "@parcel/transformer-json" "2.8.3"
 
+gatsby-plugin-canonical-urls@^5.14.0:
+  version "5.14.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-canonical-urls/-/gatsby-plugin-canonical-urls-5.14.0.tgz#00795beaf3db711e9181e6d88ff053aebd6381b0"
+  integrity sha512-OOt7U5yyDYYFLreQWxzlDtbAg8e2Inmxyysdekjh0QBW0n8pBMhf6OW3qmKKDbfY8xP4wtw7qGsZsNiaywaClQ==
+  dependencies:
+    "@babel/runtime" "^7.20.13"
+
 gatsby-plugin-catch-links@^5.14.0:
   version "5.14.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-catch-links/-/gatsby-plugin-catch-links-5.14.0.tgz#424982d8834aa5f34dc4e905d3f45f0dcaa523aa"
