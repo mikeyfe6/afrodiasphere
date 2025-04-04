@@ -183,7 +183,10 @@
     min-height: 100vh;
     position: relative;
     text-align: center;
-    padding: rem-calc(80 24 240);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: rem-calc(80 24 150);
 }
 
 @mixin page-username {
@@ -214,11 +217,11 @@
 }
 
 @mixin page-links {
-    // padding: rem-calc(0 16);
     margin-bottom: rem-calc(48);
     display: flex;
     flex-direction: column;
     gap: rem-calc(8);
+    width: 100%;
 
     @include mobile {
         padding: rem-calc(0 32);
@@ -257,13 +260,16 @@
 }
 
 @mixin page-socials {
-    position: absolute;
-    left: 50%;
-    bottom: rem-calc(144);
-    transform: translateX(-50%);
     display: flex;
     justify-content: center;
-    gap: rem-calc(24);
+    gap: rem-calc(20);
+    margin-top: auto;
+    flex-wrap: wrap;
+    width: 100%;
+
+    @include mobile {
+        gap: rem-calc(24);
+    }
 
     > a {
         &:hover {
@@ -271,7 +277,7 @@
         }
 
         > i {
-            @include fluid-type(24, 32);
+            @include fluid-type(24, 28);
         }
     }
 }

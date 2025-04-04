@@ -39,8 +39,7 @@ const ForgetPwd = () => {
             });
             setLoading("Aan het laden");
             setError(null);
-            navigate("/wachtwoord-reset/");
-            // TODO: pagina maken voor wachtwoord reset
+            navigate("/success/");
         } catch {
             setLoading(null);
             setError("Verkeerde invoer, probeer 't opnieuw");

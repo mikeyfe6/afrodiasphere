@@ -68,7 +68,7 @@
 
 .theme {
     &-avatar-contact {
-        margin: 0 auto rem-calc(32);
+        margin-bottom: rem-calc(32);
         max-width: rem-calc(237.5);
         position: relative;
 
@@ -91,11 +91,11 @@
             }
 
             &-email {
-                left: 0;
+                left: rem-calc(-62.5);
             }
 
             &-telephone {
-                right: 0;
+                right: rem-calc(-62.5);
             }
         }
 
