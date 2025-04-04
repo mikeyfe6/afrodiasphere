@@ -18,7 +18,7 @@ const Instagram = ({ igLink, setIgLink, handleSmLinkChange, loadingData }) => {
                         className="fa-brands fa-instagram"
                         style={{ color: "#F81F58" }}
                     />
-                    instagram.com/
+                    <span>instagram.com/</span>
                 </label>
 
                 <input

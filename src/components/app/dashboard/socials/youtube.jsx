@@ -18,7 +18,7 @@ const Pinterest = ({ ytLink, setYtLink, handleSmLinkChange, loadingData }) => {
                         className="fa-brands fa-youtube"
                         style={{ color: "#F70001" }}
                     />
-                    youtube.com/
+                    <span>youtube.com/</span>
                 </label>
                 <input
                     id="ytlink"

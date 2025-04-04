@@ -18,7 +18,7 @@ const Twitter = ({ twLink, setTwLink, handleSmLinkChange, loadingData }) => {
                         className="fa-brands fa-x-twitter"
                         style={{ color: "#000" }}
                     />
-                    x.com/
+                    <span>x.com/</span>
                 </label>
                 <input
                     id="twlink"

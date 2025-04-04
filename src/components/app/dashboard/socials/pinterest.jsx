@@ -18,7 +18,7 @@ const Pinterest = ({ piLink, setPiLink, handleSmLinkChange, loadingData }) => {
                         className="fa-brands fa-pinterest"
                         style={{ color: "#DF0318" }}
                     />
-                    pinterest.com/
+                    <span>pinterest.com/</span>
                 </label>
                 <input
                     id="pilink"

@@ -18,7 +18,7 @@ const Patreon = ({ paLink, setPaLink, handleSmLinkChange, loadingData }) => {
                         className="fa-brands fa-patreon"
                         style={{ color: "#000000" }}
                     />
-                    patreon.com/
+                    <span>patreon.com/</span>
                 </label>
                 <input
                     id="palink"

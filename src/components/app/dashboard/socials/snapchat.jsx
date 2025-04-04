@@ -16,9 +16,9 @@ const Snapchat = ({ snLink, setSnLink, handleSmLinkChange, loadingData }) => {
                 <label htmlFor="snlink">
                     <i
                         className="fa-brands fa-snapchat"
-                        style={{ color: "#F7F401" }}
+                        style={{ color: "#F7F401", fill: "red" }}
                     />
-                    snapchat.com/
+                    <span>snapchat.com/</span>
                 </label>
                 <input
                     id="snlink"

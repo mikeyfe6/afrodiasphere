@@ -18,7 +18,7 @@ const TikTok = ({ tkLink, setTkLink, handleSmLinkChange, loadingData }) => {
                         className="fa-brands fa-tiktok"
                         style={{ color: "#4BE1EB" }}
                     />
-                    tiktok.com/
+                    <span>tiktok.com/</span>
                 </label>
                 <input
                     id="tklink"

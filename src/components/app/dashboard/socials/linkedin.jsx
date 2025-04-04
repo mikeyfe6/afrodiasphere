@@ -18,7 +18,7 @@ const Linkedin = ({ liLink, setLiLink, handleSmLinkChange, loadingData }) => {
                         className="fa-brands fa-linkedin"
                         style={{ color: "#0366C3" }}
                     />
-                    linkedin.com/
+                    <span>linkedin.com/</span>
                 </label>
                 <input
                     id="lilink"

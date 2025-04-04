@@ -8,23 +8,33 @@
 
         div {
             display: flex;
+            width: 100%;
 
             label {
-                color: $ash-color;
-                font-size: rem-calc(12);
                 background-color: $white-color;
-                padding: rem-calc(8 12);
+                padding: rem-calc(4 8 4 10);
                 display: flex;
+                gap: rem-calc(2);
                 justify-content: space-between;
                 align-items: center;
-                min-width: rem-calc(145);
+                min-width: rem-calc(135);
                 cursor: pointer;
 
-                @include border-radius(25 3 3 25);
+                @include border-radius(25 4 4 25);
                 @include box-shadow;
 
+                @include mobile {
+                    min-width: rem-calc(145);
+                }
+
                 > i {
-                    font-size: rem-calc(24);
+                    @include fluid-type(16, 18);
+                }
+
+                > span {
+                    color: $ash-color;
+
+                    @include fluid-type(11, 12);
                 }
             }
 

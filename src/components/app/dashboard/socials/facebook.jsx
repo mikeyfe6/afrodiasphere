@@ -18,7 +18,7 @@ const Facebook = ({ fbLink, setFbLink, handleSmLinkChange, loadingData }) => {
                         className="fa-brands fa-facebook-f"
                         style={{ color: "#4867AA" }}
                     />
-                    facebook.com/
+                    <span>facebook.com/</span>
                 </label>
                 <input
                     id="fblink"
