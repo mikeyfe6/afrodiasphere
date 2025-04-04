@@ -69,6 +69,7 @@
             > div {
                 display: flex;
                 margin-left: auto;
+                align-items: center;
                 gap: rem-calc(12);
 
                 &:first-child {

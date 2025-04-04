@@ -10,10 +10,4 @@
 
         @include border-radius;
     }
-
-    p {
-        margin: rem-calc(8 0);
-        font-size: rem-calc(14);
-        color: $error-color;
-    }
 }

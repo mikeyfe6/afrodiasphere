@@ -4,20 +4,27 @@ import axios from "axios";
 
 import * as styles from "../../../../styles/modules/dashboard/links.module.scss";
 
-const Links = ({
-    apiURL,
-    token,
-    setLoading,
-    setError,
-    links,
-    setLinks,
-    linkError,
-    setLinkError,
-    pageId,
-    docId,
-}) => {
+const ErrorMessage = ({ text }) => {
+    return (
+        <div className={styles.error}>
+            <span>{text}</span>
+        </div>
+    );
+};
+
+const SuccessMessage = ({ text }) => {
+    return (
+        <div className={styles.success}>
+            <span>{text}</span>
+        </div>
+    );
+};
+
+const Links = ({ pageId, docId, apiURL, token, links, setLinks }) => {
     const linkTitle = useRef(null);
     const linkUrl = useRef(null);
+    const [linkError, setLinkError] = useState(null);
+    const [linkSuccess, setLinkSuccess] = useState(null);
 
     const [editLinkTitle, setEditLinkTitle] = useState("");
     const [editLinkUrl, setEditLinkUrl] = useState("");
@@ -25,7 +32,7 @@ const Links = ({
     useEffect(() => {
         const getLinks = async () => {
             if (!docId) {
-                setLinkError("Page DocumentID is missing.");
+                console.error("Page DocumentID is missing.");
                 return;
             }
 
@@ -86,6 +93,9 @@ const Links = ({
                     ? [...links, newLink]
                     : [newLink];
                 setLinks(newLinks);
+                setLinkSuccess("Link succesvol toegevoegd.");
+                setTimeout(() => setLinkSuccess(null), 5000);
+                setLinkError(null);
             }
             linkTitle.current.value = "";
             linkUrl.current.value = "";
@@ -268,8 +278,11 @@ const Links = ({
                         Reset invoer
                     </button>
                 </div>
+            </div>
 
-                {/* {linkError && <DoThis text={linkError} />} */}
+            <div className={styles.logs}>
+                {linkError && <ErrorMessage text={linkError} />}
+                {linkSuccess && <SuccessMessage text={linkSuccess} />}
             </div>
 
             {links && links.length > 0 ? (
@@ -344,6 +357,7 @@ const Links = ({
                                             >
                                                 {link.url}
                                             </a>
+                                            <i class="fa-solid fa-square-arrow-up-right fa-xs"></i>
                                         </span>
                                         <hr />
                                         <input

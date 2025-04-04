@@ -8,15 +8,14 @@ const Biography = ({
     docId,
     apiURL,
     token,
-    setSuccess,
     biography,
     setBiography,
     loadingData,
-    setValidationMessage,
 }) => {
     const [initialValue, setInitialValue] = useState(biography);
-    const [validationError, setValidationError] = useState(null);
+    const [validationError, setValidationError] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [success, setSuccess] = useState(false);
 
     useEffect(() => {
         if (!initialValue) {
@@ -27,19 +26,17 @@ const Biography = ({
     const setBiographyHandler = (e) => {
         setBiography(e.target.value);
         setValidationError(null);
-        setValidationMessage(null);
+        setSuccess(false);
     };
 
     const validateInput = (value) => {
         if (value.length > 240) {
-            const errorMessage = "Maximaal 240 karakters";
-            setValidationError(errorMessage);
-            setValidationMessage(errorMessage);
+            setValidationError(true);
+            setSuccess(false);
             return false;
         }
 
-        setValidationError(null);
-        setValidationMessage(null);
+        setValidationError(false);
         return true;
     };
 
@@ -53,6 +50,7 @@ const Biography = ({
         setIsSubmitting(true);
 
         const params = { biography: biography };
+
         try {
             await axios.put(
                 `${apiURL}/api/pages/${docId}`,
@@ -60,7 +58,7 @@ const Biography = ({
                 { headers: { Authorization: `Bearer ${token}` } }
             );
 
-            setSuccess("Biografie succesvol geüpdatet");
+            setSuccess(true);
             setTimeout(() => setSuccess(null), 5000);
             setInitialValue(biography);
         } catch (error) {
@@ -81,14 +79,20 @@ const Biography = ({
                 value={biography || ""}
                 onChange={setBiographyHandler}
                 disabled={loadingData || isSubmitting}
-                style={{ borderColor: validationError ? "#CA231E" : "#cc9932" }}
+                style={{
+                    borderColor: validationError
+                        ? "#c60319"
+                        : success
+                        ? "#407e2b"
+                        : "#cc9932",
+                }}
             />
             <div>
                 <span
                     style={{
                         color: biography
                             ? biography.length > 240
-                                ? "#CA231E"
+                                ? "#c60319"
                                 : "#cc9932"
                             : "#cc9932",
                     }}

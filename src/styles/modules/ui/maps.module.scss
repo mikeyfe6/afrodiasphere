@@ -29,6 +29,7 @@
 
     &.ads-dashboard {
         outline: 3px solid rgba($primary-color, 75%);
+        margin-top: rem-calc(16);
 
         @include border-radius;
     }

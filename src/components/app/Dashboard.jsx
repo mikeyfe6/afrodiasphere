@@ -41,7 +41,7 @@ import * as styles from "../../styles/modules/pages/dashboard.module.scss";
 
 const SuccessMessage = ({ text }) => {
     return (
-        <div className={styles.logsuccess}>
+        <div className={styles.success}>
             <span>{text}</span>
         </div>
     );
@@ -49,7 +49,7 @@ const SuccessMessage = ({ text }) => {
 
 const ErrorMessage = ({ text }) => {
     return (
-        <div className={styles.logerror}>
+        <div className={styles.error}>
             <span>{text}</span>
         </div>
     );
@@ -78,9 +78,15 @@ const DashboardPage = () => {
     const [avatarId, setAvatarId] = useState(null);
     const [preview, setPreview] = useState(noavatar);
 
-    const [success, setSuccess] = useState(false);
-    const [error, setError] = useState(null);
-    const [linkError, setLinkError] = useState(null);
+    const [profileSuccess, setProfileSuccess] = useState(false);
+    const [contactSuccess, setContactSuccess] = useState(false);
+    const [socialSuccess, setSocialSuccess] = useState(false);
+
+    const [profileError, setProfileError] = useState(null);
+    const [contactError, setContactError] = useState(null);
+    const [socialError, setSocialError] = useState(null);
+    // const [error, setError] = useState(null);
+
     const [loadingData, setLoadingData] = useState(false);
 
     const [profile, setProfile] = useState("");
@@ -201,7 +207,7 @@ const DashboardPage = () => {
             }
         } catch (error) {
             console.error("Error fetching user ID:", error);
-            setError("Er gaat iets mis met het ophalen van je gegevens");
+            // setError("Er gaat iets mis met het ophalen van je gegevens");
         } finally {
             setLoadingData(false);
         }
@@ -222,6 +228,7 @@ const DashboardPage = () => {
 
     const handleSaveSocials = async () => {
         let allUpdatesSuccessful = true;
+        const updatedLinks = [];
 
         for (const [name, hasChanged] of Object.entries(changedSmLinks)) {
             if (hasChanged) {
@@ -233,10 +240,13 @@ const DashboardPage = () => {
                         { data: params },
                         { headers: { Authorization: `Bearer ${token}` } }
                     );
-                    setError(null);
+                    setSocialError(null);
+                    updatedLinks.push(name);
                 } catch {
-                    setError(`Something went wrong updating your ${name} link`);
-                    setTimeout(() => setError(null), 5000);
+                    setSocialError(
+                        `Iets ging mis met het opslaan van jouw socials links`
+                    );
+                    setTimeout(() => setSocialError(null), 5000);
                     allUpdatesSuccessful = false;
                 }
 
@@ -245,6 +255,16 @@ const DashboardPage = () => {
                     [name]: false,
                 }));
             }
+        }
+
+        if (updatedLinks.length > 0) {
+            setSocialSuccess(
+                <>
+                    Jouw socials links zijn opgeslagen:{" "}
+                    <b>{updatedLinks.join(", ")}</b>
+                </>
+            );
+            setTimeout(() => setSocialSuccess(null), 5000);
         }
 
         if (allUpdatesSuccessful) {
@@ -320,12 +340,12 @@ const DashboardPage = () => {
                         avatarId={avatarId}
                         apiURL={apiURL}
                         token={token}
-                        noavatar={noavatar}
                         preview={preview}
                         setPreview={setPreview}
                         avatar={avatar}
                         setAvatar={setAvatar}
-                        setSuccess={setSuccess}
+                        noavatar={noavatar}
+                        setProfileSuccess={setProfileSuccess}
                         loadingData={loadingData}
                     />
 
@@ -338,8 +358,8 @@ const DashboardPage = () => {
                             token={token}
                             profile={profile}
                             setProfile={setProfile}
-                            setSuccess={setSuccess}
-                            setValidationMessage={setError}
+                            setProfileSuccess={setProfileSuccess}
+                            setValidationMessage={setProfileError}
                             loadingData={loadingData}
                         />
 
@@ -351,8 +371,8 @@ const DashboardPage = () => {
                                     token={token}
                                     username={username}
                                     setUsername={setUsername}
-                                    setSuccess={setSuccess}
-                                    setValidationMessage={setError}
+                                    setProfileSuccess={setProfileSuccess}
+                                    setValidationMessage={setProfileError}
                                     loadingData={loadingData}
                                 />
 
@@ -362,8 +382,8 @@ const DashboardPage = () => {
                                     token={token}
                                     email={email}
                                     setEmail={setEmail}
-                                    setSuccess={setSuccess}
-                                    setValidationMessage={setError}
+                                    setProfileSuccess={setProfileSuccess}
+                                    setValidationMessage={setProfileError}
                                     loadingData={loadingData}
                                 />
 
@@ -377,30 +397,24 @@ const DashboardPage = () => {
                                     loadingData={loadingData}
                                 />
 
-                                {/* TODO: setSucces toevoegen */}
                                 <Password
                                     userId={userId}
                                     apiURL={apiURL}
                                     token={token}
                                     password={password}
                                     setPassword={setPassword}
-                                    setError={setError}
-                                    loadingData={loadingData}
+                                    setProfileSuccess={setProfileSuccess}
+                                    setValidationMessage={setProfileError}
                                 />
 
-                                {/* TODO: gehele delete functie nog aanpakken, althans CONTROLEREN! */}
                                 <Terminate
-                                    pageId={pageId}
-                                    setPageId={setPageId}
                                     docId={docId}
                                     userId={userId}
-                                    setUserId={setUserId}
                                     apiURL={apiURL}
                                     token={token}
                                     links={links}
                                     username={username}
-                                    loadingData={loadingData}
-                                    setError={setError}
+                                    setValidationMessage={setProfileError}
                                 />
                             </>
                         )}
@@ -424,10 +438,10 @@ const DashboardPage = () => {
                     </div>
                 </div>
 
-                {/* TODO: messages en succes dingems op de juiste hoogtes */}
-
-                {success && <SuccessMessage text={success} />}
-                {error && <ErrorMessage text={error} />}
+                <div className={styles.logs}>
+                    {profileError && <ErrorMessage text={profileError} />}
+                    {profileSuccess && <SuccessMessage text={profileSuccess} />}
+                </div>
 
                 <div className={styles.occupationWBio}>
                     <Occupation
@@ -436,7 +450,6 @@ const DashboardPage = () => {
                         token={token}
                         occupation={occupation}
                         setOccupation={setOccupation}
-                        setError={setError}
                     />
 
                     <Biography
@@ -445,8 +458,6 @@ const DashboardPage = () => {
                         token={token}
                         biography={biography}
                         setBiography={setBiography}
-                        setSuccess={setSuccess}
-                        setValidationMessage={setError}
                         loadingData={loadingData}
                     />
                 </div>
@@ -462,8 +473,8 @@ const DashboardPage = () => {
                         token={token}
                         telephone={telephone}
                         setTelephone={setTelephone}
-                        setSuccess={setSuccess}
-                        setValidationMessage={setError}
+                        setContactSuccess={setContactSuccess}
+                        setValidationMessage={setContactError}
                         loadingData={loadingData}
                     />
 
@@ -473,10 +484,14 @@ const DashboardPage = () => {
                         token={token}
                         mail={mail}
                         setMail={setMail}
-                        setSuccess={setSuccess}
-                        setValidationMessage={setError}
+                        setValidationMessage={setContactError}
                         loadingData={loadingData}
                     />
+                </div>
+
+                <div className={styles.logs}>
+                    {contactError && <ErrorMessage text={contactError} />}
+                    {contactSuccess && <SuccessMessage text={contactSuccess} />}
                 </div>
 
                 <Address
@@ -486,8 +501,8 @@ const DashboardPage = () => {
                     preview={preview}
                     address={address}
                     setAddress={setAddress}
-                    setSuccess={setSuccess}
-                    setValidationMessage={setError}
+                    setContactSuccess={setContactSuccess}
+                    setValidationMessage={setContactError}
                     loadingData={loadingData}
                 />
 
@@ -569,6 +584,11 @@ const DashboardPage = () => {
                     />
                 </div>
 
+                <div className={styles.logs}>
+                    {socialError && <ErrorMessage text={socialError} />}
+                    {socialSuccess && <SuccessMessage text={socialSuccess} />}
+                </div>
+
                 <button
                     className={styles.dashBtn}
                     onClick={handleSaveSocials}
@@ -589,12 +609,8 @@ const DashboardPage = () => {
                     docId={docId}
                     apiURL={apiURL}
                     token={token}
-                    setError={setError}
                     links={links}
                     setLinks={setLinks}
-                    setTkLink={setTkLink}
-                    linkError={linkError}
-                    setLinkError={setLinkError}
                 />
 
                 <hr />

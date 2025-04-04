@@ -36,7 +36,7 @@
         scrollbar-color: $grey-color $white-color;
         word-wrap: break-word;
 
-        @include border-radius;
+        @include border-radius($overflow: false);
         @include box-shadow;
         @include smooth-trans;
 

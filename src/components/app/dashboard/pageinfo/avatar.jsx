@@ -10,13 +10,13 @@ const Avatar = ({
     avatarId,
     apiURL,
     token,
-    setSuccess,
-    setPreview,
     preview,
-    noavatar,
-    loadingData,
+    setPreview,
     avatar,
     setAvatar,
+    noavatar,
+    setProfileSuccess,
+    loadingData,
 }) => {
     const [image, setImage] = useState(null);
 
@@ -30,18 +30,18 @@ const Avatar = ({
 
     const deleteAvatar = async (e) => {
         e.preventDefault();
-        setImage(null);
-        setPreview(noavatar);
 
         try {
-            setSuccess(true);
             await axios.delete(`${apiURL}/api/upload/files/${avatarId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
 
-            setTimeout(() => setSuccess(false), 5000);
+            setProfileSuccess("Je avatar is verwijderd");
+            setTimeout(() => setProfileSuccess(null), 5000);
+            setPreview(noavatar);
+            setImage(null);
             setAvatar(null);
         } catch (error) {
             console.error(
@@ -55,7 +55,6 @@ const Avatar = ({
         e.preventDefault();
 
         try {
-            setSuccess(true);
             const imgData = new FormData();
             imgData.append("files", image);
             imgData.append("ref", "api::page.page");
@@ -89,10 +88,12 @@ const Avatar = ({
                 }
             );
 
+            setProfileSuccess("Je avatar is opgeslagen");
+            setTimeout(() => setProfileSuccess(null), 5000);
             setAvatar(avatarUrl);
-            setSuccess(false);
+            setImage(null);
         } catch (error) {
-            console.log("Niet gelukt!", error);
+            console.error("Niet gelukt!", error);
         }
     };
 

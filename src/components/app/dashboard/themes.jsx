@@ -4,17 +4,7 @@ import axios from "axios";
 
 import * as styles from "../../../styles/modules/dashboard/themes.module.scss";
 
-// TODO: add a doublecheck for the right password
-
-const Themes = ({
-    docId,
-    apiURL,
-    token,
-    setLoading,
-    setError,
-    color,
-    setColor,
-}) => {
+const Themes = ({ docId, apiURL, token, color, setColor }) => {
     const onRadioChange = async ({ target: { value } }) => {
         setColor(value);
 

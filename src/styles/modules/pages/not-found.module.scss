@@ -1,0 +1,23 @@
+@use "../../customs" as *;
+
+.not-found {
+    @include container(rem-calc(48), rem-calc(24));
+
+    div {
+        display: flex;
+        gap: rem-calc(16);
+
+        a {
+            display: block;
+            margin-top: rem-calc(24);
+
+            &:nth-child(1) {
+                @include button;
+            }
+
+            &:nth-child(2) {
+                @include button($type: 3);
+            }
+        }
+    }
+}

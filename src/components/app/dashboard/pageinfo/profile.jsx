@@ -10,9 +10,9 @@ const Profile = ({
     token,
     profile,
     setProfile,
-    setSuccess,
-    loadingData,
+    setProfileSuccess,
     setValidationMessage,
+    loadingData,
 }) => {
     const [initialValue, setInitialValue] = useState(profile);
     const [validationError, setValidationError] = useState(null);
@@ -64,6 +64,7 @@ const Profile = ({
         const params = {
             profile: profile,
         };
+
         try {
             await axios.put(
                 `${apiURL}/api/pages/${docId}`,
@@ -75,8 +76,8 @@ const Profile = ({
                 }
             );
 
-            setSuccess("Profielnaam succesvol geüpdatet");
-            setTimeout(() => setSuccess(null), 5000);
+            setProfileSuccess("Profielnaam succesvol geüpdatet");
+            setTimeout(() => setProfileSuccess(null), 5000);
             setInitialValue(profile);
         } catch (error) {
             console.error("Error updating profile:", error);
@@ -99,7 +100,7 @@ const Profile = ({
                 value={profile}
                 onChange={setProfileHandler}
                 disabled={loadingData || isSubmitting}
-                style={{ color: validationError ? "#CA231E" : "inherit" }}
+                style={{ color: validationError ? "#c60319" : "inherit" }}
             />
             <button
                 type="submit"

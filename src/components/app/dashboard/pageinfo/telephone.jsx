@@ -8,11 +8,11 @@ const Telephone = ({
     docId,
     apiURL,
     token,
-    setSuccess,
     telephone,
     setTelephone,
-    loadingData,
+    setContactSuccess,
     setValidationMessage,
+    loadingData,
 }) => {
     const [initialValue, setInitialValue] = useState(telephone);
     const [validationError, setValidationError] = useState(null);
@@ -41,6 +41,7 @@ const Telephone = ({
             const errorMessage = "Minstens 9 karakters";
             setValidationError(errorMessage);
             setValidationMessage(errorMessage);
+            setContactSuccess(null);
             return false;
         }
 
@@ -50,6 +51,7 @@ const Telephone = ({
             const errorMessage = "Vul een valide telefoonnummer in.";
             setValidationError(errorMessage);
             setValidationMessage(errorMessage);
+            setContactSuccess(null);
             return false;
         }
 
@@ -70,6 +72,7 @@ const Telephone = ({
         const params = {
             telephone: telephone,
         };
+
         try {
             await axios.put(
                 `${apiURL}/api/pages/${docId}`,
@@ -81,8 +84,8 @@ const Telephone = ({
                 }
             );
 
-            setSuccess("Telefoonnummer succesvol geüpdatet");
-            setTimeout(() => setSuccess(null), 5000);
+            setContactSuccess("Telefoonnummer succesvol geüpdatet");
+            setTimeout(() => setContactSuccess(null), 5000);
             setInitialValue(telephone);
         } catch (error) {
             console.error("Error updating telephone:", error);
@@ -106,7 +109,7 @@ const Telephone = ({
                 value={telephone}
                 onChange={setTelephoneHandler}
                 disabled={loadingData || isSubmitting}
-                style={{ color: validationError ? "#CA231E" : "inherit" }}
+                style={{ color: validationError ? "#c60319" : "inherit" }}
             />
             <button
                 type="submit"

@@ -8,11 +8,11 @@ const Email = ({
     userId,
     apiURL,
     token,
-    setSuccess,
     email,
     setEmail,
-    loadingData,
+    setProfileSuccess,
     setValidationMessage,
+    loadingData,
 }) => {
     const [initialValue, setInitialValue] = useState(email);
     const [validationError, setValidationError] = useState(null);
@@ -61,13 +61,14 @@ const Email = ({
         setIsSubmitting(true);
 
         const params = { email: email };
+
         try {
             await axios.put(`${apiURL}/api/users/${userId}`, params, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
-            setSuccess("E-mailadres succesvol geüpdatet");
-            setTimeout(() => setSuccess(null), 5000);
+            setProfileSuccess("E-mailadres succesvol geüpdatet");
+            setTimeout(() => setProfileSuccess(null), 5000);
             setInitialValue(email);
         } catch (error) {
             console.error("Error updating email:", error);
@@ -87,7 +88,7 @@ const Email = ({
                 value={email}
                 onChange={setEmailHandler}
                 disabled={loadingData || isSubmitting}
-                style={{ color: validationError ? "#CA231E" : "inherit" }}
+                style={{ color: validationError ? "#c60319" : "inherit" }}
             />
 
             <button

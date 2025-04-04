@@ -1,7 +1,11 @@
 @use "../../customs" as *;
 
-.not-found {
+.success {
     @include container(rem-calc(48), rem-calc(24));
+
+    > div {
+        max-width: rem-calc(550);
+    }
 
     a {
         display: block;

@@ -13,25 +13,37 @@ const Terminate = ({
     userId,
     apiURL,
     token,
-    setError,
     links,
     username,
-    loadingData,
+    setValidationMessage,
 }) => {
     const [deleteAds, setDeleteAds] = useState("");
+    const [validationError, setValidationError] = useState(null);
 
     const setDeleteHandler = (e) => {
         setDeleteAds(e.target.value.toLowerCase().replace(/\s+/g, ""));
+        setValidationError(null);
+        setValidationMessage(null);
+    };
+
+    const validateInput = (value) => {
+        if (username !== value) {
+            const errorMessage =
+                "Vul je gebruikersnaam in om je profiel te verwijderen.";
+            setValidationError(errorMessage);
+            setValidationMessage(errorMessage);
+            return false;
+        }
+
+        setValidationError(null);
+        setValidationMessage(null);
+        return true;
     };
 
     const submitDeleteAds = async (e) => {
         e.preventDefault();
 
-        if (deleteAds !== username) {
-            setError(
-                "Verkeerde profielnaam. Vul je profielnaam in om je profiel te verwijderen."
-            );
-            setTimeout(() => setError(null), 5000);
+        if (!validateInput(deleteAds)) {
             return;
         }
 
@@ -71,29 +83,32 @@ const Terminate = ({
 
             logout(() => navigate("/login/"));
         } catch (error) {
-            console.error("Error in submitDeleteAds:", error);
-            setError("Verwijderen van je account mislukt");
-            setTimeout(() => setError(null), 5000);
+            console.error("Error deleting ADS:", error);
         }
     };
 
     return (
-        <form onSubmit={submitDeleteAds} className={styles.profileField}>
+        <form
+            onSubmit={submitDeleteAds}
+            className={styles.profileField}
+            noValidate
+        >
             <label htmlFor="deleteAds">Verwijder profiel</label>
             <input
+                id="deleteAds"
                 onChange={setDeleteHandler}
                 value={deleteAds}
                 type="text"
                 name="deleteAds"
-                id="deleteAds"
                 placeholder="controle: profielnaam?"
-                maxLength="25"
+                style={{ color: validationError ? "#c60319" : "inherit" }}
             />
 
             <button
                 type="submit"
+                title="Verwijder account"
                 className={styles.terminateBtn}
-                disabled={loadingData || deleteAds === ""}
+                disabled={deleteAds === ""}
             >
                 <i className="fa-solid fa-trash-can fa-lg" />
             </button>

@@ -6,15 +6,15 @@
         border: solid rgba(0 0 0 / 50%) 10px;
         top: rem-calc(150);
         margin: rem-calc(16);
-        width: rem-calc(250);
-        height: rem-calc(500);
+        width: rem-calc(275);
+        height: rem-calc(560);
 
         @include box-shadow;
         @include border-radius(37.5);
 
         @include mobile {
+            width: rem-calc(330);
             height: rem-calc(675);
-            width: rem-calc(325);
 
             @include border-radius(45, false);
         }
@@ -170,7 +170,7 @@
         position: absolute;
         display: flex;
         gap: rem-calc(12);
-        top: rem-calc(435);
+        top: rem-calc(490);
         left: 50%;
         transform: translate(-50%);
         z-index: 1;

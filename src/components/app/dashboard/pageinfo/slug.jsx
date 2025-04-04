@@ -6,15 +6,7 @@ import * as styles from "../../../../styles/modules/dashboard/profileInfo.module
 
 // TODO: bedenken wat ik met die slug ga doen voor end-users
 
-const Slug = ({
-    docId,
-    apiURL,
-    token,
-    loadingData,
-    setError,
-    slug,
-    setSlug,
-}) => {
+const Slug = ({ docId, apiURL, token, loadingData, slug, setSlug }) => {
     const [initialValue, setInitialValue] = useState(slug);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -48,7 +40,7 @@ const Slug = ({
                 }
             );
 
-            setError(null);
+            // setError(null);
 
             if (process.env.NODE_ENV === "production") {
                 await axios.post(
@@ -58,8 +50,8 @@ const Slug = ({
 
             setInitialValue(slug);
         } catch {
-            setError("Er gaat iets mis met het updaten van je slug");
-            setTimeout(() => setError(null), 5000);
+            // setError("Er gaat iets mis met het updaten van je slug");
+            // setTimeout(() => setError(null), 5000);
         } finally {
             setIsSubmitting(false);
         }

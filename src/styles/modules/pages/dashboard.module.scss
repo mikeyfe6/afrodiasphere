@@ -12,7 +12,11 @@
         "Preview"
         "Slug";
 
-    @include container(rem-calc(16), rem-calc(16), rem-calc(1920));
+    @include container(rem-calc(16), rem-calc(8), rem-calc(1920));
+
+    @include mobile {
+        @include container(rem-calc(16), rem-calc(16), rem-calc(1920));
+    }
 
     @include phablet {
         grid-template-columns: repeat(2, 1fr);
@@ -45,7 +49,7 @@
             text-decoration-color: $white-color;
             text-underline-offset: 5px;
             text-align: center;
-            margin-bottom: rem-calc(16);
+            margin-bottom: rem-calc(24);
             font-size: rem-calc(28);
             background: $primary-color;
             outline: 3px solid $ash-color;
@@ -58,7 +62,7 @@
             border: 1px solid $white-color;
             opacity: 0.1;
             width: 75%;
-            margin: rem-calc(32 0 8);
+            margin: rem-calc(48) auto rem-calc(8);
         }
     }
 }
@@ -91,14 +95,14 @@
 .dashboard {
     grid-area: Dashboard;
 
-    @include dash-card(0, rem-calc(20));
+    @include dash-card(0, rem-calc(16));
 
     @include mobile {
         @include dash-card(0, rem-calc(32));
     }
 
     .dash-btn {
-        margin: rem-calc(32 0 16) auto;
+        margin-left: auto;
         display: block;
 
         @include dash-button;
@@ -138,7 +142,7 @@
         gap: rem-calc(32);
 
         @include mobile {
-            margin: rem-calc(40 0);
+            margin: rem-calc(24 0 40);
             gap: rem-calc(40);
         }
 
@@ -164,7 +168,7 @@
         display: grid;
         grid-template-columns: 1fr;
         grid-gap: rem-calc(24);
-        margin-bottom: rem-calc(32);
+        margin-bottom: rem-calc(16);
 
         @include phablet {
             grid-template-columns: repeat(2, 1fr);
@@ -189,27 +193,21 @@
         }
     }
 
-    .logerror {
-        color: white;
-        background: linear-gradient(
-            135deg,
-            rgba(255, 0, 0, 0.75),
-            $warning-color
-        );
-
-        @include logs;
+    .logs {
+        height: rem-calc(32);
+        margin: rem-calc(24 0);
     }
 
-    .logsuccess {
-        color: $white-color;
-        // background-color: #57a55f;
-        background: linear-gradient(
-            135deg,
-            rgba(0, 128, 0, 0.75),
-            $success-color
-        );
+    .error {
+        background: $error-color;
 
-        @include logs;
+        @extend %dashboard-log;
+    }
+
+    .success {
+        background: $success-color;
+
+        @extend %dashboard-log;
     }
 }
 

@@ -22,15 +22,14 @@ const Address = ({
     docId,
     apiURL,
     token,
-    setSuccess,
-    loadingData,
-    setValidationMessage,
     preview,
     address,
     setAddress,
+    setContactSuccess,
+    setValidationMessage,
+    loadingData,
 }) => {
     const [pin, setPin] = useState(null);
-    const [error, setError] = useState(null);
     const [validationError, setValidationError] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isLocationSearched, setIsLocationSearched] = useState(false);
@@ -69,14 +68,16 @@ const Address = ({
                 setPin(newLocation);
                 setAddress(newLocation);
                 setIsLocationSearched(true);
-                setError(null);
+                setValidationMessage(null);
             } else {
-                setError(`Geen locatie gevonden: ${response.data.status}`);
+                setValidationMessage(
+                    `Geen locatie gevonden: ${response.data.status}`
+                );
                 setPin(null);
                 setIsLocationSearched(false);
             }
         } catch (error) {
-            setError(
+            setValidationMessage(
                 `Er is een fout opgetreden bij het ophalen van de locatie: ${error.message}`
             );
             setPin(null);
@@ -101,7 +102,7 @@ const Address = ({
 
     const validateInput = (value) => {
         if (value.length < 2 || value.length > 100) {
-            const errorMessage = "Invoer moet tussen 2 en 100 tekens zijn";
+            const errorMessage = "Invoer moet tussen de 2 en 100 tekens zijn";
             setValidationError(errorMessage);
             setValidationMessage(errorMessage);
             return false;
@@ -136,8 +137,8 @@ const Address = ({
                 }
             );
 
-            setSuccess("Adres succesvol geüpdatet");
-            setTimeout(() => setSuccess(null), 5000);
+            setContactSuccess("Adres succesvol geüpdatet");
+            setTimeout(() => setContactSuccess(null), 5000);
             setInputValue("");
             setIsLocationSearched(false);
             setDeleteLocation(false);
@@ -171,7 +172,7 @@ const Address = ({
                         value={inputValue}
                         disabled={loadingData || isSubmitting}
                         style={{
-                            color: validationError ? "#CA231E" : "inherit",
+                            color: validationError ? "#c60319" : "inherit",
                         }}
                     />
                 </div>
@@ -217,8 +218,6 @@ const Address = ({
                     placeholder="Geen adres gevonden"
                     readOnly
                 />
-
-                {error && <p>{error}</p>}
             </div>
 
             <div className={`${mapsStyles.maps} ${mapsStyles.adsDashboard}`}>

@@ -56,13 +56,15 @@ const LoginPage = () => {
         e.preventDefault();
 
         try {
-            const { data } = await axios.post(`${apiURL}/api/auth/local`, {
+            const response = await axios.post(`${apiURL}/api/auth/local`, {
                 identifier: usernameRef.current.value.toLowerCase(),
                 password: passwordRef.current.value,
             });
 
-            setLoginError(null);
+            const { data } = response;
+
             setLoading("Aan het laden");
+            setLoginError(null);
             setUser(data);
             navigate("/dashboard/");
         } catch (error) {
@@ -74,13 +76,11 @@ const LoginPage = () => {
         }
     };
 
-    console.log("Login Error:", loginError);
-
     const handleSubmitRegister = async (e) => {
         e.preventDefault();
 
         try {
-            const { data } = await axios.post(
+            const response = await axios.post(
                 `${apiURL}/api/auth/local/register`,
                 {
                     username: usernameRegRef.current.value
@@ -92,6 +92,8 @@ const LoginPage = () => {
                     password: passwordRegRef.current.value,
                 }
             );
+
+            const { data } = response;
 
             setRegisterError(null);
             setLoading("Aan het laden");

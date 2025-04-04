@@ -27,6 +27,20 @@
     @include fluid-type(12, 14);
 }
 
+// dashboard
+
+%dashboard-log {
+    outline: 1px solid rgba($white-color, 0.75);
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: rem-calc(4 16);
+    color: $white-color;
+
+    @include border-radius(2.5);
+    @include fluid-type(12, 14);
+}
+
 // login
 
 %login-button {

@@ -4,15 +4,7 @@ import axios from "axios";
 
 import * as occupationStyles from "../../../../styles/modules/dashboard/occupation.module.scss";
 
-const Occupation = ({
-    docId,
-    apiURL,
-    token,
-    setLoading,
-    setError,
-    occupation,
-    setOccupation,
-}) => {
+const Occupation = ({ docId, apiURL, token, occupation, setOccupation }) => {
     const [expandedSection, setExpandedSection] = useState(null);
 
     const onOccupationChange = async (e) => {

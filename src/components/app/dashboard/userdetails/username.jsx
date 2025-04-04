@@ -5,14 +5,14 @@ import axios from "axios";
 import * as styles from "../../../../styles/modules/dashboard/profileInfo.module.scss";
 
 const Username = ({
+    userId,
     apiURL,
     token,
-    userId,
-    setSuccess,
     username,
     setUsername,
-    loadingData,
+    setProfileSuccess,
     setValidationMessage,
+    loadingData,
 }) => {
     const [initialValue, setInitialValue] = useState(username);
     const [validationError, setValidationError] = useState(null);
@@ -61,16 +61,17 @@ const Username = ({
         }
 
         setIsSubmitting(true);
-        setInitialValue(username);
 
         const params = { username: username };
+
         try {
             await axios.put(`${apiURL}/api/users/${userId}`, params, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
-            setSuccess("Gebruikersnaam succesvol geüpdatet");
-            setTimeout(() => setSuccess(null), 5000);
+            setProfileSuccess("Gebruikersnaam succesvol geüpdatet");
+            setTimeout(() => setProfileSuccess(null), 5000);
+            setInitialValue(username);
         } catch {
             console.error("Error updating username:", error);
         } finally {
@@ -92,7 +93,7 @@ const Username = ({
                 value={username}
                 onChange={setUsernameHandler}
                 disabled={loadingData || isSubmitting}
-                style={{ color: validationError ? "#CA231E" : "inherit" }}
+                style={{ color: validationError ? "#c60319" : "inherit" }}
             />
             <button
                 type="submit"
