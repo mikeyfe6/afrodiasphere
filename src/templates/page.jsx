@@ -128,6 +128,34 @@ const AdsTemplate = ({ pageContext: { slug, documentId } }) => {
         }
     };
 
+    const hasLinks = () => {
+        const hasLink = links.some((link) => link.visible);
+        return hasLink;
+    };
+
+    const hasSocials = () => {
+        const hasSocialLink = [
+            fbLink,
+            twLink,
+            igLink,
+            waLink,
+            tkLink,
+            liLink,
+            piLink,
+            snLink,
+            ytLink,
+            paLink,
+        ].some((link) => link.length > 1);
+        return hasSocialLink;
+    };
+
+    const hasAddress = () => {
+        const hasAddressLink =
+            address.latitude || address.longitude || address.location;
+
+        return hasAddressLink;
+    };
+
     return (
         <>
             {spinner ? (
@@ -163,181 +191,185 @@ const AdsTemplate = ({ pageContext: { slug, documentId } }) => {
 
                         <h1 className={`theme-${color}-username`}>{profile}</h1>
 
-                        <p className={`theme-${color}-occupate`}>
-                            {occupation}
-                        </p>
+                        {occupation && (
+                            <p className={`theme-${color}-occupate`}>
+                                {occupation}
+                            </p>
+                        )}
 
-                        <p className={`theme-${color}-biography`}>
-                            {biography}
-                        </p>
+                        {biography && (
+                            <p className={`theme-${color}-biography`}>
+                                {biography}
+                            </p>
+                        )}
 
-                        <ul className={`theme-${color}-links`}>
-                            {links.slice(0, 20).map((link) => (
-                                <li key={link.id} hidden={!link.visible}>
+                        {hasLinks() && (
+                            <ul className={`theme-${color}-links`}>
+                                {links.slice(0, 20).map((link) => (
+                                    <li key={link.id} hidden={!link.visible}>
+                                        <a
+                                            href={`https://${link.url}`}
+                                            rel="noopener noreferrer"
+                                            target="_blank"
+                                        >
+                                            {link.title}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+
+                        {hasAddress() && (
+                            <p className={`theme-${color}-location`}>
+                                <i className="fa-solid fa-map-location-dot fa-xl" />
+                                <a
+                                    href={`https://www.google.com/maps?q=${address.latitude},${address.longitude}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    {address.location}
+                                </a>
+                            </p>
+                        )}
+
+                        {hasAddress() && (
+                            <div
+                                className={`theme-${color}-maps ${mapsStyles.maps} ${mapsStyles.adsPage}`}
+                            >
+                                <GoogleMapReact
+                                    bootstrapURLKeys={{
+                                        key: process.env.GATSBY_GOOGLE_MAPS_KEY,
+                                        language: "nl",
+                                        region: "NL",
+                                    }}
+                                    defaultCenter={defaultProps.center}
+                                    defaultZoom={defaultProps.zoom}
+                                    center={
+                                        address.latitude !== null &&
+                                        address.longitude !== null
+                                            ? {
+                                                  lat: address.latitude,
+                                                  lng: address.longitude,
+                                              }
+                                            : defaultProps.center
+                                    }
+                                >
+                                    {address.latitude !== null &&
+                                        address.longitude !== null && (
+                                            <Marker
+                                                lat={address.latitude}
+                                                lng={address.longitude}
+                                            />
+                                        )}
+                                </GoogleMapReact>
+                            </div>
+                        )}
+
+                        {hasSocials() && (
+                            <div className={`theme-${color}-icons`}>
+                                {fbLink && fbLink.length > 1 && (
                                     <a
-                                        href={`https://${link.url}`}
+                                        href={`https://www.facebook.com/${fbLink}`}
                                         rel="noopener noreferrer"
                                         target="_blank"
                                     >
-                                        {link.title}
+                                        <i className="fa-brands fa-facebook-f" />
                                     </a>
-                                </li>
-                            ))}
-                        </ul>
+                                )}
 
-                        {address?.latitude &&
-                            address?.longitude &&
-                            address?.location && (
-                                <p className={`theme-${color}-location`}>
-                                    <i className="fa-solid fa-map-location-dot fa-xl" />
+                                {twLink && twLink.length > 1 && (
                                     <a
-                                        href={`https://www.google.com/maps?q=${address.latitude},${address.longitude}`}
-                                        target="_blank"
+                                        href={`https://x.com/${twLink}`}
                                         rel="noopener noreferrer"
+                                        target="_blank"
                                     >
-                                        {address.location}
+                                        <i className="fa-brands fa-x-twitter" />
                                     </a>
-                                </p>
-                            )}
+                                )}
 
-                        {address?.latitude &&
-                            address?.longitude &&
-                            address?.location && (
-                                <div
-                                    className={`theme-${color}-maps ${mapsStyles.maps} ${mapsStyles.adsPage}`}
-                                >
-                                    <GoogleMapReact
-                                        bootstrapURLKeys={{
-                                            key: process.env
-                                                .GATSBY_GOOGLE_MAPS_KEY,
-                                            language: "nl",
-                                            region: "NL",
-                                        }}
-                                        defaultCenter={defaultProps.center}
-                                        defaultZoom={defaultProps.zoom}
-                                        center={
-                                            address.latitude !== null &&
-                                            address.longitude !== null
-                                                ? {
-                                                      lat: address.latitude,
-                                                      lng: address.longitude,
-                                                  }
-                                                : defaultProps.center
-                                        }
+                                {igLink && igLink.length > 1 && (
+                                    <a
+                                        href={`https://www.instagram.com/${igLink}`}
+                                        rel="noopener noreferrer"
+                                        target="_blank"
                                     >
-                                        {address.latitude !== null &&
-                                            address.longitude !== null && (
-                                                <Marker
-                                                    lat={address.latitude}
-                                                    lng={address.longitude}
-                                                />
-                                            )}
-                                    </GoogleMapReact>
-                                </div>
-                            )}
+                                        <i className="fa-brands fa-instagram" />
+                                    </a>
+                                )}
 
-                        <div className={`theme-${color}-icons`}>
-                            {fbLink && fbLink.length > 1 && (
-                                <a
-                                    href={`https://www.facebook.com/${fbLink}`}
-                                    rel="noopener noreferrer"
-                                    target="_blank"
-                                >
-                                    <i className="fa-brands fa-facebook-f" />
-                                </a>
-                            )}
+                                {waLink && waLink.length > 1 && (
+                                    <a
+                                        href={`https://wa.me/${waLink}`}
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        <i className="fa-brands fa-whatsapp" />
+                                    </a>
+                                )}
 
-                            {twLink && twLink.length > 1 && (
-                                <a
-                                    href={`https://x.com/${twLink}`}
-                                    rel="noopener noreferrer"
-                                    target="_blank"
-                                >
-                                    <i className="fa-brands fa-x-twitter" />
-                                </a>
-                            )}
+                                {tkLink && tkLink.length > 1 && (
+                                    <a
+                                        href={`https://www.tiktok.com/@${tkLink}`}
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        <i className="fa-brands fa-tiktok" />
+                                    </a>
+                                )}
 
-                            {igLink && igLink.length > 1 && (
-                                <a
-                                    href={`https://www.instagram.com/${igLink}`}
-                                    rel="noopener noreferrer"
-                                    target="_blank"
-                                >
-                                    <i className="fa-brands fa-instagram" />
-                                </a>
-                            )}
+                                {liLink && liLink.length > 1 && (
+                                    <a
+                                        href={`https://linkedin.com/${liLink}`}
+                                        title={`https://linkedin.com/${liLink}`}
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        <i className="fa-brands fa-linkedin" />
+                                    </a>
+                                )}
 
-                            {waLink && waLink.length > 1 && (
-                                <a
-                                    href={`https://wa.me/${waLink}`}
-                                    rel="noopener noreferrer"
-                                    target="_blank"
-                                >
-                                    <i className="fa-brands fa-whatsapp" />
-                                </a>
-                            )}
+                                {piLink && piLink.length > 1 && (
+                                    <a
+                                        href={`https://pinterest.com/${piLink}`}
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        <i className="fa-brands fa-pinterest" />
+                                    </a>
+                                )}
 
-                            {tkLink && tkLink.length > 1 && (
-                                <a
-                                    href={`https://www.tiktok.com/@${tkLink}`}
-                                    rel="noopener noreferrer"
-                                    target="_blank"
-                                >
-                                    <i className="fa-brands fa-tiktok" />
-                                </a>
-                            )}
+                                {snLink && snLink.length > 1 && (
+                                    <a
+                                        href={`https://www.snapchat.com/${snLink}`}
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        <i className="fa-brands fa-snapchat" />
+                                    </a>
+                                )}
 
-                            {liLink && liLink.length > 1 && (
-                                <a
-                                    href={`https://linkedin.com/${liLink}`}
-                                    title={`https://linkedin.com/${liLink}`}
-                                    rel="noopener noreferrer"
-                                    target="_blank"
-                                >
-                                    <i className="fa-brands fa-linkedin" />
-                                </a>
-                            )}
+                                {ytLink && ytLink.length > 1 && (
+                                    <a
+                                        href={`https://www.youtube.com/${ytLink}`}
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        <i className="fa-brands fa-youtube" />
+                                    </a>
+                                )}
 
-                            {piLink && piLink.length > 1 && (
-                                <a
-                                    href={`https://pinterest.com/${piLink}`}
-                                    rel="noopener noreferrer"
-                                    target="_blank"
-                                >
-                                    <i className="fa-brands fa-pinterest" />
-                                </a>
-                            )}
+                                {paLink && paLink.length > 1 && (
+                                    <a
+                                        href={`https://www.patreon.com/${paLink}`}
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        <i className="fa-brands fa-patreon" />
+                                    </a>
+                                )}
+                            </div>
+                        )}
 
-                            {snLink && snLink.length > 1 && (
-                                <a
-                                    href={`https://www.snapchat.com/${snLink}`}
-                                    rel="noopener noreferrer"
-                                    target="_blank"
-                                >
-                                    <i className="fa-brands fa-snapchat" />
-                                </a>
-                            )}
-
-                            {ytLink && ytLink.length > 1 && (
-                                <a
-                                    href={`https://www.youtube.com/${ytLink}`}
-                                    rel="noopener noreferrer"
-                                    target="_blank"
-                                >
-                                    <i className="fa-brands fa-youtube" />
-                                </a>
-                            )}
-
-                            {paLink && paLink.length > 1 && (
-                                <a
-                                    href={`https://www.patreon.com/${paLink}`}
-                                    rel="noopener noreferrer"
-                                    target="_blank"
-                                >
-                                    <i className="fa-brands fa-patreon" />
-                                </a>
-                            )}
-                        </div>
                         <Link to="/" className={`theme-footer`}>
                             <img src={afroLogo} alt="" />
                         </Link>

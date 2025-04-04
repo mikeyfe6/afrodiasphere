@@ -359,7 +359,7 @@ const Links = ({ pageId, docId, apiURL, token, links, setLinks }) => {
                                             >
                                                 {link.url}
                                             </a>
-                                            <i class="fa-solid fa-square-arrow-up-right fa-xs"></i>
+                                            <i className="fa-solid fa-square-arrow-up-right fa-xs" />
                                         </span>
                                         <hr />
                                         <input
