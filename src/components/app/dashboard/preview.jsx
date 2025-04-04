@@ -92,7 +92,7 @@ const Preview = ({
                 </p>
             )}
 
-            {occupation && (
+            {occupation && occupation !== "geen" && (
                 <p
                     id="iphone-occupate"
                     className={getThemeClassName("Occupate")}

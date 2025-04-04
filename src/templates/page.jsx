@@ -191,13 +191,13 @@ const AdsTemplate = ({ pageContext: { slug, documentId } }) => {
 
                         <h1 className={`theme-${color}-username`}>{profile}</h1>
 
-                        {occupation && (
+                        {occupation && occupation !== "geen" && (
                             <p className={`theme-${color}-occupate`}>
                                 {occupation}
                             </p>
                         )}
 
-                        {biography && (
+                        {biography && biography.length > 1 && (
                             <p className={`theme-${color}-biography`}>
                                 {biography}
                             </p>

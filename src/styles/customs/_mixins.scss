@@ -217,7 +217,7 @@
 }
 
 @mixin page-links {
-    margin-bottom: rem-calc(48);
+    margin: auto 0 rem-calc(48);
     display: flex;
     flex-direction: column;
     gap: rem-calc(8);
