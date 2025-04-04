@@ -8,6 +8,7 @@ const Password = ({
     userId,
     apiURL,
     token,
+    username,
     password,
     setPassword,
     setProfileSuccess,
@@ -64,6 +65,15 @@ const Password = ({
             className={styles.profileField}
             noValidate
         >
+            <input
+                type="text"
+                name="username"
+                id="username"
+                autoComplete="username"
+                value={username}
+                readOnly
+                hidden
+            />
             <label htmlFor="password">Wachtwoord</label>
             <input
                 id="password"

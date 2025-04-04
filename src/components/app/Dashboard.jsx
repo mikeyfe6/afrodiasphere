@@ -393,7 +393,7 @@ const DashboardPage = () => {
                                     token={token}
                                     slug={slug}
                                     setSlug={setSlug}
-                                    setError={setError}
+                                    // setError={setError}
                                     loadingData={loadingData}
                                 />
 
@@ -401,6 +401,7 @@ const DashboardPage = () => {
                                     userId={userId}
                                     apiURL={apiURL}
                                     token={token}
+                                    username={username}
                                     password={password}
                                     setPassword={setPassword}
                                     setProfileSuccess={setProfileSuccess}

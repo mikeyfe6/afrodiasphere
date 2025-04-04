@@ -78,9 +78,13 @@ const Slider = () => {
                                     <div className={styles.profile}>
                                         {ads.profile}
                                     </div>
-                                    <div className={styles.occupate}>
-                                        {ads.occupation || ".."}
-                                    </div>
+                                    {ads.occupation &&
+                                        ads.occupation !== "geen" && (
+                                            <div className={styles.occupate}>
+                                                {ads.occupation || ".."}
+                                            </div>
+                                        )}
+
                                     <div className={styles.biography}>
                                         <p
                                             dangerouslySetInnerHTML={{
