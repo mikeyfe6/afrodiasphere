@@ -145,11 +145,16 @@ const AdsTemplate = ({ pageContext: { slug, documentId } }) => {
             snLink,
             ytLink,
             paLink,
-        ].some((link) => link.length > 1);
+        ].some((link) => typeof link === "string" && link.length > 1);
+
         return hasSocialLink;
     };
 
     const hasAddress = () => {
+        if (!address) {
+            return false;
+        }
+
         const hasAddressLink =
             address.latitude || address.longitude || address.location;
 
