@@ -57,7 +57,9 @@ const Links = ({ pageId, docId, apiURL, token, links, setLinks }) => {
             }
         };
 
-        getLinks();
+        if (docId) {
+            getLinks();
+        }
     }, [apiURL, token, docId]);
 
     const createLink = async () => {
