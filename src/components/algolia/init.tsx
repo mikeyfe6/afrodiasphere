@@ -12,6 +12,9 @@ const Algolia = () => {
         if (process.env.NODE_ENV !== "production") return;
 
         const indexData = async () => {
+            if (!ALGOLIA_APP_ID || !ALGOLIA_API_KEY) {
+                throw new Error("Algolia credentials are not defined.");
+            }
             const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY);
 
             try {
@@ -20,13 +23,13 @@ const Algolia = () => {
                 );
                 const records = response.data.data;
 
-                const objectsWithID = records.map((record) => ({
+                const objectsWithID = records.map((record: { documentId: any; }) => ({
                     objectID: record.documentId,
                     ...record,
                 }));
 
                 await client.saveObjects({
-                    indexName: ALGOLIA_INDEX_NAME,
+                    indexName: ALGOLIA_INDEX_NAME || (() => { throw new Error("ALGOLIA_INDEX_NAME is not defined."); })(),
                     objects: objectsWithID,
                 });
             } catch (error) {

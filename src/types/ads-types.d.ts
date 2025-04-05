@@ -8,3 +8,4 @@ declare module "reach__router";
 declare module "yoga-layout";
 declare module "*.png";
 declare module "*.module.scss";
+declare module "google-map-react";

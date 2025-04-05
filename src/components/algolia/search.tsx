@@ -13,33 +13,36 @@ import { ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY, ALGOLIA_INDEX_NAME } from "./keys";
 
 import Hit from "./hit";
 
-const searchClient = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY);
+const searchClient = algoliasearch(
+    ALGOLIA_APP_ID || "",
+    ALGOLIA_SEARCH_KEY || ""
+);
 
 const useClickOutside = (
-    ref,
-    onClickOutside,
-    ignoreRef = { current: null }
+    ref: React.RefObject<HTMLElement | null>,
+    onClickOutside: () => void,
+    ignoreRef: React.RefObject<HTMLElement | null> = { current: null }
 ) => {
     const events = ["mousedown", "touchstart"];
 
     useEffect(() => {
-        const isOutside = (element) =>
+        const isOutside = (element: Node) =>
             (!ref.current || !ref.current.contains(element)) &&
             (!ignoreRef.current || !ignoreRef.current.contains(element));
 
-        const onClick = (event) => {
-            if (isOutside(event.target)) {
+        const onClick = (event: MouseEvent | TouchEvent) => {
+            if (event.target && isOutside(event.target as Node)) {
                 onClickOutside();
             }
         };
 
         for (const event of events) {
-            document.addEventListener(event, onClick);
+            document.addEventListener(event, onClick as EventListener);
         }
 
         return () => {
             for (const event of events) {
-                document.removeEventListener(event, onClick);
+                document.removeEventListener(event, onClick as EventListener);
             }
         };
     }, [ref, onClickOutside, ignoreRef]);
@@ -51,8 +54,14 @@ const Search = ({
     setFocus = () => {},
     setSearchVisible = () => {},
     ignoreRef,
+}: {
+    style?: React.CSSProperties;
+    hasFocus?: boolean;
+    setFocus?: (focus: boolean) => void;
+    setSearchVisible?: (visible: boolean) => void;
+    ignoreRef?: React.RefObject<HTMLElement | null>;
 }) => {
-    const rootRef = useRef();
+    const rootRef = useRef<HTMLDivElement>(null);
 
     useClickOutside(
         rootRef,
@@ -64,7 +73,9 @@ const Search = ({
     );
 
     useEffect(() => {
-        const overlay = document.querySelector(".algolia-overlay");
+        const overlay = document.querySelector(
+            ".algolia-overlay"
+        ) as HTMLElement;
         if (overlay) {
             overlay.style.display = hasFocus ? "block" : "none";
         }
@@ -100,7 +111,10 @@ const Search = ({
     );
 };
 
-const EmptyQueryBoundary = ({ children, fallback }) => {
+const EmptyQueryBoundary: React.FC<{
+    children: React.ReactNode;
+    fallback: React.ReactNode;
+}> = ({ children, fallback }) => {
     const { indexUiState } = useInstantSearch();
 
     if (!indexUiState.query) {
@@ -115,7 +129,10 @@ const EmptyQueryBoundary = ({ children, fallback }) => {
     return children;
 };
 
-const NoResultsBoundary = ({ children, fallback }) => {
+const NoResultsBoundary: React.FC<{
+    children: React.ReactNode;
+    fallback: React.ReactNode;
+}> = ({ children, fallback }) => {
     const { results } = useInstantSearch();
 
     if (!results.__isArtificial && results.nbHits === 0) {

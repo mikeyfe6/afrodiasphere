@@ -4,10 +4,20 @@ import { Link } from "gatsby";
 
 import { Highlight } from "react-instantsearch";
 
+import type { Hit as AlgoliaHit } from "instantsearch.js";
+
 import noavatar from "../../images/noavatar.png";
 
-const Hit = ({ hit }) => {
-    const avatarUrl = hit && hit.avatar ? hit.avatar.url : null;
+type HitProps = AlgoliaHit<{
+    avatar?: { url: string };
+    slug: string;
+    profile: string;
+    occupation: string;
+    biography: string;
+}>;
+
+const Hit: React.FC<{ hit: HitProps }> = ({ hit }) => {
+    const avatarUrl = hit?.avatar?.url || null;
 
     return (
         <Link to={`/${hit.slug}`}>
