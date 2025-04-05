@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import Layout from "../components/layout";
-import ForgetPassword from "../components/ui/forgetpwd";
+import ForgetPassword from "../components/ui/forgetPwd";
 import Seo from "../components/seo";
 
 import mamaAfrica from "../images/mamafrica.png";

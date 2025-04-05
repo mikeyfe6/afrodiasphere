@@ -1,14 +1,12 @@
 import React, { useState, useEffect, FC } from "react";
 
-// interface Breakpoint {
-//     size: number;
-//     label: string;
-// }
+interface Breakpoint {
+    size: number;
+    label: string;
+}
 
-// const ResponsiveTag: FC = () => {
-const ResponsiveTag = () => {
-    // const breakpoints: Breakpoint[] = [
-    const breakpoints = [
+const ResponsiveTag: FC = () => {
+    const breakpoints: Breakpoint[] = [
         { size: 23, label: "Mini View" },
         { size: 30, label: "Compact View" },
         { size: 40, label: "Mobile View" },

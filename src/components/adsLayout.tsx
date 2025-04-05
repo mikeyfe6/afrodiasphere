@@ -1,8 +1,6 @@
 import * as React from "react";
 
-import PropTypes from "prop-types";
-
-import ResponsiveTag from "../components/helpers/respoTag";
+import ResponsiveTag from "./helpers/respoTag";
 
 const AdsLayout = ({ children }) => {
     return (
@@ -14,10 +12,6 @@ const AdsLayout = ({ children }) => {
             {process.env.NODE_ENV === "development" && <ResponsiveTag />}
         </>
     );
-};
-
-AdsLayout.propTypes = {
-    children: PropTypes.node.isRequired,
 };
 
 export default AdsLayout;

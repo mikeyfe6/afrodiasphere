@@ -49,12 +49,7 @@ const config: GatsbyConfig = {
         `gatsby-plugin-sharp`,
         `gatsby-transformer-sharp`,
         `gatsby-plugin-robots-txt`,
-        {
-            resolve: `gatsby-plugin-sitemap`,
-            options: {
-                exclude: ["/[...]/"],
-            },
-        },
+        `gatsby-plugin-sitemap`,
         `gatsby-plugin-catch-links`,
         {
             resolve: "gatsby-plugin-canonical-urls",

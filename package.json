@@ -32,7 +32,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-instantsearch": "^7.15.5",
-    "sass": "^1.86.2",
+    "sass": "^1.86.3",
     "swiper": "^11.2.6"
   },
   "devDependencies": {
@@ -42,13 +42,13 @@
     "@types/react-dom": "^19.1.1",
     "@typescript-eslint/eslint-plugin": "^8.29.0",
     "@typescript-eslint/parser": "^8.29.0",
-    "eslint": "^9.23.0",
+    "eslint": "^9.24.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
     "stylelint": "^16.17.0",
     "stylelint-config-prettier-scss": "^1.0.0",
     "stylelint-config-standard-scss": "^14.0.0",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.3"
   },
   "keywords": [
     "gatsby"

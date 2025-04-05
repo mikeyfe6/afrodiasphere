@@ -3,11 +3,13 @@ import * as React from "react";
 import { Router, useLocation } from "@reach/router";
 
 import Layout from "../components/layout";
-import PrivateRoute from "../components/app/PrivateRoute";
-import Dashboard from "../components/app/Dashboard";
-import Login from "../components/app/Login";
-import NotFound from "../components/app/NotFound";
+import PrivateRoute from "../components/app/privateRoute";
+import Dashboard from "../components/app/dashboard";
+import Login from "../components/app/login";
+import NotFound from "../components/app/notFound";
 import Seo from "../components/seo";
+
+// TODO: exclude this page with seo component
 
 const App = () => (
     <Layout>

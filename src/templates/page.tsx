@@ -8,7 +8,7 @@ import GoogleMapReact from "google-map-react";
 
 import { isLoggedIn, isBrowser, getUser } from "../services/auth";
 
-import AdsLayout from "../components/adslayout";
+import AdsLayout from "../components/adsLayout";
 import Spinner from "../components/ui/spinner";
 import Seo from "../components/seo";
 

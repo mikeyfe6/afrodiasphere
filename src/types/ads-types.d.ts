@@ -1,4 +1,3 @@
-declare module "*.module.scss";
 declare module "configstore";
 declare module "cookie";
 declare module "estree";
@@ -7,3 +6,5 @@ declare module "http-proxy";
 declare module "json-schema";
 declare module "reach__router";
 declare module "yoga-layout";
+declare module "*.png";
+declare module "*.module.scss";

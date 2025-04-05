@@ -2,8 +2,6 @@ import React, { useState } from "react";
 
 import { Link, navigate } from "gatsby";
 
-import PropTypes from "prop-types";
-
 import { isLoggedIn, logout, isBrowser, getUser } from "../../services/auth";
 
 import Search from "../algolia/search";
@@ -105,14 +103,6 @@ const Header = () => {
             </div>
         </header>
     );
-};
-
-Header.propTypes = {
-    siteTitle: PropTypes.string,
-};
-
-Header.defaultProps = {
-    siteTitle: ``,
 };
 
 export default Header;
