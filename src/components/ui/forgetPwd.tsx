@@ -8,7 +8,7 @@ import * as styles from "../../styles/modules/pages/forgetpwd.module.scss";
 
 const apiURL = process.env.GATSBY_BACKEND_URL;
 
-const ErrorMessage = ({ text }) => {
+const ErrorMessage: React.FC<{ text: string }> = ({ text }) => {
     return (
         <div className={styles.error}>
             <span>{text}</span>
@@ -16,7 +16,7 @@ const ErrorMessage = ({ text }) => {
     );
 };
 
-const LoadingMessage = ({ text }) => {
+const LoadingMessage: React.FC<{ text: string }> = ({ text }) => {
     return (
         <div className={styles.loading}>
             <span>{text}</span>
@@ -25,17 +25,19 @@ const LoadingMessage = ({ text }) => {
 };
 
 const ForgetPwd = () => {
-    const emailResetRef = useRef();
+    const emailResetRef = useRef<HTMLInputElement | null>(null);
 
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(null);
+    const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState<string | null>(null);
 
-    const handleSubmitRegister = async (e) => {
+    const handleSubmitRegister = async (
+        e: React.FormEvent<HTMLFormElement>
+    ) => {
         e.preventDefault();
 
         try {
             await axios.post(`${apiURL}/api/auth/forgot-password`, {
-                email: emailResetRef.current.value,
+                email: emailResetRef.current ? emailResetRef.current.value : "",
             });
             setLoading("Aan het laden");
             setError(null);

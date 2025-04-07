@@ -4,7 +4,7 @@ import axios from "axios";
 
 import * as styles from "../../../../styles/modules/dashboard/profileInfo.module.scss";
 
-const Mail = ({
+const Mail: React.FC<MailProps> = ({
     docId,
     apiURL,
     token,
@@ -15,7 +15,7 @@ const Mail = ({
     loadingData,
 }) => {
     const [initialValue, setInitialValue] = useState(mail);
-    const [validationError, setValidationError] = useState(null);
+    const [validationError, setValidationError] = useState<string | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
@@ -24,13 +24,13 @@ const Mail = ({
         }
     });
 
-    const setMailHandler = (e) => {
+    const setMailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setMail(e.target.value.toLowerCase());
         setValidationError(null);
         setValidationMessage(null);
     };
 
-    const validateInput = (value) => {
+    const validateInput = (value: string) => {
         if (!value.trim()) {
             setValidationError(null);
             setValidationMessage(null);
@@ -59,7 +59,7 @@ const Mail = ({
         return true;
     };
 
-    const submitMail = async (e) => {
+    const submitMail = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (!validateInput(mail)) {

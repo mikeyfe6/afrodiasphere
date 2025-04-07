@@ -10,26 +10,26 @@ import * as styles from "../../styles/modules/pages/resetpwd.module.scss";
 
 const apiURL = process.env.GATSBY_BACKEND_URL;
 
-const ErrorMessage = ({ text }) => (
+const ErrorMessage: React.FC<{ text: string }> = ({ text }) => (
     <div className={styles.error}>
         <span>{text}</span>
     </div>
 );
 
-const LoadingMessage = ({ text }) => (
+const LoadingMessage: React.FC<{ text: string }> = ({ text }) => (
     <div className={styles.loading}>
         <span>{text}</span>
     </div>
 );
 
 const ResetPwd = () => {
-    const codeRef = useRef();
-    const passwordResetRef = useRef();
-    const confPasswordResetRef = useRef();
+    const codeRef = useRef<HTMLInputElement | null>(null);
+    const passwordResetRef = useRef<HTMLInputElement | null>(null);
+    const confPasswordResetRef = useRef<HTMLInputElement | null>(null);
 
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(null);
-    const [resetCode, setResetCode] = useState(null);
+    const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState<string | null>(null);
+    const [resetCode, setResetCode] = useState<string | null>(null);
 
     const location = useLocation();
 
@@ -39,14 +39,16 @@ const ResetPwd = () => {
         setResetCode(code);
     }, [location]);
 
-    const handleSubmitRegister = async (e) => {
+    const handleSubmitRegister = async (
+        e: React.FormEvent<HTMLFormElement>
+    ) => {
         e.preventDefault();
 
         try {
             await axios.post(`${apiURL}/api/auth/reset-password`, {
                 code: resetCode,
-                password: passwordResetRef.current.value,
-                passwordConfirmation: confPasswordResetRef.current.value,
+                password: passwordResetRef.current?.value || "",
+                passwordConfirmation: confPasswordResetRef.current?.value || "",
             });
 
             setLoading("Aan het laden");
@@ -73,7 +75,6 @@ const ResetPwd = () => {
                 <br />
                 <input
                     ref={passwordResetRef}
-                    size="35"
                     type="password"
                     name="password"
                     placeholder="Voer een nieuw wachtwoord in"
@@ -84,7 +85,6 @@ const ResetPwd = () => {
                 <br />
                 <input
                     ref={confPasswordResetRef}
-                    size="35"
                     type="password"
                     name="confirmpassword"
                     placeholder="Voer jouw nieuwe wachtwoord opnieuw in"

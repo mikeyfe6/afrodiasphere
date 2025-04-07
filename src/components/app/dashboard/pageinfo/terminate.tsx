@@ -8,7 +8,7 @@ import * as styles from "../../../../styles/modules/dashboard/profileInfo.module
 
 import { logout } from "../../../../services/auth";
 
-const Terminate = ({
+const Terminate: React.FC<TerminateProps> = ({
     docId,
     userId,
     apiURL,
@@ -18,15 +18,15 @@ const Terminate = ({
     setValidationMessage,
 }) => {
     const [deleteAds, setDeleteAds] = useState("");
-    const [validationError, setValidationError] = useState(null);
+    const [validationError, setValidationError] = useState<string | null>(null);
 
-    const setDeleteHandler = (e) => {
+    const setDeleteHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setDeleteAds(e.target.value.toLowerCase().replace(/\s+/g, ""));
         setValidationError(null);
         setValidationMessage(null);
     };
 
-    const validateInput = (value) => {
+    const validateInput = (value: string) => {
         if (username !== value) {
             const errorMessage =
                 "Vul je gebruikersnaam in om je profiel te verwijderen.";
@@ -40,7 +40,7 @@ const Terminate = ({
         return true;
     };
 
-    const submitDeleteAds = async (e) => {
+    const submitDeleteAds = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (!validateInput(deleteAds)) {

@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 
 import * as styles from "../../../styles/modules/dashboard/adslink.module.scss";
 
-const AdsLink = ({ slug, baseURL }) => {
+const AdsLink: React.FC<AdsLinkProps> = ({ slug, baseURL }) => {
     return (
         <div className={styles.adsLink}>
             <div className={styles.adsPrefix}>

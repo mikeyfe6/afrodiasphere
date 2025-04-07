@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import type { HeadFC, PageProps } from "gatsby";
+
 import Layout from "../components/layout";
 import Faq from "../components/ui/faq";
 import Seo from "../components/seo";
@@ -71,7 +73,7 @@ const faqs = [
     },
 ];
 
-const FaqPage = () => (
+const FaqPage: React.FC<PageProps> = () => (
     <Layout>
         <section className={faqStyles.faq}>
             <div>
@@ -90,6 +92,6 @@ const FaqPage = () => (
 
 export default FaqPage;
 
-export const Head = () => {
+export const Head: HeadFC = () => {
     return <Seo title="FAQ" pathname="/faq/" />;
 };

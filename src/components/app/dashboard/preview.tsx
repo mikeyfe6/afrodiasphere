@@ -2,7 +2,7 @@ import * as React from "react";
 
 import * as styles from "../../../styles/modules/dashboard/themes.module.scss";
 
-const Preview = ({
+const Preview: React.FC<PreviewProps> = ({
     preview,
     profile,
     occupation,
@@ -21,8 +21,9 @@ const Preview = ({
     ytLink,
     paLink,
     color,
+    loadingData,
 }) => {
-    const getThemeClassName = (element) => {
+    const getThemeClassName = (element: string) => {
         switch (color) {
             case "geel":
                 return styles[`yellowStyle${element}`];
@@ -58,7 +59,10 @@ const Preview = ({
         (paLink && paLink.length > 1);
 
     return (
-        <div id="iphone-frame">
+        <div
+            id="iphone-frame"
+            style={{ filter: loadingData ? "blur(2px)" : "unset" }}
+        >
             {mail && mail.length > 1 && (
                 <a
                     href={`mailto:${mail}`}
@@ -118,7 +122,7 @@ const Preview = ({
                         .map((link, index) => (
                             <li
                                 key={index}
-                                id={`link${link.id}`}
+                                id={`link${link.documentId}`}
                                 hidden={!link.visible}
                             >
                                 <a

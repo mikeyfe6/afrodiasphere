@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import type { HeadFC, PageProps } from "gatsby";
+
 import Layout from "../components/layout";
 import ForgetPassword from "../components/ui/forgetPwd";
 import Seo from "../components/seo";
@@ -8,7 +10,7 @@ import mamaAfrica from "../images/mamafrica.png";
 
 import * as styles from "../styles/modules/pages/forgetpwd.module.scss";
 
-const ForgetPwdPage = () => (
+const ForgetPwdPage: React.FC<PageProps> = () => (
     <Layout>
         <section className={styles.forgetPwd}>
             <h1>Wachtwoord vergeten</h1>
@@ -27,6 +29,6 @@ const ForgetPwdPage = () => (
 
 export default ForgetPwdPage;
 
-export const Head = () => {
+export const Head: HeadFC = () => {
     return <Seo title="Reset wachtwoord" pathname="/wachtwoord-vergeten/" />;
 };

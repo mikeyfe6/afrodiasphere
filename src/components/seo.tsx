@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { useStaticQuery, graphql } from "gatsby";
 
-function Seo({ description, title, children, pathname, image }) {
+function Seo({ description, title, children, pathname, image }: SeoProps) {
     const { site } = useStaticQuery(graphql`
         query {
             site {
@@ -44,7 +44,6 @@ function Seo({ description, title, children, pathname, image }) {
             <meta name="twitter:description" content={metaDescription} />
             <meta name="twitter:image" content={metaImage} />
             <meta name="twitter:url" content={siteUrl} />
-
             <link
                 rel="stylesheet"
                 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -52,6 +51,7 @@ function Seo({ description, title, children, pathname, image }) {
                 crossOrigin="anonymous"
                 referrerPolicy="no-referrer"
             />
+            // TODO: FONTAWESOME uit react !!
             {children}
         </>
     );

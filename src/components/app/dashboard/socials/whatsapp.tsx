@@ -2,8 +2,13 @@ import * as React from "react";
 
 import * as styles from "../../../../styles/modules/dashboard/socials.module.scss";
 
-const Whatsapp = ({ waLink, setWaLink, handleSmLinkChange, loadingData }) => {
-    const setWaHandler = (e) => {
+const Whatsapp: React.FC<WhatsappProps> = ({
+    waLink,
+    setWaLink,
+    handleSmLinkChange,
+    loadingData,
+}) => {
+    const setWaHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newWaLink = e.target.value.toLowerCase();
         setWaLink(newWaLink);
 
@@ -24,7 +29,7 @@ const Whatsapp = ({ waLink, setWaLink, handleSmLinkChange, loadingData }) => {
                     id="walink"
                     name="walink"
                     type="text"
-                    maxLength="15"
+                    maxLength={15}
                     placeholder="bijv. 31612345678"
                     value={waLink}
                     onChange={setWaHandler}

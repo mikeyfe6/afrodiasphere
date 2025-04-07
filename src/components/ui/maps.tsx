@@ -17,7 +17,7 @@ const defaultProps = {
     zoom: 10,
 };
 
-const Marker = ({ lat, lng, imageUrl, onClick }) => (
+const Marker: React.FC<MarkerProps> = ({ lat, lng, imageUrl, onClick }) => (
     <div
         data-lat={lat}
         data-lng={lng}
@@ -29,8 +29,8 @@ const Marker = ({ lat, lng, imageUrl, onClick }) => (
 );
 
 const Maps = () => {
-    const [pins, setPins] = useState([]);
-    const [selectedPin, setSelectedPin] = useState(null);
+    const [pins, setPins] = useState<PinItem[]>([]);
+    const [selectedPin, setSelectedPin] = useState<PinItem | null>(null);
 
     const apiURL = process.env.GATSBY_BACKEND_URL;
 
@@ -40,7 +40,7 @@ const Maps = () => {
                 const res = await axios.get(
                     `${apiURL}/api/pages?populate[0]=avatar&populate[1]=address`
                 );
-                const data = res.data.data.map((item) => ({
+                const data = res.data.data.map((item: PinItem) => ({
                     ...item.address,
                     imageUrl: item.avatar?.url,
                     profile: item.profile,
@@ -58,7 +58,7 @@ const Maps = () => {
         getMapPins();
     }, [apiURL]);
 
-    const handleMarkerClick = (pin) => {
+    const handleMarkerClick = (pin: PinItem) => {
         setSelectedPin(pin);
     };
 
@@ -66,7 +66,7 @@ const Maps = () => {
         setSelectedPin(null);
     };
 
-    function formatTelephone(telephone) {
+    function formatTelephone(telephone: string) {
         telephone = telephone.replace(/\s+/g, "");
 
         if (telephone.startsWith("06")) {
@@ -76,7 +76,11 @@ const Maps = () => {
             );
         }
 
-        if (telephone.startsWith("+31" || "0031" || "31")) {
+        if (
+            telephone.startsWith("+31") ||
+            telephone.startsWith("0031") ||
+            telephone.startsWith("31")
+        ) {
             return telephone.replace(
                 /(\+31)(\d)(\d{3})(\d{3})(\d{2})/,
                 "$1 $2 $3 $4 $5"
@@ -141,17 +145,17 @@ const Maps = () => {
                                 <p>{selectedPin.biography}</p>
                             )}
 
-                            {(selectedPin.telephone || selectedPin.mail) && (
+                            {(selectedPin.telephone || selectedPin.email) && (
                                 <div className={mapsStyles.infoContact}>
-                                    {selectedPin.mail && (
+                                    {selectedPin.email && (
                                         <div>
                                             <i className="fa-solid fa-envelope fa-lg" />
                                             <a
-                                                href={`mailto:${selectedPin.mail}`}
+                                                href={`mailto:${selectedPin.email}`}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                             >
-                                                {selectedPin.mail}
+                                                {selectedPin.email}
                                             </a>
                                         </div>
                                     )}
@@ -185,7 +189,7 @@ const Maps = () => {
                             </div>
                         </div>
 
-                        {(selectedPin.mail ||
+                        {(selectedPin.email ||
                             selectedPin.telephone ||
                             selectedPin.imageUrl) && (
                             <div>
@@ -196,20 +200,20 @@ const Maps = () => {
                                     />
                                 )}
 
-                                {(selectedPin.mail ||
+                                {(selectedPin.email ||
                                     selectedPin.telephone) && (
                                     <div
                                         className={mapsStyles.infoContactMobile}
                                     >
-                                        {selectedPin.mail && (
+                                        {selectedPin.email && (
                                             <div>
                                                 <i className="fa-solid fa-envelope fa-lg" />
                                                 <a
-                                                    href={`mailto:${selectedPin.mail}`}
+                                                    href={`mailto:${selectedPin.email}`}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                 >
-                                                    {selectedPin.mail}
+                                                    {selectedPin.email}
                                                 </a>
                                             </div>
                                         )}

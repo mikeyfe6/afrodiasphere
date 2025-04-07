@@ -2,7 +2,7 @@ import * as React from "react";
 
 import * as spinnerStyles from "../../styles/modules/ui/spinner.module.scss";
 
-const Spinner = ({ type }) => (
+const Spinner: React.FC<SpinnerProps> = ({ type }) => (
     <div
         className={spinnerStyles.spinner}
         id="spinner"

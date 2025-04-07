@@ -1,10 +1,12 @@
 import * as React from "react";
 
+import type { RouteComponentProps } from "@reach/router";
+
 import { Link } from "gatsby";
 
 import * as notFoundStyles from "../../styles/modules/pages/not-found.module.scss";
 
-const NotFound = () => {
+const NotFound: React.FC<RouteComponentProps> = () => {
     return (
         <>
             <div className={notFoundStyles.notFound}>

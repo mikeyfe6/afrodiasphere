@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const Sidebar = ({ profile, loadingData }) => {
+const Sidebar: React.FC<SidebarProps> = ({ profile, loadingData }) => {
     return (
         <h5 style={{ filter: loadingData ? "blur(2px)" : "none" }}>
             Hallo, {profile}

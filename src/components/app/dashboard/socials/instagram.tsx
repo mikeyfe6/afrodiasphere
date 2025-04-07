@@ -2,8 +2,13 @@ import * as React from "react";
 
 import * as styles from "../../../../styles/modules/dashboard/socials.module.scss";
 
-const Instagram = ({ igLink, setIgLink, handleSmLinkChange, loadingData }) => {
-    const setIgHandler = (e) => {
+const Instagram: React.FC<InstagramProps> = ({
+    igLink,
+    setIgLink,
+    handleSmLinkChange,
+    loadingData,
+}) => {
+    const setIgHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newIgLink = e.target.value.toLowerCase();
         setIgLink(newIgLink);
 

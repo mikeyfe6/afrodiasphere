@@ -19,7 +19,7 @@ import noavatar from "../../images/noavatar.png";
 import * as styles from "../../styles/modules/ui/slider.module.scss";
 
 const Slider = () => {
-    const [carousel, setCarousel] = useState([]);
+    const [carousel, setCarousel] = useState<CarouselItem[]>([]);
     const [loading, setLoading] = useState(true);
 
     const location = useLocation();
@@ -93,11 +93,7 @@ const Slider = () => {
                                     </div>
 
                                     <div className={styles.biography}>
-                                        <p
-                                            dangerouslySetInnerHTML={{
-                                                __html: ads.biography,
-                                            }}
-                                        />
+                                        <p>{ads.biography}</p>
                                     </div>
                                     <div className={styles.url}>
                                         <Link

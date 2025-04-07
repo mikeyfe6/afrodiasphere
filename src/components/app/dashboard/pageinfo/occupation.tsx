@@ -4,10 +4,18 @@ import axios from "axios";
 
 import * as occupationStyles from "../../../../styles/modules/dashboard/occupation.module.scss";
 
-const Occupation = ({ docId, apiURL, token, occupation, setOccupation }) => {
-    const [expandedSection, setExpandedSection] = useState(null);
+const Occupation: React.FC<OccupationProps> = ({
+    docId,
+    apiURL,
+    token,
+    occupation,
+    setOccupation,
+}) => {
+    const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
-    const onOccupationChange = async (e) => {
+    const onOccupationChange = async (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
         setOccupation(e.target.value);
 
         const params = {
@@ -54,13 +62,16 @@ const Occupation = ({ docId, apiURL, token, occupation, setOccupation }) => {
             geen: "Overige Beroepen",
         };
 
-        const currentCategory = occupationCategories[occupation];
+        const currentCategory =
+            occupationCategories[
+                occupation as keyof typeof occupationCategories
+            ];
         if (currentCategory) {
             setExpandedSection(currentCategory);
         }
     }, [occupation]);
 
-    const toggleSection = (section) => {
+    const toggleSection = (section: string) => {
         setExpandedSection((prevSection) =>
             prevSection === section ? null : section
         );

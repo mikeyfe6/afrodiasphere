@@ -18,7 +18,7 @@ const defaultProps = {
     zoom: 15,
 };
 
-const Address = ({
+const Address: React.FC<AddressProps> = ({
     docId,
     apiURL,
     token,
@@ -29,8 +29,8 @@ const Address = ({
     setValidationMessage,
     loadingData,
 }) => {
-    const [pin, setPin] = useState(null);
-    const [validationError, setValidationError] = useState(null);
+    const [pin, setPin] = useState<LocationPin | null>(null);
+    const [validationError, setValidationError] = useState<string | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isLocationSearched, setIsLocationSearched] = useState(false);
     const [inputValue, setInputValue] = useState("");
@@ -38,7 +38,7 @@ const Address = ({
 
     const apiKey = process.env.GATSBY_GOOGLE_GEO_KEY;
 
-    const Marker = ({ lat, lng }) => (
+    const Marker: React.FC<CoordinationProps> = ({ lat, lng }) => (
         <div data-lat={lat} data-lng={lng} className={mapsStyles.marker}>
             <img src={preview} alt={"title"} />
         </div>
@@ -78,21 +78,21 @@ const Address = ({
             }
         } catch (error) {
             setValidationMessage(
-                `Er is een fout opgetreden bij het ophalen van de locatie: ${error.message}`
+                `Er is een fout opgetreden bij het ophalen van de locatie: ${
+                    error instanceof Error ? error.message : "Onbekende fout"
+                }`
             );
             setPin(null);
             setIsLocationSearched(false);
         }
     };
 
-    const handleInputChange = (e) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);
         setIsLocationSearched(false);
     };
 
-    const handleSearch = (e) => {
-        e.preventDefault();
-
+    const handleSearch = () => {
         if (!validateInput(inputValue)) {
             return;
         }
@@ -100,7 +100,7 @@ const Address = ({
         fetchGeocode();
     };
 
-    const validateInput = (value) => {
+    const validateInput = (value: string) => {
         if (value.length < 2 || value.length > 100) {
             const errorMessage = "Invoer moet tussen de 2 en 100 tekens zijn";
             setValidationError(errorMessage);
@@ -113,9 +113,8 @@ const Address = ({
         return true;
     };
 
-    const submitAddress = async (e) => {
+    const submitAddress = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
         setIsSubmitting(true);
 
         const params = {
@@ -158,7 +157,7 @@ const Address = ({
     return (
         <>
             <form
-                onSubmit={handleSearch}
+                onSubmit={submitAddress}
                 className={`${profileInfoStyles.profileField} ${profileInfoStyles.address}`}
             >
                 <div>
@@ -178,15 +177,15 @@ const Address = ({
                 </div>
                 <div>
                     <button
-                        type="submit"
+                        type="button"
                         disabled={!inputValue}
                         title="Zoek adres"
+                        onClick={handleSearch}
                     >
                         <i className="fa-solid fa-location-crosshairs fa-lg" />
                     </button>
                     <button
-                        type="button"
-                        onClick={submitAddress}
+                        type="submit"
                         title="Sla locatie op"
                         disabled={!(isLocationSearched || deleteLocation)}
                     >

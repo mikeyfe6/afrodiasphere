@@ -25,13 +25,18 @@ const defaultProps = {
 
 const apiURL = process.env.GATSBY_BACKEND_URL;
 
-const AdsTemplate = ({ pageContext: { slug, documentId } }) => {
+const AdsTemplate = ({
+    pageContext: { slug, documentId },
+}: {
+    pageContext: PageContext;
+}) => {
     const [color, setColor] = useState("zwart");
     const [avatar, setAvatar] = useState(noavatar);
     const [profile, setProfile] = useState("");
     const [occupation, setOccupation] = useState("");
     const [biography, setBiography] = useState("");
-    const [links, setLinks] = useState([]);
+
+    const [links, setLinks] = useState<LinkItem[]>([]);
     const [spinner, setSpinner] = useState(true);
 
     const [telephone, setTelephone] = useState("");
@@ -99,7 +104,7 @@ const AdsTemplate = ({ pageContext: { slug, documentId } }) => {
         getPageData();
     }, [documentId]);
 
-    const Marker = ({ lat, lng }) => {
+    const Marker = ({ lat, lng }: CoordinationProps) => {
         return (
             <div data-lat={lat} data-lng={lng} className={mapsStyles.marker}>
                 <img src={avatar} alt={profile} />
@@ -212,7 +217,10 @@ const AdsTemplate = ({ pageContext: { slug, documentId } }) => {
                         {hasLinks() && (
                             <ul className={`theme-${color}-links`}>
                                 {links.slice(0, 20).map((link) => (
-                                    <li key={link.id} hidden={!link.visible}>
+                                    <li
+                                        key={link.documentId}
+                                        hidden={!link.visible}
+                                    >
                                         <a
                                             href={`https://${link.url}`}
                                             rel="noopener noreferrer"
@@ -411,7 +419,8 @@ const AdsTemplate = ({ pageContext: { slug, documentId } }) => {
 
 export default AdsTemplate;
 
-export const Head = ({ pageContext: { profile, biography, slug, avatar } }) => {
+export const Head = ({ pageContext }: { pageContext: SeoContext }) => {
+    const { profile, biography, slug, avatar } = pageContext;
     return (
         <Seo
             title={profile}

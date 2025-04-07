@@ -4,8 +4,16 @@ import axios from "axios";
 
 import * as styles from "../../../styles/modules/dashboard/themes.module.scss";
 
-const Themes = ({ docId, apiURL, token, color, setColor }) => {
-    const onRadioChange = async ({ target: { value } }) => {
+const Themes: React.FC<ThemesProps> = ({
+    docId,
+    apiURL,
+    token,
+    color,
+    setColor,
+}) => {
+    const onRadioChange = async ({
+        target: { value },
+    }: React.ChangeEvent<HTMLInputElement>) => {
         setColor(value);
 
         const params = {

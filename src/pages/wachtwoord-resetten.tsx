@@ -1,7 +1,9 @@
 import * as React from "react";
 
+import type { HeadFC, PageProps } from "gatsby";
+
 import Layout from "../components/layout";
-import ResetPassword from "../components/ui/resetpwd";
+import ResetPassword from "../components/ui/resetPwd";
 import Seo from "../components/seo";
 
 import mamaAfrica from "../images/mamafrica.png";
@@ -10,7 +12,7 @@ import * as styles from "../styles/modules/pages/resetpwd.module.scss";
 
 // TODO: naam naar wachtwoord-herstellen veranderen
 
-const ResetPwdPage = () => (
+const ResetPwdPage: React.FC<PageProps> = () => (
     <Layout>
         <section className={styles.resetPwd}>
             <div>
@@ -28,6 +30,6 @@ const ResetPwdPage = () => (
 
 export default ResetPwdPage;
 
-export const Head = () => {
+export const Head: HeadFC = () => {
     return <Seo title="Reset wachtwoord" pathname="/wachtwoord-resetten/" />;
 };

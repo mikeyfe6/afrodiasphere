@@ -1,6 +1,8 @@
 import * as React from "react";
 
-import { Router, useLocation } from "@reach/router";
+import type { HeadFC, PageProps } from "gatsby";
+
+import { Router } from "@reach/router";
 
 import Layout from "../components/layout";
 import PrivateRoute from "../components/app/privateRoute";
@@ -9,9 +11,9 @@ import Login from "../components/app/login";
 import NotFound from "../components/app/notFound";
 import Seo from "../components/seo";
 
-// TODO: exclude this page with seo component
+// TODO: exclude this page with noindex in seo component
 
-const App = () => (
+const App: React.FC<PageProps> = () => (
     <Layout>
         <Router>
             <PrivateRoute component={Dashboard} path="/dashboard/" />
@@ -22,9 +24,7 @@ const App = () => (
 );
 export default App;
 
-export const Head = () => {
-    const location = useLocation();
-
+export const Head: HeadFC<PageProps> = ({ location }) => {
     let title, pathname;
 
     switch (location.pathname) {

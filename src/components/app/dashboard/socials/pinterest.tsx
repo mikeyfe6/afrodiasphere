@@ -2,8 +2,13 @@ import * as React from "react";
 
 import * as styles from "../../../../styles/modules/dashboard/socials.module.scss";
 
-const Pinterest = ({ piLink, setPiLink, handleSmLinkChange, loadingData }) => {
-    const setPiHandler = (e) => {
+const Pinterest: React.FC<PinterestProps> = ({
+    piLink,
+    setPiLink,
+    handleSmLinkChange,
+    loadingData,
+}) => {
+    const setPiHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newPiLink = e.target.value.toLowerCase();
         setPiLink(newPiLink);
 

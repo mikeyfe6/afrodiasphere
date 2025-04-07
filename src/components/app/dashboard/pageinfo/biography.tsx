@@ -4,7 +4,7 @@ import axios from "axios";
 
 import * as styles from "../../../../styles/modules/dashboard/biography.module.scss";
 
-const Biography = ({
+const Biography: React.FC<BiographyProps> = ({
     docId,
     apiURL,
     token,
@@ -23,13 +23,13 @@ const Biography = ({
         }
     });
 
-    const setBiographyHandler = (e) => {
+    const setBiographyHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setBiography(e.target.value);
-        setValidationError(null);
+        setValidationError(false);
         setSuccess(false);
     };
 
-    const validateInput = (value) => {
+    const validateInput = (value: string) => {
         if (value.length > 240) {
             setValidationError(true);
             setSuccess(false);
@@ -40,7 +40,7 @@ const Biography = ({
         return true;
     };
 
-    const submitBiography = async (e) => {
+    const submitBiography = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (!validateInput(biography)) {
@@ -59,7 +59,7 @@ const Biography = ({
             );
 
             setSuccess(true);
-            setTimeout(() => setSuccess(null), 5000);
+            setTimeout(() => setSuccess(false), 5000);
             setInitialValue(biography);
         } catch (error) {
             console.error("Error updating biography:", error);
@@ -73,7 +73,6 @@ const Biography = ({
             <label htmlFor="biography">Biografie</label>
             <textarea
                 id="biography"
-                type="text"
                 name="biography"
                 placeholder="Voer hier een korte beschrijving in van max 240 tekens.."
                 value={biography || ""}

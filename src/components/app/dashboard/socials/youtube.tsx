@@ -2,8 +2,13 @@ import * as React from "react";
 
 import * as styles from "../../../../styles/modules/dashboard/socials.module.scss";
 
-const Pinterest = ({ ytLink, setYtLink, handleSmLinkChange, loadingData }) => {
-    const setYtHandler = (e) => {
+const Youtube: React.FC<YoutubeProps> = ({
+    ytLink,
+    setYtLink,
+    handleSmLinkChange,
+    loadingData,
+}) => {
+    const setYtHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newYtLink = e.target.value.toLowerCase();
         setYtLink(newYtLink);
 
@@ -34,4 +39,4 @@ const Pinterest = ({ ytLink, setYtLink, handleSmLinkChange, loadingData }) => {
     );
 };
 
-export default Pinterest;
+export default Youtube;

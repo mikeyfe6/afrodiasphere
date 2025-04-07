@@ -39,7 +39,7 @@ import noavatar from "../../images/noavatar.png";
 
 import * as styles from "../../styles/modules/pages/dashboard.module.scss";
 
-const SuccessMessage = ({ text }) => {
+const SuccessMessage: React.FC<{ text: string | JSX.Element }> = ({ text }) => {
     return (
         <div className={styles.success}>
             <span>{text}</span>
@@ -47,7 +47,7 @@ const SuccessMessage = ({ text }) => {
     );
 };
 
-const ErrorMessage = ({ text }) => {
+const ErrorMessage: React.FC<{ text: string | JSX.Element }> = ({ text }) => {
     return (
         <div className={styles.error}>
             <span>{text}</span>
@@ -55,7 +55,7 @@ const ErrorMessage = ({ text }) => {
     );
 };
 
-const DashboardPage = () => {
+const DashboardPage: React.FC = () => {
     useEffect(() => {
         if (!isLoggedIn()) {
             navigate("/login/");
@@ -64,27 +64,29 @@ const DashboardPage = () => {
 
     const location = useLocation();
 
-    const apiURL = process.env.GATSBY_BACKEND_URL;
+    const apiURL = process.env.GATSBY_BACKEND_URL || "";
     const baseURL = location.origin;
 
     const adsUser = getUser();
     const token = adsUser.jwt;
 
-    const [userId, setUserId] = useState(null);
-    const [pageId, setPageId] = useState(null);
-    const [docId, setDocId] = useState(null);
+    const [userId, setUserId] = useState<number | null>(null);
+    const [pageId, setPageId] = useState<number | null>(null);
+    const [docId, setDocId] = useState<string | null>(null);
 
-    const [avatar, setAvatar] = useState(null);
+    const [avatar, setAvatar] = useState<string | null>(null);
     const [avatarId, setAvatarId] = useState(null);
     const [preview, setPreview] = useState(noavatar);
 
-    const [profileSuccess, setProfileSuccess] = useState(false);
-    const [contactSuccess, setContactSuccess] = useState(false);
-    const [socialSuccess, setSocialSuccess] = useState(false);
+    const [profileSuccess, setProfileSuccess] = useState<string | null>(null);
+    const [contactSuccess, setContactSuccess] = useState<string | null>(null);
+    const [socialSuccess, setSocialSuccess] = useState<
+        string | JSX.Element | null
+    >(null);
 
-    const [profileError, setProfileError] = useState(null);
-    const [contactError, setContactError] = useState(null);
-    const [socialError, setSocialError] = useState(null);
+    const [profileError, setProfileError] = useState<string | null>(null);
+    const [contactError, setContactError] = useState<string | null>(null);
+    const [socialError, setSocialError] = useState<string | null>(null);
     // const [error, setError] = useState(null);
 
     const [loadingData, setLoadingData] = useState(false);
@@ -100,7 +102,7 @@ const DashboardPage = () => {
 
     const [telephone, setTelephone] = useState("");
     const [mail, setMail] = useState("");
-    const [address, setAddress] = useState({
+    const [address, setAddress] = useState<LocationPin>({
         location: "",
         latitude: null,
         longitude: null,
@@ -132,7 +134,7 @@ const DashboardPage = () => {
 
     const [changedSmLinks, setChangedSmLinks] = useState({});
 
-    const [links, setLinks] = useState([]);
+    const [links, setLinks] = useState<LinkItem[]>([]);
 
     const [color, setColor] = useState("");
 
@@ -209,7 +211,7 @@ const DashboardPage = () => {
             console.error("Error fetching user ID:", error);
             // setError("Er gaat iets mis met het ophalen van je gegevens");
         } finally {
-            setLoadingData(false);
+            setLoadingData(true);
         }
     }, [apiURL, token]);
 
@@ -217,7 +219,7 @@ const DashboardPage = () => {
         getUserData();
     }, [getUserData]);
 
-    const handleSmLinkChange = (name, value) => {
+    const handleSmLinkChange = (name: string, value: string) => {
         setSmLinks((prevLinks) => ({ ...prevLinks, [name]: value }));
 
         setChangedSmLinks((prevChangedLinks) => ({
@@ -232,7 +234,9 @@ const DashboardPage = () => {
 
         for (const [name, hasChanged] of Object.entries(changedSmLinks)) {
             if (hasChanged) {
-                const params = { [name]: smLinks[name] };
+                const params = {
+                    [name]: smLinks[name as keyof typeof smLinks],
+                };
 
                 try {
                     await axios.put(
@@ -494,6 +498,7 @@ const DashboardPage = () => {
                         token={token}
                         mail={mail}
                         setMail={setMail}
+                        setContactSuccess={setContactSuccess}
                         setValidationMessage={setContactError}
                         loadingData={loadingData}
                     />
@@ -527,7 +532,6 @@ const DashboardPage = () => {
                         fbLink={fbLink}
                         setFbLink={setFbLink}
                         handleSmLinkChange={handleSmLinkChange}
-                        setSocialError={setSocialError}
                         loadingData={loadingData}
                     />
 
@@ -615,7 +619,6 @@ const DashboardPage = () => {
                 <h2>Link Lijst</h2>
 
                 <Links
-                    userId={userId}
                     pageId={pageId}
                     docId={docId}
                     apiURL={apiURL}
@@ -636,7 +639,6 @@ const DashboardPage = () => {
                     token={token}
                     color={color}
                     setColor={setColor}
-                    links={links}
                 />
             </section>
 

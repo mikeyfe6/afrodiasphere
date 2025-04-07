@@ -2,8 +2,13 @@ import * as React from "react";
 
 import * as styles from "../../../../styles/modules/dashboard/socials.module.scss";
 
-const Facebook = ({ fbLink, setFbLink, handleSmLinkChange, loadingData }) => {
-    const setFbHandler = (e) => {
+const Facebook: React.FC<FacebookProps> = ({
+    fbLink,
+    setFbLink,
+    handleSmLinkChange,
+    loadingData,
+}) => {
+    const setFbHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newFbLink = e.target.value.toLowerCase();
         setFbLink(newFbLink);
 

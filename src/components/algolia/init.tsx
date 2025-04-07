@@ -23,13 +23,21 @@ const Algolia = () => {
                 );
                 const records = response.data.data;
 
-                const objectsWithID = records.map((record: { documentId: any; }) => ({
-                    objectID: record.documentId,
-                    ...record,
-                }));
+                const objectsWithID = records.map(
+                    (record: { documentId: any }) => ({
+                        objectID: record.documentId,
+                        ...record,
+                    })
+                );
 
                 await client.saveObjects({
-                    indexName: ALGOLIA_INDEX_NAME || (() => { throw new Error("ALGOLIA_INDEX_NAME is not defined."); })(),
+                    indexName:
+                        ALGOLIA_INDEX_NAME ||
+                        (() => {
+                            throw new Error(
+                                "ALGOLIA_INDEX_NAME is not defined."
+                            );
+                        })(),
                     objects: objectsWithID,
                 });
             } catch (error) {

@@ -2,8 +2,13 @@ import * as React from "react";
 
 import * as styles from "../../../../styles/modules/dashboard/socials.module.scss";
 
-const Linkedin = ({ liLink, setLiLink, handleSmLinkChange, loadingData }) => {
-    const setLiHandler = (e) => {
+const Linkedin: React.FC<LinkedinProps> = ({
+    liLink,
+    setLiLink,
+    handleSmLinkChange,
+    loadingData,
+}) => {
+    const setLiHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newLiLink = e.target.value.toLowerCase();
         setLiLink(newLiLink);
 

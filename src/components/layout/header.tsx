@@ -70,7 +70,6 @@ const Header = () => {
                                         e.preventDefault();
                                         logout(() => navigate("/login/"));
                                     }}
-                                    href="#"
                                     title="Uitloggen"
                                 >
                                     Log uit

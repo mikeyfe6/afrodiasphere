@@ -2,8 +2,13 @@ import * as React from "react";
 
 import * as styles from "../../../../styles/modules/dashboard/socials.module.scss";
 
-const Snapchat = ({ snLink, setSnLink, handleSmLinkChange, loadingData }) => {
-    const setSnHandler = (e) => {
+const Snapchat: React.FC<SnapchatProps> = ({
+    snLink,
+    setSnLink,
+    handleSmLinkChange,
+    loadingData,
+}) => {
+    const setSnHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newSnLink = e.target.value.toLowerCase();
         setSnLink(newSnLink);
 

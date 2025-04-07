@@ -4,7 +4,7 @@ import axios from "axios";
 
 import * as styles from "../../../../styles/modules/dashboard/avatar.module.scss";
 
-const Avatar = ({
+const Avatar: React.FC<AvatarProps> = ({
     docId,
     pageId,
     avatarId,
@@ -18,9 +18,9 @@ const Avatar = ({
     setProfileSuccess,
     loadingData,
 }) => {
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState<File | null>(null);
 
-    const fileInputRef = useRef();
+    const fileInputRef = useRef<HTMLInputElement | null>(null);
 
     useEffect(() => {
         if (avatar) {
@@ -28,7 +28,7 @@ const Avatar = ({
         }
     }, [avatar, setAvatar]);
 
-    const deleteAvatar = async (e) => {
+    const deleteAvatar = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
         try {
@@ -51,14 +51,19 @@ const Avatar = ({
         }
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         try {
             const imgData = new FormData();
-            imgData.append("files", image);
+            if (image) {
+                imgData.append("files", image);
+            } else {
+                console.error("No image selected to upload.");
+                return;
+            }
             imgData.append("ref", "api::page.page");
-            imgData.append("refId", pageId);
+            imgData.append("refId", pageId !== null ? pageId.toString() : "");
             imgData.append("field", "avatar");
 
             const response = await axios.post(
@@ -101,7 +106,9 @@ const Avatar = ({
         if (image) {
             const reader = new FileReader();
             reader.onloadend = () => {
-                setPreview(reader.result);
+                if (typeof reader.result === "string") {
+                    setPreview(reader.result);
+                }
             };
             reader.readAsDataURL(image);
         }
@@ -121,7 +128,9 @@ const Avatar = ({
                     className={styles.addBtn}
                     onClick={(event) => {
                         event.preventDefault();
-                        fileInputRef.current.click();
+                        if (fileInputRef.current) {
+                            fileInputRef.current.click();
+                        }
                     }}
                     title="Kies een avatar"
                 >
@@ -144,7 +153,9 @@ const Avatar = ({
                     name="avatar"
                     ref={fileInputRef}
                     onChange={(event) => {
-                        const file = event.target.files[0];
+                        const file = event.target.files
+                            ? event.target.files[0]
+                            : null;
 
                         if (file && file.type.substring(0, 5) === "image") {
                             setImage(file);

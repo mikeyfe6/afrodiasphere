@@ -4,7 +4,7 @@ import axios from "axios";
 
 import * as styles from "../../../../styles/modules/dashboard/profileInfo.module.scss";
 
-const Telephone = ({
+const Telephone: React.FC<TelephoneProps> = ({
     docId,
     apiURL,
     token,
@@ -15,7 +15,7 @@ const Telephone = ({
     loadingData,
 }) => {
     const [initialValue, setInitialValue] = useState(telephone);
-    const [validationError, setValidationError] = useState(null);
+    const [validationError, setValidationError] = useState<string | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
@@ -24,13 +24,13 @@ const Telephone = ({
         }
     });
 
-    const setTelephoneHandler = (e) => {
+    const setTelephoneHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTelephone(e.target.value);
         setValidationError(null);
         setValidationMessage(null);
     };
 
-    const validateInput = (value) => {
+    const validateInput = (value: string) => {
         if (!value.trim()) {
             setValidationError(null);
             setValidationMessage(null);
@@ -60,7 +60,7 @@ const Telephone = ({
         return true;
     };
 
-    const submitTelephone = async (e) => {
+    const submitTelephone = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (!validateInput(telephone)) {

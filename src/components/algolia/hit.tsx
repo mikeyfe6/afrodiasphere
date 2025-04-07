@@ -1,10 +1,10 @@
 import * as React from "react";
 
+import type { Hit as AlgoliaHit } from "instantsearch.js";
+
 import { Link } from "gatsby";
 
 import { Highlight } from "react-instantsearch";
-
-import type { Hit as AlgoliaHit } from "instantsearch.js";
 
 import noavatar from "../../images/noavatar.png";
 

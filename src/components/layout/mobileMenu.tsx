@@ -8,7 +8,7 @@ import Search from "../algolia/search";
 
 import * as styles from "../../styles/modules/layout/mobilemenu.module.scss";
 
-const MobileMenu = ({ isMenuOpen, setMenuOpen }) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({ isMenuOpen, setMenuOpen }) => {
     const adsUser = getUser();
     const initialScrollY = useRef(window.scrollY);
     const [searchVisible, setSearchVisible] = useState(false);
@@ -28,7 +28,9 @@ const MobileMenu = ({ isMenuOpen, setMenuOpen }) => {
         }
     };
 
-    const toggleSearchVisibility = (event) => {
+    const toggleSearchVisibility = (
+        event: React.MouseEvent<HTMLDivElement>
+    ) => {
         event.preventDefault();
 
         setSearchVisible((prevState) => !prevState);
@@ -38,9 +40,9 @@ const MobileMenu = ({ isMenuOpen, setMenuOpen }) => {
 
         if (searchInput) {
             if (!searchVisible) {
-                searchInput.focus();
+                (searchInput as HTMLInputElement).focus();
             } else {
-                searchInput.blur();
+                (searchInput as HTMLInputElement).blur();
             }
         }
     };
@@ -128,7 +130,6 @@ const MobileMenu = ({ isMenuOpen, setMenuOpen }) => {
                                     e.preventDefault();
                                     logout(() => navigate("/login/"));
                                 }}
-                                href="#"
                                 title="Uitloggen"
                             >
                                 Log uit

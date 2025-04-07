@@ -2,10 +2,10 @@ export const isBrowser = () => typeof window !== "undefined";
 
 export const getUser = () =>
     isBrowser() && window.localStorage.getItem("AdsUser") !== "undefined"
-        ? JSON.parse(window.localStorage.getItem("AdsUser"))
+        ? JSON.parse(window.localStorage.getItem("AdsUser") || "{}")
         : {};
 
-export const setUser = (user) =>
+export const setUser = (user: User) =>
     window.localStorage.setItem("AdsUser", JSON.stringify(user));
 
 export const isLoggedIn = () => {
@@ -17,7 +17,7 @@ export const isLoggedIn = () => {
     }
 };
 
-export const logout = (callback) => {
+export const logout = (callback: () => void) => {
     setUser({});
     callback();
 };

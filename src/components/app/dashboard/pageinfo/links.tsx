@@ -4,7 +4,7 @@ import axios from "axios";
 
 import * as styles from "../../../../styles/modules/dashboard/links.module.scss";
 
-const ErrorMessage = ({ text }) => {
+const ErrorMessage: React.FC<{ text: string }> = ({ text }) => {
     return (
         <div className={styles.error}>
             <span>{text}</span>
@@ -12,7 +12,7 @@ const ErrorMessage = ({ text }) => {
     );
 };
 
-const SuccessMessage = ({ text }) => {
+const SuccessMessage: React.FC<{ text: string }> = ({ text }) => {
     return (
         <div className={styles.success}>
             <span>{text}</span>
@@ -20,14 +20,27 @@ const SuccessMessage = ({ text }) => {
     );
 };
 
-const Links = ({ pageId, docId, apiURL, token, links, setLinks }) => {
-    const linkTitle = useRef(null);
-    const linkUrl = useRef(null);
-    const [linkError, setLinkError] = useState(null);
-    const [linkSuccess, setLinkSuccess] = useState(null);
+const Links: React.FC<LinksProps> = ({
+    pageId,
+    docId,
+    apiURL,
+    token,
+    links,
+    setLinks,
+}) => {
+    const linkTitle = useRef<HTMLInputElement>({
+        value: "",
+    } as HTMLInputElement);
+    const linkUrl = useRef<HTMLInputElement>({ value: "" } as HTMLInputElement);
+    const [linkError, setLinkError] = useState<string | null>(null);
+    const [linkSuccess, setLinkSuccess] = useState<string | null>(null);
 
-    const [editLinkTitle, setEditLinkTitle] = useState("");
-    const [editLinkUrl, setEditLinkUrl] = useState("");
+    const [editLinkTitle, setEditLinkTitle] = useState<{
+        [key: string]: string;
+    }>({});
+    const [editLinkUrl, setEditLinkUrl] = useState<{ [key: string]: string }>(
+        {}
+    );
 
     useEffect(() => {
         const getLinks = async () => {
@@ -39,7 +52,9 @@ const Links = ({ pageId, docId, apiURL, token, links, setLinks }) => {
             try {
                 const res = await axios.get(
                     `${apiURL}/api/pages/${docId}?populate[0]=links`,
-                    { headers: { Authorization: `Bearer ${token}` } }
+                    {
+                        headers: { Authorization: `Bearer ${token}` },
+                    }
                 );
 
                 const data = res.data.data;
@@ -64,8 +79,11 @@ const Links = ({ pageId, docId, apiURL, token, links, setLinks }) => {
 
     const createLink = async () => {
         if (
-            (!linkTitle.current.value && !linkUrl.current.value) ||
-            /^\s*$/.test(linkTitle.current.value && linkUrl.current.value)
+            (!linkTitle.current?.value && !linkUrl.current?.value) ||
+            /^\s*$/.test(
+                (linkTitle.current?.value || "") &&
+                    (linkUrl.current?.value || "")
+            )
         ) {
             return [
                 setLinkError(
@@ -76,8 +94,8 @@ const Links = ({ pageId, docId, apiURL, token, links, setLinks }) => {
         }
 
         const params = {
-            title: linkTitle.current.value,
-            url: linkUrl.current.value,
+            title: linkTitle.current?.value || "",
+            url: linkUrl.current?.value || "",
             page: pageId,
         };
 
@@ -99,14 +117,18 @@ const Links = ({ pageId, docId, apiURL, token, links, setLinks }) => {
                 setTimeout(() => setLinkSuccess(null), 5000);
                 setLinkError(null);
             }
-            linkTitle.current.value = "";
-            linkUrl.current.value = "";
+            if (linkTitle.current) {
+                linkTitle.current.value = "";
+            }
+            if (linkUrl.current) {
+                linkUrl.current.value = "";
+            }
         } catch (err) {
             console.error("Error creating link:", err);
         }
     };
 
-    const editTheLink = async (link) => {
+    const editTheLinkTitle = async (link: { value: string; docId: string }) => {
         const changedLinkTitle = link.value.trim();
 
         if (!changedLinkTitle || /^\s*$/.test(changedLinkTitle)) {
@@ -136,18 +158,20 @@ const Links = ({ pageId, docId, apiURL, token, links, setLinks }) => {
                 setLinks(newLinks);
             }
 
-            setEditLinkTitle((prev) => ({ ...prev, [link.documentId]: "" }));
-            setEditLinkTitle("");
+            setEditLinkTitle((prev) => ({ ...prev, [link.docId]: "" }));
         } catch (err) {
             console.error("Error updating link:", err);
         }
     };
 
-    const handleEditLink = (event, linkId) => {
+    const handleEditLink = (
+        event: React.ChangeEvent<HTMLInputElement>,
+        linkId: string
+    ) => {
         setEditLinkTitle({ ...editLinkTitle, [linkId]: event.target.value });
     };
 
-    const editTheHyperLink = async (link) => {
+    const editTheHyperLink = async (link: { value: string; docId: string }) => {
         const changedLinkUrl = link.value.trim();
 
         if (!changedLinkUrl) {
@@ -177,18 +201,24 @@ const Links = ({ pageId, docId, apiURL, token, links, setLinks }) => {
                 setLinks(newLinks);
             }
 
-            setEditLinkUrl((prev) => ({ ...prev, [link.documentId]: "" }));
-            setEditLinkUrl("");
+            setEditLinkUrl((prev) => ({ ...prev, [link.docId]: "" }));
+            setEditLinkUrl({});
         } catch (err) {
             console.error("Error updating link:", err);
         }
     };
 
-    const handleEditHyperLink = (event, linkId) => {
+    const handleEditHyperLink = (
+        event: React.ChangeEvent<HTMLInputElement>,
+        linkId: string
+    ) => {
         setEditLinkUrl({ ...editLinkUrl, [linkId]: event.target.value });
     };
 
-    const toggleLink = async (link, checked) => {
+    const toggleLink = async (
+        link: { documentId: string; visible: boolean },
+        checked: boolean
+    ) => {
         const params = { visible: checked };
         try {
             const res = await axios.put(
@@ -213,7 +243,7 @@ const Links = ({ pageId, docId, apiURL, token, links, setLinks }) => {
         }
     };
 
-    const deleteLink = async (link) => {
+    const deleteLink = async (link: { documentId: string }) => {
         await axios.delete(`${apiURL}/api/links/${link.documentId}`, {
             headers: { Authorization: `Bearer ${token}` },
         });
@@ -236,7 +266,7 @@ const Links = ({ pageId, docId, apiURL, token, links, setLinks }) => {
                             name="title"
                             placeholder="voer een titel in"
                             ref={linkTitle}
-                            minLength="5"
+                            minLength={5}
                             required
                         />
                     </div>
@@ -254,7 +284,7 @@ const Links = ({ pageId, docId, apiURL, token, links, setLinks }) => {
                             placeholder="voorbeeld.nl"
                             ref={linkUrl}
                             style={{ textTransform: "lowercase" }}
-                            minLength="5"
+                            minLength={5}
                             title="Let op: 'http(s)://' NIET nodig !"
                             required
                         />
@@ -315,7 +345,7 @@ const Links = ({ pageId, docId, apiURL, token, links, setLinks }) => {
                                                 )
                                             }
                                             placeholder="bewerk titel"
-                                            minLength="5"
+                                            minLength={5}
                                             required
                                         />
                                     </div>
@@ -328,8 +358,7 @@ const Links = ({ pageId, docId, apiURL, token, links, setLinks }) => {
                                             ].trim() === ""
                                         }
                                         onClick={(event) => {
-                                            editTheLink({
-                                                id: link.id,
+                                            editTheLinkTitle({
                                                 value: editLinkTitle[
                                                     link.documentId
                                                 ],
@@ -376,7 +405,7 @@ const Links = ({ pageId, docId, apiURL, token, links, setLinks }) => {
                                                 )
                                             }
                                             placeholder="bewerk hyperlink"
-                                            minLength="5"
+                                            minLength={5}
                                             required
                                         />
                                     </div>
@@ -390,7 +419,6 @@ const Links = ({ pageId, docId, apiURL, token, links, setLinks }) => {
                                         }
                                         onClick={(event) => {
                                             editTheHyperLink({
-                                                id: link.id,
                                                 value: editLinkUrl[
                                                     link.documentId
                                                 ],
@@ -426,7 +454,7 @@ const Links = ({ pageId, docId, apiURL, token, links, setLinks }) => {
                                         title="Maak link (ont)zichtbaar"
                                         type="checkbox"
                                         hidden
-                                        id={`checkbox${link.id}`}
+                                        id={`checkbox${link.documentId}`}
                                         checked={link.visible}
                                         onChange={(e) =>
                                             toggleLink(link, e.target.checked)

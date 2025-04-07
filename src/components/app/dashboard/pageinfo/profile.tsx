@@ -4,7 +4,7 @@ import axios from "axios";
 
 import * as styles from "../../../../styles/modules/dashboard/profileInfo.module.scss";
 
-const Profile = ({
+const Profile: React.FC<ProfileProps> = ({
     docId,
     apiURL,
     token,
@@ -15,7 +15,7 @@ const Profile = ({
     loadingData,
 }) => {
     const [initialValue, setInitialValue] = useState(profile);
-    const [validationError, setValidationError] = useState(null);
+    const [validationError, setValidationError] = useState<string | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
@@ -24,13 +24,13 @@ const Profile = ({
         }
     });
 
-    const setProfileHandler = (e) => {
+    const setProfileHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setProfile(e.target.value);
         setValidationError(null);
         setValidationMessage(null);
     };
 
-    const validateInput = (value) => {
+    const validateInput = (value: string) => {
         if (value.length < 2) {
             const errorMessage = "Minstens 2 karakters";
             setValidationError(errorMessage);
@@ -52,7 +52,7 @@ const Profile = ({
         return true;
     };
 
-    const submitProfile = async (e) => {
+    const submitProfile = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (!validateInput(profile)) {

@@ -4,7 +4,7 @@ import axios from "axios";
 
 import * as styles from "../../../../styles/modules/dashboard/profileInfo.module.scss";
 
-const Password = ({
+const Password: React.FC<PasswordProps> = ({
     userId,
     apiURL,
     token,
@@ -14,15 +14,15 @@ const Password = ({
     setProfileSuccess,
     setValidationMessage,
 }) => {
-    const [validationError, setValidationError] = useState(null);
+    const [validationError, setValidationError] = useState<string | null>(null);
 
-    const setPasswordHandler = (e) => {
+    const setPasswordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value);
         setValidationError(null);
         setValidationMessage(null);
     };
 
-    const validateInput = (value) => {
+    const validateInput = (value: string) => {
         if (value.length < 2) {
             const errorMessage = "Minstens 2 karakters";
             setValidationError(errorMessage);
@@ -35,7 +35,7 @@ const Password = ({
         return true;
     };
 
-    const submitPassword = async (e) => {
+    const submitPassword = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (!validateInput(password)) {
@@ -52,10 +52,8 @@ const Password = ({
             setProfileSuccess("Wachtwoord succesvol geüpdatet");
             setTimeout(() => setProfileSuccess(null), 5000);
             setPassword("");
-        } catch {
+        } catch (error) {
             console.error("Error updating password:", error);
-            setError("Gaat er iets mis met het updaten van je wachtwoord");
-            setTimeout(() => setError(null), 5000);
         }
     };
 

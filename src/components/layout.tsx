@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useStaticQuery, graphql } from "gatsby";
+import React, { useState, useEffect, ReactNode } from "react";
 
 import Header from "./layout/header";
 import Footer from "./layout/footer";
@@ -11,16 +10,8 @@ import ResponsiveTag from "./helpers/respoTag";
 
 import "../styles/layout.scss";
 
-const Layout = ({ children }) => {
-    const data = useStaticQuery(graphql`
-        query SiteTitleQuery {
-            site {
-                siteMetadata {
-                    title
-                }
-            }
-        }
-    `);
+const Layout = ({ children }: { children: ReactNode }) => {
+ 
 
     const [isMobile, setIsMobile] = useState(false);
     const [isMenuOpen, setMenuOpen] = useState(false);
@@ -41,9 +32,7 @@ const Layout = ({ children }) => {
 
     return (
         <>
-            {!isMobile && (
-                <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-            )}
+            {!isMobile && <Header />}
             {isMobile && (
                 <MobileMenu isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} />
             )}

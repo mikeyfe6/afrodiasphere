@@ -12,7 +12,7 @@ import * as styles from "../../styles/modules/pages/login.module.scss";
 
 const apiURL = process.env.GATSBY_BACKEND_URL;
 
-const ErrorMessage = ({ text }) => {
+const ErrorMessage: React.FC<{ text: string }> = ({ text }) => {
     return (
         <div className={styles.error}>
             <span>{text}</span>
@@ -20,7 +20,7 @@ const ErrorMessage = ({ text }) => {
     );
 };
 
-const LoadingMessage = ({ text }) => {
+const LoadingMessage: React.FC<{ text: string }> = ({ text }) => {
     return (
         <div className={styles.loading}>
             <span>{text}</span>
@@ -28,37 +28,41 @@ const LoadingMessage = ({ text }) => {
     );
 };
 
-const LoginPage = () => {
-    const [loginError, setLoginError] = useState(null);
-    const [registerError, setRegisterError] = useState(null);
-    const [loading, setLoading] = useState(null);
+const LoginPage: React.FC<LoginProps> = () => {
+    const [loginError, setLoginError] = useState<string | null>(null);
+    const [registerError, setRegisterError] = useState<string | null>(null);
+    const [loading, setLoading] = useState<string | null>(null);
 
-    const usernameRef = useRef(null);
-    const passwordRef = useRef(null);
+    const usernameRef = useRef<HTMLInputElement | null>(null);
+    const passwordRef = useRef<HTMLInputElement | null>(null);
 
-    const usernameRegRef = useRef(null);
-    const emailRegRef = useRef(null);
-    const passwordRegRef = useRef(null);
+    const usernameRegRef = useRef<HTMLInputElement | null>(null);
+    const emailRegRef = useRef<HTMLInputElement | null>(null);
+    const passwordRegRef = useRef<HTMLInputElement | null>(null);
 
-    const signUpHandler = (e) => {
+    const signUpHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
         const container = document.getElementById("ads-form");
-        container.classList.add(styles.rightPanelActive);
+        if (container) {
+            container.classList.add(styles.rightPanelActive);
+        }
         e.preventDefault();
     };
 
-    const signInHandler = (e) => {
+    const signInHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
         const container = document.getElementById("ads-form");
-        container.classList.remove(styles.rightPanelActive);
+        if (container) {
+            container.classList.remove(styles.rightPanelActive);
+        }
         e.preventDefault();
     };
 
-    const handleSubmitLogin = async (e) => {
+    const handleSubmitLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         try {
             const response = await axios.post(`${apiURL}/api/auth/local`, {
-                identifier: usernameRef.current.value.toLowerCase(),
-                password: passwordRef.current.value,
+                identifier: usernameRef.current?.value?.toLowerCase() || "",
+                password: passwordRef.current?.value || "",
             });
 
             const { data } = response;
@@ -76,20 +80,24 @@ const LoginPage = () => {
         }
     };
 
-    const handleSubmitRegister = async (e) => {
+    const handleSubmitRegister = async (
+        e: React.FormEvent<HTMLFormElement>
+    ) => {
         e.preventDefault();
 
         try {
             const response = await axios.post(
                 `${apiURL}/api/auth/local/register`,
                 {
-                    username: usernameRegRef.current.value
-                        .toLowerCase()
-                        .replace(/\s+/g, ""),
-                    email: emailRegRef.current.value
-                        .toLowerCase()
-                        .replace(/\s+/g, ""),
-                    password: passwordRegRef.current.value,
+                    username:
+                        usernameRegRef.current?.value
+                            ?.toLowerCase()
+                            .replace(/\s+/g, "") || "",
+                    email:
+                        emailRegRef.current?.value
+                            ?.toLowerCase()
+                            .replace(/\s+/g, "") || "",
+                    password: passwordRegRef.current?.value || "",
                 }
             );
 

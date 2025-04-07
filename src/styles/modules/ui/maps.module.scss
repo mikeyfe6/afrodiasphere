@@ -59,7 +59,15 @@
             );
             outline: solid $white-color 3px;
 
+            @include smooth-trans;
+
             @include border-radius(50%);
+        }
+
+        &:hover {
+            img {
+                outline-color: $secondary-color;
+            }
         }
     }
 
@@ -280,6 +288,7 @@
                         }
                     }
 
+                    /* stylelint-disable-next-line no-descending-specificity */
                     img {
                         width: rem-calc(100);
                         height: rem-calc(100);

@@ -4,7 +4,7 @@ import axios from "axios";
 
 import * as styles from "../../../../styles/modules/dashboard/profileInfo.module.scss";
 
-const Email = ({
+const Email: React.FC<EmailProps> = ({
     userId,
     apiURL,
     token,
@@ -15,7 +15,7 @@ const Email = ({
     loadingData,
 }) => {
     const [initialValue, setInitialValue] = useState(email);
-    const [validationError, setValidationError] = useState(null);
+    const [validationError, setValidationError] = useState<string | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
@@ -24,13 +24,13 @@ const Email = ({
         }
     });
 
-    const setEmailHandler = (e) => {
+    const setEmailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value.toLowerCase());
         setValidationError(null);
         setValidationMessage(null);
     };
 
-    const validateInput = (value) => {
+    const validateInput = (value: string) => {
         if (value.length < 2) {
             const errorMessage = "Minstens 2 karakters";
             setValidationError(errorMessage);
@@ -51,7 +51,7 @@ const Email = ({
         return true;
     };
 
-    const submitEmail = async (e) => {
+    const submitEmail = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (!validateInput(email)) {

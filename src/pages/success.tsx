@@ -1,11 +1,13 @@
 import * as React from "react";
 
+import type { HeadFC, PageProps } from "gatsby";
+
 import Layout from "../components/layout";
 import Seo from "../components/seo";
 
 import * as successStyles from "../styles/modules/pages/success.module.scss";
 
-const SuccessPage = () => (
+const SuccessPage: React.FC<PageProps> = () => (
     <Layout>
         <div className={successStyles.success}>
             <div>
@@ -21,7 +23,7 @@ const SuccessPage = () => (
 
 export default SuccessPage;
 
-export const Head = () => {
+export const Head: HeadFC = () => {
     return (
         <Seo title="Wachtwoord reset e-mail verzonden" pathname="/success/" />
     );

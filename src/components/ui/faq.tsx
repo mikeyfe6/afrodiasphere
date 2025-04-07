@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import * as faqStyles from "../../styles/modules/pages/faq.module.scss";
 
-const FAQItem = ({ question, answer }) => {
+const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleFAQ = () => {
@@ -24,7 +24,7 @@ const FAQItem = ({ question, answer }) => {
     );
 };
 
-const FAQ = ({ faqs }) => {
+const FAQ: React.FC<FAQWrapperProps> = ({ faqs }) => {
     return (
         <div className={faqStyles.faqContainer}>
             {faqs.map((faq, index) => (

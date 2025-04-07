@@ -2,8 +2,13 @@ import * as React from "react";
 
 import * as styles from "../../../../styles/modules/dashboard/socials.module.scss";
 
-const Twitter = ({ twLink, setTwLink, handleSmLinkChange, loadingData }) => {
-    const setTwHandler = (e) => {
+const Twitter: React.FC<TwitterProps> = ({
+    twLink,
+    setTwLink,
+    handleSmLinkChange,
+    loadingData,
+}) => {
+    const setTwHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newTwLink = e.target.value.toLowerCase();
         setTwLink(newTwLink);
 

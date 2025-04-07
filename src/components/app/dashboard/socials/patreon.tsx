@@ -2,8 +2,13 @@ import * as React from "react";
 
 import * as styles from "../../../../styles/modules/dashboard/socials.module.scss";
 
-const Patreon = ({ paLink, setPaLink, handleSmLinkChange, loadingData }) => {
-    const setPaHandler = (e) => {
+const Patreon: React.FC<PatreonProps> = ({
+    paLink,
+    setPaLink,
+    handleSmLinkChange,
+    loadingData,
+}) => {
+    const setPaHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newPaLink = e.target.value.toLowerCase();
         setPaLink(newPaLink);
 

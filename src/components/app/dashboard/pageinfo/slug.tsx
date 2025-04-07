@@ -6,7 +6,14 @@ import * as styles from "../../../../styles/modules/dashboard/profileInfo.module
 
 // TODO: bedenken wat ik met die slug ga doen voor end-users
 
-const Slug = ({ docId, apiURL, token, loadingData, slug, setSlug }) => {
+const Slug: React.FC<SlugProps> = ({
+    docId,
+    apiURL,
+    token,
+    loadingData,
+    slug,
+    setSlug,
+}) => {
     const [initialValue, setInitialValue] = useState(slug);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -16,11 +23,11 @@ const Slug = ({ docId, apiURL, token, loadingData, slug, setSlug }) => {
         }
     });
 
-    const setSlugHandler = (e) => {
+    const setSlugHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSlug(e.target.value.toLowerCase());
     };
 
-    const submitSlug = async (e) => {
+    const submitSlug = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         setIsSubmitting(true);
@@ -69,7 +76,7 @@ const Slug = ({ docId, apiURL, token, loadingData, slug, setSlug }) => {
                 disabled={loadingData || isSubmitting}
                 // placeholder="*verplicht, bijv: 'jouw-profiel'"
                 placeholder="*bijv: 'jouw-profiel'"
-                maxLength="15"
+                maxLength={15}
                 pattern="[^\s]+"
                 title="geen spaties, alleen '-'"
             />

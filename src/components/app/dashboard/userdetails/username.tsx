@@ -4,7 +4,7 @@ import axios from "axios";
 
 import * as styles from "../../../../styles/modules/dashboard/profileInfo.module.scss";
 
-const Username = ({
+const Username: React.FC<UsernameProps> = ({
     userId,
     apiURL,
     token,
@@ -15,7 +15,7 @@ const Username = ({
     loadingData,
 }) => {
     const [initialValue, setInitialValue] = useState(username);
-    const [validationError, setValidationError] = useState(null);
+    const [validationError, setValidationError] = useState<string | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
@@ -24,13 +24,13 @@ const Username = ({
         }
     });
 
-    const setUsernameHandler = (e) => {
+    const setUsernameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUsername(e.target.value.toLowerCase().replace(/\s+/g, ""));
         setValidationError(null);
         setValidationMessage(null);
     };
 
-    const validateInput = (value) => {
+    const validateInput = (value: string) => {
         if (value.length < 2) {
             const errorMessage = "Minstens 2 karakters";
             setValidationError(errorMessage);
@@ -53,7 +53,7 @@ const Username = ({
         return true;
     };
 
-    const submitUsername = async (e) => {
+    const submitUsername = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (!validateInput(username)) {
@@ -72,7 +72,7 @@ const Username = ({
             setProfileSuccess("Gebruikersnaam succesvol geüpdatet");
             setTimeout(() => setProfileSuccess(null), 5000);
             setInitialValue(username);
-        } catch {
+        } catch (error) {
             console.error("Error updating username:", error);
         } finally {
             setIsSubmitting(false);
