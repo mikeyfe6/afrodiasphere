@@ -40,6 +40,7 @@ const Maps = () => {
                 const res = await axios.get(
                     `${apiURL}/api/pages?populate[0]=avatar&populate[1]=address`
                 );
+
                 const data = res.data.data.map((item: PinItem) => ({
                     ...item.address,
                     imageUrl: item.avatar?.url,
@@ -48,7 +49,7 @@ const Maps = () => {
                     biography: item.biography,
                     occupation: item.occupation,
                     telephone: item.telephone,
-                    mail: item.email,
+                    email: item.email,
                 }));
                 setPins(data);
             } catch (error) {
@@ -95,7 +96,7 @@ const Maps = () => {
             <div className={`${mapsStyles.maps} ${mapsStyles.adsHome}`}>
                 <GoogleMapReact
                     bootstrapURLKeys={{
-                        key: process.env.GATSBY_GOOGLE_MAPS_KEY,
+                        key: process.env.GATSBY_GOOGLE_MAPS_KEY || "",
                         language: "nl",
                         region: "NL",
                     }}

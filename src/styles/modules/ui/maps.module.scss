@@ -60,7 +60,6 @@
             outline: solid $white-color 3px;
 
             @include smooth-trans;
-
             @include border-radius(50%);
         }
 
