@@ -211,7 +211,7 @@ const DashboardPage: React.FC = () => {
             console.error("Error fetching user ID:", error);
             // setError("Er gaat iets mis met het ophalen van je gegevens");
         } finally {
-            setLoadingData(true);
+            setLoadingData(false);
         }
     }, [apiURL, token]);
 
