@@ -121,7 +121,7 @@ pre {
 button:focus,
 input:focus,
 textarea:focus {
-    outline: 0 solid transparent; // override 2px
+    outline: none; // override 2px solid transparent
     outline-offset: 0; // override 2px
 }
 
