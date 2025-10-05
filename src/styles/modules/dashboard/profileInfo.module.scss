@@ -21,6 +21,13 @@
             }
         }
 
+        > div {
+            display: flex;
+            align-items: center;
+            gap: rem-calc(12);
+            margin-left: auto;
+        }
+
         input {
             color: $white-color;
             background: transparent;
@@ -50,6 +57,13 @@
             &.update-btn {
                 background-color: $secondary-color;
                 color: $white-color;
+            }
+
+            &.toggle-btn {
+                background: none;
+                color: $grey-color;
+                margin: unset;
+                padding: unset;
             }
         }
 

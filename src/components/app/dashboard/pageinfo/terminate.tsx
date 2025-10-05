@@ -100,7 +100,7 @@ const Terminate: React.FC<TerminateProps> = ({
                 value={deleteAds}
                 type="text"
                 name="deleteAds"
-                placeholder="controle: profielnaam?"
+                placeholder="Controle: gebruikersnaam?"
                 style={{ color: validationError ? "#c60319" : "inherit" }}
             />
 
@@ -108,7 +108,7 @@ const Terminate: React.FC<TerminateProps> = ({
                 type="submit"
                 title="Verwijder account"
                 className={styles.terminateBtn}
-                disabled={deleteAds === ""}
+                disabled={deleteAds !== username}
             >
                 <i className="fa-solid fa-trash-can fa-lg" />
             </button>

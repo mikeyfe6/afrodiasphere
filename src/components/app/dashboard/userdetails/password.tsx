@@ -15,6 +15,7 @@ const Password: React.FC<PasswordProps> = ({
     setValidationMessage,
 }) => {
     const [validationError, setValidationError] = useState<string | null>(null);
+    const [showPassword, setShowPassword] = useState(false);
 
     const setPasswordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value);
@@ -73,16 +74,34 @@ const Password: React.FC<PasswordProps> = ({
                 hidden
             />
             <label htmlFor="password">Wachtwoord</label>
-            <input
-                id="password"
-                onChange={setPasswordHandler}
-                value={password}
-                placeholder="*********"
-                type="password"
-                name="password"
-                style={{ color: validationError ? "#c60319" : "inherit" }}
-                autoComplete="new-password"
-            />
+
+            <div>
+                <input
+                    id="password"
+                    onChange={setPasswordHandler}
+                    placeholder="Nieuw wachtwoord"
+                    value={password}
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    style={{ color: validationError ? "#c60319" : "inherit" }}
+                    autoComplete="new-password"
+                />
+
+                {password.length > 0 && (
+                    <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className={styles.toggleBtn}
+                        title={showPassword ? "Verberg invoer" : "Toon invoer"}
+                    >
+                        {showPassword ? (
+                            <i className="fa-solid fa-eye-slash" />
+                        ) : (
+                            <i className="fa-solid fa-eye" />
+                        )}
+                    </button>
+                )}
+            </div>
 
             <button
                 type="submit"
