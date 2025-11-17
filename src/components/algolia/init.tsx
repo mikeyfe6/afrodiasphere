@@ -15,13 +15,19 @@ const Algolia = () => {
             if (!ALGOLIA_APP_ID || !ALGOLIA_API_KEY) {
                 throw new Error("Algolia credentials are not defined.");
             }
-            const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY);
 
             try {
                 const response = await axios.get(
                     `${apiURL}/api/pages?populate[0]=avatar`
                 );
                 const records = response.data.data;
+
+                if (!records || records.length === 0) {
+                    console.warn("No data available to index in Algolia.");
+                    return;
+                }
+
+                const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY);
 
                 const objectsWithID = records.map(
                     (record: { documentId: any }) => ({
