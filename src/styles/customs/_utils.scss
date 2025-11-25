@@ -2,6 +2,7 @@
     font-size: #{$font-min}px;
 
     @media only screen and (min-width: #{$screen-min}px) {
+        /* stylelint-disable-next-line no-invalid-position-declaration */
         font-size: calc(
             #{$font-min}px + #{($font-max - $font-min)} *
                 (100vw - #{$screen-min}px) / (#{$screen-max} - #{$screen-min})
@@ -9,6 +10,7 @@
     }
 
     @media only screen and (min-width: #{$screen-max}px) {
+        /* stylelint-disable-next-line no-invalid-position-declaration */
         font-size: #{$font-max}px;
     }
 }

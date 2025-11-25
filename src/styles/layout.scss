@@ -34,7 +34,7 @@ select {
     width: 100%;
 
     &::placeholder {
-        color: rgba(255 255 255 / 50%);
+        color: rgb(255 255 255 / 50%);
 
         @include smooth-trans;
     }

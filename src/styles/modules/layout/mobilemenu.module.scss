@@ -76,6 +76,7 @@
                 right: rem-calc(20);
                 top: rem-calc(20);
 
+                /* stylelint-disable-next-line no-descending-specificity */
                 > a {
                     background: $primary-color;
                     color: color.adjust($black-color, $lightness: 5%);

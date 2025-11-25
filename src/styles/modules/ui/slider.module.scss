@@ -14,11 +14,7 @@
         height: auto;
 
         > div {
-            background: linear-gradient(
-                135deg,
-                rgba(0 0 0 / 50%),
-                $black-color
-            );
+            background: linear-gradient(135deg, rgb(0 0 0 / 50%), $black-color);
             border: 2px solid rgba($white-color, 0.825);
             text-align: center;
             position: relative;

@@ -146,6 +146,7 @@
                 margin: rem-calc(8 0 5);
             }
 
+            /* stylelint-disable-next-line no-descending-specificity */
             > span {
                 max-width: 100%;
 
@@ -163,6 +164,7 @@
             }
 
             > input {
+                /* stylelint-disable-next-line no-descending-specificity */
                 &::placeholder {
                     font-size: rem-calc(14);
                     color: $third-color;
@@ -199,6 +201,7 @@
 
     &-url {
         > div {
+            /* stylelint-disable-next-line no-descending-specificity */
             > span {
                 display: flex;
                 gap: rem-calc(6);
@@ -216,6 +219,7 @@
                 }
             }
 
+            /* stylelint-disable-next-line no-descending-specificity */
             > input {
                 text-transform: lowercase;
             }

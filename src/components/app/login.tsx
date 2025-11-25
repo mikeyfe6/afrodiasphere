@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import type { RouteComponentProps } from "@reach/router";
 
 import { navigate, Link } from "gatsby";
 
@@ -28,7 +29,7 @@ const LoadingMessage: React.FC<{ text: string }> = ({ text }) => {
     );
 };
 
-const LoginPage: React.FC<LoginProps> = () => {
+const LoginPage: React.FC<RouteComponentProps> = () => {
     const [loginError, setLoginError] = useState<string | null>(null);
     const [registerError, setRegisterError] = useState<string | null>(null);
     const [loading, setLoading] = useState<string | null>(null);
@@ -39,6 +40,7 @@ const LoginPage: React.FC<LoginProps> = () => {
     const usernameRegRef = useRef<HTMLInputElement | null>(null);
     const emailRegRef = useRef<HTMLInputElement | null>(null);
     const passwordRegRef = useRef<HTMLInputElement | null>(null);
+    const passwordConfirmRegRef = useRef<HTMLInputElement | null>(null);
 
     const signUpHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
         const container = document.getElementById("ads-form");
@@ -85,6 +87,15 @@ const LoginPage: React.FC<LoginProps> = () => {
     ) => {
         e.preventDefault();
 
+        const password = passwordRegRef.current?.value || "";
+        const passwordConfirm = passwordConfirmRegRef.current?.value || "";
+
+        if (password !== passwordConfirm) {
+            setRegisterError("Wachtwoorden komen niet overeen");
+            setTimeout(() => setRegisterError(null), 5000);
+            return;
+        }
+
         try {
             const response = await axios.post(
                 `${apiURL}/api/auth/local/register`,
@@ -97,7 +108,7 @@ const LoginPage: React.FC<LoginProps> = () => {
                         emailRegRef.current?.value
                             ?.toLowerCase()
                             .replace(/\s+/g, "") || "",
-                    password: passwordRegRef.current?.value || "",
+                    password: password,
                 }
             );
 
@@ -171,6 +182,16 @@ const LoginPage: React.FC<LoginProps> = () => {
                                 placeholder="wachtwoord"
                                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                                 title="Moet op z'n minst 1 nummer, 1 hoofdletter, 1 klein letter en 8 karakters lang zijn."
+                                autoCapitalize="none"
+                            />
+                            <input
+                                ref={passwordConfirmRegRef}
+                                type="password"
+                                name="passwordConfirm"
+                                autoComplete="new-password"
+                                placeholder="bevestig wachtwoord"
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                title="Voer hetzelfde wachtwoord nogmaals in ter bevestiging."
                                 autoCapitalize="none"
                             />
 

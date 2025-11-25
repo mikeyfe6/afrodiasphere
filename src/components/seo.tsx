@@ -2,7 +2,14 @@ import * as React from "react";
 
 import { useStaticQuery, graphql } from "gatsby";
 
-function Seo({ description, title, children, pathname, image }: SeoProps) {
+function Seo({
+    description,
+    title,
+    children,
+    pathname,
+    image,
+    noindex,
+}: SeoProps) {
     const { site } = useStaticQuery(graphql`
         query {
             site {
@@ -51,6 +58,7 @@ function Seo({ description, title, children, pathname, image }: SeoProps) {
                 crossOrigin="anonymous"
                 referrerPolicy="no-referrer"
             />
+            {noindex && <meta name="robots" content="noindex" />}
             // TODO: FONTAWESOME uit react !!
             {children}
         </>

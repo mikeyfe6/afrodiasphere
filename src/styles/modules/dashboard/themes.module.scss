@@ -42,7 +42,7 @@
                 background: white;
                 color: black;
                 border: 1px solid yellow;
-                box-shadow: 1px 3px 5px rgba(55 55 55 / 75%);
+                box-shadow: 1px 3px 5px rgb(55 55 55 / 75%);
             }
         }
 
@@ -88,9 +88,10 @@
         }
 
         &-links {
+            /* stylelint-disable-next-line no-descending-specificity */
             a {
-                box-shadow: 1px 3px 5px rgba(167, 167, 167, 0.767);
-                background: rgba(255, 255, 255, 0.797);
+                box-shadow: 1px 3px 5px rgb(167 167 167 / 76.7%);
+                background: rgb(255 255 255 / 79.7%);
                 color: #878787;
                 border: 1px solid #878787;
             }
@@ -111,7 +112,7 @@
         @include choose-display;
 
         .graylinks {
-            background: rgba(255, 255, 255, 0.797);
+            background: rgb(255 255 255 / 79.7%);
             border: 1px solid #878787;
 
             @include choose-strokes;
@@ -138,8 +139,9 @@
         }
 
         &-links {
+            /* stylelint-disable-next-line no-descending-specificity */
             a {
-                box-shadow: 1px 3px 5px rgba(167, 167, 167, 0.767);
+                box-shadow: 1px 3px 5px rgb(167 167 167 / 76.7%);
                 color: white;
                 background: #a8a8a8;
                 border: 1px solid white;
@@ -189,11 +191,12 @@
         }
 
         &-links {
+            /* stylelint-disable-next-line no-descending-specificity */
             a {
                 background: #878787;
                 color: white;
                 border: 1px solid white;
-                box-shadow: 1px 3px 5px rgba(49, 49, 49, 0.767);
+                box-shadow: 1px 3px 5px rgb(49 49 49 / 76.7%);
             }
         }
 
@@ -239,11 +242,12 @@
         }
 
         &-links {
+            /* stylelint-disable-next-line no-descending-specificity */
             a {
                 background: white;
                 color: brown;
                 border: 1px solid brown;
-                box-shadow: 1px 3px 5px rgba(167, 167, 167, 0.767);
+                box-shadow: 1px 3px 5px rgb(167 167 167 / 76.7%);
             }
         }
 
@@ -290,11 +294,12 @@
         }
 
         &-links {
+            /* stylelint-disable-next-line no-descending-specificity */
             a {
                 background: white;
                 color: green;
                 border: 1px solid green;
-                box-shadow: 1px 3px 5px rgba(167, 167, 167, 0.767);
+                box-shadow: 1px 3px 5px rgb(167 167 167 / 76.7%);
             }
         }
 
@@ -341,6 +346,7 @@
         }
 
         &-links {
+            /* stylelint-disable-next-line no-descending-specificity */
             a {
                 background: white;
                 color: black;

@@ -30,5 +30,11 @@ const ForgetPwdPage: React.FC<PageProps> = () => (
 export default ForgetPwdPage;
 
 export const Head: HeadFC = () => {
-    return <Seo title="Reset wachtwoord" pathname="/wachtwoord-vergeten/" />;
+    return (
+        <Seo
+            title="Reset wachtwoord"
+            pathname="/wachtwoord-vergeten/"
+            noindex={true}
+        />
+    );
 };

@@ -34,7 +34,7 @@
         background: linear-gradient(135deg, #1a1a1a, $black-color);
         border: 1px $primary-color solid;
         scrollbar-color: $grey-color $white-color;
-        word-wrap: break-word;
+        overflow-wrap: break-word;
 
         @include border-radius($overflow: false);
         @include box-shadow;

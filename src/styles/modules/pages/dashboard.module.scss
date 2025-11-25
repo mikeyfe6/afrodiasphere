@@ -167,7 +167,7 @@
     .contact-info {
         display: grid;
         grid-template-columns: 1fr;
-        grid-gap: rem-calc(24);
+        gap: rem-calc(24);
         margin-bottom: rem-calc(16);
 
         @include phablet {
@@ -186,7 +186,7 @@
     .socials {
         display: grid;
         grid-template-columns: 1fr;
-        grid-gap: rem-calc(16);
+        gap: rem-calc(16);
 
         @include mobile {
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

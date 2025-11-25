@@ -17,7 +17,11 @@
     width: 100%;
     max-width: $maxWidth;
     padding: 0 $paddingX;
-    margin: $marginY auto;
+    margin: rem-calc(16) auto;
+
+    @include phablet {
+        margin: $marginY auto;
+    }
 }
 
 @mixin full-width {
@@ -36,7 +40,7 @@
 }
 
 @mixin box-shadow {
-    box-shadow: 1px 3px 5px rgba(0 0 0 / 20%);
+    box-shadow: 1px 3px 5px rgb(0 0 0 / 20%);
 }
 
 @mixin border-radius($radius: 5, $overflow: true) {
@@ -103,7 +107,7 @@
     border: 2px solid $grey-color;
 
     @if $boxShadow {
-        box-shadow: 0 3px 10px rgba(0 0 0 / 33%);
+        box-shadow: 0 3px 10px rgb(0 0 0 / 33%);
     }
 
     @include border-radius(7.5, false);

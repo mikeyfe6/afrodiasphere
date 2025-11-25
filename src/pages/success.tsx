@@ -25,6 +25,10 @@ export default SuccessPage;
 
 export const Head: HeadFC = () => {
     return (
-        <Seo title="Wachtwoord reset e-mail verzonden" pathname="/success/" />
+        <Seo
+            title="Wachtwoord reset e-mail verzonden"
+            pathname="/success/"
+            noindex={true}
+        />
     );
 };

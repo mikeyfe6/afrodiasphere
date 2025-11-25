@@ -52,12 +52,14 @@
                 gap: rem-calc(24);
 
                 > li {
+                    /* stylelint-disable-next-line no-descending-specificity */
                     > a,
                     button {
                         cursor: pointer;
 
                         @include smooth-trans;
 
+                        /* stylelint-disable-next-line no-descending-specificity */
                         &:hover {
                             color: $third-color;
                         }

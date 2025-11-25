@@ -222,7 +222,7 @@ const Address: React.FC<AddressProps> = ({
             <div className={`${mapsStyles.maps} ${mapsStyles.adsDashboard}`}>
                 <GoogleMapReact
                     bootstrapURLKeys={{
-                        key: process.env.GATSBY_GOOGLE_MAPS_KEY,
+                        key: process.env.GATSBY_GOOGLE_MAPS_KEY || "",
                         language: "nl",
                         region: "NL",
                     }}

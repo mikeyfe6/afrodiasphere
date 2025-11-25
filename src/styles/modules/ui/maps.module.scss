@@ -52,11 +52,7 @@
             width: rem-calc(40);
             height: rem-calc(40);
             object-fit: cover;
-            background: linear-gradient(
-                135deg,
-                rgba(0 0 0 / 75%),
-                $black-color
-            );
+            background: linear-gradient(135deg, rgb(0 0 0 / 75%), $black-color);
             outline: solid $white-color 3px;
 
             @include smooth-trans;
@@ -97,7 +93,7 @@
             background: linear-gradient(
                 to right,
                 $third-color,
-                rgba(255 255 255 / 0%)
+                rgb(255 255 255 / 0%)
             );
         }
 
@@ -106,7 +102,7 @@
             background: linear-gradient(
                 to left,
                 $third-color,
-                rgba(255 255 255 / 0%)
+                rgb(255 255 255 / 0%)
             );
         }
 
@@ -129,11 +125,7 @@
 
         &-wrapper {
             padding: rem-calc(24 24 32);
-            background: linear-gradient(
-                135deg,
-                rgba(0 0 0 / 50%),
-                $black-color
-            );
+            background: linear-gradient(135deg, rgb(0 0 0 / 50%), $black-color);
             display: flex;
             justify-content: space-between;
             flex-direction: column-reverse;

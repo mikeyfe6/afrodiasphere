@@ -360,6 +360,7 @@ interface SeoProps {
     children?: React.ReactNode;
     pathname?: string;
     image?: string;
+    noindex?: boolean;
 }
 
 // SPINNER

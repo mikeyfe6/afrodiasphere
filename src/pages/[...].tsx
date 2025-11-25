@@ -11,8 +11,6 @@ import Login from "../components/app/login";
 import NotFound from "../components/app/notFound";
 import Seo from "../components/seo";
 
-// TODO: exclude this page with noindex in seo component
-
 const App: React.FC<PageProps> = () => (
     <Layout>
         <Router>
@@ -41,5 +39,5 @@ export const Head: HeadFC<PageProps> = ({ location }) => {
             pathname = "/";
     }
 
-    return <Seo title={title} pathname={pathname} />;
+    return <Seo title={title} pathname={pathname} noindex={true} />;
 };
