@@ -34,13 +34,12 @@
                 0 10px 10px rgb(0 0 0 / 22%);
             position: relative;
             width: rem-calc(768);
-            min-height: rem-calc(544);
+            min-height: rem-calc(560);
             border-top: 2px solid $white-color;
             border-bottom: 2px solid $white-color;
 
             @include mobile {
                 border: 2px solid $white-color;
-                min-height: rem-calc(560);
 
                 @include border-radius(10);
             }
