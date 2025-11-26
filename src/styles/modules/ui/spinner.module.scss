@@ -6,8 +6,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
     overflow: hidden;
+
+    &[data-type="page"] {
+        min-height: 100vh;
+    }
+
+    &[data-type="slide"] {
+        min-height: rem-calc(200);
+    }
 
     &-circle {
         width: rem-calc(64);
@@ -43,26 +50,6 @@
             height: rem-calc(48);
             border-color: $white-color $white-color transparent transparent;
             animation: rotation 1.5s linear infinite;
-        }
-    }
-
-    &[data-type="slide"] {
-        min-height: auto;
-
-        #{$spinner}-circle {
-            width: rem-calc(48);
-            height: rem-calc(48);
-
-            &::after,
-            &::before {
-                width: rem-calc(40);
-                height: rem-calc(40);
-            }
-
-            &::before {
-                width: rem-calc(32);
-                height: rem-calc(32);
-            }
         }
     }
 

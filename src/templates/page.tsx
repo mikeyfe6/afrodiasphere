@@ -170,7 +170,7 @@ const AdsTemplate = ({
     return (
         <>
             {spinner ? (
-                <Spinner />
+                <Spinner type="page" />
             ) : (
                 <AdsLayout>
                     <div className={`theme-${color}`}>

@@ -44,73 +44,74 @@ const Slider = () => {
     }, []);
 
     return (
-        <section className={styles.carousel}>
-            <Swiper
-                modules={[A11y, Autoplay]}
-                className={styles.carouselContainer}
-                loop
-                spaceBetween={15}
-                autoplay={{ delay: 5000 }}
-                breakpoints={{
-                    320: { slidesPerView: 1 },
-                    360: { slidesPerView: 2 },
-                    576: { slidesPerView: 3 },
-                    768: { slidesPerView: 4 },
-                    992: { slidesPerView: 5 },
-                }}
-            >
-                {carousel?.map((ads) => (
-                    <SwiperSlide key={ads.id} className={styles.carouselSlide}>
-                        <div>
-                            {loading ? (
-                                <Spinner type={"slide"} />
-                            ) : (
-                                <>
-                                    <img
-                                        src={
-                                            !ads.avatar?.url
-                                                ? noavatar
-                                                : ads.avatar?.url
-                                        }
-                                        className={styles.avatar}
-                                        alt={ads.profile}
-                                    />
-                                    <div className={styles.profile}>
-                                        {ads.profile}
-                                    </div>
+        <section className={styles.carousel} id="slider">
+            {loading ? (
+                <Spinner type="slide" />
+            ) : (
+                <Swiper
+                    modules={[A11y, Autoplay]}
+                    className={styles.carouselContainer}
+                    loop
+                    spaceBetween={15}
+                    autoplay={{ delay: 5000 }}
+                    breakpoints={{
+                        320: { slidesPerView: 1 },
+                        360: { slidesPerView: 2 },
+                        576: { slidesPerView: 3 },
+                        768: { slidesPerView: 4 },
+                        992: { slidesPerView: 5 },
+                    }}
+                >
+                    {carousel?.map((ads) => (
+                        <SwiperSlide
+                            key={ads.id}
+                            className={styles.carouselSlide}
+                        >
+                            <div>
+                                <img
+                                    src={
+                                        !ads.avatar?.url
+                                            ? noavatar
+                                            : ads.avatar?.url
+                                    }
+                                    className={styles.avatar}
+                                    alt={ads.profile}
+                                />
+                                <div className={styles.profile}>
+                                    {ads.profile}
+                                </div>
 
-                                    <div
-                                        className={styles.occupate}
-                                        style={{
-                                            visibility:
-                                                !ads.occupation ||
-                                                ads.occupation === "geen"
-                                                    ? "hidden"
-                                                    : "visible",
-                                        }}
+                                <div
+                                    className={styles.occupate}
+                                    style={{
+                                        visibility:
+                                            !ads.occupation ||
+                                            ads.occupation === "geen"
+                                                ? "hidden"
+                                                : "visible",
+                                    }}
+                                >
+                                    {ads.occupation}
+                                </div>
+
+                                <div className={styles.biography}>
+                                    <p>{ads.biography}</p>
+                                </div>
+                                <div className={styles.url}>
+                                    <Link
+                                        to={`/${ads.slug}/`}
+                                        title={`${baseURL}/${ads.slug}/`}
                                     >
-                                        {ads.occupation}
-                                    </div>
-
-                                    <div className={styles.biography}>
-                                        <p>{ads.biography}</p>
-                                    </div>
-                                    <div className={styles.url}>
-                                        <Link
-                                            to={`/${ads.slug}/`}
-                                            title={`${baseURL}/${ads.slug}/`}
-                                        >
-                                            <span>・</span>
-                                            <span>/</span>
-                                            <span>{`${ads.slug ?? ".."}`}</span>
-                                        </Link>
-                                    </div>
-                                </>
-                            )}
-                        </div>
-                    </SwiperSlide>
-                ))}
-            </Swiper>
+                                        <span>・</span>
+                                        <span>/</span>
+                                        <span>{`${ads.slug ?? ".."}`}</span>
+                                    </Link>
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            )}
         </section>
     );
 };
