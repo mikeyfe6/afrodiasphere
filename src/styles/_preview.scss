@@ -3,7 +3,7 @@
 #iphone {
     &-frame {
         position: sticky;
-        border: solid rgb(0 0 0 / 50%) 10px;
+        border: solid $ash-color 10px;
         top: rem-calc(150);
         margin: rem-calc(16);
         width: rem-calc(275);
@@ -153,6 +153,7 @@
 
                 @include border-radius(3, false);
                 @include ellipsis;
+                @include smooth-trans;
                 @include fluid-type(11, 14);
 
                 &:hover {
@@ -182,8 +183,12 @@
         &:nth-child(n) {
             @include fluid-type(16, 20);
 
-            a:hover {
-                opacity: 0.75;
+            a {
+                @include smooth-trans;
+
+                &:hover {
+                    opacity: 0.75;
+                }
             }
         }
 

@@ -151,7 +151,7 @@
     gap: rem-calc(16);
     width: rem-calc(100);
     height: rem-calc(150);
-    border: solid 5px rgb(30 30 30);
+    border: solid 5px $ash-color;
     cursor: pointer;
 
     @include smooth-trans;
@@ -240,9 +240,10 @@
 
         @include border-radius(3, false);
         @include ellipsis;
+        @include smooth-trans;
 
         &:hover {
-            opacity: 0.875;
+            opacity: 0.75;
         }
     }
 }
@@ -257,6 +258,9 @@
     > a {
         font-size: rem-calc(14);
         text-underline-offset: 3px;
+        text-decoration: transparent;
+
+        @include smooth-trans;
 
         &:hover {
             text-decoration: underline;
@@ -277,6 +281,8 @@
     }
 
     > a {
+        @include smooth-trans;
+
         &:hover {
             opacity: 0.75;
         }

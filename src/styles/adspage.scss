@@ -1,4 +1,5 @@
 @use "sass:color";
+@use "sass:map";
 
 @use "./customs" as *;
 
@@ -40,6 +41,7 @@
         > a {
             &:nth-of-type(1) {
                 margin-right: rem-calc(32);
+                font-weight: 500;
 
                 @include smooth-trans;
 
@@ -117,25 +119,32 @@
 
     // ---------------------------------------------------------------------------------------- // YELLOW YELLOW YELLOW
     &-geel {
-        background: linear-gradient(to bottom, yellow, black);
+        background: linear-gradient(
+            to bottom,
+            map.get(map.get($themes, "yellow"), "primary"),
+            map.get(map.get($themes, "yellow"), "secondary")
+        );
 
         @include page-theme;
 
         &-username {
-            color: white;
+            color: map.get(map.get($themes, "yellow"), "tertiary");
 
             @include page-username;
         }
 
         &-occupate {
-            color: black;
-            background-color: white;
+            color: map.get(map.get($themes, "yellow"), "secondary");
+            background-color: map.get(map.get($themes, "yellow"), "tertiary");
 
             @include page-occupation;
         }
 
         &-biography {
-            color: #ddd;
+            color: color.adjust(
+                map.get(map.get($themes, "yellow"), "tertiary"),
+                $alpha: -0.125
+            );
 
             @include page-biography;
         }
@@ -145,28 +154,36 @@
 
             /* stylelint-disable-next-line no-descending-specificity */
             > li > a {
-                background: white;
-                color: black;
-                border: 1px solid yellow;
-                box-shadow: 1px 3px 5px rgb(55 55 55 / 76.7%);
+                background: map.get(map.get($themes, "yellow"), "tertiary");
+                color: map.get(map.get($themes, "yellow"), "secondary");
+                border: 1px solid map.get(map.get($themes, "yellow"), "primary");
+                box-shadow: 1px 3px 5px
+                    map.get(map.get($themes, "yellow"), "shadow");
             }
         }
 
         &-location {
-            color: yellow;
+            color: map.get(map.get($themes, "yellow"), "primary");
 
             @include page-location;
 
             > a {
                 /* stylelint-disable-next-line no-descending-specificity */
                 &:hover {
-                    text-decoration-color: white !important;
+                    text-decoration-color: map.get(
+                        map.get($themes, "yellow"),
+                        "tertiary"
+                    );
                 }
             }
         }
 
         &-maps {
-            outline: 3px solid rgb(255 255 0 / 75%);
+            outline: 3px solid
+                color.adjust(
+                    map.get(map.get($themes, "yellow"), "primary"),
+                    $alpha: -0.25
+                );
         }
 
         &-icons {
@@ -174,32 +191,45 @@
 
             /* stylelint-disable-next-line no-descending-specificity */
             > a {
-                color: yellow;
+                color: map.get(map.get($themes, "yellow"), "primary");
+            }
+        }
+
+        + .ads-user {
+            > a:nth-of-type(1) {
+                color: map.get(map.get($themes, "yellow"), "secondary");
             }
         }
     }
 
     // ---------------------------------------------------------------------------------------- // GRAY GRAY GRAY
     &-grijs {
-        background: linear-gradient(to bottom, grey, white);
+        background: linear-gradient(
+            to bottom,
+            map.get(map.get($themes, "grey"), "primary"),
+            map.get(map.get($themes, "grey"), "secondary")
+        );
 
         @include page-theme;
 
         &-username {
-            color: #595959;
+            color: map.get(map.get($themes, "grey"), "tertiary");
 
             @include page-username;
         }
 
         &-occupate {
-            color: #595959;
-            background-color: white;
+            color: map.get(map.get($themes, "grey"), "tertiary");
+            background-color: map.get(map.get($themes, "grey"), "secondary");
 
             @include page-occupation;
         }
 
         &-biography {
-            color: white;
+            color: color.adjust(
+                map.get(map.get($themes, "grey"), "tertiary"),
+                $alpha: -0.25
+            );
 
             @include page-biography;
         }
@@ -209,28 +239,39 @@
 
             /* stylelint-disable-next-line no-descending-specificity */
             > li > a {
-                background: rgb(255 255 255 / 79.7%);
-                color: #878787;
-                border: 1px solid #878787;
-                box-shadow: 1px 3px 5px rgb(167 167 167 / 76.7%);
+                background: color.adjust(
+                    map.get(map.get($themes, "grey"), "secondary"),
+                    $alpha: -0.25
+                );
+                color: map.get(map.get($themes, "grey"), "primary");
+                border: 1px solid map.get(map.get($themes, "grey"), "primary");
+                box-shadow: 1px 3px 5px
+                    map.get(map.get($themes, "grey"), "shadow");
             }
         }
 
         &-location {
-            color: #878787;
+            color: map.get(map.get($themes, "grey"), "primary");
 
             @include page-location;
 
             > a {
                 /* stylelint-disable-next-line no-descending-specificity */
                 &:hover {
-                    text-decoration-color: white !important;
+                    text-decoration-color: map.get(
+                        map.get($themes, "grey"),
+                        "secondary"
+                    );
                 }
             }
         }
 
         &-maps {
-            outline: 3px solid rgba(#878787, 75%);
+            outline: 3px solid
+                color.adjust(
+                    map.get(map.get($themes, "grey"), "primary"),
+                    $alpha: -0.25
+                );
         }
 
         &-icons {
@@ -238,32 +279,39 @@
 
             /* stylelint-disable-next-line no-descending-specificity */
             > a {
-                color: grey;
+                color: map.get(map.get($themes, "grey"), "primary");
             }
         }
     }
 
     // ---------------------------------------------------------------------------------------- // PINK PINK PINK
     &-roze {
-        background: linear-gradient(to bottom, pink, grey);
+        background: linear-gradient(
+            to bottom,
+            map.get(map.get($themes, "pink"), "primary"),
+            map.get(map.get($themes, "pink"), "secondary")
+        );
 
         @include page-theme;
 
         &-username {
-            color: white;
+            color: map.get(map.get($themes, "pink"), "secondary");
 
             @include page-username;
         }
 
         &-occupate {
-            color: grey;
-            background-color: white;
+            color: map.get(map.get($themes, "pink"), "tertiary");
+            background-color: map.get(map.get($themes, "pink"), "secondary");
 
             @include page-occupation;
         }
 
         &-biography {
-            color: white;
+            color: color.adjust(
+                map.get(map.get($themes, "pink"), "secondary"),
+                $alpha: -0.125
+            );
 
             @include page-biography;
         }
@@ -273,28 +321,36 @@
 
             /* stylelint-disable-next-line no-descending-specificity */
             > li > a {
-                background: #a8a8a8;
-                color: white;
-                border: 1px solid white;
-                box-shadow: 1px 3px 5px rgb(167 167 167 / 76.7%);
+                background: map.get(map.get($themes, "pink"), "tertiary");
+                color: map.get(map.get($themes, "pink"), "secondary");
+                border: 1px solid map.get(map.get($themes, "pink"), "secondary");
+                box-shadow: 1px 3px 5px
+                    map.get(map.get($themes, "pink"), "shadow");
             }
         }
 
         &-location {
-            color: #a8a8a8;
+            color: map.get(map.get($themes, "pink"), "tertiary");
 
             @include page-location;
 
             > a {
                 /* stylelint-disable-next-line no-descending-specificity */
                 &:hover {
-                    text-decoration-color: white !important;
+                    text-decoration-color: map.get(
+                        map.get($themes, "pink"),
+                        "secondary"
+                    );
                 }
             }
         }
 
         &-maps {
-            outline: 3px solid rgb(255 255 255 / 75%);
+            outline: 3px solid
+                color.adjust(
+                    map.get(map.get($themes, "pink"), "secondary"),
+                    $alpha: -0.25
+                );
         }
 
         &-icons {
@@ -302,32 +358,39 @@
 
             /* stylelint-disable-next-line no-descending-specificity */
             > a {
-                color: pink;
+                color: map.get(map.get($themes, "pink"), "primary");
             }
         }
     }
 
     // ---------------------------------------------------------------------------------------- // BLACK BLACK BLACK
     &-zwart {
-        background: linear-gradient(to bottom, black, grey);
+        background: linear-gradient(
+            to bottom,
+            map.get(map.get($themes, "black"), "primary"),
+            map.get(map.get($themes, "black"), "secondary")
+        );
 
         @include page-theme;
 
         &-username {
-            color: white;
+            color: map.get(map.get($themes, "black"), "tertiary");
 
             @include page-username;
         }
 
         &-occupate {
-            color: black;
-            background-color: white;
+            color: map.get(map.get($themes, "black"), "primary");
+            background-color: map.get(map.get($themes, "black"), "tertiary");
 
             @include page-occupation;
         }
 
         &-biography {
-            color: white;
+            color: color.adjust(
+                map.get(map.get($themes, "black"), "tertiary"),
+                $alpha: -0.25
+            );
 
             @include page-biography;
         }
@@ -337,28 +400,36 @@
 
             /* stylelint-disable-next-line no-descending-specificity */
             > li > a {
-                background: #878787;
-                color: white;
-                border: 2px solid white;
-                box-shadow: 1px 3px 5px rgb(49 49 49 / 76.7%);
+                background: map.get(map.get($themes, "black"), "secondary");
+                color: map.get(map.get($themes, "black"), "tertiary");
+                border: 2px solid map.get(map.get($themes, "black"), "tertiary");
+                box-shadow: 1px 3px 5px
+                    map.get(map.get($themes, "black"), "shadow");
             }
         }
 
         &-location {
-            color: white;
+            color: map.get(map.get($themes, "black"), "tertiary");
 
             @include page-location;
 
             > a {
                 /* stylelint-disable-next-line no-descending-specificity */
                 &:hover {
-                    text-decoration-color: #878787 !important;
+                    text-decoration-color: map.get(
+                        map.get($themes, "black"),
+                        "secondary"
+                    );
                 }
             }
         }
 
         &-maps {
-            outline: 3px solid rgb(255 255 255 / 75%);
+            outline: 3px solid
+                color.adjust(
+                    map.get(map.get($themes, "black"), "tertiary"),
+                    $alpha: -0.25
+                );
         }
 
         &-icons {
@@ -366,32 +437,39 @@
 
             /* stylelint-disable-next-line no-descending-specificity */
             > a {
-                color: white;
+                color: map.get(map.get($themes, "black"), "tertiary");
             }
         }
     }
 
     // ---------------------------------------------------------------------------------------- // BRUIN BRUIN BRUIN
     &-bruin {
-        background: linear-gradient(to bottom, brown, white);
+        background: linear-gradient(
+            to bottom,
+            map.get(map.get($themes, "brown"), "primary"),
+            map.get(map.get($themes, "brown"), "secondary")
+        );
 
         @include page-theme;
 
         &-username {
-            color: white;
+            color: map.get(map.get($themes, "brown"), "secondary");
 
             @include page-username;
         }
 
         &-occupate {
-            color: white;
-            background-color: brown;
+            color: map.get(map.get($themes, "brown"), "secondary");
+            background-color: map.get(map.get($themes, "brown"), "primary");
 
             @include page-occupation;
         }
 
         &-biography {
-            color: #e0e0e0;
+            color: color.adjust(
+                map.get(map.get($themes, "brown"), "secondary"),
+                $alpha: -0.25
+            );
 
             @include page-biography;
         }
@@ -401,28 +479,36 @@
 
             /* stylelint-disable-next-line no-descending-specificity */
             > li > a {
-                background: white;
-                color: brown;
-                border: 1px solid brown;
-                box-shadow: 1px 3px 5px rgb(167 167 167 / 76.7%);
+                background: map.get(map.get($themes, "brown"), "secondary");
+                color: map.get(map.get($themes, "brown"), "primary");
+                border: 1px solid map.get(map.get($themes, "brown"), "primary");
+                box-shadow: 1px 3px 5px
+                    map.get(map.get($themes, "brown"), "shadow");
             }
         }
 
         &-location {
-            color: brown;
+            color: map.get(map.get($themes, "brown"), "primary");
 
             @include page-location;
 
             > a {
                 /* stylelint-disable-next-line no-descending-specificity */
                 &:hover {
-                    text-decoration-color: white !important;
+                    text-decoration-color: map.get(
+                        map.get($themes, "brown"),
+                        "secondary"
+                    );
                 }
             }
         }
 
         &-maps {
-            outline: 3px solid rgb(165 42 42 / 75%);
+            outline: 3px solid
+                color.adjust(
+                    map.get(map.get($themes, "brown"), "primary"),
+                    $alpha: -0.25
+                );
         }
 
         &-icons {
@@ -430,32 +516,39 @@
 
             /* stylelint-disable-next-line no-descending-specificity */
             > a {
-                color: brown;
+                color: map.get(map.get($themes, "brown"), "primary");
             }
         }
     }
 
     // ---------------------------------------------------------------------------------------- // GROEN GROEN GROEN
     &-groen {
-        background: linear-gradient(to bottom, green, white);
+        background: linear-gradient(
+            to bottom,
+            map.get(map.get($themes, "green"), "primary"),
+            map.get(map.get($themes, "green"), "secondary")
+        );
 
         @include page-theme;
 
         &-username {
-            color: white;
+            color: map.get(map.get($themes, "green"), "secondary");
 
             @include page-username;
         }
 
         &-occupate {
-            color: green;
-            background-color: white;
+            color: map.get(map.get($themes, "green"), "primary");
+            background-color: map.get(map.get($themes, "green"), "secondary");
 
             @include page-occupation;
         }
 
         &-biography {
-            color: #ededed;
+            color: color.adjust(
+                map.get(map.get($themes, "green"), "secondary"),
+                $alpha: -0.25
+            );
 
             @include page-biography;
         }
@@ -465,28 +558,36 @@
 
             /* stylelint-disable-next-line no-descending-specificity */
             > li > a {
-                background: white;
-                color: green;
-                border: 1px solid green;
-                box-shadow: 1px 3px 5px rgb(167 167 167 / 76.7%);
+                background: map.get(map.get($themes, "green"), "secondary");
+                color: map.get(map.get($themes, "green"), "primary");
+                border: 1px solid map.get(map.get($themes, "green"), "primary");
+                box-shadow: 1px 3px 5px
+                    map.get(map.get($themes, "green"), "shadow");
             }
         }
 
         &-location {
-            color: green;
+            color: map.get(map.get($themes, "green"), "primary");
 
             @include page-location;
 
             > a {
                 /* stylelint-disable-next-line no-descending-specificity */
                 &:hover {
-                    text-decoration-color: white !important;
+                    text-decoration-color: map.get(
+                        map.get($themes, "green"),
+                        "secondary"
+                    );
                 }
             }
         }
 
         &-maps {
-            outline: 3px solid rgb(0 128 0 / 75%);
+            outline: 3px solid
+                color.adjust(
+                    map.get(map.get($themes, "green"), "primary"),
+                    $alpha: -0.25
+                );
         }
 
         &-icons {
@@ -494,32 +595,39 @@
 
             /* stylelint-disable-next-line no-descending-specificity */
             > a {
-                color: green;
+                color: map.get(map.get($themes, "green"), "primary");
             }
         }
     }
 
     // ---------------------------------------------------------------------------------------- // ADS THEME ADS THEME
     &-afrotheme {
-        background: linear-gradient(to bottom, #e6541b, black);
+        background: linear-gradient(
+            to bottom,
+            map.get(map.get($themes, "afro"), "primary"),
+            map.get(map.get($themes, "afro"), "secondary")
+        );
 
         @include page-theme;
 
         &-username {
-            color: white;
+            color: map.get(map.get($themes, "afro"), "tertiary");
 
             @include page-username;
         }
 
         &-occupate {
-            color: black;
-            background-color: white;
+            color: map.get(map.get($themes, "afro"), "secondary");
+            background-color: map.get(map.get($themes, "afro"), "tertiary");
 
             @include page-occupation;
         }
 
         &-biography {
-            color: #e0e0e0;
+            color: color.adjust(
+                map.get(map.get($themes, "afro"), "tertiary"),
+                $alpha: -0.25
+            );
 
             @include page-biography;
         }
@@ -529,27 +637,36 @@
 
             /* stylelint-disable-next-line no-descending-specificity */
             > li > a {
-                background: white;
-                color: black;
-                border: 1px solid #e6541b;
+                background: map.get(map.get($themes, "afro"), "tertiary");
+                color: map.get(map.get($themes, "afro"), "secondary");
+                border: 1px solid map.get(map.get($themes, "afro"), "secondary");
+                box-shadow: 1px 3px 5px
+                    map.get(map.get($themes, "afro"), "shadow");
             }
         }
 
         &-location {
-            color: #e6541b;
+            color: map.get(map.get($themes, "afro"), "primary");
 
             @include page-location;
 
             > a {
                 /* stylelint-disable-next-line no-descending-specificity */
                 &:hover {
-                    text-decoration-color: white !important;
+                    text-decoration-color: map.get(
+                        map.get($themes, "afro"),
+                        "tertiary"
+                    );
                 }
             }
         }
 
         &-maps {
-            outline: 3px solid rgba(#e6541b, 75%);
+            outline: 3px solid
+                color.adjust(
+                    map.get(map.get($themes, "afro"), "primary"),
+                    $alpha: -0.25
+                );
         }
 
         &-icons {
@@ -557,7 +674,324 @@
 
             /* stylelint-disable-next-line no-descending-specificity */
             > a {
-                color: #e6541b;
+                color: map.get(map.get($themes, "afro"), "primary");
+            }
+        }
+    }
+
+    // ---------------------------------------------------------------------------------------- // ORANJE ORANJE ORANJE
+    &-oranje {
+        background: linear-gradient(
+            to bottom,
+            map.get(map.get($themes, "orange"), "primary"),
+            map.get(map.get($themes, "orange"), "secondary")
+        );
+
+        @include page-theme;
+
+        &-username {
+            color: map.get(map.get($themes, "orange"), "tertiary");
+
+            @include page-username;
+        }
+
+        &-occupate {
+            color: map.get(map.get($themes, "orange"), "secondary");
+            background-color: map.get(map.get($themes, "orange"), "tertiary");
+
+            @include page-occupation;
+        }
+
+        &-biography {
+            color: color.adjust(
+                map.get(map.get($themes, "orange"), "tertiary"),
+                $alpha: -0.25
+            );
+
+            @include page-biography;
+        }
+
+        &-links {
+            @include page-links;
+
+            /* stylelint-disable-next-line no-descending-specificity */
+            > li > a {
+                background: map.get(map.get($themes, "orange"), "tertiary");
+                color: map.get(map.get($themes, "orange"), "secondary");
+                border: 1px solid
+                    map.get(map.get($themes, "orange"), "secondary");
+                box-shadow: 1px 3px 5px
+                    map.get(map.get($themes, "orange"), "shadow");
+            }
+        }
+
+        &-location {
+            color: map.get(map.get($themes, "orange"), "primary");
+
+            @include page-location;
+
+            > a {
+                /* stylelint-disable-next-line no-descending-specificity */
+                &:hover {
+                    text-decoration-color: map.get(
+                        map.get($themes, "orange"),
+                        "tertiary"
+                    );
+                }
+            }
+        }
+
+        &-maps {
+            outline: 3px solid
+                color.adjust(
+                    map.get(map.get($themes, "orange"), "primary"),
+                    $alpha: -0.25
+                );
+        }
+
+        &-icons {
+            @include page-socials;
+
+            /* stylelint-disable-next-line no-descending-specificity */
+            > a {
+                color: map.get(map.get($themes, "orange"), "primary");
+            }
+        }
+    }
+
+    // ---------------------------------------------------------------------------------------- // ROOD ROOD ROOD
+    &-rood {
+        background: linear-gradient(
+            to bottom,
+            map.get(map.get($themes, "red"), "primary"),
+            map.get(map.get($themes, "red"), "secondary")
+        );
+
+        @include page-theme;
+
+        &-username {
+            color: map.get(map.get($themes, "red"), "tertiary");
+
+            @include page-username;
+        }
+
+        &-occupate {
+            color: map.get(map.get($themes, "red"), "secondary");
+            background-color: map.get(map.get($themes, "red"), "tertiary");
+
+            @include page-occupation;
+        }
+
+        &-biography {
+            color: color.adjust(
+                map.get(map.get($themes, "red"), "tertiary"),
+                $alpha: -0.25
+            );
+
+            @include page-biography;
+        }
+
+        &-links {
+            @include page-links;
+
+            /* stylelint-disable-next-line no-descending-specificity */
+            > li > a {
+                background: map.get(map.get($themes, "red"), "tertiary");
+                color: map.get(map.get($themes, "red"), "secondary");
+                border: 1px solid map.get(map.get($themes, "red"), "secondary");
+                box-shadow: 1px 3px 5px
+                    map.get(map.get($themes, "red"), "shadow");
+            }
+        }
+
+        &-location {
+            color: map.get(map.get($themes, "red"), "primary");
+
+            @include page-location;
+
+            > a {
+                /* stylelint-disable-next-line no-descending-specificity */
+                &:hover {
+                    text-decoration-color: map.get(
+                        map.get($themes, "red"),
+                        "tertiary"
+                    );
+                }
+            }
+        }
+
+        &-maps {
+            outline: 3px solid
+                color.adjust(
+                    map.get(map.get($themes, "red"), "primary"),
+                    $alpha: -0.25
+                );
+        }
+
+        &-icons {
+            @include page-socials;
+
+            /* stylelint-disable-next-line no-descending-specificity */
+            > a {
+                color: map.get(map.get($themes, "red"), "primary");
+            }
+        }
+    }
+
+    // ---------------------------------------------------------------------------------------- // BLAUW BLAUW BLAUW
+    &-blauw {
+        background: linear-gradient(
+            to bottom,
+            map.get(map.get($themes, "blue"), "primary"),
+            map.get(map.get($themes, "blue"), "secondary")
+        );
+
+        @include page-theme;
+
+        &-username {
+            color: map.get(map.get($themes, "blue"), "secondary");
+
+            @include page-username;
+        }
+
+        &-occupate {
+            color: map.get(map.get($themes, "blue"), "tertiary");
+            background-color: map.get(map.get($themes, "blue"), "secondary");
+
+            @include page-occupation;
+        }
+
+        &-biography {
+            color: color.adjust(
+                map.get(map.get($themes, "blue"), "secondary"),
+                $alpha: -0.25
+            );
+
+            @include page-biography;
+        }
+
+        &-links {
+            @include page-links;
+
+            /* stylelint-disable-next-line no-descending-specificity */
+            > li > a {
+                background: map.get(map.get($themes, "blue"), "secondary");
+                color: map.get(map.get($themes, "blue"), "primary");
+                border: 1px solid map.get(map.get($themes, "blue"), "primary");
+                box-shadow: 1px 3px 5px
+                    map.get(map.get($themes, "blue"), "shadow");
+            }
+        }
+
+        &-location {
+            color: map.get(map.get($themes, "blue"), "primary");
+
+            @include page-location;
+
+            > a {
+                /* stylelint-disable-next-line no-descending-specificity */
+                &:hover {
+                    text-decoration-color: map.get(
+                        map.get($themes, "blue"),
+                        "secondary"
+                    );
+                }
+            }
+        }
+
+        &-maps {
+            outline: 3px solid
+                color.adjust(
+                    map.get(map.get($themes, "blue"), "primary"),
+                    $alpha: -0.25
+                );
+        }
+
+        &-icons {
+            @include page-socials;
+
+            /* stylelint-disable-next-line no-descending-specificity */
+            > a {
+                color: map.get(map.get($themes, "blue"), "primary");
+            }
+        }
+    }
+
+    // ---------------------------------------------------------------------------------------- // PAARS PAARS PAARS
+    &-paars {
+        background: linear-gradient(
+            to bottom,
+            map.get(map.get($themes, "purple"), "primary"),
+            map.get(map.get($themes, "purple"), "secondary")
+        );
+
+        @include page-theme;
+
+        &-username {
+            color: map.get(map.get($themes, "purple"), "secondary");
+
+            @include page-username;
+        }
+
+        &-occupate {
+            color: map.get(map.get($themes, "purple"), "tertiary");
+            background-color: map.get(map.get($themes, "purple"), "secondary");
+
+            @include page-occupation;
+        }
+
+        &-biography {
+            color: color.adjust(
+                map.get(map.get($themes, "purple"), "secondary"),
+                $alpha: -0.25
+            );
+
+            @include page-biography;
+        }
+
+        &-links {
+            @include page-links;
+
+            /* stylelint-disable-next-line no-descending-specificity */
+            > li > a {
+                background: map.get(map.get($themes, "purple"), "secondary");
+                color: map.get(map.get($themes, "purple"), "primary");
+                border: 1px solid map.get(map.get($themes, "purple"), "primary");
+                box-shadow: 1px 3px 5px
+                    map.get(map.get($themes, "purple"), "shadow");
+            }
+        }
+
+        &-location {
+            color: map.get(map.get($themes, "purple"), "primary");
+
+            @include page-location;
+
+            > a {
+                /* stylelint-disable-next-line no-descending-specificity */
+                &:hover {
+                    text-decoration-color: map.get(
+                        map.get($themes, "purple"),
+                        "secondary"
+                    );
+                }
+            }
+        }
+
+        &-maps {
+            outline: 3px solid
+                color.adjust(
+                    map.get(map.get($themes, "purple"), "primary"),
+                    $alpha: -0.25
+                );
+        }
+
+        &-icons {
+            @include page-socials;
+
+            /* stylelint-disable-next-line no-descending-specificity */
+            > a {
+                color: map.get(map.get($themes, "purple"), "primary");
             }
         }
     }

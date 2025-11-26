@@ -16,5 +16,72 @@ $error-color: #c60319;
 $warning-color: #d73e39;
 
 // #d9534f;
-
 // #cc9932;
+
+// THEMES:
+$themes: (
+    "afro": (
+        "primary": #d0a54f,
+        "secondary": #000,
+        "tertiary": #fff,
+        "shadow": rgb(49 49 49 / 75%),
+    ),
+    "yellow": (
+        "primary": #e5e018,
+        "secondary": #505050,
+        "tertiary": #fff,
+        "shadow": rgb(55 55 55 / 50%),
+    ),
+    "grey": (
+        "primary": #808080,
+        "secondary": #fff,
+        "tertiary": #4f4f4f,
+        "shadow": rgb(167 167 167 / 75%),
+    ),
+    "pink": (
+        "primary": #ff69b4,
+        "secondary": #fff,
+        "tertiary": #909090,
+        "shadow": rgb(167 167 167 / 67.5%),
+    ),
+    "black": (
+        "primary": #000,
+        "secondary": #808080,
+        "tertiary": #fff,
+        "shadow": rgb(49 49 49 / 75%),
+    ),
+    "brown": (
+        "primary": #644321,
+        "secondary": #fff,
+        "shadow": rgb(167 167 167 / 75%),
+    ),
+    "green": (
+        "primary": #048001,
+        "secondary": #fff,
+        "shadow": rgb(167 167 167 / 50%),
+    ),
+    "orange": (
+        "primary": #f75800,
+        "secondary": #000,
+        "tertiary": #fff,
+        "shadow": rgb(49 49 49 / 75%),
+    ),
+    "red": (
+        "primary": #f01e2d,
+        "secondary": #000,
+        "tertiary": #fff,
+        "shadow": rgb(49 49 49 / 75%),
+    ),
+    "blue": (
+        "primary": #023e8a,
+        "secondary": #fff,
+        "tertiary": #000,
+        "shadow": rgb(49 49 49 / 50%),
+    ),
+    "purple": (
+        "primary": #784b84,
+        "secondary": #fff,
+        "tertiary": #000,
+        "shadow": rgb(49 49 49 / 50%),
+    ),
+);

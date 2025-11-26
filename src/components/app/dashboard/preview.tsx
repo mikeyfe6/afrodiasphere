@@ -39,8 +39,16 @@ const Preview: React.FC<PreviewProps> = ({
                 return styles[`greenStyle${element}`];
             case "afrotheme":
                 return styles[`afroStyle${element}`];
+            case "oranje":
+                return styles[`orangeStyle${element}`];
+            case "rood":
+                return styles[`redStyle${element}`];
+            case "blauw":
+                return styles[`blueStyle${element}`];
+            case "paars":
+                return styles[`purpleStyle${element}`];
             default:
-                return styles[`blackStyle${element}`];
+                return styles[`afroStyle${element}`];
         }
     };
 

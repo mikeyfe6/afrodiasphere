@@ -30,7 +30,7 @@ const AdsTemplate = ({
 }: {
     pageContext: PageContext;
 }) => {
-    const [color, setColor] = useState("zwart");
+    const [color, setColor] = useState("afrotheme");
     const [avatar, setAvatar] = useState(noavatar);
     const [profile, setProfile] = useState("");
     const [occupation, setOccupation] = useState("");

@@ -34,6 +34,29 @@ const Themes: React.FC<ThemesProps> = ({
     return (
         <ul className={styles.chooseTheme}>
             <li className={styles.chooseColor}>
+                <label title="ADS thema">
+                    <input
+                        type="radio"
+                        value="afrotheme"
+                        checked={color === "afrotheme"}
+                        onChange={onRadioChange}
+                        onClick={(event) => {
+                            event.preventDefault();
+                        }}
+                    />
+                    <div
+                        className={`${styles.afroTheme} ${
+                            color === "afrotheme" ? styles.currentTheme : ""
+                        }`}
+                    >
+                        <div className={styles.afrolinks} />
+                        <div className={styles.afrolinks} />
+                        <div className={styles.afrolinks} />
+                    </div>
+                </label>
+            </li>
+
+            <li className={styles.chooseColor}>
                 <label title="Geel / Zwart">
                     <input
                         type="radio"
@@ -127,7 +150,7 @@ const Themes: React.FC<ThemesProps> = ({
             </li>
 
             <li className={styles.chooseColor}>
-                <label title="Rood / Wit">
+                <label title="Bruin / Wit">
                     <input
                         type="radio"
                         value="bruin"
@@ -173,24 +196,93 @@ const Themes: React.FC<ThemesProps> = ({
             </li>
 
             <li className={styles.chooseColor}>
-                <label title="Koperbruin / Zwart">
+                <label title="Oranje / Zwart">
                     <input
                         type="radio"
-                        value="afrotheme"
-                        checked={color === "afrotheme"}
+                        value="oranje"
+                        checked={color === "oranje"}
                         onChange={onRadioChange}
                         onClick={(event) => {
                             event.preventDefault();
                         }}
                     />
                     <div
-                        className={`${styles.afroTheme} ${
-                            color === "afrotheme" ? styles.currentTheme : ""
+                        className={`${styles.orangeTheme} ${
+                            color === "oranje" ? styles.currentTheme : ""
                         }`}
                     >
-                        <div className={styles.afrolinks} />
-                        <div className={styles.afrolinks} />
-                        <div className={styles.afrolinks} />
+                        <div className={styles.orangelinks} />
+                        <div className={styles.orangelinks} />
+                        <div className={styles.orangelinks} />
+                    </div>
+                </label>
+            </li>
+
+            <li className={styles.chooseColor}>
+                <label title="Rood / Zwart">
+                    <input
+                        type="radio"
+                        value="rood"
+                        checked={color === "rood"}
+                        onChange={onRadioChange}
+                        onClick={(event) => {
+                            event.preventDefault();
+                        }}
+                    />
+                    <div
+                        className={`${styles.redTheme} ${
+                            color === "rood" ? styles.currentTheme : ""
+                        }`}
+                    >
+                        <div className={styles.redlinks} />
+                        <div className={styles.redlinks} />
+                        <div className={styles.redlinks} />
+                    </div>
+                </label>
+            </li>
+
+            <li className={styles.chooseColor}>
+                <label title="Blauw / Wit">
+                    <input
+                        type="radio"
+                        value="blauw"
+                        checked={color === "blauw"}
+                        onChange={onRadioChange}
+                        onClick={(event) => {
+                            event.preventDefault();
+                        }}
+                    />
+                    <div
+                        className={`${styles.blueTheme} ${
+                            color === "blauw" ? styles.currentTheme : ""
+                        }`}
+                    >
+                        <div className={styles.bluelinks} />
+                        <div className={styles.bluelinks} />
+                        <div className={styles.bluelinks} />
+                    </div>
+                </label>
+            </li>
+
+            <li className={styles.chooseColor}>
+                <label title="Paars / Wit">
+                    <input
+                        type="radio"
+                        value="paars"
+                        checked={color === "paars"}
+                        onChange={onRadioChange}
+                        onClick={(event) => {
+                            event.preventDefault();
+                        }}
+                    />
+                    <div
+                        className={`${styles.purpleTheme} ${
+                            color === "paars" ? styles.currentTheme : ""
+                        }`}
+                    >
+                        <div className={styles.purplelinks} />
+                        <div className={styles.purplelinks} />
+                        <div className={styles.purplelinks} />
                     </div>
                 </label>
             </li>
