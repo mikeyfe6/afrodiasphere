@@ -138,6 +138,7 @@
 
         > div {
             flex: 1;
+            width: 0;
 
             > hr {
                 width: 100%;
@@ -148,8 +149,6 @@
 
             /* stylelint-disable-next-line no-descending-specificity */
             > span {
-                max-width: 100%;
-
                 > i {
                     color: $primary-color;
                 }
