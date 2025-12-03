@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import type { RouteComponentProps } from "@reach/router";
 
 import { navigate, Link } from "gatsby";
@@ -29,10 +29,11 @@ const LoadingMessage: React.FC<{ text: string }> = ({ text }) => {
     );
 };
 
-const LoginPage: React.FC<RouteComponentProps> = () => {
+const LoginPage: React.FC<RouteComponentProps> = ({ location }) => {
     const [loginError, setLoginError] = useState<string | null>(null);
     const [registerError, setRegisterError] = useState<string | null>(null);
     const [loading, setLoading] = useState<string | null>(null);
+    const [showSuccess, setShowSuccess] = useState<boolean>(false);
 
     const usernameRef = useRef<HTMLInputElement | null>(null);
     const passwordRef = useRef<HTMLInputElement | null>(null);
@@ -41,6 +42,17 @@ const LoginPage: React.FC<RouteComponentProps> = () => {
     const emailRegRef = useRef<HTMLInputElement | null>(null);
     const passwordRegRef = useRef<HTMLInputElement | null>(null);
     const passwordConfirmRegRef = useRef<HTMLInputElement | null>(null);
+
+    console.log(location);
+
+    useEffect(() => {
+        const params = new URLSearchParams(location?.search);
+        const confirmed = params.get("confirmed");
+
+        if (confirmed === "true") {
+            setShowSuccess(true);
+        }
+    }, [location]);
 
     const signUpHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
         const container = document.getElementById("ads-form");
@@ -97,37 +109,29 @@ const LoginPage: React.FC<RouteComponentProps> = () => {
         }
 
         try {
-            const response = await axios.post(
-                `${apiURL}/api/auth/local/register`,
-                {
-                    username:
-                        usernameRegRef.current?.value
-                            ?.toLowerCase()
-                            .replace(/\s+/g, "") || "",
-                    email:
-                        emailRegRef.current?.value
-                            ?.toLowerCase()
-                            .replace(/\s+/g, "") || "",
-                    password: password,
-                }
-            );
-
-            const { data } = response;
-
-            setRegisterError(null);
             setLoading("Aan het laden");
+            setRegisterError(null);
 
-            setUser(data);
+            await axios.post(`${apiURL}/api/auth/local/register`, {
+                username:
+                    usernameRegRef.current?.value
+                        ?.toLowerCase()
+                        .replace(/\s+/g, "") || "",
+                email:
+                    emailRegRef.current?.value
+                        ?.toLowerCase()
+                        .replace(/\s+/g, "") || "",
+                password: password,
+            });
+
+            setLoading(null);
+            setShowSuccess(true);
 
             if (process.env.NODE_ENV === "production") {
                 await axios.post(
                     `https://api.netlify.com/build_hooks/61fd35548a7a1a15735fd2b8`
                 );
             }
-
-            console.log("Welkom bij Afrodiasphere!");
-
-            navigate("/dashboard/");
         } catch (error) {
             console.error("Login error:", error);
             setLoading(null);
@@ -304,6 +308,17 @@ const LoginPage: React.FC<RouteComponentProps> = () => {
                                 </button>
                             </div>
                         </div>
+                    </div>
+
+                    <div
+                        className={`${styles.success} ${
+                            showSuccess ? styles.active : ""
+                        }`}
+                    >
+                        <p>Check je e-mail om je registratie te voltooien.</p>
+                        <button onClick={() => setShowSuccess(false)}>
+                            Sluiten
+                        </button>
                     </div>
                 </div>
             </div>
