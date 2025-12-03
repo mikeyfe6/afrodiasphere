@@ -28,6 +28,10 @@
         margin: auto;
         width: 100%;
 
+        @include mobile {
+            padding: rem-calc(0 20);
+        }
+
         #{$login}-wrapper {
             background: $primary-color;
             box-shadow: 0 14px 28px rgb(0 0 0 / 25%),
