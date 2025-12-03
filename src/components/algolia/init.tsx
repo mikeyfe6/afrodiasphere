@@ -18,7 +18,7 @@ const Algolia = () => {
 
             try {
                 const response = await axios.get(
-                    `${apiURL}/api/pages?populate[0]=avatar`
+                    `${apiURL}/api/pages?populate[0]=avatar&populate[1]=user&filters[user][confirmed][$eq]=true`
                 );
                 const records = response.data.data;
 
