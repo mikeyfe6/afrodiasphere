@@ -33,7 +33,7 @@ const LoginPage: React.FC<RouteComponentProps> = ({ location }) => {
     const [loginError, setLoginError] = useState<string | null>(null);
     const [registerError, setRegisterError] = useState<string | null>(null);
     const [loading, setLoading] = useState<string | null>(null);
-    const [showSuccess, setShowSuccess] = useState<boolean>(false);
+    const [confirmation, setConfirmation] = useState<boolean>(false);
 
     const usernameRef = useRef<HTMLInputElement | null>(null);
     const passwordRef = useRef<HTMLInputElement | null>(null);
@@ -50,7 +50,7 @@ const LoginPage: React.FC<RouteComponentProps> = ({ location }) => {
         const confirmed = params.get("confirmed");
 
         if (confirmed === "true") {
-            setShowSuccess(true);
+            setConfirmation(true);
         }
     }, [location]);
 
@@ -125,7 +125,7 @@ const LoginPage: React.FC<RouteComponentProps> = ({ location }) => {
             });
 
             setLoading(null);
-            setShowSuccess(true);
+            setConfirmation(true);
 
             if (process.env.NODE_ENV === "production") {
                 await axios.post(
@@ -192,7 +192,7 @@ const LoginPage: React.FC<RouteComponentProps> = ({ location }) => {
                                 ref={passwordConfirmRegRef}
                                 type="password"
                                 name="passwordConfirm"
-                                autoComplete="new-password"
+                                autoComplete="off"
                                 placeholder="bevestig wachtwoord"
                                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                                 title="Voer hetzelfde wachtwoord nogmaals in ter bevestiging."
@@ -312,11 +312,11 @@ const LoginPage: React.FC<RouteComponentProps> = ({ location }) => {
 
                     <div
                         className={`${styles.success} ${
-                            showSuccess ? styles.active : ""
+                            confirmation ? styles.active : ""
                         }`}
                     >
                         <p>Check je e-mail om je registratie te voltooien.</p>
-                        <button onClick={() => setShowSuccess(false)}>
+                        <button onClick={() => setConfirmation(false)}>
                             Sluiten
                         </button>
                     </div>

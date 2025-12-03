@@ -31,7 +31,7 @@ const Slider = () => {
         const getCarousel = async () => {
             try {
                 const res = await axios.get(
-                    `${apiURL}/api/pages?populate[0]=avatar`
+                    `${apiURL}/api/pages?populate[0]=avatar&populate[1]=user&filters[user][confirmed][$eq]=true`
                 );
 
                 setCarousel(res.data.data);
