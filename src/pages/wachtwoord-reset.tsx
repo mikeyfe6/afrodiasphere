@@ -34,7 +34,7 @@ export const Head: HeadFC = () => {
     return (
         <Seo
             title="Reset wachtwoord"
-            pathname="/wachtwoord-resetten/"
+            pathname="/wachtwoord-reset/"
             noindex={true}
         />
     );

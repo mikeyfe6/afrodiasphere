@@ -62,54 +62,62 @@ const Slider = () => {
                         992: { slidesPerView: 5 },
                     }}
                 >
-                    {carousel?.map((ads) => (
-                        <SwiperSlide
-                            key={ads.id}
-                            className={styles.carouselSlide}
-                        >
-                            <div>
-                                <img
-                                    src={
-                                        !ads.avatar?.url
-                                            ? noavatar
-                                            : ads.avatar?.url
-                                    }
-                                    className={styles.avatar}
-                                    alt={ads.profile}
-                                />
-                                <div className={styles.profile}>
-                                    {ads.profile}
-                                </div>
+                    {carousel?.map((ads) => {
+                        const isNew =
+                            new Date().getTime() -
+                                new Date(ads.createdAt).getTime() <=
+                            7 * 24 * 60 * 60 * 1000;
 
-                                <div
-                                    className={styles.occupate}
-                                    style={{
-                                        visibility:
-                                            !ads.occupation ||
-                                            ads.occupation === "geen"
-                                                ? "hidden"
-                                                : "visible",
-                                    }}
-                                >
-                                    {ads.occupation}
-                                </div>
+                        return (
+                            <SwiperSlide
+                                key={ads.id}
+                                className={styles.carouselSlide}
+                            >
+                                <div>
+                                    <img
+                                        src={
+                                            !ads.avatar?.url
+                                                ? noavatar
+                                                : ads.avatar?.url
+                                        }
+                                        className={styles.avatar}
+                                        alt={ads.profile}
+                                    />
+                                    <div className={styles.profile}>
+                                        {ads.profile}
+                                    </div>
 
-                                <div className={styles.biography}>
-                                    <p>{ads.biography}</p>
-                                </div>
-                                <div className={styles.url}>
-                                    <Link
-                                        to={`/${ads.slug}/`}
-                                        title={`${baseURL}/${ads.slug}/`}
+                                    <div
+                                        className={styles.occupate}
+                                        style={{
+                                            visibility:
+                                                !ads.occupation ||
+                                                ads.occupation === "geen"
+                                                    ? "hidden"
+                                                    : "visible",
+                                        }}
                                     >
-                                        <span>・</span>
-                                        <span>/</span>
-                                        <span>{`${ads.slug ?? ".."}`}</span>
-                                    </Link>
+                                        {ads.occupation}
+                                    </div>
+
+                                    <div className={styles.biography}>
+                                        <p>{ads.biography}</p>
+                                    </div>
+                                    <div className={styles.url}>
+                                        <Link
+                                            to={`/${ads.slug}/`}
+                                            title={`${baseURL}/${ads.slug}/`}
+                                        >
+                                            <span>・</span>
+                                            <span>/</span>
+                                            <span>{`${ads.slug ?? ".."}`}</span>
+                                        </Link>
+                                    </div>
                                 </div>
-                            </div>
-                        </SwiperSlide>
-                    ))}
+                                {isNew && <span>NIEUW</span>}
+                            </SwiperSlide>
+                        );
+                    })}
                 </Swiper>
             )}
         </section>

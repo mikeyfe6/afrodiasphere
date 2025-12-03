@@ -261,10 +261,19 @@
                 pointer-events: all;
             }
 
+            > p,
+            > small {
+                text-align: center;
+            }
+
             > p {
                 font-weight: bold;
 
                 @include fluid-type(18, 20);
+            }
+
+            > small {
+                margin-top: rem-calc(12);
             }
 
             > button {

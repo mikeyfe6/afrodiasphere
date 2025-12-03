@@ -12,6 +12,7 @@
 
     &-slide {
         height: auto;
+        position: relative;
 
         > div {
             background: linear-gradient(135deg, rgb(0 0 0 / 50%), $black-color);
@@ -100,7 +101,7 @@
                     @include ellipsis;
                     @include smooth-trans;
 
-                    span {
+                    > span {
                         &:nth-child(1) {
                             color: $secondary-color;
                         }
@@ -120,6 +121,22 @@
                     }
                 }
             }
+        }
+
+        /* stylelint-disable-next-line no-descending-specificity */
+        > span {
+            position: absolute;
+            top: rem-calc(12);
+            right: rem-calc(12);
+            background-color: $white-color;
+            color: $ash-color;
+            font-weight: bold;
+            padding: rem-calc(4 8);
+            letter-spacing: 0.025em;
+            line-height: normal;
+
+            @include border-radius(3);
+            @include fluid-type(8, 10);
         }
     }
 }

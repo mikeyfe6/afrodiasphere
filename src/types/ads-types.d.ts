@@ -315,6 +315,7 @@ interface CarouselItem {
     occupation?: string;
     biography?: string;
     slug?: string;
+    createdAt: string;
 }
 
 // MAPS

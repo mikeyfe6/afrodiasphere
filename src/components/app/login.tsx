@@ -166,6 +166,7 @@ const LoginPage: React.FC<RouteComponentProps> = ({ location }) => {
                                 style={{ textTransform: "lowercase" }}
                                 placeholder="gebruikersnaam"
                                 title="Kies een gebruikersnaam"
+                                autoComplete="username"
                                 autoCapitalize="none"
                             />
                             <input
@@ -176,26 +177,27 @@ const LoginPage: React.FC<RouteComponentProps> = ({ location }) => {
                                 style={{ textTransform: "lowercase" }}
                                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                                 title="Voer je e-mailadres in"
+                                autoComplete="email"
                                 autoCapitalize="none"
                             />
                             <input
                                 ref={passwordRegRef}
                                 type="password"
                                 name="password"
-                                autoComplete="new-password"
                                 placeholder="wachtwoord"
                                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                                 title="Moet op z'n minst 1 nummer, 1 hoofdletter, 1 klein letter en 8 karakters lang zijn."
+                                autoComplete="new-password"
                                 autoCapitalize="none"
                             />
                             <input
                                 ref={passwordConfirmRegRef}
                                 type="password"
                                 name="passwordConfirm"
-                                autoComplete="off"
                                 placeholder="bevestig wachtwoord"
                                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                                 title="Voer hetzelfde wachtwoord nogmaals in ter bevestiging."
+                                autoComplete="off"
                                 autoCapitalize="none"
                             />
 
@@ -222,6 +224,7 @@ const LoginPage: React.FC<RouteComponentProps> = ({ location }) => {
                                 placeholder="e-mailadres / gebruikersnaam"
                                 style={{ textTransform: "lowercase" }}
                                 title="Log in met jouw e-mailadres of gebruikersnaam"
+                                autoComplete="username"
                                 autoCapitalize="none"
                                 required
                             />
@@ -231,6 +234,7 @@ const LoginPage: React.FC<RouteComponentProps> = ({ location }) => {
                                 name="password"
                                 placeholder="wachtwoord"
                                 title="Voer jouw wachtwoord in"
+                                autoComplete="current-password"
                                 autoCapitalize="none"
                                 required
                             />
@@ -315,7 +319,10 @@ const LoginPage: React.FC<RouteComponentProps> = ({ location }) => {
                             confirmation ? styles.active : ""
                         }`}
                     >
-                        <p>Check je e-mail om je registratie te voltooien.</p>
+                        <p>Check je e-mail om je registratie te voltooien!</p>
+                        <small>
+                            Controleer je spam als je de e-mail niet ziet
+                        </small>
                         <button onClick={() => setConfirmation(false)}>
                             Sluiten
                         </button>
