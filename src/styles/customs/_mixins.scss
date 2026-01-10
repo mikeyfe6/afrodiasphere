@@ -9,11 +9,7 @@
 
 // layout ---------------------------- // layout
 
-@mixin container(
-    $marginY: 0,
-    $paddingX: rem-calc(32),
-    $maxWidth: rem-calc(1200)
-) {
+@mixin container($marginY: 0, $paddingX: rem-calc(32), $maxWidth: rem-calc(1200)) {
     width: 100%;
     max-width: $maxWidth;
     padding: 0 $paddingX;
@@ -47,10 +43,11 @@
     $processed-radius: ();
 
     @each $value in $radius {
-        $processed-radius: list.append(
-            $processed-radius,
-            if(math.is-unitless($value), $value + px, $value)
-        );
+        @if math.is-unitless($value) {
+            $processed-radius: list.append($processed-radius, $value + px);
+        } @else {
+            $processed-radius: list.append($processed-radius, $value);
+        }
     }
 
     border-radius: $processed-radius;
@@ -119,12 +116,7 @@
     }
 }
 
-@mixin dash-button(
-    $bgColor: $white-color,
-    $txtColor: $ash-color,
-    $yAxis: rem-calc(8),
-    $type: 1
-) {
+@mixin dash-button($bgColor: $white-color, $txtColor: $ash-color, $yAxis: rem-calc(8), $type: 1) {
     background-color: $bgColor;
     color: $txtColor;
     padding: $yAxis rem-calc(16);
